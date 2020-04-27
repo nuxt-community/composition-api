@@ -1,3 +1,14 @@
+### [0.1.2](https://github.com/danielroe/nuxt-composition-api/compare/0.1.1...0.1.2) (2020-04-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* `onFetch` can now be accessed using `useFetch`
+
+### Code Refactoring
+
+* rename onFetch to useFetch ([3647769](https://github.com/danielroe/nuxt-composition-api/commit/3647769b8db96f8dcc0463ea4a820eb712ef97ca))
+
 ### 0.1.1 (2020-04-27)
 
 
