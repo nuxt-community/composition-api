@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "sourceMap": true,
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["esnext", "dom"],
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "outDir": "lib",
+    "declaration": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "types": ["@nuxt/types"]
+  },
+  "exclude": ["node_modules", "lib", "test"]
+}
