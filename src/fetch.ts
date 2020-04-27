@@ -4,8 +4,9 @@ import {
   onServerPrefetch,
   onBeforeMount,
 } from '@vue/composition-api'
-import { ComponentInstance } from '@vue/composition-api/dist/component'
 import { normalizeError } from '@nuxt/vue-app'
+
+import { ComponentInstance } from '@vue/composition-api/dist/component'
 
 interface Fetch {
   (context: ComponentInstance): void

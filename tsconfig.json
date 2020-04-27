@@ -2,8 +2,8 @@
   "compilerOptions": {
     "strict": true,
     "sourceMap": true,
-    "target": "es5",
-    "module": "commonjs",
+    "target": "esnext",
+    "module": "esnext",
     "lib": ["esnext", "dom"],
     "moduleResolution": "node",
     "rootDir": "src",
