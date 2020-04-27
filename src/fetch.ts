@@ -24,6 +24,39 @@ interface AugmentedComponentInstance extends ComponentInstance {
   _fetchDelay?: number
 }
 
+function registerCallback(vm: ComponentInstance, callback: Fetch) {
+  const callbacks = fetches.get(vm) || []
+  fetches.set(vm, [...callbacks, callback])
+}
+
+async function callFetches(this: AugmentedComponentInstance) {
+  const fetchesToCall = fetches.get(this)
+  if (!fetchesToCall) return
+  ;(this.$nuxt as any).nbFetching++
+  this.$fetchState.pending = true
+  this.$fetchState.error = null
+  this._hydrated = false
+  let error = null
+  const startTime = Date.now()
+
+  try {
+    await Promise.all(fetchesToCall.map(fetch => fetch(this)))
+  } catch (err) {
+    error = normalizeError(err)
+  }
+
+  const delayLeft = (this._fetchDelay || 0) - (Date.now() - startTime)
+  if (delayLeft > 0) {
+    await new Promise(resolve => setTimeout(resolve, delayLeft))
+  }
+
+  this.$fetchState.error = error
+  this.$fetchState.pending = false
+  this.$fetchState.timestamp = Date.now()
+
+  this.$nextTick(() => (this.$nuxt as any).nbFetching--)
+}
+
 async function serverPrefetch(vm: AugmentedComponentInstance) {
   // Call and await on $fetch
   vm.$fetchState = vm.$fetchState || {}
@@ -84,41 +117,9 @@ export const onFetch = (callback: Fetch) => {
         Vue.set(vm, key, data[key])
       } catch (e) {
         if (process.env.NODE_ENV === 'development')
+          // eslint-disable-next-line
           console.warn(`Could not hydrate ${key}.`)
       }
     }
   })
-}
-
-function registerCallback(vm: ComponentInstance, callback: Fetch) {
-  const callbacks = fetches.get(vm) || []
-  fetches.set(vm, [...callbacks, callback])
-}
-
-async function callFetches(this: AugmentedComponentInstance) {
-  const fetchesToCall = fetches.get(this)
-  if (!fetchesToCall) return
-  ;(this.$nuxt as any).nbFetching++
-  this.$fetchState.pending = true
-  this.$fetchState.error = null
-  this._hydrated = false
-  let error = null
-  const startTime = Date.now()
-
-  try {
-    await Promise.all(fetchesToCall.map(fetch => fetch(this)))
-  } catch (err) {
-    error = normalizeError(err)
-  }
-
-  const delayLeft = (this._fetchDelay || 0) - (Date.now() - startTime)
-  if (delayLeft > 0) {
-    await new Promise(resolve => setTimeout(resolve, delayLeft))
-  }
-
-  this.$fetchState.error = error
-  this.$fetchState.pending = false
-  this.$fetchState.timestamp = Date.now()
-
-  this.$nextTick(() => (this.$nuxt as any).nbFetching--)
 }
