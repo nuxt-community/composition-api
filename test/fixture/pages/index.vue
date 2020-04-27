@@ -6,7 +6,7 @@
 
 <script>
 import { defineComponent, ref } from '@vue/composition-api'
-import { onFetch } from '../../..'
+import { useFetch } from '../../..'
 
 export function fetcher(result) {
   return new Promise(resolve => {
@@ -20,7 +20,7 @@ export default defineComponent({
   setup() {
     const name = ref('')
     
-    onFetch(async () => {
+    useFetch(async () => {
       name.value = await fetcher('Full Name')
     })
 

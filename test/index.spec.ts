@@ -7,7 +7,7 @@ const config = require('./fixture/nuxt.config')
 
 let nuxt
 
-describe('onFetch', () => {
+describe('useFetch', () => {
   beforeAll(async () => {
     nuxt = (await setup(config)).nuxt
   }, 60000)

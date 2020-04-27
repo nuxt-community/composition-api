@@ -84,7 +84,7 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
   )
 }
 
-export const onFetch = (callback: Fetch) => {
+export const useFetch = (callback: Fetch) => {
   const vm = getCurrentInstance() as AugmentedComponentInstance | undefined
   if (!vm) throw new Error('This must be called within a setup function.')
 
