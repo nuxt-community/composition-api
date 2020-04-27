@@ -1,4 +1,4 @@
-<h1 align="center">🟢nuxt-composition-api</h1>
+<h1 align="center">nuxt-composition-api</h1>
 <p align="center">Nuxt hooks for the Vue Composition API</p>
 
 <p align="center">
@@ -26,9 +26,12 @@
 
 ## Progress
 
+> This is still an in-development package, and should definitely be regarded as alpha-level.
+
 - [x] Support for new Nuxt `fetch()`
 - [x] Access to Nuxt context
 - [ ] `nuxtServerInit`
+- [ ] test framework
 
 ## Quick Start
 
@@ -79,7 +82,7 @@ import { withContext } from 'nuxt-composition-api'
 export default defineComponent({
   setup() {
     withContext(({ store }) => {
-      store.dispatch('myAction
+      store.dispatch('myAction')
     })
   },
 })
