@@ -27,9 +27,8 @@
 ## Progress
 
 - [x] Support for new Nuxt `fetch()`
-- [ ] Access to Nuxt context
+- [x] Access to Nuxt context
 - [ ] `nuxtServerInit`
-- [ ] Vuex hooks
 
 ## Quick Start
 
@@ -64,6 +63,23 @@ export default defineComponent({
 
     onFetch(async () => {
       name.value = await axios.get('https://myapi.com/name')
+    })
+  },
+})
+```
+
+### withContext
+
+You can access the Nuxt context more easily using `withContext`, which runs synchronously within the setup function.
+
+```ts
+import { defineComponent, ref } from '@vue/composition-api'
+import { withContext } from 'nuxt-composition-api'
+
+export default defineComponent({
+  setup() {
+    withContext(({ store }) => {
+      store.dispatch('myAction
     })
   },
 })
