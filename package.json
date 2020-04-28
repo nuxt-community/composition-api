@@ -19,16 +19,19 @@
     "javascript"
   ],
   "main": "lib/index.js",
+  "module": "lib/index.es.js",
+  "browser": "lib/index.bundle.js",
   "types": "lib/index.d.ts",
   "files": [
     "lib/**/*",
     "lib/index.d.ts",
     "!**/*.map"
   ],
+  "sideEffects": false,
   "scripts": {
     "build": "yarn clean && yarn compile",
     "clean": "rm -rf lib/*",
-    "compile": "tsc",
+    "compile": "rollup -c",
     "lint": "run-s lint:all:*",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.ts,.vue .",
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts}\"",
@@ -75,11 +78,15 @@
     "prettier": "^2.0.5",
     "prettier-eslint-cli": "^5.0.0",
     "release-it": "13.5.7",
+    "rollup": "^2.7.3",
+    "rollup-plugin-typescript2": "^0.27.0",
     "tsd": "^0.11.0",
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
+    "@nuxt/vue-app": "^2.12.2",
     "@vue/composition-api": "^0.5.0",
-    "nuxt": "^2.12.2"
+    "nuxt": "^2.12.2",
+    "vue": "^2"
   }
 }
