@@ -47,16 +47,6 @@ yarn add nuxt-composition-api
 npm install nuxt-composition-api --save
 ```
 
-You will need to add `nuxt-composition-api` to be transpiled in your `nuxt.config`:
-
-```ts
-...
-transpile: [
-  /nuxt-composition-api/
-],
-...
-```
-
 You will now be able to access the following hooks:
 
 ### useFetch
