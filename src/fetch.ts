@@ -34,9 +34,11 @@ async function callFetches(this: AugmentedComponentInstance) {
   const fetchesToCall = fetches.get(this)
   if (!fetchesToCall) return
   ;(this.$nuxt as any).nbFetching++
+  this.$fetchState = this.$fetchState || {}
   this.$fetchState.pending = true
   this.$fetchState.error = null
   this._hydrated = false
+
   let error = null
   const startTime = Date.now()
 
