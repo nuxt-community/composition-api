@@ -1,6 +1,6 @@
 {
   "name": "nuxt-composition-api",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Nuxt hooks for the Vue Composition API",
   "license": "MIT",
   "repository": "danielroe/nuxt-composition-api",
