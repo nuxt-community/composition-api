@@ -55,8 +55,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
     "@babel/preset-typescript": "^7.9.0",
     "@nuxt/types": "^0.7.5",
     "@nuxtjs/module-test-utils": "^1.6.1",
@@ -78,7 +78,7 @@
     "prettier": "^2.0.5",
     "prettier-eslint-cli": "^5.0.0",
     "release-it": "13.5.7",
-    "rollup": "^2.7.3",
+    "rollup": "^2.7.4",
     "rollup-plugin-typescript2": "^0.27.0",
     "tsd": "^0.11.0",
     "yorkie": "^2.0.0"
