@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>name-{{ name }}</div>
+    <nuxt-link to="/other">link forward</nuxt-link>
   </div>
 </template>
 
