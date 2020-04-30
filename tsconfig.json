@@ -1,20 +1,18 @@
 {
   "compilerOptions": {
-    "strict": false,
+    "strict": true,
     "sourceMap": true,
-    "target": "es2015",
-    "module": "commonjs",
+    "target": "es2018",
+    "module": "esnext",
     "lib": ["esnext", "dom"],
     "esModuleInterop": true,
     "moduleResolution": "node",
-    /* Raise error on expressions and declarations with an implied 'any' */
-    "noImplicitAny": false,
-    "rootDir": "./src",
-    "outDir": "./lib",
+    "rootDir": "src",
+    "outDir": "lib",
     "declaration": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["@types/node", "@nuxt/types"]
+    "types": ["node", "@nuxt/types"]
   },
   "exclude": ["node_modules", "lib", "test"]
 }
