@@ -5,13 +5,16 @@
       loading email
     </div>
     <div>email-{{ email }}</div>
+    <div>{{ computedProp }}</div>
+    <div>{{ myFunction() }}</div>
     <nuxt-link to="/other">link forward</nuxt-link>
     <button @click="$fetch">Refetch</button>
+
   </div>
 </template>
 
 <script>
-import { defineComponent, ref, useFetch } from '../../..'
+import { defineComponent, ref, computed, useFetch } from '../../..'
 
 export function fetcher(result, time = 100) {
   return new Promise(resolve => {
@@ -25,6 +28,11 @@ export default defineComponent({
   setup() {
     const name = ref('')
     const email = ref('')
+    const computedProp = computed(() => 'computed')
+    
+    function myFunction() {
+      return 'function result'
+    }
     
     useFetch(async () => {
       name.value = await fetcher('Full Name')
@@ -34,6 +42,8 @@ export default defineComponent({
     return {
       name,
       email,
+      computedProp,
+      myFunction,
     }
   }
 })

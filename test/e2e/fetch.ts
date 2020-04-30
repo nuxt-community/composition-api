@@ -49,3 +49,9 @@ test('Refetches with $fetch', async t => {
   await t.click(Selector('button'))
   await expectOnPage('loading email')
 })
+
+test("Doesn't overwrite methods and getters", async t => {
+  await t.navigateTo(`${url}/`)
+  await expectOnPage('computed')
+  await expectOnPage('function result')
+})
