@@ -1,31 +1,39 @@
 <template>
   <div>
     <div>name-{{ name }}</div>
+    <div v-if="$fetchState.pending">
+      loading email
+    </div>
+    <div>email-{{ email }}</div>
     <nuxt-link to="/other">link forward</nuxt-link>
+    <button @click="$fetch">Refetch</button>
   </div>
 </template>
 
 <script>
 import { defineComponent, ref, useFetch } from '../../..'
 
-export function fetcher(result) {
+export function fetcher(result, time = 100) {
   return new Promise(resolve => {
     return setTimeout(() => {
       resolve(result)
-    }, 100)
+    }, time)
   })
 }
 
 export default defineComponent({
   setup() {
     const name = ref('')
+    const email = ref('')
     
     useFetch(async () => {
       name.value = await fetcher('Full Name')
+      if(process.client) email.value = await fetcher('long@load.com', 2000)
     })
 
     return {
-      name
+      name,
+      email,
     }
   }
 })

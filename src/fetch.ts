@@ -34,13 +34,7 @@ async function callFetches(this: AugmentedComponentInstance) {
   const fetchesToCall = fetches.get(this)
   if (!fetchesToCall) return
   ;(this.$nuxt as any).nbFetching++
-  this.$fetchState =
-    this.$fetchState ||
-    Vue.observable({
-      error: null,
-      pending: false,
-      timestamp: 0,
-    })
+
   this.$fetchState.pending = true
   this.$fetchState.error = null
   this._hydrated = false
@@ -101,6 +95,16 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
 export const useFetch = (callback: Fetch) => {
   const vm = getCurrentInstance() as AugmentedComponentInstance | undefined
   if (!vm) throw new Error('This must be called within a setup function.')
+
+  vm.$fetchState =
+    vm.$fetchState ||
+    Vue.observable({
+      error: null,
+      pending: false,
+      timestamp: 0,
+    })
+
+  vm.$fetch = callFetches.bind(vm)
 
   registerCallback(vm, callback)
 
