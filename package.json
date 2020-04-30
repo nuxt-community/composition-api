@@ -30,6 +30,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "yarn clean && yarn compile",
+    "watch": "yarn compile -w",
     "clean": "rm -rf lib/*",
     "compile": "rollup -c",
     "lint": "run-s lint:all:*",
@@ -42,8 +43,7 @@
     "release": "release-it",
     "test": "run-s test:*",
     "test:types": "tsd",
-    "test:e2e": "testcafe firefox:headless test/e2e --app 'node test/start-fixture.js'",
-    "test:unit": "jest"
+    "test:e2e": "testcafe firefox:headless test/e2e --app 'node test/start-fixture.js'"
   },
   "tsd": {
     "directory": "test/tsd",
