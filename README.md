@@ -35,8 +35,6 @@
 
 ## Quick Start
 
-> This project requires usage of [`@vue/composition-api`](https://github.com/vuejs/composition-api). Make sure you've set that up correctly first.
-
 First install `nuxt-composition-api`:
 
 ```bash
@@ -47,7 +45,7 @@ yarn add nuxt-composition-api
 npm install nuxt-composition-api --save
 ```
 
-Install and enable the module in your `nuxt.config.js`
+Enable the module in your `nuxt.config.js`
 
 ```
 {
@@ -57,6 +55,7 @@ Install and enable the module in your `nuxt.config.js`
 }
 ```
 
+The module automatically installs [`@vue/composition-api`](https://github.com/vuejs/composition-api) as a plugin, so you shouldn't need to do so separately.
 
 You will now be able to access the following hooks:
 
@@ -67,8 +66,7 @@ Versions of Nuxt newer than v2.12 support a [custom hook called `fetch`](https:/
 You can access this with this package as follows:
 
 ```ts
-import { defineComponent, ref } from '@vue/composition-api'
-import { useFetch } from 'nuxt-composition-api'
+import { defineComponent, ref, useFetch } from 'nuxt-composition-api'
 import axios from 'axios'
 
 export default defineComponent({
@@ -87,8 +85,7 @@ export default defineComponent({
 You can access the Nuxt context more easily using `withContext`, which runs synchronously within the setup function.
 
 ```ts
-import { defineComponent, ref } from '@vue/composition-api'
-import { withContext } from 'nuxt-composition-api'
+import { defineComponent, ref, withContext } from 'nuxt-composition-api'
 
 export default defineComponent({
   setup() {
@@ -99,17 +96,22 @@ export default defineComponent({
 })
 ```
 
+### Additional `@vue/composition-api` functions
+
+For convenience, this package also exports the [`@vue/composition-api`](https://github.com/vuejs/composition-api) methods and hooks, so you can import directly from `nuxt-composition-api`.
+
 ## Contributors
 
 Contributions are very welcome.
 
+Clone this repo
 
-Clone this repo 
 ```
 git clone git@github.com:danielroe/nuxt-composition-api.git
 ```
 
 Install dependencies and build project
+
 ```
 yarn install
 

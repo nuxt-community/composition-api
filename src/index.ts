@@ -18,3 +18,5 @@ export const meta = require('../package.json')
 
 export { useFetch } from './fetch'
 export { withContext } from './context'
+
+export * from '@vue/composition-api'
