@@ -34,11 +34,13 @@ async function callFetches(this: AugmentedComponentInstance) {
   const fetchesToCall = fetches.get(this)
   if (!fetchesToCall) return
   ;(this.$nuxt as any).nbFetching++
-  this.$fetchState = this.$fetchState || {
-    error: null,
-    pending: false,
-    timestamp: 0,
-  }
+  this.$fetchState =
+    this.$fetchState ||
+    Vue.observable({
+      error: null,
+      pending: false,
+      timestamp: 0,
+    })
   this.$fetchState.pending = true
   this.$fetchState.error = null
   this._hydrated = false
@@ -66,11 +68,13 @@ async function callFetches(this: AugmentedComponentInstance) {
 
 async function serverPrefetch(vm: AugmentedComponentInstance) {
   // Call and await on $fetch
-  vm.$fetchState = vm.$fetchState || {
-    error: null,
-    pending: false,
-    timestamp: 0,
-  }
+  vm.$fetchState =
+    vm.$fetchState ||
+    Vue.observable({
+      error: null,
+      pending: false,
+      timestamp: 0,
+    })
   try {
     await callFetches.call(vm)
   } catch (err) {
