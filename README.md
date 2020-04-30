@@ -47,6 +47,17 @@ yarn add nuxt-composition-api
 npm install nuxt-composition-api --save
 ```
 
+Install and enable the module in your `nuxt.config.js`
+
+```
+{
+  buildModules: [
+    'nuxt-composition-api'
+  ]
+}
+```
+
+
 You will now be able to access the following hooks:
 
 ### useFetch
@@ -91,6 +102,21 @@ export default defineComponent({
 ## Contributors
 
 Contributions are very welcome.
+
+
+Clone this repo 
+```
+git clone git@github.com:danielroe/nuxt-composition-api.git
+```
+
+Install dependencies and build project
+```
+yarn install
+
+yarn build
+```
+
+**Tip:** You can use `yarn link` to test the module locally with your nuxt project.
 
 ## License
 
