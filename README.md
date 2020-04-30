@@ -26,12 +26,12 @@
 
 ## Progress
 
-> This is still an in-development package, and should definitely be regarded as alpha-level.
+> This is still an in-development package, and suggestions and bug reports are welcome.
 
 - [x] Support for new Nuxt `fetch()`
 - [x] Access to Nuxt context
+- [x] test framework
 - [ ] `nuxtServerInit`
-- [ ] test framework
 
 ## Quick Start
 
