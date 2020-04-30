@@ -6,8 +6,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from '@vue/composition-api'
-import { useFetch } from '../../..'
+import { defineComponent, ref, useFetch } from '../../..'
 
 export function fetcher(result) {
   return new Promise(resolve => {
