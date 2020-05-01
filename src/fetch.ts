@@ -4,9 +4,30 @@ import {
   onServerPrefetch,
   onBeforeMount,
 } from '@vue/composition-api'
-import { normalizeError } from '@nuxt/vue-app'
 
 import { ComponentInstance } from '@vue/composition-api/dist/component'
+
+function normalizeError(err: any) {
+  let message
+  if (!(err.message || typeof err === 'string')) {
+    try {
+      message = JSON.stringify(err, null, 2)
+    } catch (e) {
+      message = `[${err.constructor.name}]`
+    }
+  } else {
+    message = err.message || err
+  }
+  return {
+    ...err,
+    message,
+    statusCode:
+      err.statusCode ||
+      err.status ||
+      (err.response && err.response.status) ||
+      500,
+  }
+}
 
 interface Fetch {
   (context: ComponentInstance): void
@@ -23,6 +44,7 @@ interface AugmentedComponentInstance extends ComponentInstance {
   _data?: any
   _hydrated?: boolean
   _fetchDelay?: number
+  _fetchOnServer?: boolean
 }
 
 function registerCallback(vm: ComponentInstance, callback: Fetch) {
@@ -61,6 +83,9 @@ async function callFetches(this: AugmentedComponentInstance) {
 }
 
 async function serverPrefetch(vm: AugmentedComponentInstance) {
+  if (!vm._fetchOnServer) {
+    return
+  }
   // Call and await on $fetch
   vm.$fetchState =
     vm.$fetchState ||
@@ -107,6 +132,12 @@ export const useFetch = (callback: Fetch) => {
   vm.$fetch = callFetches.bind(vm)
 
   registerCallback(vm, callback)
+
+  if (typeof vm.$options.fetchOnServer === 'function') {
+    vm._fetchOnServer = vm.$options.fetchOnServer.call(vm) !== false
+  } else {
+    vm._fetchOnServer = vm.$options.fetchOnServer !== false
+  }
 
   onServerPrefetch(serverPrefetch)
 
