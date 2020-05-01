@@ -33,7 +33,7 @@
 
 ## Live demo
 
-See [live demo](https://composition-api.now.sh) and [CodeSandbox](https://codesandbox.io/s/github/danielroe/nuxt-composition-api/tree/master/example).
+See [CodeSandbox](https://codesandbox.io/s/github/danielroe/nuxt-composition-api/tree/master/example).
 
 ## Quick Start
 
