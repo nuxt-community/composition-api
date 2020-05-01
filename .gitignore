@@ -3,3 +3,5 @@ lib/*
 node_modules
 coverage
 .nuxt
+example/dist
+example/yarn.lock

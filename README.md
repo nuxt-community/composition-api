@@ -24,14 +24,16 @@
 
 > Composition API hooks for Nuxt.
 
-## Progress
+## Features
 
 > This is still an in-development package, and suggestions and bug reports are welcome.
 
-- [x] Support for new Nuxt `fetch()`
-- [x] Access to Nuxt context
-- [x] test framework
-- [ ] `nuxtServerInit`
+- **Hook for Nuxt `fetch()`** Support for new Nuxt `fetch()` (v2.12+)
+- **Hook for component context** Easy access to `router`, `app`, `store` within `setup()`
+
+## Live demo
+
+See [live demo](https://composition-api.now.sh) and [CodeSandbox](https://codesandbox.io/s/github/danielroe/nuxt-composition-api/tree/master/example).
 
 ## Quick Start
 
