@@ -9,12 +9,13 @@
     <div>{{ myFunction() }}</div>
     <nuxt-link to="/other">link forward</nuxt-link>
     <button @click="$fetch">Refetch</button>
-
+    <child-comp />
   </div>
 </template>
 
 <script>
 import { defineComponent, ref, computed, useFetch } from '../../..'
+import ChildComp from '../components/comp.vue'
 
 export function fetcher(result, time = 100) {
   return new Promise(resolve => {
@@ -25,6 +26,9 @@ export function fetcher(result, time = 100) {
 }
 
 export default defineComponent({
+  components: {
+    ChildComp
+  },
   setup() {
     const name = ref('')
     const email = ref('')

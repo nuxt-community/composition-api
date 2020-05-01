@@ -24,6 +24,7 @@ fixture`Fetch`
 test('Shows fetched data on ssr-loaded page', async t => {
   await t.navigateTo(`${url}/`)
   await expectOnPage('name-Full Name')
+  await expectOnPage('component-Component data')
 })
 
 test('Shows fetched data on client-loaded page', async t => {
@@ -31,6 +32,7 @@ test('Shows fetched data on client-loaded page', async t => {
   await t.click(Selector('a'))
   await expectPathnameToBe('/')
   await expectOnPage('name-Full Name')
+  await expectOnPage('component-Component data')
 })
 
 test('Shows loading state', async t => {
