@@ -1,5 +1,5 @@
 <h1 align="center">nuxt-composition-api</h1>
-<p align="center">Nuxt hooks for the Vue Composition API</p>
+<p align="center">Composition API hooks for Nuxt</p>
 
 <p align="center">
 <a href="https://npmjs.com/package/nuxt-composition-api">
@@ -22,19 +22,13 @@
 </a>
 </p>
 
-> Composition API hooks for Nuxt.
+[Live demo](https://composition-api.now.sh) · [CodeSandbox](https://codesandbox.io/s/github/danielroe/nuxt-composition-api/tree/master/example).
 
 ## Features
-
-> This is still an in-development package, and suggestions and bug reports are welcome.
 
 - **Nuxt `fetch()`** Support for new Nuxt `fetch()` (v2.12+)
 - **Component context** Easy access to `router`, `app`, `store` within `setup()`
 - **Plugin** Access plugin context within your `.vue` file
-
-## Live demo
-
-See [live demo](https://composition-api.now.sh) and [CodeSandbox](https://codesandbox.io/s/github/danielroe/nuxt-composition-api/tree/master/example).
 
 ## Quick Start
 
