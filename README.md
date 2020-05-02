@@ -28,8 +28,9 @@
 
 > This is still an in-development package, and suggestions and bug reports are welcome.
 
-- **Hook for Nuxt `fetch()`** Support for new Nuxt `fetch()` (v2.12+)
-- **Hook for component context** Easy access to `router`, `app`, `store` within `setup()`
+- **Nuxt `fetch()`** Support for new Nuxt `fetch()` (v2.12+)
+- **Component context** Easy access to `router`, `app`, `store` within `setup()`
+- **Plugin** Access plugin context within your `.vue` file
 
 ## Live demo
 

@@ -1,5 +1,22 @@
 import typescript from 'rollup-plugin-typescript2'
+
 import pkg from './package.json'
+
+const external = [
+  ...Object.keys(pkg.dependencies || {}),
+  ...Object.keys(pkg.peerDependencies || {}),
+]
+
+const nuxtAppFile = name => ({
+  input: `src/${name}.js`,
+  output: [
+    {
+      file: `lib/${name}.js`,
+      format: 'es',
+    },
+  ],
+  external,
+})
 
 export default [
   {
@@ -14,28 +31,12 @@ export default [
         format: 'es',
       },
     ],
-    external: [
-      ...Object.keys(pkg.dependencies || {}),
-      ...Object.keys(pkg.peerDependencies || {}),
-      // 'prop-types',
-    ],
+    external,
     plugins: [
       typescript({
         typescript: require('typescript'),
       }),
     ],
   },
-  {
-    input: 'src/plugin.js',
-    output: [
-      {
-        file: 'lib/plugin.js',
-        format: 'es',
-      },
-    ],
-    external: [
-      ...Object.keys(pkg.dependencies || {}),
-      ...Object.keys(pkg.peerDependencies || {}),
-    ],
-  },
+  nuxtAppFile('plugin'),
 ]

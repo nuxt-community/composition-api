@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, computed, useFetch } from '../../..'
+import { defineComponent, ref, computed, useFetch } from 'nuxt-composition-api'
 import ChildComp from '../components/comp.vue'
 
 export function fetcher(result, time = 100) {

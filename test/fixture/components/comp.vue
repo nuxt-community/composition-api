@@ -5,7 +5,11 @@
 </template>
 
 <script>
-import { defineComponent, ref, computed, useFetch } from '../../..'
+import { defineComponent, ref, computed, useFetch, usePlugin } from 'nuxt-composition-api'
+
+usePlugin(({ route, redirect }) => {
+  if (route.query.redirect === 'true') redirect(301, '/other')
+})
 
 export function fetcher(result, time = 100) {
   return new Promise(resolve => {
@@ -19,7 +23,7 @@ export default defineComponent({
   setup() {
     const prop = ref('')
 
-useFetch(async () => {
+    useFetch(async () => {
       prop.value = await fetcher('Component data')
     })
 
