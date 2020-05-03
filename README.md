@@ -1,4 +1,4 @@
-<h1 align="center">nuxt-composition-api</h1>
+<h1 align="center">🏗️ Nuxt Composition API</h1>
 <p align="center">Composition API hooks for Nuxt</p>
 
 <p align="center">
@@ -22,38 +22,50 @@
 </a>
 </p>
 
-[Live demo](https://composition-api.now.sh) · [CodeSandbox](https://codesandbox.io/s/github/danielroe/nuxt-composition-api/tree/master/example).
+<div align="center">
+
+[Live demo](https://composition-api.now.sh) · [CodeSandbox](https://codesandbox.io/s/github/danielroe/nuxt-composition-api/tree/master/example)
+
+</div>
+
+> `nuxt-composition-api` provides a way to use the Vue 3 Composition API in with Nuxt-specific features.
+
+**Note**: the main aim is to allow experimentation and feedback before the final release of Nuxt 3. Think carefully before using this package in production.
 
 ## Features
 
-- **Nuxt `fetch()`** Support for new Nuxt `fetch()` (v2.12+)
-- **Component context** Easy access to `router`, `app`, `store` within `setup()`
+- 🏃 **Fetch**: Support for the new Nuxt `fetch()` in v2.12+
+- ℹ️ **Context**: Easy access to `router`, `app`, `store` within `setup()`
+- 📝 **SSR support**: Allows using the Composition API with SSR
+- 💪 **TypeScript**: Written in TypeScript
 
 ## Quick Start
 
-First install `nuxt-composition-api`:
+1. First, install `nuxt-composition-api`:
 
-```bash
-yarn add nuxt-composition-api
+   ```bash
+   yarn add nuxt-composition-api
 
-# or npm
+   # or npm
 
-npm install nuxt-composition-api --save
-```
+   npm install nuxt-composition-api --save
+   ```
 
-Enable the module in your `nuxt.config.js`
+2. Enable the module in your `nuxt.config.js`.
 
-```
-{
-  buildModules: [
-    'nuxt-composition-api'
-  ]
-}
-```
+   ```
+   {
+     buildModules: [
+       'nuxt-composition-api'
+     ]
+   }
+   ```
 
-The module automatically installs [`@vue/composition-api`](https://github.com/vuejs/composition-api) as a plugin, so you shouldn't need to do so separately.
+   Note that [using `buildModules`](https://nuxtjs.org/api/configuration-modules#-code-buildmodules-code-) requires Nuxt >= 2.9.
 
-You will now be able to access the following hooks:
+The module automatically installs [`@vue/composition-api`](https://github.com/vuejs/composition-api) as a plugin, so you do not need to enable it separately.
+
+## Hooks
 
 ### useFetch
 
@@ -72,13 +84,17 @@ export default defineComponent({
     useFetch(async () => {
       name.value = await axios.get('https://myapi.com/name')
     })
+
+    return { name }
   },
 })
 ```
 
+**Note**: `useFetch` must be called synchronously within `setup()`. Any changes made to component data - that is, to properties _returned_ from `setup()` - will be sent to the client and directly loaded. Other side-effects of `useFetch` hook will not be persisted.
+
 ### withContext
 
-You can access the Nuxt context more easily using `withContext`, which runs synchronously within the setup function.
+You can access the Nuxt context more easily using `withContext`, which will immediately call the callback and pass it the Nuxt context.
 
 ```ts
 import { defineComponent, ref, withContext } from 'nuxt-composition-api'
@@ -100,21 +116,23 @@ For convenience, this package also exports the [`@vue/composition-api`](https://
 
 Contributions are very welcome.
 
-Clone this repo
+1. Clone this repo
 
-```
-git clone git@github.com:danielroe/nuxt-composition-api.git
-```
+   ```bash
+   git clone git@github.com:danielroe/nuxt-composition-api.git
+   ```
 
-Install dependencies and build project
+2. Install dependencies and build project
 
-```
-yarn install
+   ```bash
+   yarn
+   # Compile library and watch for changes
+   yarn watch
+   # Start a test Nuxt fixture with hot reloading
+   node test/start-fixture.js
+   ```
 
-yarn build
-```
-
-**Tip:** You can use `yarn link` to test the module locally with your nuxt project.
+**Tip:** You can also use `yarn link` to test the module locally with your Nuxt project.
 
 ## License
 
