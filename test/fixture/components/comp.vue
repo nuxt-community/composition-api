@@ -30,6 +30,6 @@ export default defineComponent({
     return {
       prop,
     }
-  }
+  },
 })
 </script>

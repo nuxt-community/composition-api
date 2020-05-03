@@ -39,14 +39,14 @@ export default defineComponent({
     const name = ref('')
     const email = ref('')
     const computedProp = computed(() => 'computed')
-    
+
     function myFunction() {
       return 'function result'
     }
-    
+
     useFetch(async () => {
       name.value = await fetcher('Full Name')
-      if(process.client) email.value = await fetcher('long@load.com', 2000)
+      if (process.client) email.value = await fetcher('long@load.com', 2000)
     })
 
     return {
@@ -56,6 +56,6 @@ export default defineComponent({
       computedProp,
       myFunction,
     }
-  }
+  },
 })
 </script>
