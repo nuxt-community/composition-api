@@ -10,10 +10,10 @@ import {
   ref,
   computed,
   useFetch,
-  useLocalPlugin,
+  useAsyncPlugin,
 } from 'nuxt-composition-api'
 
-useLocalPlugin(({ route, redirect }) => {
+useAsyncPlugin(({ route, redirect }) => {
   if (route.query.redirect === 'true') redirect(301, '/other')
 })
 

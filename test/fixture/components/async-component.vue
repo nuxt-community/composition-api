@@ -3,9 +3,9 @@
 </template>
 
 <script>
-import { defineComponent, useLocalPlugin } from 'nuxt-composition-api'
+import { defineComponent, useAsyncPlugin } from 'nuxt-composition-api'
 
-useLocalPlugin(({ route, redirect }) => {
+useAsyncPlugin(({ route, redirect }) => {
   redirect(301, '/other')
 })
 

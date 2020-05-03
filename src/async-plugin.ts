@@ -15,7 +15,7 @@ let hasRun = false
 let globalContext: Context
 let globalInject: Inject
 
-export const useLocalPlugin = <T extends LocalPlugin>(
+export const useAsyncPlugin = <T extends LocalPlugin>(
   callback: T
 ): Promise<ReturnType<T>> => {
   if (hasRun) {
