@@ -36,7 +36,7 @@ test('Shows loading state', async t => {
 test('Refetches with $fetch', async t => {
   await navigateTo('/')
   await expectNotOnPage('loading email')
-  await t.click(Selector('button'))
+  await t.click(Selector('button').withText('Refetch'))
   await expectOnPage('loading email')
 })
 

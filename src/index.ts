@@ -24,6 +24,6 @@ export const meta = require('../package.json')
 
 export { useFetch } from './fetch'
 export { withContext } from './context'
-export { usePlugin, callPluginHooks } from './hooks'
+export { useLocalPlugin, callPluginHooks } from './local-plugin'
 
 export * from '@vue/composition-api'

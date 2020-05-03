@@ -10,12 +10,16 @@
     <nuxt-link to="/other">link forward</nuxt-link>
     <button @click="$fetch">Refetch</button>
     <child-comp />
+    <async-component v-if="showAsync" />
+    <button @click="showAsync = !showAsync">Show async component</button>
   </div>
 </template>
 
 <script>
 import { defineComponent, ref, computed, useFetch } from 'nuxt-composition-api'
 import ChildComp from '../components/comp.vue'
+
+const AsyncComponent = () => import('../components/async-component.vue')
 
 export function fetcher(result, time = 100) {
   return new Promise(resolve => {
@@ -27,9 +31,11 @@ export function fetcher(result, time = 100) {
 
 export default defineComponent({
   components: {
-    ChildComp
+    ChildComp,
+    AsyncComponent,
   },
   setup() {
+    const showAsync = ref(false)
     const name = ref('')
     const email = ref('')
     const computedProp = computed(() => 'computed')
@@ -45,6 +51,7 @@ export default defineComponent({
 
     return {
       name,
+      showAsync,
       email,
       computedProp,
       myFunction,

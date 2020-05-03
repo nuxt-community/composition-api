@@ -28,7 +28,7 @@
 
 - **Nuxt `fetch()`** Support for new Nuxt `fetch()` (v2.12+)
 - **Component context** Easy access to `router`, `app`, `store` within `setup()`
-- **Plugin** Access plugin context within your `.vue` file
+- **Plugin** Declare and run local Nuxt plugins within your components
 
 ## Quick Start
 
@@ -93,9 +93,37 @@ export default defineComponent({
 })
 ```
 
+### useLocalPlugin
+
+With this hook, you can add a 'plugin' that will be run when a component or page is loaded. It will be run SSR and on initial page load. If a component is loaded asynchronously or a page is lazy-loaded, the plugin will be run in its `created()` lifecycle hook. It receives the same arguments as a [Nuxt plugin](https://nuxtjs.org/guide/plugins/) - but you are not guaranteed it will run before instantiating the root Vue.js Application.
+
+```ts
+import { defineComponent, ref, useLocalPlugin } from 'nuxt-composition-api'
+
+// This will be run at the same time as other global Nuxt plugins, if the page
+// or component is synchronously loaded on initial render. Otherwise, it will be
+// loaded at the moment this component's JS is run (before created()).
+useLocalPlugin(({ route, redirect }) => {
+  if (route.query.redirect === 'true') redirect(301, '/other-page')
+})
+
+export default defineComponent({
+  setup() {
+    // This will run in the created() hook of this component
+    useLocalPlugin(({ route, redirect }) => {
+      if (route.query.redirect === 'true') redirect(301, '/other-page')
+    })
+  },
+})
+```
+
 ### Additional `@vue/composition-api` functions
 
 For convenience, this package also exports the [`@vue/composition-api`](https://github.com/vuejs/composition-api) methods and hooks, so you can import directly from `nuxt-composition-api`.
+
+```ts
+import { defineComponent, ref } from 'nuxt-composition-api'
+```
 
 ## Contributors
 

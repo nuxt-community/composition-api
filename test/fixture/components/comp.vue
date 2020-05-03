@@ -1,13 +1,13 @@
 <template>
   <div>
     <div>component-{{ prop }}</div>
-    </div>
+  </div>
 </template>
 
 <script>
-import { defineComponent, ref, computed, useFetch, usePlugin } from 'nuxt-composition-api'
+import { defineComponent, ref, computed, useFetch, useLocalPlugin } from 'nuxt-composition-api'
 
-usePlugin(({ route, redirect }) => {
+useLocalPlugin(({ route, redirect }) => {
   if (route.query.redirect === 'true') redirect(301, '/other')
 })
 
