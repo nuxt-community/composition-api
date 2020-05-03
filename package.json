@@ -80,7 +80,7 @@
     "nuxt": "^2.12.2",
     "prettier": "^2.0.5",
     "prettier-eslint-cli": "^5.0.0",
-    "release-it": "13.5.7",
+    "release-it": "13.5.8",
     "rollup": "^2.7.6",
     "rollup-plugin-typescript2": "^0.27.0",
     "testcafe": "^1.8.4",
