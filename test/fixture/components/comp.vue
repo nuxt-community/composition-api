@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>component-{{ prop }}</div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -19,13 +19,13 @@ export default defineComponent({
   setup() {
     const prop = ref('')
 
-useFetch(async () => {
+    useFetch(async () => {
       prop.value = await fetcher('Component data')
     })
 
     return {
       prop,
     }
-  }
+  },
 })
 </script>

@@ -9,9 +9,13 @@
 export default {
   head: {
     link: [
-      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/gh/kognise/water.css@1.4.0/dist/light.min.css' }
-    ]
-  }
+      {
+        rel: 'stylesheet',
+        href:
+          'https://cdn.jsdelivr.net/gh/kognise/water.css@1.4.0/dist/light.min.css',
+      },
+    ],
+  },
 }
 </script>
 
@@ -19,10 +23,12 @@ export default {
 body {
   padding: 20px 30px;
 }
-.page-enter-active, .page-leave-active {
-  transition: opacity .3s;
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s;
 }
-.page-enter, .page-leave-to {
+.page-enter,
+.page-leave-to {
   opacity: 0;
 }
 </style>
