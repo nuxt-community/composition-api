@@ -5,7 +5,13 @@
 </template>
 
 <script>
-import { defineComponent, ref, computed, useFetch, useLocalPlugin } from 'nuxt-composition-api'
+import {
+  defineComponent,
+  ref,
+  computed,
+  useFetch,
+  useLocalPlugin,
+} from 'nuxt-composition-api'
 
 useLocalPlugin(({ route, redirect }) => {
   if (route.query.redirect === 'true') redirect(301, '/other')
