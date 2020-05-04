@@ -14,6 +14,9 @@ const compositionApiModule: Module<any> = function () {
   this.options.build.babel.plugins = this.options.build.babel.plugins || []
   this.options.build.babel.plugins.push(join(__dirname, 'babel'))
 
+  this.options.build.transpile = this.options.build.transpile || []
+  this.options.build.transpile.push(/nuxt-composition-api/)
+
   this.options.plugins = this.options.plugins || []
   this.options.plugins.push(resolve(this.options.buildDir || '', dst))
 }
@@ -24,7 +27,7 @@ export const meta = require('../package.json')
 
 export { useFetch } from './fetch'
 export { withContext } from './context'
-export { ssrRef, onServerPrefetch } from './ssr-ref'
+export { ssrRef, onServerPrefetch, setSSRContext } from './ssr-ref'
 
 export {
   ComponentRenderProxy,

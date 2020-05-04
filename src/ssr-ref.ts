@@ -1,9 +1,4 @@
-import {
-  ref,
-  onServerPrefetch as prefetch,
-  getCurrentInstance,
-  Ref,
-} from '@vue/composition-api'
+import { ref, Ref, onServerPrefetch as prefetch } from '@vue/composition-api'
 
 function getValue(value: any) {
   if (typeof value === 'function') return value()
@@ -11,11 +6,16 @@ function getValue(value: any) {
 }
 
 let ssrContext: any
+let injected = false
 
 const refs: [string, Ref<any>][] = []
 
+export function setSSRContext(context: any) {
+  ssrContext = ssrContext || context
+}
+
 export function injectRefs() {
-  if (!process.server) return
+  if (!process.server || !ssrContext) return
 
   if (!ssrContext.nuxt.ssrRefs) ssrContext.nuxt.ssrRefs = {}
 
@@ -26,16 +26,15 @@ export function injectRefs() {
 
 export const ssrRef = <T>(value: T, key?: string) => {
   const val = ref<T>(getValue(value))
-  const vm = getCurrentInstance()!
 
   if (!key)
     throw new Error(
       "You must provide a key. You can have it generated automatically by adding 'nuxt-composition-api/babel' to your Babel plugins."
     )
 
-  if (!ssrContext) {
-    ssrContext = ssrContext || vm.$ssrContext
+  if (!injected) {
     prefetch(injectRefs)
+    injected = true
   }
 
   if (process.client) {
