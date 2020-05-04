@@ -20,7 +20,7 @@ export function injectRefs() {
   if (!ssrContext.nuxt.ssrRefs) ssrContext.nuxt.ssrRefs = {}
 
   refs.forEach(([key, ref]) => {
-    ssrContext.nuxt.ssrRefs[key] = ref.value
+    ssrContext.nuxt.ssrRefs[key] = JSON.parse(JSON.stringify(ref.value))
   })
 }
 
