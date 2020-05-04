@@ -8,7 +8,7 @@
     <div>{{ computedProp }}</div>
     <div>{{ myFunction() }}</div>
     <nuxt-link to="/other">link forward</nuxt-link>
-    <nuxt-link to="/ssr-ref">ssr</nuxt-link>
+    <nuxt-link to="/ssr-ref">ssr refs</nuxt-link>
     <button @click="$fetch">Refetch</button>
     <child-comp />
   </div>
