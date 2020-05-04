@@ -8,6 +8,12 @@ const compositionApiModule: Module<any> = function () {
     fileName: join('composition-api', 'plugin.js'),
     options: {},
   })
+
+  this.options.build = this.options.build || {}
+  this.options.build.babel = this.options.build.babel || {}
+  this.options.build.babel.plugins = this.options.build.babel.plugins || []
+  this.options.build.babel.plugins.push(join(__dirname, 'babel'))
+
   this.options.plugins = this.options.plugins || []
   this.options.plugins.push(resolve(this.options.buildDir || '', dst))
 }
@@ -18,5 +24,37 @@ export const meta = require('../package.json')
 
 export { useFetch } from './fetch'
 export { withContext } from './context'
+export { ssrRef, onServerPrefetch } from './ssr-ref'
 
-export * from '@vue/composition-api'
+export {
+  ComponentRenderProxy,
+  InjectionKey,
+  PropOptions,
+  PropType,
+  Ref,
+  SetupContext,
+  VueWatcher,
+  computed,
+  createComponent,
+  createElement,
+  defineComponent,
+  getCurrentInstance,
+  inject,
+  isRef,
+  onActivated,
+  onBeforeMount,
+  onBeforeUnmount,
+  onBeforeUpdate,
+  onDeactivated,
+  onErrorCaptured,
+  onMounted,
+  onUnmounted,
+  onUpdated,
+  provide,
+  reactive,
+  ref,
+  set,
+  toRefs,
+  watch,
+  watchEffect,
+} from '@vue/composition-api'
