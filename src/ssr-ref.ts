@@ -10,6 +10,8 @@ export const ssrRef = <T>(value: T, key?: string) => {
   const vm = getCurrentInstance()!
 
   onServerPrefetch(() => {
+    if (val.value === value) return
+
     if (!vm.$ssrContext.nuxt.ssrRefs) vm.$ssrContext.nuxt.ssrRefs = {}
     vm.$ssrContext.nuxt.ssrRefs[key!] = val.value
   })
