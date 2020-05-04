@@ -3,7 +3,7 @@
   "version": "0.2.3",
   "description": "Composition API hooks for Nuxt",
   "license": "MIT",
-  "repository": "danielroe/nuxt-composition-api",
+  "repository": "nuxt-community/composition-api",
   "contributors": [
     {
       "name": "Daniel Roe <daniel@roe.dev>",
