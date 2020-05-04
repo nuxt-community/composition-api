@@ -8,6 +8,12 @@ const compositionApiModule: Module<any> = function () {
     fileName: join('composition-api', 'plugin.js'),
     options: {},
   })
+
+  this.options.build = this.options.build || {}
+  this.options.build.babel = this.options.build.babel || {}
+  this.options.build.babel.plugins = this.options.build.babel.plugins || []
+  this.options.build.babel.plugins.push(join(__dirname, 'babel'))
+
   this.options.plugins = this.options.plugins || []
   this.options.plugins.push(resolve(this.options.buildDir || '', dst))
 }

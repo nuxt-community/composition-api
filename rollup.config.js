@@ -38,4 +38,25 @@ export default [
       ...Object.keys(pkg.peerDependencies || {}),
     ],
   },
+  {
+    input: 'src/babel.ts',
+    output: [
+      {
+        file: 'lib/babel.js',
+        format: 'cjs',
+      },
+      {
+        file: 'lib/babel.es.js',
+        format: 'es',
+      },
+    ],
+    plugins: [
+      typescript({
+        typescript: require('typescript'),
+        tsconfigOverride: {
+          compilerOptions: { declaration: false },
+        },
+      }),
+    ],
+  },
 ]
