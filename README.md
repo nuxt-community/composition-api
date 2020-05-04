@@ -36,7 +36,7 @@
 
 - 🏃 **Fetch**: Support for the new Nuxt `fetch()` in v2.12+
 - ℹ️ **Context**: Easy access to `router`, `app`, `store` within `setup()`
-- 🪄 **Automatic hydration**: Drop-in replacement for `ref` with automatic SSR stringification and hydration (`ssrRef`)
+- ✨ **Automatic hydration**: Drop-in replacement for `ref` with automatic SSR stringification and hydration (`ssrRef`)
 - 📝 **SSR support**: Allows using the Composition API with SSR
 - 💪 **TypeScript**: Written in TypeScript
 
