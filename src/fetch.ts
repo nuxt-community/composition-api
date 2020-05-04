@@ -1,9 +1,7 @@
 import Vue from 'vue'
-import {
-  getCurrentInstance,
-  onServerPrefetch,
-  onBeforeMount,
-} from '@vue/composition-api'
+import { getCurrentInstance, onBeforeMount } from '@vue/composition-api'
+
+import { onServerPrefetch } from './ssr-ref'
 
 import { ComponentInstance } from '@vue/composition-api/dist/component'
 
@@ -139,7 +137,7 @@ export const useFetch = (callback: Fetch) => {
     vm._fetchOnServer = vm.$options.fetchOnServer !== false
   }
 
-  onServerPrefetch(serverPrefetch)
+  onServerPrefetch(() => serverPrefetch(vm))
 
   onBeforeMount(() => {
     if (!vm._hydrated) {
