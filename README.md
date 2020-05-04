@@ -11,20 +11,20 @@
 <a href="https://npmjs.com/package/nuxt-composition-api">
     <img alt="" src="https://img.shields.io/npm/dt/nuxt-composition-api.svg?style=flat-square">
 </a>
-<a href="https://lgtm.com/projects/g/danielroe/nuxt-composition-api">
-    <img alt="" src="https://img.shields.io/lgtm/alerts/github/danielroe/nuxt-composition-api?style=flat-square">
+<a href="https://lgtm.com/projects/g/nuxt-community/composition-api">
+    <img alt="" src="https://img.shields.io/lgtm/alerts/github/nuxt-community/composition-api?style=flat-square">
 </a>
-<a href="https://lgtm.com/projects/g/danielroe/nuxt-composition-api">
-    <img alt="" src="https://img.shields.io/lgtm/grade/javascript/github/danielroe/nuxt-composition-api?style=flat-square">
+<a href="https://lgtm.com/projects/g/nuxt-community/composition-api">
+    <img alt="" src="https://img.shields.io/lgtm/grade/javascript/github/nuxt-community/composition-api?style=flat-square">
 </a>
-<a href="https://david-dm.org/danielroe/nuxt-composition-api">
-    <img alt="" src="https://img.shields.io/david/danielroe/nuxt-composition-api.svg?style=flat-square">
+<a href="https://david-dm.org/nuxt-community/composition-api">
+    <img alt="" src="https://img.shields.io/david/nuxt-community/composition-api.svg?style=flat-square">
 </a>
 </p>
 
 <div align="center">
 
-[Live demo](https://composition-api.now.sh) · [CodeSandbox](https://codesandbox.io/s/github/danielroe/nuxt-composition-api/tree/master/example)
+[Live demo](https://composition-api.now.sh) · [CodeSandbox](https://codesandbox.io/s/github/nuxt-community/composition-api/tree/master/example)
 
 </div>
 
@@ -144,7 +144,7 @@ Contributions are very welcome.
 1. Clone this repo
 
    ```bash
-   git clone git@github.com:danielroe/nuxt-composition-api.git
+   git clone git@github.com:nuxt-community/composition-api.git
    ```
 
 2. Install dependencies and build project

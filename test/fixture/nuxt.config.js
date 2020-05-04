@@ -6,4 +6,9 @@ module.exports = {
   buildDir: resolve(__dirname, '.nuxt'),
   srcDir: __dirname,
   buildModules: [require.resolve('../..')],
+  build: {
+    extend(config) {
+      config.resolve.alias['nuxt-composition-api'] = resolve(__dirname, '../..')
+    },
+  },
 }
