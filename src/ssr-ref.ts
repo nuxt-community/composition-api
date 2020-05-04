@@ -9,11 +9,16 @@ export const ssrRef = <T>(value: T, key?: string) => {
   const val = ref<T>(getValue(value))
   const vm = getCurrentInstance()!
 
+  if (!key)
+    throw new Error(
+      "You must provide a key. You can have it generated automatically by adding 'nuxt-composition-api/babel' to your Babel plugins."
+    )
+
   onServerPrefetch(() => {
     if (val.value === value) return
 
     if (!vm.$ssrContext.nuxt.ssrRefs) vm.$ssrContext.nuxt.ssrRefs = {}
-    vm.$ssrContext.nuxt.ssrRefs[key!] = val.value
+    vm.$ssrContext.nuxt.ssrRefs[key] = val.value
   })
 
   if (process.client) {

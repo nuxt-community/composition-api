@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const plugin = require('../../lib/babel')
 const babel = require('@babel/core')
+const plugin = require('../../lib/babel')
 /* eslint-enable */
 
 var example = `

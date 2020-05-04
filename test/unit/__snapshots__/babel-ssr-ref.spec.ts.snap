@@ -2,7 +2,7 @@
 
 exports[`babel plugin works 1`] = `
 "const ref = ref(1);
-const ref2 = ssrRef(2, \\"GCvgxc3NUHK7GGTN7k09bg==\\");
+const ref2 = ssrRef(2, \\"ref2-BAW7YFDj4E+Qxr+ujqEADg==\\");
 const ref3 = ssrRef(3, 'custom-key');
-const ref4 = ssrRef(4, \\"mNzoPaV7A5XhY0Z8na5SGw==\\");"
+const ref4 = ssrRef(4, \\"ref4-h6IKM1doqCRBR49lWv2V/g==\\");"
 `;
