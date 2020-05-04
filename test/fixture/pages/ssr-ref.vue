@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, computed, useFetch, ssrRef, onServerPrefetch } from '../../..'
+import { defineComponent, ref, computed, useFetch, ssrRef, onServerPrefetch } from 'nuxt-composition-api'
 
 export function fetcher(result, time = 100) {
   return new Promise(resolve => {
