@@ -1,55 +1,28 @@
-import { ref, Ref, onServerPrefetch as prefetch } from '@vue/composition-api'
+import { ref, Ref } from '@vue/composition-api'
 
-function getValue(value: any) {
+import { ssrNamespace } from './ssr-namespace'
+
+function getValue<T>(value: any): T {
   if (typeof value === 'function') return value()
   return value
 }
 
-let ssrContext: any
-let injected = false
+const ssrRefs = ssrNamespace('ssrRefs')
 
-const refs: [string, Ref<any>][] = []
-
-export function setSSRContext(context: any) {
-  ssrContext = ssrContext || context
-}
-
-export function injectRefs() {
-  if (!process.server || !ssrContext) return
-
-  if (!ssrContext.nuxt.ssrRefs) ssrContext.nuxt.ssrRefs = {}
-
-  refs.forEach(([key, ref]) => {
-    ssrContext.nuxt.ssrRefs[key] = JSON.parse(JSON.stringify(ref.value))
-  })
-}
-
-export const ssrRef = <T>(value: T, key?: string) => {
-  const val = ref<T>(getValue(value))
-
-  if (!key)
+export const ssrRef = <T>(value: T, key?: string): Ref<T> => {
+  if (!key) {
     throw new Error(
       "You must provide a key. You can have it generated automatically by adding 'nuxt-composition-api/babel' to your Babel plugins."
     )
-
-  if (!injected) {
-    prefetch(injectRefs)
-    injected = true
   }
 
-  if (process.client) {
-    const nuxtState = (window as any).__NUXT__
-    val.value = (nuxtState.ssrRefs || {})[key!] ?? getValue(value)
+  const ssr = ssrRefs<T>(key)
+
+  if (process.server) {
+    return ssr.createRef(getValue<T>(value))
   } else {
-    refs.push([key, val])
+    const ssrValue = ssr.clientGet(getValue<T>(value))
+
+    return ref(ssrValue)
   }
-
-  return val
-}
-
-export const onServerPrefetch = (callback: Function) => {
-  prefetch(async () => {
-    await callback()
-    injectRefs()
-  })
 }
