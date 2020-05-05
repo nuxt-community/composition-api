@@ -9,6 +9,11 @@ function getValue<T>(value: any): T {
 
 const ssrRefs = ssrNamespace('ssrRefs')
 
+/**
+ * Creates a Ref wich is in sync with the client.
+ *
+ * DON'T USE THIS FOR ALL YOUR REFS ONLY WHEN THEY GET CHANGED ON THE SERVER!
+ */
 export const ssrRef = <T>(value: T, key?: string): Ref<T> => {
   if (!key) {
     throw new Error(
@@ -19,7 +24,7 @@ export const ssrRef = <T>(value: T, key?: string): Ref<T> => {
   const ssr = ssrRefs<T>(key)
 
   if (process.server) {
-    return ssr.createRef(getValue<T>(value))
+    return ssr.serverCreateRef(getValue<T>(value))
   } else {
     const ssrValue = ssr.clientGet(getValue<T>(value))
 

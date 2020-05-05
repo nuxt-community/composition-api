@@ -5,6 +5,9 @@ interface ContextCallback {
   (context: Context): void
 }
 
+/**
+ * Use the context
+ */
 export const withContext = (callback: ContextCallback) => {
   const vm = getCurrentInstance()
   if (!vm) throw new Error('This must be called within a setup function.')
