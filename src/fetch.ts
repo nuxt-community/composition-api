@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { getCurrentInstance, onBeforeMount } from '@vue/composition-api'
 
 import { onServerPrefetch } from './ssr-ref'
+import { isComputed } from './computed'
 
 import { ComponentInstance } from '@vue/composition-api/dist/component'
 
@@ -162,7 +163,9 @@ export const useFetch = (callback: Fetch) => {
     // Merge data
     for (const key in data) {
       try {
-        Vue.set(vm, key, data[key])
+        if (isComputed((vm as any)[key])) {
+          Vue.set(vm, key, data[key])
+        }
       } catch (e) {
         if (process.env.NODE_ENV === 'development')
           // eslint-disable-next-line
