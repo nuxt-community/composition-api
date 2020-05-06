@@ -1,37 +1,27 @@
-import { Ref, onServerPrefetch } from '@vue/composition-api'
-import { Context } from '@nuxt/types'
-
-import { withContext } from './context'
-// import { ssrNamespace } from './ssr-namespace'
+import { onServerPrefetch } from '@vue/composition-api'
 import { ssrRef } from './ssr-ref'
+import { useContext } from './context'
+export const useAsync = <T>(cb: () => T | Promise<T>) => {
+  const { route } = useContext()
 
-// const ssrAsync = ssrNamespace('async')
+  const _ref = ssrRef<T | null>(null, route.fullPath)
 
-/**
- * TODO: key = route of the page e.g. /test/:id or the name of the component
- * Might be not needed with Vue 3 when async setup is OK for pages
- */
-export function useAsync<T>(
-  cb: (context: Context) => Promise<T> | T,
-  key: string
-): Ref<T> {
-  const data = ssrRef<T | null>(null, 'async_' + key)
+  if (!_ref.value) {
+    const p = cb()
 
-  withContext(ctx => {
-    if (process.server) {
-      onServerPrefetch(async () => {
-        data.value = await cb(ctx)
-      })
-    } else if (!data.value) {
-      const p = cb(ctx)
-
-      if (p instanceof Promise) {
-        p.then(res => (data.value = res))
+    if (p instanceof Promise) {
+      if (process.server) {
+        onServerPrefetch(async () => {
+          _ref.value = await p
+        })
       } else {
-        data.value = p
+        // eslint-disable-next-line
+        p.then(res => (_ref.value = res))
       }
+    } else {
+      _ref.value = p
     }
-  })
+  }
 
-  return data as Ref<T>
+  return _ref
 }

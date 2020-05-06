@@ -29,5 +29,6 @@ export { useFetch } from './fetch'
 export { withContext } from './context'
 export { ssrRef } from './ssr-ref'
 export { setSSRContext, ssrNamespace } from './ssr-namespace'
+export { useAsync } from './async'
 
 export * from '@vue/composition-api'

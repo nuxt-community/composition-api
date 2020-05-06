@@ -1,4 +1,4 @@
-import { Ref, reactive, toRefs, watchEffect } from '@vue/composition-api'
+import { Ref, reactive, toRefs } from '@vue/composition-api'
 
 /**
  * DATA passed to window.__NUXT.__DATA__
@@ -9,12 +9,17 @@ let ssrContext: any
 
 function injectNamespace() {
   // Vue3: ssrContext.nuxt.__DATA__ = toRaw(data)
-  ssrContext.nuxt.__DATA__ = JSON.parse(JSON.stringify(data))
+  ssrContext.nuxt.__DATA__ = data
 }
 
-let injected = false
 export function setSSRContext(context: any) {
   ssrContext = ssrContext || context
+
+  if (!data) {
+    data = reactive<any>({})
+  }
+
+  injectNamespace()
 }
 
 /**
@@ -31,12 +36,6 @@ export function ssrNamespace(rootKey: string): SsrNamespace {
   }
 
   return function <T>(key: string) {
-    if (!injected && ssrContext && process.server) {
-      injected = true
-      // TODO: optimize?
-      watchEffect(injectNamespace)
-    }
-
     return {
       clientGet(value: T) {
         return (window as any).__NUXT__?.__DATA__?.[rootKey]?.[key] ?? value

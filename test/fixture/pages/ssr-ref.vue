@@ -3,6 +3,7 @@
     <div>ref-{{ computedVal }}</div>
     <div>function-{{ funcValue }}</div>
     <div>prefetched-{{ prefetchValue }}</div>
+    <div>on: {{ asyncValue }}</div>
     <nuxt-link to="/">home</nuxt-link>
   </div>
 </template>
@@ -15,6 +16,7 @@ import {
   useFetch,
   ssrRef,
   onServerPrefetch,
+  useAsync,
 } from 'nuxt-composition-api'
 
 export function fetcher(result, time = 100) {
@@ -39,10 +41,20 @@ export default defineComponent({
       prefetchValue.value = await fetcher('result', 500)
     })
 
+    const asyncValue = useAsync(() =>
+      fetcher(process.server ? 'server' : 'client', 500)
+    )
+
+    // Error handeling
+    // useAsync(() => {
+    //   throw '42'
+    // })
+
     return {
       computedVal,
       funcValue,
       prefetchValue,
+      asyncValue,
     }
   },
 })
