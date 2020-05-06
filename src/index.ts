@@ -61,3 +61,5 @@ export {
   watch,
   watchEffect,
 } from '@vue/composition-api'
+
+export * from './page'
