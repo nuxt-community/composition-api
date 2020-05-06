@@ -162,14 +162,8 @@ export const useFetch = (callback: Fetch) => {
   onBeforeMount(() => {
     // Merge data
     for (const key in data) {
-      try {
-        if (isComputed((vm as any)[key])) {
-          Vue.set(vm, key, data[key])
-        }
-      } catch (e) {
-        if (process.env.NODE_ENV === 'development')
-          // eslint-disable-next-line
-          console.warn(`Could not hydrate ${key}.`)
+      if (isComputed((vm as any)[key])) {
+        Vue.set(vm, key, data[key])
       }
     }
   })
