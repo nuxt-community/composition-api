@@ -117,18 +117,17 @@ const val2 = ssrRef(myExpensiveSetterFunction)
 
 **Note**: Under the hood, `ssrRef` requires a key to ensure that the ref values match between client and server. If you have added `nuxt-composition-api` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `nuxt-composition-api/babel` to your Babel plugins.
 
-### withContext
+### useContext
 
-You can access the Nuxt context more easily using `withContext`, which will immediately call the callback and pass it the Nuxt context.
+You can access the Nuxt context more easily using `useContext`, which will return the Nuxt context.
 
 ```ts
-import { defineComponent, ref, withContext } from 'nuxt-composition-api'
+import { defineComponent, ref, useContext } from 'nuxt-composition-api'
 
 export default defineComponent({
   setup() {
-    withContext(({ store }) => {
-      store.dispatch('myAction')
-    })
+    const { store } = useContext()
+    store.dispatch('myAction')
   },
 })
 ```
