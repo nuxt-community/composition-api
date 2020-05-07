@@ -14,7 +14,7 @@ export default defineComponent({
   setup() {
     const { title } = getMeta()
 
-    meta.value.title = 'newSetTitle'
+    title.value = 'newSetTitle'
   },
 })
 </script>
