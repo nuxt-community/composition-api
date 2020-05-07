@@ -18,7 +18,6 @@ import {
   ssrRef,
   onServerPrefetch,
   useAsync,
-  watch,
 } from 'nuxt-composition-api'
 
 export function fetcher(result, time = 100) {

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import { getCurrentInstance, onBeforeMount } from '@vue/composition-api'
 import { onServerPrefetch } from './server-prefetch'
 
-import type { ComponentInstance } from '@vue/composition-api/dist/component'
+import { ComponentInstance } from '@vue/composition-api/dist/component'
 
 function normalizeError(err: any) {
   let message

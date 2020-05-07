@@ -1,7 +1,10 @@
 import { ref, Ref } from '@vue/composition-api'
 import { onServerPrefetchEnd } from './server-prefetch'
 
-function getValue(value: any): any {
+function getValue<T>(value: T | (() => T)): T {
+  if (value instanceof Function) return value()
+  return value
+}
   if (typeof value === 'function') return value()
   return value
 }
@@ -15,7 +18,7 @@ export function setSSRContext(ssrContext: any) {
 /**
  * Creates a Ref wich is in sync with the client.
  */
-export const ssrRef = <T>(value: T, key?: string): Ref<T> => {
+export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   if (!key) {
     throw new Error(
       "You must provide a key. You can have it generated automatically by adding 'nuxt-composition-api/babel' to your Babel plugins."
