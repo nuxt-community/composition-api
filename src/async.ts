@@ -1,11 +1,12 @@
 import { ssrRef } from './ssr-ref'
 import { onServerPrefetch } from './server-prefetch'
-import { useContext } from './context'
+import { Ref, isRef } from '@vue/composition-api'
 
-export const useAsync = <T>(cb: () => T | Promise<T>) => {
-  const { route } = useContext()
-
-  const _ref = ssrRef<T | null>(null, route.fullPath)
+export const useAsync = <T>(
+  cb: () => T | Promise<T>,
+  key?: string | Ref<null>
+): Ref<null | T> => {
+  const _ref = isRef(key) ? key : ssrRef<T | null>(null, key)
 
   if (!_ref.value) {
     const p = cb()
@@ -24,5 +25,5 @@ export const useAsync = <T>(cb: () => T | Promise<T>) => {
     }
   }
 
-  return _ref
+  return _ref as Ref<null | T>
 }

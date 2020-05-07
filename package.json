@@ -43,7 +43,7 @@
     "release": "release-it",
     "test": "run-s test:*",
     "test:types": "tsd",
-    "test:e2e": "testcafe firefox:headless test/e2e --app 'node test/start-fixture.js'"
+    "test:e2e": "testcafe firefox:headless test/e2e --app node test/start-fixture.js"
   },
   "tsd": {
     "directory": "test/tsd",
