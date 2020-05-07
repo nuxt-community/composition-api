@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import { defineComponent, useMeta, computed } from 'nuxt-composition-api'
+import { defineComponent, useHead, computed } from 'nuxt-composition-api'
 
-const { head, getMeta } = useMeta()
+const { head, useMeta } = useHead()
 
 export default defineComponent({
   head,
   setup() {
-    const { title } = getMeta()
+    const { title } = useMeta()
 
     title.value = 'newSetTitle'
   },

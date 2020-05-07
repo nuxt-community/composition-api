@@ -22,7 +22,7 @@ function createEmptyMeta(): MetaInfo {
   }
 }
 
-export function useMeta(init: MetaInfo = {}) {
+export function useHead(init: MetaInfo = {}) {
   const meta = reactive<MetaInfo>({
     ...createEmptyMeta(),
     ...init,
@@ -30,6 +30,6 @@ export function useMeta(init: MetaInfo = {}) {
 
   return {
     head: () => meta,
-    getMeta: () => toRefs(meta),
+    useMeta: () => toRefs(meta),
   }
 }

@@ -93,17 +93,17 @@ export default defineComponent({
 
 **Note**: `useFetch` must be called synchronously within `setup()`. Any changes made to component data - that is, to properties _returned_ from `setup()` - will be sent to the client and directly loaded. Other side-effects of `useFetch` hook will not be persisted.
 
-### useMeta
+### useHead
 
 ```ts
-import { defineComponent, useMeta, computed } from 'nuxt-composition-api'
+import { defineComponent, useHead, computed } from 'nuxt-composition-api'
 
-const { head, getMeta } = useMeta()
+const { head, useMeta } = useHead()
 
 export default defineComponent({
   head, // this line is needed!
   setup() {
-    const { title } = getMeta()
+    const { title } = useMeta()
 
     title.value = 'newSetTitle'
   },
