@@ -1,5 +1,4 @@
-import { ref, Ref } from '@vue/composition-api'
-import { onServerPrefetchEnd } from './server-prefetch'
+import { ref, Ref, watch } from '@vue/composition-api'
 
 function getValue(value: any): any {
   if (typeof value === 'function') return value()
@@ -25,7 +24,7 @@ export const ssrRef = <T>(value: T, key?: string): Ref<T> => {
   if (process.server) {
     if (typeof value === 'function') {
       const sref = ref(getValue(value)) as Ref<T>
-      onServerPrefetchEnd(() => (data[key] = sref.value))
+      watch(sref, () => (data[key] = sref.value))
 
       return sref
     } else {
@@ -34,7 +33,7 @@ export const ssrRef = <T>(value: T, key?: string): Ref<T> => {
         typeof val === 'object' ? JSON.parse(JSON.stringify(val)) : val
       const sref = ref(val) as Ref<T>
 
-      onServerPrefetchEnd(() =>
+      watch(sref, () =>
         initVal !== sref.value ? (data[key] = sref.value) : null
       )
 

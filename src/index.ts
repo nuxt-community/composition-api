@@ -28,38 +28,6 @@ export const meta = require('../package.json')
 export { useFetch } from './fetch'
 export { withContext } from './context'
 export { ssrRef, setSSRContext } from './ssr-ref'
-export { onServerPrefetch } from './server-prefetch'
 export { useAsync } from './async'
 
-export {
-  ComponentRenderProxy,
-  InjectionKey,
-  PropOptions,
-  PropType,
-  Ref,
-  SetupContext,
-  VueWatcher,
-  computed,
-  createComponent,
-  createElement,
-  defineComponent,
-  getCurrentInstance,
-  inject,
-  isRef,
-  onActivated,
-  onBeforeMount,
-  onBeforeUnmount,
-  onBeforeUpdate,
-  onDeactivated,
-  onErrorCaptured,
-  onMounted,
-  onUnmounted,
-  onUpdated,
-  provide,
-  reactive,
-  ref,
-  set,
-  toRefs,
-  watch,
-  watchEffect,
-} from '@vue/composition-api'
+export * from '@vue/composition-api'

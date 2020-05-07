@@ -1,6 +1,9 @@
 import Vue from 'vue'
-import { getCurrentInstance, onBeforeMount } from '@vue/composition-api'
-import { onServerPrefetch } from './server-prefetch'
+import {
+  getCurrentInstance,
+  onBeforeMount,
+  onServerPrefetch,
+} from '@vue/composition-api'
 
 import type { ComponentInstance } from '@vue/composition-api/dist/component'
 

@@ -1,5 +1,5 @@
 import { ssrRef } from './ssr-ref'
-import { onServerPrefetch } from './server-prefetch'
+import { onServerPrefetch } from '@vue/composition-api'
 import { useContext } from './context'
 
 export const useAsync = <T>(cb: () => T | Promise<T>) => {
