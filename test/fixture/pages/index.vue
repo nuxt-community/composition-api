@@ -1,14 +1,13 @@
 <template>
   <div>
     <div>name-{{ name }}</div>
-    <div v-if="$fetchState.pending">
-      loading email
-    </div>
+    <div v-if="$fetchState.pending">loading email</div>
     <div>email-{{ email }}</div>
     <div>{{ computedProp }}</div>
     <div>{{ myFunction() }}</div>
     <nuxt-link to="/other">link forward</nuxt-link>
     <nuxt-link to="/ssr-ref">ssr refs</nuxt-link>
+    <nuxt-link to="/meta">meta</nuxt-link>
     <button @click="$fetch">Refetch</button>
     <child-comp />
   </div>
