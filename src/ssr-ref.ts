@@ -21,7 +21,7 @@ function clone<T>(obj: T): T {
 }
 
 /**
- * Creates a Ref wich is in sync with the client.
+ * Creates a Ref that is in sync with the client.
  */
 export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   if (!key) {
