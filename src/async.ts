@@ -1,5 +1,5 @@
-import { onServerPrefetch } from '@vue/composition-api'
 import { ssrRef } from './ssr-ref'
+import { onServerPrefetch } from './server-prefetch'
 import { useContext } from './context'
 export const useAsync = <T>(cb: () => T | Promise<T>) => {
   const { route } = useContext()
@@ -15,6 +15,7 @@ export const useAsync = <T>(cb: () => T | Promise<T>) => {
           _ref.value = await p
         })
       } else {
+        // TODO: handle router and catch
         // eslint-disable-next-line
         p.then(res => (_ref.value = res))
       }
