@@ -28,6 +28,7 @@ export const meta = require('../package.json')
 export { useFetch } from './fetch'
 export { withContext } from './context'
 export { ssrRef, onServerPrefetch, setSSRContext } from './ssr-ref'
+export { useHead } from './meta'
 
 export {
   ComponentRenderProxy,

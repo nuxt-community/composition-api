@@ -93,6 +93,23 @@ export default defineComponent({
 
 **Note**: `useFetch` must be called synchronously within `setup()`. Any changes made to component data - that is, to properties _returned_ from `setup()` - will be sent to the client and directly loaded. Other side-effects of `useFetch` hook will not be persisted.
 
+### useHead
+
+```ts
+import { defineComponent, useHead, computed } from 'nuxt-composition-api'
+
+const { head, useMeta } = useHead()
+
+export default defineComponent({
+  head, // this line is needed!
+  setup() {
+    const { title } = useMeta()
+
+    title.value = 'newSetTitle'
+  },
+})
+```
+
 ### ssrRef
 
 When creating composition utility functions, often there will be server-side state that needs to be conveyed to the client.
