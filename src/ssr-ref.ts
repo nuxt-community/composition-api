@@ -2,7 +2,7 @@ import { ref, Ref } from '@vue/composition-api'
 import { onServerPrefetchEnd } from './server-prefetch'
 
 function getValue<T>(value: T | (() => T)): T {
-  if (typeof value === 'function') return (value as () => T)()
+  if (value instanceof Function) return value()
   return value
 }
 
