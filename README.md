@@ -36,6 +36,7 @@
 
 - 🏃 **Fetch**: Support for the new Nuxt `fetch()` in v2.12+
 - ℹ️ **Context**: Easy access to `router`, `app`, `store` within `setup()`
+- 🗺️ **Head**: Interact directly with your `vue-meta` properties within `setup()`
 - ✨ **Automatic hydration**: Drop-in replacement for `ref` with automatic SSR stringification and hydration (`ssrRef`)
 - 📝 **SSR support**: Allows using the Composition API with SSR
 - 💪 **TypeScript**: Written in TypeScript
@@ -92,6 +93,27 @@ export default defineComponent({
 ```
 
 **Note**: `useFetch` must be called synchronously within `setup()`. Any changes made to component data - that is, to properties _returned_ from `setup()` - will be sent to the client and directly loaded. Other side-effects of `useFetch` hook will not be persisted.
+
+### useHead
+
+You can interact directly with [`head()` properties](https://nuxtjs.org/api/pages-head/) in `setup` by means of the `useHead()` helper.
+
+```ts
+import { defineComponent, useHead, computed } from 'nuxt-composition-api'
+
+const { head, useMeta } = useHead()
+
+export default defineComponent({
+  // this line is needed!
+  head,
+  setup() {
+    // This will allow you to set the title in head - but won't allow you to read its state outside of this component.
+    const { title } = useMeta()
+
+    title.value = 'newSetTitle'
+  },
+})
+```
 
 ### ssrRef
 

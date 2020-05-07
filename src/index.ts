@@ -30,6 +30,7 @@ export { withContext } from './context'
 export { ssrRef, setSSRContext } from './ssr-ref'
 export { onServerPrefetch } from './server-prefetch'
 export { useAsync } from './async'
+export { useHead } from './meta'
 
 export {
   ComponentRenderProxy,
