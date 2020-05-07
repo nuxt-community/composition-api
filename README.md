@@ -30,7 +30,7 @@
 
 > `nuxt-composition-api` provides a way to use the Vue 3 Composition API in with Nuxt-specific features.
 
-**Note**: the main aim is to allow experimentation and feedback before the final release of Nuxt 3. Think carefully before using this package in production.
+**Note**: the main aim is to allow experimentation and feedback before the final release of Nuxt 3. It is not recommended to use this package in production.
 
 ## Features
 
