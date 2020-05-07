@@ -1,5 +1,5 @@
 import { reactive, toRefs } from '@vue/composition-api'
-import type { MetaInfo } from 'vue-meta'
+import { MetaInfo } from 'vue-meta'
 
 function createEmptyMeta(): MetaInfo {
   return {
