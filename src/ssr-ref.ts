@@ -1,7 +1,7 @@
 import { ref, Ref, onServerPrefetch as prefetch } from '@vue/composition-api'
 
-function getValue(value: any) {
-  if (typeof value === 'function') return value()
+function getValue<T>(value: T | (() => T)): T {
+  if (value instanceof Function) return value()
   return value
 }
 
@@ -24,7 +24,7 @@ export function injectRefs() {
   })
 }
 
-export const ssrRef = <T>(value: T, key?: string) => {
+export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   const val = ref<T>(getValue(value))
 
   if (!key)
@@ -44,7 +44,7 @@ export const ssrRef = <T>(value: T, key?: string) => {
     refs.push([key, val])
   }
 
-  return val
+  return val as Ref<T>
 }
 
 export const onServerPrefetch = (callback: Function) => {
