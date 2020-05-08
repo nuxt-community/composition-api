@@ -2,27 +2,58 @@ import {
   onServerPrefetch as onPrefetch,
   getCurrentInstance,
 } from '@vue/composition-api'
-const prefetchFunctions: Array<() => any> = []
-const prefetchFunctionsEnd: Array<() => any> = []
 
-let hasServerPrefetch = false
-function setupOnServerPrefetch() {
-  // Only setup once and only in component
-  if (!hasServerPrefetch && getCurrentInstance()) {
-    hasServerPrefetch = true
-    onPrefetch(async () => {
-      await Promise.all(prefetchFunctions.map(p => p()))
-      await Promise.all(prefetchFunctionsEnd.map(p => p()))
-    })
-  }
-}
+const ssrRefFunctions = new Map<
+  ReturnType<typeof getCurrentInstance>,
+  (() => void)[]
+>()
+
+const isPending = new Map<ReturnType<typeof getCurrentInstance>, number>()
+
+let noSetup: Array<() => any> = []
 
 export function onServerPrefetch(cb: () => any) {
-  prefetchFunctions.push(cb)
-  setupOnServerPrefetch()
+  const vm = getCurrentInstance()
+
+  if (!vm) {
+    noSetup.push(cb)
+    return
+  }
+
+  const pending = isPending.get(vm) || 0
+
+  isPending.set(vm, pending + 1)
+
+  onPrefetch(async () => {
+    await cb()
+
+    const pending = isPending.get(vm) || 0
+
+    if (pending <= 1) {
+      const fn = ssrRefFunctions.get(vm) || []
+      await Promise.all(fn.map(p => p()))
+      await Promise.all(noSetup.map(p => p()))
+      noSetup = []
+    } else {
+      isPending.set(vm, pending - 1)
+    }
+  })
 }
 
 export function onServerPrefetchEnd(cb: () => any) {
-  prefetchFunctionsEnd.push(cb)
-  setupOnServerPrefetch()
+  if (!process.server) return
+
+  const vm = getCurrentInstance()
+
+  if (!vm) {
+    noSetup.push(cb)
+  } else {
+    const fn = ssrRefFunctions.get(vm)
+
+    if (!fn) {
+      ssrRefFunctions.set(vm, [cb])
+    } else {
+      fn.push(cb)
+    }
+  }
 }
