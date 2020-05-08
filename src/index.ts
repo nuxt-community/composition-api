@@ -26,7 +26,6 @@ export default compositionApiModule
 export const meta = require('../package.json')
 
 export { useAsync } from './async'
-export { useContext, withContext } from './context'
 export { useFetch } from './fetch'
 export { isComputed } from './computed'
 export { withContext, useContext } from './context'
