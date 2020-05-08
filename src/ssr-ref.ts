@@ -1,4 +1,4 @@
-import { ref, Ref } from '@vue/composition-api'
+import { ref, Ref, computed } from '@vue/composition-api'
 import { onServerPrefetchEnd } from './server-prefetch'
 
 function getValue<T>(value: T | (() => T)): T {
@@ -45,4 +45,46 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
 
   return _ref
 
+}
+
+// TODO: remove when https://github.com/vuejs/composition-api/pull/311 is merged
+function shallowRef<T>(value: T): Ref<T> {
+  return computed({
+    get: () => value,
+    set: v => (value = v),
+  })
+}
+
+/**
+ * Creates a shallowRef that is in sync with the client.
+ */
+export const shallowSsrRef = <T>(
+  value: T | (() => T),
+  key?: string
+): Ref<T> => {
+  if (!key) {
+    throw new Error(
+      "You must provide a key. You can have it generated automatically by adding 'nuxt-composition-api/babel' to your Babel plugins."
+    )
+  }
+
+  if (process.client) {
+    return shallowRef(
+      (window as any).__NUXT__?.ssrRefs?.[key] ?? getValue(value)
+    )
+  }
+
+  let _val = getValue(value)
+
+  if (typeof value === 'function') {
+    data[key] = _val
+  }
+
+  return computed({
+    get: () => _val,
+    set: v => {
+      _val = v
+      data[key] = v
+    },
+  })
 }
