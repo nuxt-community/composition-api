@@ -6,8 +6,6 @@ module.exports = {
   themeConfig: {
     repo: 'nuxt-community/composition-api',
     editLinks: true,
-    docsDir: 'docs',
-    sidebarDepth: 2,
     sidebar: {
       '/': [
         {
@@ -29,7 +27,7 @@ module.exports = {
         {
           title: 'Examples',
           collapsable: false,
-          children: ['/examples/useFetch'],
+          children: ['/examples/useFetch', '/examples/live'],
         },
       ],
     },

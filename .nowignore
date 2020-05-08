@@ -2,5 +2,4 @@ lib
 dist
 .github
 coverage
-test
 
