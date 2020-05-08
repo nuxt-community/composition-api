@@ -1,7 +1,10 @@
-export function isComputed(cmp: any): boolean {
+import { isRef } from '@vue/composition-api'
+
+export function isComputed(cmp: unknown): boolean {
   return (
-    Object.getOwnPropertyDescriptor(cmp, 'value')
-      ?.value?.set?.toString?.()
-      ?.includes('Computed property was assigned') === true
+    isRef(cmp) &&
+    Object.getOwnPropertyDescriptors(cmp)
+      .value.set!.toString()
+      .includes('Computed property was assigned')
   )
 }
