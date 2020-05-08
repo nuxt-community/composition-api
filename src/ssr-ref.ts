@@ -34,21 +34,15 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
     return ref((window as any).__NUXT__?.ssrRefs?.[key] ?? getValue(value))
   }
 
-  if (typeof value === 'function') {
-    const _ref = ref(getValue(value)) as Ref<T>
-    onServerPrefetchEnd(() => (data[key] = _ref.value))
+  const val = getValue(value)
+  const initVal = clone(val)
+  const _ref = ref(val) as Ref<T>
 
-    return _ref
-  } else {
-    const val = getValue(value)
-    const initVal = clone(val)
-    const _ref = ref(val) as Ref<T>
+  onServerPrefetchEnd(() => {
+    if (initVal !== _ref.value) data[key] = _ref.value
+  })
 
-    onServerPrefetchEnd(() => {
-      if (initVal !== _ref.value) {
-        data[key] = _ref.value
-      }
-    })
+  return _ref
 
     return _ref
   }
