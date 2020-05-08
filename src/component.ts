@@ -18,7 +18,7 @@ export function defineComponent(
 export function defineComponent(options: any) {
   const reactiveHead = reactive<MetaInfo>({})
   const head = () =>
-    defu(options.head instanceof Function ? options.head() : {}, reactiveHead)
+    defu(options.head instanceof Function ? options.head() : options.head || {}, reactiveHead)
   heads.set(head, reactiveHead)
 
   return {
