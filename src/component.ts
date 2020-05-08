@@ -16,9 +16,16 @@ export function defineComponent(
 ): ReturnType<typeof define>
 
 export function defineComponent(options: any) {
+  if (!options.head) return options
+
   const reactiveHead = reactive<MetaInfo>({})
   const head = () =>
-    defu(options.head instanceof Function ? options.head() : options.head || {}, reactiveHead)
+    defu(
+      options.head instanceof Function
+        ? options.head()
+        : (options.head !== true && options.head) || {},
+      reactiveHead
+    )
   heads.set(head, reactiveHead)
 
   return {
