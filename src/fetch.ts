@@ -162,7 +162,7 @@ export const useFetch = (callback: Fetch) => {
   onBeforeMount(() => {
     // Merge data
     for (const key in data) {
-      if (isComputed((vm as any)[key])) {
+      if (!isComputed((vm as any)[key])) {
         Vue.set(vm, key, data[key])
       }
     }
