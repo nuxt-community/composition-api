@@ -44,8 +44,9 @@
     "prepublishOnly": "yarn lint && yarn test",
     "release": "release-it",
     "test": "run-s test:*",
+    "test:e2e": "start-server-and-test fixture:prod 3000 \"testcafe firefox:headless test/e2e\"",
     "test:types": "tsd",
-    "test:e2e": "start-server-and-test fixture:prod 3000 \"testcafe firefox:headless test/e2e\""
+    "test:unit": "jest"
   },
   "tsd": {
     "directory": "test/tsd",
