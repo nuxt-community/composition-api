@@ -26,9 +26,10 @@ export default compositionApiModule
 export const meta = require('../package.json')
 
 export { useFetch } from './fetch'
-export { withContext } from './context'
+export { withContext, useContext } from './context'
 export { ssrRef, onServerPrefetch, setSSRContext } from './ssr-ref'
 export { isComputed } from './computed'
+export { useHead } from './meta'
 
 export {
   ComponentRenderProxy,
