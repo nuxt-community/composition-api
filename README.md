@@ -139,6 +139,27 @@ const val2 = ssrRef(myExpensiveSetterFunction)
 
 **Note**: Under the hood, `ssrRef` requires a key to ensure that the ref values match between client and server. If you have added `nuxt-composition-api` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `nuxt-composition-api/babel` to your Babel plugins.
 
+### useAsync
+
+You can create reactive values that depend on asynchronous calls with `useAsync`.
+
+On server-side, it will inline the result of the async call in your HTML and automatically inject them into your client code.
+
+On client-side, if the call hasn't been carried out on SSR, it returns a `null` ref that is filled with the result of the async call when it resolves.
+
+```ts
+import { defineComponent, useAsync, computed } from 'nuxt-composition-api'
+import axios from 'axios'
+
+export default defineComponent({
+  setup() {
+    const posts = useAsync(() => axios.get('/api/posts'))
+
+    return { posts }
+  },
+})
+```
+
 ### useContext
 
 You can access the Nuxt context more easily using `useContext`, which will return the Nuxt context.
