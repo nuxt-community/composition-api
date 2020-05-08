@@ -143,9 +143,9 @@ const val2 = ssrRef(myExpensiveSetterFunction)
 
 You can create reactive values that depend on asynchronous calls with `useAsync`.
 
-On server-side, it will inline the result of the async call in your HTML and automatically inject them into your client code.
+Server-side, it will inline the result of the async call in your HTML and automatically inject them into your client code.
 
-On client-side, if the call hasn't been carried out on SSR, it returns a `null` ref that is filled with the result of the async call when it resolves.
+Client-side, if the call hasn't been carried out on SSR (such as if you have navigated to the page after initial load), it returns a `null` ref that is filled with the result of the async call when it resolves.
 
 ```ts
 import { defineComponent, useAsync, computed } from 'nuxt-composition-api'
