@@ -40,6 +40,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
 
   onServerPrefetchEnd(() => {
     if (value instanceof Function || initVal !== _ref.value)
+      data[key] = _ref.value
   })
 
   return _ref
