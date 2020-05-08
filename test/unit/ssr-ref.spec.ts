@@ -21,8 +21,16 @@ describe('SSR Refs', () => {
   })
 
   test('__NUXT__ contains correct data', async () => {
-    const html = await get('/ssr-ref')
-    expect(html).toContain('"only SSR rendered"')
-    expect(html).toContain('"runs SSR or client-side"')
+    const homePage = await get('/')
+    expect(homePage.includes('"only SSR rendered"')).toBeFalsy()
+    expect(homePage.includes('"runs SSR or client-side"')).toBeFalsy()
+
+    const ssrRefPage = await get('/ssr-ref')
+    expect(ssrRefPage).toContain('"only SSR rendered"')
+    expect(ssrRefPage).toContain('"runs SSR or client-side"')
+
+    const rerenderedHomePage = await get('/')
+    expect(rerenderedHomePage.includes('"only SSR rendered"')).toBeFalsy()
+    expect(rerenderedHomePage.includes('"runs SSR or client-side"')).toBeFalsy()
   })
 })

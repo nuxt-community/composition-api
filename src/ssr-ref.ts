@@ -1,5 +1,5 @@
 import { ref, Ref, computed } from '@vue/composition-api'
-import { onServerPrefetchEnd } from './server-prefetch'
+import { onFinalServerPrefetch } from './server-prefetch'
 
 function getValue<T>(value: T | (() => T)): T {
   if (value instanceof Function) return value()
@@ -9,6 +9,7 @@ function getValue<T>(value: T | (() => T)): T {
 let data: any = {}
 
 export function setSSRContext(ssrContext: any) {
+  data = Object.assign({}, {})
   ssrContext.nuxt.ssrRefs = data
 }
 
@@ -38,13 +39,12 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   const initVal = clone(val)
   const _ref = ref(val) as Ref<T>
 
-  onServerPrefetchEnd(() => {
+  onFinalServerPrefetch(() => {
     if (value instanceof Function || initVal !== _ref.value)
       data[key] = _ref.value
   })
 
   return _ref
-
 }
 
 // TODO: remove when https://github.com/vuejs/composition-api/pull/311 is merged
