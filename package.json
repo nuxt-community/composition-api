@@ -1,6 +1,6 @@
 {
   "name": "nuxt-composition-api",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Composition API hooks for Nuxt",
   "license": "MIT",
   "repository": "nuxt-community/composition-api",
@@ -33,6 +33,8 @@
     "watch": "yarn compile -w",
     "clean": "rm -rf lib/*",
     "compile": "rollup -c",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "fixture": "nuxt -c test/fixture/nuxt.config.js",
     "fixture:prod": "rm -rf .nuxt && nuxt build -c test/fixture/nuxt.config.js && nuxt start -c test/fixture/nuxt.config.js",
     "lint": "run-s lint:all:*",
@@ -40,6 +42,7 @@
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts,vue}\"",
     "lint:eslint": "eslint --fix",
     "lint:prettier": "prettier --write --loglevel warn",
+    "now-build": "yarn docs:build",
     "prepare": "yarn build",
     "prepublishOnly": "yarn lint && yarn test",
     "release": "release-it",
@@ -89,6 +92,7 @@
     "start-server-and-test": "^1.11.0",
     "testcafe": "^1.8.4",
     "tsd": "^0.11.0",
+    "vuepress": "^1.4.1",
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {

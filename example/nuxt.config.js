@@ -3,6 +3,12 @@ const fetch = require('node-fetch')
 export default {
   plugins: ['@/plugins/vue-placeholders.js'],
   modules: ['@nuxt/http'],
+  router: {
+    base: '/example/',
+  },
+  build: {
+    publicPath: 'example',
+  },
   buildModules: ['nuxt-composition-api'],
   generate: {
     async routes() {
