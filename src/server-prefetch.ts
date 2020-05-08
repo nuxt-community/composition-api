@@ -1,10 +1,14 @@
-import { onServerPrefetch as onPrefetch } from '@vue/composition-api'
+import {
+  onServerPrefetch as onPrefetch,
+  getCurrentInstance,
+} from '@vue/composition-api'
 const prefetchFunctions: Array<() => any> = []
 const prefetchFunctionsEnd: Array<() => any> = []
 
 let hasServerPrefetch = false
 function setupOnServerPrefetch() {
-  if (!hasServerPrefetch) {
+  // Only setup once and only in component
+  if (!hasServerPrefetch && getCurrentInstance()) {
     hasServerPrefetch = true
     onPrefetch(async () => {
       await Promise.all(prefetchFunctions.map(p => p()))

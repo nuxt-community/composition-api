@@ -35,19 +35,21 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   }
 
   if (typeof value === 'function') {
-    const sref = ref(getValue(value)) as Ref<T>
-    onServerPrefetchEnd(() => (data[key] = sref.value))
+    const _ref = ref(getValue(value)) as Ref<T>
+    onServerPrefetchEnd(() => (data[key] = _ref.value))
 
-    return sref
+    return _ref
   } else {
     const val = getValue(value)
     const initVal = clone(val)
-    const sref = ref(val) as Ref<T>
+    const _ref = ref(val) as Ref<T>
 
-    onServerPrefetchEnd(() =>
-      initVal !== sref.value ? (data[key] = sref.value) : null
-    )
+    onServerPrefetchEnd(() => {
+      if (initVal !== _ref.value) {
+        data[key] = _ref.value
+      }
+    })
 
-    return sref
+    return _ref
   }
 }

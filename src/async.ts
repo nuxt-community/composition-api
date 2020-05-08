@@ -11,7 +11,7 @@ export const useAsync = <T>(
       "You must provide a key. You can have it generated automatically by adding 'nuxt-composition-api/babel' to your Babel plugins."
     )
   }
-  
+
   const _ref = isRef(key) ? key : ssrRef<T | null>(null, key)
 
   if (!_ref.value) {
