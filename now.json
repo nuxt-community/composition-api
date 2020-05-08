@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "package.json",
+      "src": "docs/package.json",
       "use": "@now/static-build"
     },
     {
@@ -9,8 +9,5 @@
       "use": "@now/static-build"
     }
   ],
-  "routes": [
-    { "src": "/docs(.*)", "dest": "/docs/.vuepress/dist/$1" },
-    { "handle": "filesystem" }
-  ]
+  "routes": [{ "handle": "filesystem" }, { "src": "/(.*)", "dest": "/docs/$1" }]
 }

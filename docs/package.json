@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts": {
+    "docs:dev": "vuepress dev",
+    "docs:build": "vuepress build",
+    "now-build": "yarn docs:build"
+  },
+  "devDependencies": {
+    "vuepress": "^1.4.1"
+  }
+}
