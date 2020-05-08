@@ -12,7 +12,7 @@ import { UnwrapRef, Ref } from '@vue/composition-api/dist/reactivity'
 const heads = new WeakMap<() => any, MetaInfo>()
 
 export function defineComponent(
-  ...options: Parameters<typeof define>
+  options: Parameters<typeof define>[0]
 ): ReturnType<typeof define>
 
 export function defineComponent(options: any) {
@@ -21,9 +21,7 @@ export function defineComponent(options: any) {
   const reactiveHead = reactive<MetaInfo>({})
   const head = () =>
     defu(
-      options.head instanceof Function
-        ? options.head()
-        : (options.head !== true && options.head) || {},
+      options.head instanceof Function ? options.head() : options.head || {},
       reactiveHead
     )
   heads.set(head, reactiveHead)

@@ -8,7 +8,7 @@
 import { defineComponent, useMeta, computed } from 'nuxt-composition-api'
 
 export default defineComponent({
-  head: true,
+  head: {},
   setup() {
     const { title } = useMeta()
 
