@@ -27,7 +27,9 @@ export const meta = require('../package.json')
 
 export { useFetch } from './fetch'
 export { withContext, useContext } from './context'
-export { ssrRef, onServerPrefetch, setSSRContext } from './ssr-ref'
+export { ssrRef, setSSRContext } from './ssr-ref'
+export { onServerPrefetch } from './server-prefetch'
+export { useAsync } from './async'
 export { useHead } from './meta'
 
 export {

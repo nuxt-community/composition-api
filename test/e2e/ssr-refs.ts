@@ -14,6 +14,7 @@ test('Shows data on ssr-loaded page', async t => {
   await expectOnPage('ref-only SSR rendered')
   await expectOnPage('function-runs SSR or client-side')
   await expectOnPage('prefetched-result')
+  await expectOnPage('on: server')
 
   await t.click(Selector('a').withText('home'))
   await t.click(Selector('a').withText('ssr refs'))
@@ -27,4 +28,5 @@ test.skip('Shows appropriate data on client-loaded page', async t => {
   await expectPathnameToBe('/ssr-ref')
   await expectNotOnPage('ref-only SSR rendered')
   await expectOnPage('function-runs SSR or client-side')
+  await expectOnPage('on: client')
 })

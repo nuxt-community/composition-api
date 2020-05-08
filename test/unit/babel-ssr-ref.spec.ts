@@ -7,7 +7,10 @@ var example = `
 const ref = ref(1)
 const ref2 = ssrRef(2)
 const ref3 = ssrRef(3, 'custom-key')
-const ref4 = ssrRef(4)
+const ref4 = ssrRef(() => 4)
+
+const async1 = useAsync(() => null)
+const async2 = useAsync(() => null, 'key')
 `
 
 describe('babel plugin', () => {

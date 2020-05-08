@@ -1,4 +1,5 @@
-import { ref, Ref, onServerPrefetch as prefetch } from '@vue/composition-api'
+import { ref, Ref } from '@vue/composition-api'
+import { onServerPrefetchEnd } from './server-prefetch'
 
 function getValue<T>(value: T | (() => T)): T {
   if (value instanceof Function) return value()
@@ -6,48 +7,42 @@ function getValue<T>(value: T | (() => T)): T {
 }
 
 let data: any = {}
-let injected = false
-
-const refs: Record<string, Ref<any>> = {}
 
 export function setSSRContext(ssrContext: any) {
   ssrContext.nuxt.ssrRefs = data
 }
 
-export function injectRefs() {
-  if (!process.server) return
-
-  Object.entries(refs).forEach(([key, ref]) => {
-    data[key] = JSON.parse(JSON.stringify(ref.value))
-  })
+function clone<T>(obj: T): T {
+  if (typeof obj === 'object') {
+    return JSON.parse(JSON.stringify(obj))
+  } else {
+    return obj
+  }
 }
 
+/**
+ * Creates a Ref that is in sync with the client.
+ */
 export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
-  const val = ref<T>(getValue(value))
-
-  if (!key)
+  if (!key) {
     throw new Error(
       "You must provide a key. You can have it generated automatically by adding 'nuxt-composition-api/babel' to your Babel plugins."
     )
-
-  if (!injected) {
-    prefetch(injectRefs)
-    injected = true
   }
 
   if (process.client) {
-    const nuxtState = (window as any).__NUXT__
-    val.value = (nuxtState.ssrRefs || {})[key!] ?? getValue(value)
-  } else {
-    refs[key] = val
+    return ref((window as any).__NUXT__?.ssrRefs?.[key] ?? getValue(value))
   }
 
-  return val as Ref<T>
-}
+  const val = getValue(value)
+  const initVal = clone(val)
+  const _ref = ref(val) as Ref<T>
 
-export const onServerPrefetch = (callback: Function) => {
-  prefetch(async () => {
-    await callback()
-    injectRefs()
+  onServerPrefetchEnd(() => {
+    if (value instanceof Function || initVal !== _ref.value)
+      data[key] = _ref.value
   })
+
+  return _ref
+
 }
