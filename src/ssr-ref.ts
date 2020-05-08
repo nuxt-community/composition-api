@@ -44,6 +44,4 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
 
   return _ref
 
-    return _ref
-  }
 }
