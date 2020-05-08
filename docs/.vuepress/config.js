@@ -2,7 +2,7 @@ module.exports = {
   title: '🏗️ Nuxt Composition API',
   description: 'Composition API hooks for Nuxt',
   evergreen: true,
-  dest: './dist',
+  dest: 'dist',
   themeConfig: {
     repo: 'nuxt-community/composition-api',
     editLinks: true,
