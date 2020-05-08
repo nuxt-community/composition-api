@@ -5,6 +5,19 @@ module.exports = {
   rootDir: resolve(__dirname, '../..'),
   buildDir: resolve(__dirname, '.nuxt'),
   srcDir: __dirname,
+  ...(process.env.NOW_BUILD === 'true'
+    ? {
+        generate: {
+          dir: 'dist/fixture',
+        },
+        router: {
+          base: '/fixture/',
+        },
+        build: {
+          publicPath: 'fixture',
+        },
+      }
+    : {}),
   buildModules: [
     process.env.NODE_ENV === 'test'
       ? require('../..').default
