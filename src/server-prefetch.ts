@@ -2,13 +2,10 @@ import {
   onServerPrefetch as onPrefetch,
   getCurrentInstance,
 } from '@vue/composition-api'
+import { ComponentInstance } from '@vue/composition-api/dist/component'
 
-const ssrRefFunctions = new Map<
-  ReturnType<typeof getCurrentInstance>,
-  (() => void)[]
->()
-
-const isPending = new Map<ReturnType<typeof getCurrentInstance>, number>()
+const ssrRefFunctions = new WeakMap<ComponentInstance, (() => void)[]>()
+const isPending = new WeakMap<ComponentInstance, number>()
 
 let noSetup: Array<() => any> = []
 
@@ -40,7 +37,7 @@ export function onServerPrefetch(cb: () => any) {
   })
 }
 
-export function onServerPrefetchEnd(cb: () => any) {
+export function onFinalServerPrefetch(cb: () => any) {
   if (!process.server) return
 
   const vm = getCurrentInstance()
