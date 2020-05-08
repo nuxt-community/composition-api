@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import { getCurrentInstance, onBeforeMount } from '@vue/composition-api'
-
-import { onServerPrefetch } from './ssr-ref'
 import { isComputed } from './computed'
+import { onServerPrefetch } from './server-prefetch'
 
 import { ComponentInstance } from '@vue/composition-api/dist/component'
 

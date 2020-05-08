@@ -1,55 +1,48 @@
-import { ref, Ref, onServerPrefetch as prefetch } from '@vue/composition-api'
+import { ref, Ref } from '@vue/composition-api'
+import { onFinalServerPrefetch } from './server-prefetch'
 
 function getValue<T>(value: T | (() => T)): T {
   if (value instanceof Function) return value()
   return value
 }
 
-let ssrContext: any
-let injected = false
+let data: any = {}
 
-const refs: [string, Ref<any>][] = []
-
-export function setSSRContext(context: any) {
-  ssrContext = ssrContext || context
+export function setSSRContext(ssrContext: any) {
+  data = Object.assign({}, {})
+  ssrContext.nuxt.ssrRefs = data
 }
 
-export function injectRefs() {
-  if (!process.server || !ssrContext) return
-
-  if (!ssrContext.nuxt.ssrRefs) ssrContext.nuxt.ssrRefs = {}
-
-  refs.forEach(([key, ref]) => {
-    ssrContext.nuxt.ssrRefs[key] = JSON.parse(JSON.stringify(ref.value))
-  })
+function clone<T>(obj: T): T {
+  if (typeof obj === 'object') {
+    return JSON.parse(JSON.stringify(obj))
+  } else {
+    return obj
+  }
 }
 
+/**
+ * Creates a Ref that is in sync with the client.
+ */
 export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
-  const val = ref<T>(getValue(value))
-
-  if (!key)
+  if (!key) {
     throw new Error(
       "You must provide a key. You can have it generated automatically by adding 'nuxt-composition-api/babel' to your Babel plugins."
     )
-
-  if (!injected) {
-    prefetch(injectRefs)
-    injected = true
   }
 
   if (process.client) {
-    const nuxtState = (window as any).__NUXT__
-    val.value = (nuxtState.ssrRefs || {})[key!] ?? getValue(value)
-  } else {
-    refs.push([key, val])
+    return ref((window as any).__NUXT__?.ssrRefs?.[key] ?? getValue(value))
   }
 
-  return val as Ref<T>
-}
+  const val = getValue(value)
+  const initVal = clone(val)
+  const _ref = ref(val) as Ref<T>
 
-export const onServerPrefetch = (callback: Function) => {
-  prefetch(async () => {
-    await callback()
-    injectRefs()
+  onFinalServerPrefetch(() => {
+    if (value instanceof Function || initVal !== _ref.value)
+      data[key] = _ref.value
   })
+
+  return _ref
 }
