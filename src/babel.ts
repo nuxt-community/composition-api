@@ -24,7 +24,7 @@ export default function ssrRefPlugin({ loadOptions, getEnv, types: t }: Babel) {
     CallExpression(path) {
       if (
         !('name' in path.node.callee) ||
-        !['ssrRef', 'useAsync'].includes(path.node.callee.name)
+        !['ssrRef', 'useAsync', 'shallowSsrRef'].includes(path.node.callee.name)
       )
         return
 

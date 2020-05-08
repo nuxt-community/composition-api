@@ -5,6 +5,7 @@
     <div>prefetched-{{ prefetchValue }}</div>
     <div>on: {{ asyncValue }}</div>
     <div>no-change: {{ noChange }}</div>
+    <div>shallow-{{ shallow.v }}</div>
     <nuxt-link to="/">home</nuxt-link>
   </div>
 </template>
@@ -18,6 +19,7 @@ import {
   ssrRef,
   onServerPrefetch,
   useAsync,
+  shallowSsrRef
 } from 'nuxt-composition-api'
 
 export function fetcher(result, time = 100) {
@@ -34,6 +36,9 @@ export default defineComponent({
     const prefetchValue = ssrRef('') // changed => in __NUXT__
     const funcValue = ssrRef(() => 'runs SSR or client-side') // function => in __NUXT__
     const noChange = ssrRef('initValue') // no Change => not in __NUXT__
+    const shallow = shallowSsrRef({v: 'init'}) // only deep change => not in __NUXT__
+
+    shallow.v = 'Hello World'
 
     const computedVal = computed(() => refValue.value)
 
@@ -58,6 +63,7 @@ export default defineComponent({
       prefetchValue,
       asyncValue,
       noChange,
+      shallow
     }
   },
 })
