@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { defineComponent, computed, isComputed } from 'nuxt-composition-api'
+import { defineComponent, computed, isComputed, ref } from 'nuxt-composition-api'
 
 export default defineComponent({
   setup() {
