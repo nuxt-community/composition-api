@@ -13,11 +13,7 @@ import { UnwrapRef, Ref } from '@vue/composition-api/dist/reactivity'
 
 const heads = new WeakMap<() => any, MetaInfo>()
 
-export function defineComponent(
-  options: Parameters<typeof define>[0]
-): ReturnType<typeof define>
-
-export function defineComponent(options: any) {
+export const defineComponent: typeof define = (options: any) => {
   if (!options.head) return options
 
   const reactiveHead = reactive<MetaInfo>({})
