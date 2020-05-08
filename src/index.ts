@@ -26,7 +26,7 @@ export default compositionApiModule
 export const meta = require('../package.json')
 
 export { useFetch } from './fetch'
-export { withContext } from './context'
+export { withContext, useContext } from './context'
 export { ssrRef, setSSRContext } from './ssr-ref'
 export { onServerPrefetch } from './server-prefetch'
 export { useAsync } from './async'
