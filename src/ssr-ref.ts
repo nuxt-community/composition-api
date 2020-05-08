@@ -9,6 +9,7 @@ function getValue<T>(value: T | (() => T)): T {
 let data: any = {}
 
 export function setSSRContext(ssrContext: any) {
+  data = Object.assign({}, {})
   ssrContext.nuxt.ssrRefs = data
 }
 
