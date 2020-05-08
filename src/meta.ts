@@ -1,7 +1,6 @@
-import { reactive, toRefs } from '@vue/composition-api'
 import { MetaInfo } from 'vue-meta'
 
-function createEmptyMeta(): MetaInfo {
+export function createEmptyMeta(): MetaInfo {
   return {
     title: undefined,
     titleTemplate: undefined,
@@ -19,17 +18,5 @@ function createEmptyMeta(): MetaInfo {
 
     changed: undefined,
     afterNavigation: undefined,
-  }
-}
-
-export function useHead(init: MetaInfo = {}) {
-  const meta = reactive<MetaInfo>({
-    ...createEmptyMeta(),
-    ...init,
-  })
-
-  return {
-    head: () => meta,
-    useMeta: () => toRefs(meta),
   }
 }
