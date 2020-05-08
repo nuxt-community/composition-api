@@ -3,7 +3,7 @@ import { navigateTo, expectOnPage } from './helpers'
 // eslint-disable-next-line
 fixture`isComputed`
 
-test('detects not computed', async t => {
+test('do not detect not computed values', async t => {
   await navigateTo('/computed')
   await expectOnPage('test1-no')
   await expectOnPage('test2-no')
@@ -19,7 +19,7 @@ test('detects computed with no setter', async t => {
   await expectOnPage('test8-yes')
 })
 
-test('detects not computed with setter', async t => {
+test('detects computed with setter', async t => {
   await navigateTo('/computed')
-  await expectOnPage('test9-no')
+  await expectOnPage('test9-yes')
 })
