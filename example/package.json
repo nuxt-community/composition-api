@@ -12,6 +12,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
+    "now-build": "nuxt generate",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "post-update": "yarn upgrade --latest"
