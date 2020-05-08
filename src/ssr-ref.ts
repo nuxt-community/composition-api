@@ -5,22 +5,20 @@ function getValue<T>(value: T | (() => T)): T {
   return value
 }
 
-let ssrContext: any
+let data: any = {}
 let injected = false
 
-const refs: [string, Ref<any>][] = []
+const refs: Record<string, Ref<any>> = {}
 
-export function setSSRContext(context: any) {
-  ssrContext = ssrContext || context
+export function setSSRContext(ssrContext: any) {
+  ssrContext.nuxt.ssrRefs = data
 }
 
 export function injectRefs() {
-  if (!process.server || !ssrContext) return
+  if (!process.server) return
 
-  if (!ssrContext.nuxt.ssrRefs) ssrContext.nuxt.ssrRefs = {}
-
-  refs.forEach(([key, ref]) => {
-    ssrContext.nuxt.ssrRefs[key] = JSON.parse(JSON.stringify(ref.value))
+  Object.entries(refs).forEach(([key, ref]) => {
+    data[key] = JSON.parse(JSON.stringify(ref.value))
   })
 }
 
@@ -41,7 +39,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
     const nuxtState = (window as any).__NUXT__
     val.value = (nuxtState.ssrRefs || {})[key!] ?? getValue(value)
   } else {
-    refs.push([key, val])
+    refs[key] = val
   }
 
   return val as Ref<T>

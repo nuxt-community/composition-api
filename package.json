@@ -33,6 +33,8 @@
     "watch": "yarn compile -w",
     "clean": "rm -rf lib/*",
     "compile": "rollup -c",
+    "fixture": "nuxt -c test/fixture/nuxt.config.js",
+    "fixture:prod": "rm -rf .nuxt && nuxt build -c test/fixture/nuxt.config.js && nuxt start -c test/fixture/nuxt.config.js",
     "lint": "run-s lint:all:*",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.ts,.vue .",
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts,vue}\"",
@@ -43,7 +45,7 @@
     "release": "release-it",
     "test": "run-s test:*",
     "test:types": "tsd",
-    "test:e2e": "testcafe firefox:headless test/e2e --app 'node test/start-fixture.js'"
+    "test:e2e": "start-server-and-test fixture:prod 3000 \"testcafe firefox:headless test/e2e\""
   },
   "tsd": {
     "directory": "test/tsd",
@@ -83,6 +85,7 @@
     "release-it": "13.5.8",
     "rollup": "^2.8.2",
     "rollup-plugin-typescript2": "^0.27.0",
+    "start-server-and-test": "^1.11.0",
     "testcafe": "^1.8.4",
     "tsd": "^0.11.0",
     "yorkie": "^2.0.0"
