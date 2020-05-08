@@ -25,12 +25,12 @@ export default compositionApiModule
 // eslint-disable-next-line
 export const meta = require('../package.json')
 
-export { useFetch } from './fetch'
-export { withContext, useContext } from './context'
-export { ssrRef, setSSRContext } from './ssr-ref'
-export { onServerPrefetch } from './server-prefetch'
 export { useAsync } from './async'
+export { useContext, withContext } from './context'
+export { useFetch } from './fetch'
 export { useHead } from './meta'
+export { onServerPrefetch } from './server-prefetch'
+export { ssrRef, setSSRContext } from './ssr-ref'
 
 export {
   ComponentRenderProxy,
