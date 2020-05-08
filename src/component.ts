@@ -6,7 +6,9 @@ import {
 } from '@vue/composition-api'
 import defu from 'defu'
 import { MetaInfo } from 'vue-meta'
+
 import { createEmptyMeta } from './meta'
+
 import { UnwrapRef, Ref } from '@vue/composition-api/dist/reactivity'
 
 const heads = new WeakMap<() => any, MetaInfo>()
@@ -39,7 +41,7 @@ export const useMeta = (init: MetaInfo = {}) => {
   const { head } = vm.$options
   if (!head || !(head instanceof Function))
     throw new Error(
-      'The component must be declared using the defineComponent exported from nuxt-composition-api.'
+      'In order to enable `useMeta`, please make sure you include `head: {}` within your component definition, and you are using the `defineComponent` exported from nuxt-composition-api.'
     )
 
   const meta = heads.get(head) as UnwrapRef<Ref<MetaInfo>>
