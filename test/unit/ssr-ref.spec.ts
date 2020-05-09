@@ -1,6 +1,11 @@
 /**
  * @jest-environment jsdom
  */
+import Vue from 'vue'
+import CompositionApi from '@vue/composition-api'
+import { ssrRef, setSSRContext } from '../..'
+
+Vue.use(CompositionApi)
 
 jest.setTimeout(60000)
 
@@ -32,5 +37,33 @@ describe('ssrRef', () => {
     const rerenderedHomePage = await get('/')
     expect(rerenderedHomePage.includes('"only SSR rendered"')).toBeFalsy()
     expect(rerenderedHomePage.includes('"runs SSR or client-side"')).toBeFalsy()
+  })
+})
+
+describe('ssrRef reactivity', () => {
+  let ssrContext: Record<string, any>
+
+  beforeEach(async () => {
+    ssrContext = Object.assign({}, { nuxt: {} })
+    setSSRContext(ssrContext)
+  })
+  test('ssrRefs react to change in state', async () => {
+    process.client = false
+    const name = ssrRef('', 'name')
+    ssrRef('', 'unchanged')
+    name.value = 'full name'
+    expect(ssrContext).toMatchSnapshot()
+  })
+  test('ssrRefs react to deep change in object state', async () => {
+    process.client = false
+    const obj = ssrRef({ deep: { object: { name: 'nothing' } } }, 'obj')
+    obj.value.deep.object.name = 'full name'
+    expect(ssrContext).toMatchSnapshot()
+  })
+  test('ssrRefs react to deep change in array state', async () => {
+    process.client = false
+    const obj = ssrRef({ deep: { object: [{ name: 'nothing' }] } }, 'obj')
+    obj.value.deep.object[0].name = 'full name'
+    expect(ssrContext).toMatchSnapshot()
   })
 })

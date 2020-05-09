@@ -12,6 +12,9 @@ export function setSSRContext(ssrContext: any) {
   ssrContext.nuxt.ssrRefs = data
 }
 
+const isProxyable = (val: unknown): val is object =>
+  val && typeof val === 'object'
+
 /**
  * Creates a Ref that is in sync with the client.
  */
@@ -31,8 +34,20 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
 
   if (value instanceof Function) data[key] = val
 
+  const getProxy = <T extends Record<string | number, any>>(observable: T): T =>
+    new Proxy(observable, {
+      get(target, prop: string | number) {
+        if (isProxyable(target[prop])) return getProxy(target[prop])
+        return Reflect.get(target, prop)
+      },
+      set(obj, prop, val) {
+        data[key] = _ref.value
+        return Reflect.set(obj, prop, val)
+      },
+    })
+
   const proxy = computed({
-    get: () => _ref.value,
+    get: () => (isProxyable(_ref.value) ? getProxy(_ref.value) : _ref.value),
     set: v => {
       data[key] = v
       _ref.value = v
