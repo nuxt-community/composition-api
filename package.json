@@ -59,7 +59,8 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@vue/composition-api": "^0.5.0"
+    "@vue/composition-api": "^0.5.0",
+    "defu": "^2.0.2"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.9.6",

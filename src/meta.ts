@@ -1,8 +1,14 @@
-import { reactive, toRefs } from '@vue/composition-api'
 import { MetaInfo } from 'vue-meta'
 
-function createEmptyMeta(): MetaInfo {
+type MetaInfoMapper<T> = {
+  [P in keyof T]: T[P] extends Array<any> ? T[P] : T[P] | undefined
+}
+
+export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
   return {
+    __dangerouslyDisableSanitizers: [],
+    __dangerouslyDisableSanitizersByTagID: undefined,
+
     title: undefined,
     titleTemplate: undefined,
     htmlAttrs: undefined,
@@ -19,17 +25,5 @@ function createEmptyMeta(): MetaInfo {
 
     changed: undefined,
     afterNavigation: undefined,
-  }
-}
-
-export function useHead(init: MetaInfo = {}) {
-  const meta = reactive<MetaInfo>({
-    ...createEmptyMeta(),
-    ...init,
-  })
-
-  return {
-    head: () => meta,
-    useMeta: () => toRefs(meta),
   }
 }
