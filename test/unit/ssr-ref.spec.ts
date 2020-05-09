@@ -11,7 +11,7 @@ const config = require('../fixture/nuxt.config')
 
 let nuxt
 
-describe('SSR Refs', () => {
+describe('ssrRef', () => {
   beforeAll(async () => {
     nuxt = (await setup(config)).nuxt
   }, 60000)

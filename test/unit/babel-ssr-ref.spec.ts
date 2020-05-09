@@ -13,7 +13,7 @@ const async1 = useAsync(() => null)
 const async2 = useAsync(() => null, 'key')
 `
 
-describe('babel plugin', () => {
+describe('ssrRef babel plugin', () => {
   it('works', () => {
     const { code } = babel.transform(example, { plugins: [plugin] })!
     expect(code).toMatchSnapshot()

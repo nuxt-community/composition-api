@@ -7,7 +7,7 @@ import {
 } from './helpers'
 
 // eslint-disable-next-line
-fixture`SSR Refs`
+fixture`ssrRef`
 
 test('Shows data on ssr-loaded page', async t => {
   await navigateTo('/ssr-ref')
