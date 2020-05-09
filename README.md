@@ -56,11 +56,13 @@ Contributions are very welcome.
    # Compile library and watch for changes
    yarn watch
    # Start a test Nuxt fixture with hot reloading
-   node test/start-fixture.js
+   yarn fixture
+   # Test
+   yarn test
    ```
 
 **Tip:** You can also use `yarn link` to test the module locally with your Nuxt project.
 
 ## License
 
-[MIT License](./LICENSE) - Copyright &copy; Daniel Roe
+[MIT License](./LICENCE) - Copyright &copy; Daniel Roe

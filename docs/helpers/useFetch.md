@@ -15,9 +15,15 @@ export default defineComponent({
   setup() {
     const name = ref('')
 
-    useFetch(async () => {
+    const { $fetch, $fetchState } = useFetch(async () => {
       name.value = await axios.get('https://myapi.com/name')
     })
+
+    // Manually trigger a refetch
+    $fetch()
+
+    // Access fetch error, pending and timestamp
+    $fetchState
 
     return { name }
   },
