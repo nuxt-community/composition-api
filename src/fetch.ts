@@ -144,7 +144,11 @@ export const useFetch = (callback: Fetch) => {
     }
   })
 
-  if (process.server || !isSsrHydration(vm)) return
+  if (process.server || !isSsrHydration(vm))
+    return {
+      $fetch: vm.$fetch,
+      $fetchState: vm.$fetchState,
+    }
 
   // Hydrate component
   vm._hydrated = true
@@ -154,7 +158,11 @@ export const useFetch = (callback: Fetch) => {
   // If fetch error
   if (data && data._error) {
     vm.$fetchState.error = data._error
-    return
+
+    return {
+      $fetch: vm.$fetch,
+      $fetchState: vm.$fetchState,
+    }
   }
 
   onBeforeMount(() => {
@@ -169,4 +177,9 @@ export const useFetch = (callback: Fetch) => {
       }
     }
   })
+
+  return {
+    $fetch: vm.$fetch,
+    $fetchState: vm.$fetchState,
+  }
 }
