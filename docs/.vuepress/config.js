@@ -21,7 +21,7 @@ module.exports = {
             '/helpers/useAsync',
             '/helpers/useContext',
             '/helpers/useFetch',
-            '/helpers/useHead',
+            '/helpers/useMeta',
           ],
         },
         {
