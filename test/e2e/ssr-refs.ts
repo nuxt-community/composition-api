@@ -29,3 +29,18 @@ test('Shows appropriate data on client-loaded page', async t => {
   await expectOnPage('function-runs SSR or client-side')
   await expectOnPage('on: client')
 })
+
+test('Shows SSR data when an ssrRef is defined outside setup', async () => {
+  await navigateTo('/no-setup')
+  await expectOnPage('ssrRef-SSR overwritten')
+  await expectOnPage('async-prefetched async')
+})
+
+test('Shows client-side only data when an ssrRef is defined outside setup', async t => {
+  await navigateTo('/')
+  await t.click(Selector('a').withText('outside of setup'))
+  await expectNotOnPage('ssrRef-SSR overwritten')
+  await expectNotOnPage('async-prefetched async')
+  await expectOnPage('ssrRef-default value')
+  await expectOnPage('async-default async')
+})

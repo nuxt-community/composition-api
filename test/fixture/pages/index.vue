@@ -7,6 +7,7 @@
     <div>{{ myFunction() }}</div>
     <nuxt-link to="/other">link forward</nuxt-link>
     <nuxt-link to="/ssr-ref">ssr refs</nuxt-link>
+    <nuxt-link to="/no-setup">ssr ref defined outside of setup</nuxt-link>
     <nuxt-link to="/meta">meta</nuxt-link>
     <button @click="$fetch">Refetch</button>
     <child-comp />
