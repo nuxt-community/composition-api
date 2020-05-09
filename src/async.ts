@@ -1,6 +1,5 @@
+import { Ref, isRef, onServerPrefetch } from '@vue/composition-api'
 import { ssrRef } from './ssr-ref'
-import { onServerPrefetch } from './server-prefetch'
-import { Ref, isRef } from '@vue/composition-api'
 
 export const useAsync = <T>(
   cb: () => T | Promise<T>,

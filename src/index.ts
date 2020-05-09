@@ -29,7 +29,6 @@ export { useAsync } from './async'
 export { useContext, withContext } from './context'
 export { useFetch } from './fetch'
 export { useHead } from './meta'
-export { onServerPrefetch } from './server-prefetch'
 export { ssrRef, setSSRContext } from './ssr-ref'
 
 export {
@@ -54,6 +53,7 @@ export {
   onDeactivated,
   onErrorCaptured,
   onMounted,
+  onServerPrefetch,
   onUnmounted,
   onUpdated,
   provide,
