@@ -2,7 +2,13 @@
   <div>
     <iframe
       :src="`https://codesandbox.io/s/github/${repository}?codemirror=1`"
-      style="width:100%; height:500px; border:0; border-radius: 4px; overflow: hidden;"
+      style="
+        width: 100%;
+        height: 500px;
+        border: 0;
+        border-radius: 4px;
+        overflow: hidden;
+      "
       sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
     />
     <div class="buttons-container">
@@ -14,9 +20,7 @@
       </a>
       <a
         class="button"
-        :href="
-          `https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/${repository}`
-        "
+        :href="`https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/${repository}`"
       >
         DOWNLOAD
       </a>

@@ -2,3 +2,7 @@ lib
 test/fixture
 test/e2e
 example
+.nuxt
+./dist
+docs
+coverage
