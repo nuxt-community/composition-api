@@ -1,5 +1,4 @@
-import { ref, Ref } from '@vue/composition-api'
-import { onFinalServerPrefetch } from './server-prefetch'
+import { ref, Ref, computed } from '@vue/composition-api'
 
 function getValue<T>(value: T | (() => T)): T {
   if (value instanceof Function) return value()
@@ -11,14 +10,6 @@ let data: any = {}
 export function setSSRContext(ssrContext: any) {
   data = Object.assign({}, {})
   ssrContext.nuxt.ssrRefs = data
-}
-
-function clone<T>(obj: T): T {
-  if (typeof obj === 'object') {
-    return JSON.parse(JSON.stringify(obj))
-  } else {
-    return obj
-  }
 }
 
 /**
@@ -36,13 +27,17 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   }
 
   const val = getValue(value)
-  const initVal = clone(val)
-  const _ref = ref(val) as Ref<T>
+  const _ref = ref(val)
 
-  onFinalServerPrefetch(() => {
-    if (value instanceof Function || initVal !== _ref.value)
-      data[key] = _ref.value
+  if (value instanceof Function) data[key] = val
+
+  const proxy = computed({
+    get: () => _ref.value,
+    set: v => {
+      data[key] = v
+      _ref.value = v
+    },
   })
 
-  return _ref
+  return proxy as Ref<T>
 }
