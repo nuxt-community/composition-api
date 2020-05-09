@@ -11,37 +11,43 @@ import { createEmptyMeta } from './meta'
 
 import { UnwrapRef, Ref } from '@vue/composition-api/dist/reactivity'
 
-const heads = new WeakMap<() => any, MetaInfo>()
+type ReactiveHead<T = {}> = UnwrapRef<Ref<MetaInfo & T>>
 
 export const defineComponent: typeof define = (options: any) => {
-  if (!options.head) return options
+  if (!('head' in options)) return options
 
-  const reactiveHead = reactive<MetaInfo>({})
-  const head = () =>
-    defu(
-      options.head instanceof Function ? options.head() : options.head || {},
-      reactiveHead
-    )
-  heads.set(head, reactiveHead)
+  const _head: ReactiveHead = reactive<MetaInfo>({})
+  if (!(options.head instanceof Function)) {
+    Object.assign(_head, options.head)
+  }
+  const head =
+    options.head instanceof Function
+      ? () => defu(_head, options.head())
+      : () => _head
 
   return {
     ...options,
+    _head,
     head,
   }
 }
 
-export const useMeta = (init: MetaInfo = {}) => {
+export const useMeta = <T extends MetaInfo>(init?: T) => {
   const vm = getCurrentInstance()
   if (!vm) throw new Error('useMeta must be called within a component.')
 
-  const { head } = vm.$options
-  if (!head || !(head instanceof Function))
+  if (!('_head' in vm.$options))
     throw new Error(
       'In order to enable `useMeta`, please make sure you include `head: {}` within your component definition, and you are using the `defineComponent` exported from nuxt-composition-api.'
     )
 
-  const meta = heads.get(head) as UnwrapRef<Ref<MetaInfo>>
-  Object.assign(meta, createEmptyMeta())
-  Object.assign(meta, init)
-  return toRefs(meta)
+  const { _head } = vm.$options as { _head: ReactiveHead }
+
+  Object.assign(_head, createEmptyMeta())
+  Object.assign(_head, init || {})
+  return toRefs(
+    _head as UnwrapRef<
+      Ref<Exclude<ReturnType<typeof createEmptyMeta>, keyof T> & T>
+    >
+  )
 }

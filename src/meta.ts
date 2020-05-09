@@ -1,7 +1,14 @@
 import { MetaInfo } from 'vue-meta'
 
-export function createEmptyMeta(): MetaInfo {
+type MetaInfoMapper<T> = {
+  [P in keyof T]: T[P] extends Array<any> ? T[P] : T[P] | undefined
+}
+
+export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
   return {
+    __dangerouslyDisableSanitizers: [],
+    __dangerouslyDisableSanitizersByTagID: undefined,
+
     title: undefined,
     titleTemplate: undefined,
     htmlAttrs: undefined,
