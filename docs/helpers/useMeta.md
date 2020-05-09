@@ -14,11 +14,13 @@ export default defineComponent({
   setup() {
     // This will allow you to set the title in head - but won't allow you to read its state outside of this component.
     const { title } = useMeta()
+    title.value = 'My page'
 
     // You could also provide an initial value.
     const { title } = useMeta({ title: 'My page' })
 
-    title.value = 'newSetTitle'
+    // ... or simply set some meta tags
+    useMeta({ title: 'My page', ... })
   },
 })
 ```
