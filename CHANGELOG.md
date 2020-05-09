@@ -1,3 +1,17 @@
+## [0.6.0](https://github.com/nuxt-community/composition-api/compare/0.5.0...0.6.0) (2020-05-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* `useHead()` no longer exists and instead `useMeta` can be used directly within `setup`, as long as a minimal `head: {}` is defined in the component options.
+
+_Note_: Work has already begun on composable hooks for `vue-meta` that will mean we don't need to define a minimal `head` object: see [here](5d0eb1ab60ce476ed8a97e97d4d409e74284df9b).
+
+### Features
+
+* allow automatic injection of `head()` into components ([#43](https://github.com/nuxt-community/composition-api/issues/43)) ([f1bda39](https://github.com/nuxt-community/composition-api/commit/f1bda396ea096e42dff645df3275b5d4d288ac73)), closes [#41](https://github.com/nuxt-community/composition-api/issues/41)
+* return `$fetch` and `$fetchState` from `useFetch` ([c45177f](https://github.com/nuxt-community/composition-api/commit/c45177f341c57fd40136aaac8e0c55e97c4edd4a))
+
 ## [0.5.0](https://github.com/nuxt-community/composition-api/compare/0.4.1...0.5.0) (2020-05-08)
 
 
