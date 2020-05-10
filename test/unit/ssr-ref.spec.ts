@@ -34,6 +34,11 @@ describe('ssrRef', () => {
     expect(ssrRefPage).toContain('"only SSR rendered"')
     expect(ssrRefPage).toContain('"runs SSR or client-side"')
 
+    const noSetupPage = await get('/no-setup')
+    expect(noSetupPage).toContain('"prefetched async"')
+    expect(noSetupPage).toContain('"SSR overwritten"')
+    expect(noSetupPage.includes('"unchanged"')).toBeFalsy()
+
     const rerenderedHomePage = await get('/')
     expect(rerenderedHomePage.includes('"only SSR rendered"')).toBeFalsy()
     expect(rerenderedHomePage.includes('"runs SSR or client-side"')).toBeFalsy()

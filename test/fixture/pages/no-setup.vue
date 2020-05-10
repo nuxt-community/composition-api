@@ -18,6 +18,7 @@ export function fetcher(result, time = 100) {
 
 const noSetup = ssrRef('default value')
 const async = ssrRef('default async')
+const unchanged = ssrRef('unchanged')
 
 export default defineComponent({
   setup() {
