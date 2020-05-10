@@ -3,10 +3,10 @@ module.exports = {
   description: 'Composition API hooks for Nuxt',
   evergreen: true,
   dest: 'dist',
-  docsDir: 'docs',
   themeConfig: {
-    repo: 'nuxt-community/composition-api',
     editLinks: true,
+    repo: 'nuxt-community/composition-api',
+    docsDir: 'docs',
     sidebar: {
       '/': [
         {
