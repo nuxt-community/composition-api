@@ -26,9 +26,10 @@ export default compositionApiModule
 export const meta = require('../package.json')
 
 export { useAsync } from './async'
-export { defineComponent, useMeta } from './component'
+export { defineComponent } from './component'
 export { useContext, withContext } from './context'
 export { useFetch } from './fetch'
+export { useMeta } from './meta'
 export { ssrRef, setSSRContext } from './ssr-ref'
 
 export {
