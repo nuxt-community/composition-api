@@ -25,7 +25,7 @@ export default defineComponent({
     if (process.server) noSetup.value = 'SSR overwritten'
 
     onServerPrefetch(async () => {
-        async.value = await fetcher('prefetched async', 400)
+      async.value = await fetcher('prefetched async', 400)
     })
 
     return {

@@ -18,7 +18,7 @@ export default defineComponent({
     const { title: newImport, bodyAttrs } = useMeta()
     newImport.value = 'newSetTitle'
 
-    bodyAttrs.value.class = ['dark-mode', 'mobile'] 
+    bodyAttrs.value.class = ['dark-mode', 'mobile']
 
     return { title }
   },
