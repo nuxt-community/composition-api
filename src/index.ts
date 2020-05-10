@@ -18,7 +18,7 @@ const compositionApiModule: Module<any> = function () {
   this.options.build.transpile.push(/nuxt-composition-api/)
 
   this.options.plugins = this.options.plugins || []
-  this.options.plugins.push(resolve(this.options.buildDir || '', dst))
+  this.options.plugins.unshift(resolve(this.options.buildDir || '', dst))
 }
 
 export default compositionApiModule
