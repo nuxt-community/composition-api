@@ -41,7 +41,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
         return Reflect.get(target, prop)
       },
       set(obj, prop, val) {
-        data[key] = _ref.value
+        data[key] = JSON.parse(JSON.stringify(_ref.value))
         return Reflect.set(obj, prop, val)
       },
     })
@@ -49,7 +49,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   const proxy = computed({
     get: () => (isProxyable(_ref.value) ? getProxy(_ref.value) : _ref.value),
     set: v => {
-      data[key] = v
+      data[key] = JSON.parse(JSON.stringify(v))
       _ref.value = v
     },
   })
