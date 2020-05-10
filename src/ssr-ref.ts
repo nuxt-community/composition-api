@@ -15,6 +15,8 @@ export function setSSRContext(ssrContext: any) {
 const isProxyable = (val: unknown): val is object =>
   val && typeof val === 'object'
 
+const sanitise = (val: unknown) => val
+
 /**
  * Creates a Ref that is in sync with the client.
  */
@@ -32,7 +34,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   const val = getValue(value)
   const _ref = ref(val)
 
-  if (value instanceof Function) data[key] = val
+  if (value instanceof Function) data[key] = sanitise(val)
 
   const getProxy = <T extends Record<string | number, any>>(observable: T): T =>
     new Proxy(observable, {
@@ -41,7 +43,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
         return Reflect.get(target, prop)
       },
       set(obj, prop, val) {
-        data[key] = JSON.parse(JSON.stringify(_ref.value))
+        data[key] = sanitise(_ref.value)
         return Reflect.set(obj, prop, val)
       },
     })
@@ -49,7 +51,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   const proxy = computed({
     get: () => (isProxyable(_ref.value) ? getProxy(_ref.value) : _ref.value),
     set: v => {
-      data[key] = JSON.parse(JSON.stringify(v))
+      data[key] = sanitise(v)
       _ref.value = v
     },
   })
