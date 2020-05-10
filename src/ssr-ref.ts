@@ -1,5 +1,4 @@
-import { ref, Ref } from '@vue/composition-api'
-import { onFinalServerPrefetch } from './server-prefetch'
+import { ref, Ref, computed } from '@vue/composition-api'
 
 function getValue<T>(value: T | (() => T)): T {
   if (value instanceof Function) return value()
@@ -13,13 +12,8 @@ export function setSSRContext(ssrContext: any) {
   ssrContext.nuxt.ssrRefs = data
 }
 
-function clone<T>(obj: T): T {
-  if (typeof obj === 'object') {
-    return JSON.parse(JSON.stringify(obj))
-  } else {
-    return obj
-  }
-}
+const isProxyable = (val: unknown): val is object =>
+  val && typeof val === 'object'
 
 /**
  * Creates a Ref that is in sync with the client.
@@ -36,13 +30,29 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   }
 
   const val = getValue(value)
-  const initVal = clone(val)
-  const _ref = ref(val) as Ref<T>
+  const _ref = ref(val)
 
-  onFinalServerPrefetch(() => {
-    if (value instanceof Function || initVal !== _ref.value)
-      data[key] = _ref.value
+  if (value instanceof Function) data[key] = val
+
+  const getProxy = <T extends Record<string | number, any>>(observable: T): T =>
+    new Proxy(observable, {
+      get(target, prop: string | number) {
+        if (isProxyable(target[prop])) return getProxy(target[prop])
+        return Reflect.get(target, prop)
+      },
+      set(obj, prop, val) {
+        data[key] = _ref.value
+        return Reflect.set(obj, prop, val)
+      },
+    })
+
+  const proxy = computed({
+    get: () => (isProxyable(_ref.value) ? getProxy(_ref.value) : _ref.value),
+    set: v => {
+      data[key] = v
+      _ref.value = v
+    },
   })
 
-  return _ref
+  return proxy as Ref<T>
 }

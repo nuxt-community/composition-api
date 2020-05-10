@@ -7,8 +7,6 @@ When creating composition utility functions, often there will be server-side sta
 
 `ssrRef` will automatically add ref values to `window.__NUXT__` on SSR if they have been changed from their initial value. It can be used outside of components, such as in shared utility functions, and it supports passing a factory function that will generate the initial value of the ref.
 
-If you are using `onServerPrefetch` together with `ssrRef`, make sure you are using the version of `onServerPrefetch` exported by this package. (Otherwise, changes made in the `onServerPrefetch` lifecycle hook may not be stringified.)
-
 ```ts
 import { ssrRef } from 'nuxt-composition-api'
 
