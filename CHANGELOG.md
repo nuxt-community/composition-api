@@ -1,3 +1,10 @@
+### [0.6.3](https://github.com/nuxt-community/composition-api/compare/0.6.2...0.6.3) (2020-05-11)
+
+
+### Features
+
+* create shallowSsrRef ([#49](https://github.com/nuxt-community/composition-api/issues/49)) ([5ef0f6c](https://github.com/nuxt-community/composition-api/commit/5ef0f6c8d6597e38b7396fdad9ef087eb4194eb6))
+
 ### [0.6.2](https://github.com/nuxt-community/composition-api/compare/0.6.1...0.6.2) (2020-05-11)
 
 
