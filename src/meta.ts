@@ -56,6 +56,22 @@ type ToRefs<T extends Record<string, any>> = {
   [P in keyof T]: Ref<T[P]>
 }
 
+/**
+ * `useMeta` lets you interact directly with [`head()` properties](https://nuxtjs.org/api/pages-head/) in `setup`. **Make sure you set `head: {}` in your component options.**
+ * @example
+    ```ts
+    import { defineComponent, useMeta, computed } from 'nuxt-composition-api'
+
+    export default defineComponent({
+      head: {},
+      setup() {
+        const { title } = useMeta()
+        title.value = 'My page'
+      })
+    })
+    ```
+ * @param init Whatever defaults you want to set for `head` properties.
+ */
 export const useMeta = <T extends MetaInfo>(init?: T) => {
   const vm = getCurrentInstance()
   if (!vm) throw new Error('useMeta must be called within a component.')
