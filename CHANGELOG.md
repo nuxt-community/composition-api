@@ -1,3 +1,18 @@
+### [0.6.2](https://github.com/nuxt-community/composition-api/compare/0.6.1...0.6.2) (2020-05-11)
+
+
+### Features
+
+* use appropriate core-js polyfill for ie11 ([5281e66](https://github.com/nuxt-community/composition-api/commit/5281e66b1e77d762056909a2157ddbc72253fc71))
+
+
+### Bug Fixes
+
+* insert composition api plugin before others ([2ef608b](https://github.com/nuxt-community/composition-api/commit/2ef608b456fe945b47661d82af337dcd20c390c5))
+* reduce meta type definitions ([fa9efa3](https://github.com/nuxt-community/composition-api/commit/fa9efa37c8eadd71c523a7cdbe0e574e210f4f8b))
+* revert data sanitisation ([1a4bbed](https://github.com/nuxt-community/composition-api/commit/1a4bbed5025b9f1deb8294d568cf419d27b99a5e))
+* sanitise `ssrRef` data ([d86fdb2](https://github.com/nuxt-community/composition-api/commit/d86fdb2ec6b00f437fe2c1786133b18fffe78a3b))
+
 ### [0.6.1](https://github.com/nuxt-community/composition-api/compare/0.6.0...0.6.1) (2020-05-10)
 
 
