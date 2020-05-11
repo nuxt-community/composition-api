@@ -7,12 +7,12 @@ export function navigateTo(path: string) {
 
 export function expectOnPage(text: string) {
   const selector = Selector('*').withText(new RegExp(text, 'i'))
-  return t.expect(selector.visible).ok()
+  return t.expect(selector.visible).ok(`${text} was not found on page`)
 }
 
 export function expectNotOnPage(text: string) {
   const selector = Selector('*').withText(new RegExp(text, 'i'))
-  return t.expect(selector.exists).notOk()
+  return t.expect(selector.exists).notOk(`${text} was found on page`)
 }
 
 export const getWindowPathname = ClientFunction(() => window.location.pathname)

@@ -75,3 +75,61 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
 
   return proxy as Ref<T>
 }
+
+// TODO: remove when https://github.com/vuejs/composition-api/pull/311 is merged
+function shallowRef<T>(value: T): Ref<T> {
+  return computed({
+    get: () => value,
+    set: v => (value = v),
+  })
+}
+
+/**
+ * This helper creates a [`shallowRef`](https://vue-composition-api-rfc.netlify.app/api.html#shallowref) (a ref that tracks its own .value mutation but doesn't make its value reactive) that is synced between client & server.
+ * @param value This can be an initial value or a factory function that will be executed on server-side to get the initial value.
+ * @param key Under the hood, `shallowSsrRef` requires a key to ensure that the ref values match between client and server. If you have added `nuxt-composition-api` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `nuxt-composition-api/babel` to your Babel plugins.
+ 
+ * @example
+  ```ts
+  import { shallowSsrRef, onMounted } from 'nuxt-composition-api'
+
+  const shallow = shallowSsrRef({ v: 'init' })
+  if (process.server) shallow.value = { v: 'changed' }
+
+  // On client-side, shallow.value will be { v: changed }
+  onMounted(() => {
+    // This and other changes outside of setup won't trigger component updates.
+    shallow.value.v = 'Hello World'
+  })
+  ```
+ */
+export const shallowSsrRef = <T>(
+  value: T | (() => T),
+  key?: string
+): Ref<T> => {
+  if (!key) {
+    throw new Error(
+      "You must provide a key. You can have it generated automatically by adding 'nuxt-composition-api/babel' to your Babel plugins."
+    )
+  }
+
+  if (process.client) {
+    return shallowRef(
+      (window as any).__NUXT__?.ssrRefs?.[key] ?? getValue(value)
+    )
+  }
+
+  let _val = getValue(value)
+
+  if (value instanceof Function) {
+    data[key] = sanitise(_val)
+  }
+
+  return computed({
+    get: () => _val,
+    set: v => {
+      data[key] = sanitise(v)
+      _val = v
+    },
+  })
+}

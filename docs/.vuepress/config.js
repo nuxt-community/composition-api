@@ -18,6 +18,7 @@ module.exports = {
           title: 'Helpers',
           collapsable: false,
           children: [
+            '/helpers/shallowSsrRef',
             '/helpers/ssrRef',
             '/helpers/useAsync',
             '/helpers/useContext',

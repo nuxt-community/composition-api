@@ -15,10 +15,12 @@ test('Shows data on ssr-loaded page', async t => {
   await expectOnPage('function-runs SSR or client-side')
   await expectOnPage('prefetched-result')
   await expectOnPage('on: server')
+  await expectOnPage('shallow-server')
 
   await t.click(Selector('a').withText('home'))
   await t.click(Selector('a').withText('ssr refs'))
   await expectOnPage('ref-only SSR rendered')
+  await expectOnPage('shallow-client')
 })
 
 test('Shows appropriate data on client-loaded page', async t => {
@@ -28,6 +30,7 @@ test('Shows appropriate data on client-loaded page', async t => {
   await expectNotOnPage('ref-only SSR rendered')
   await expectOnPage('function-runs SSR or client-side')
   await expectOnPage('on: client')
+  await expectOnPage('shallow-client')
 })
 
 test('Shows SSR data when an ssrRef is defined outside setup', async () => {
