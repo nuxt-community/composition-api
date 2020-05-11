@@ -1,12 +1,26 @@
 import { resolve, join } from 'path'
-import { Module } from '@nuxt/types'
+import type { Module } from '@nuxt/types'
 
 const compositionApiModule: Module<any> = function () {
   const libRoot = resolve(__dirname, '..')
+
+  let corejsPolyfill
+  try {
+    if (!this.options.modern) {
+      // eslint-disable-next-line
+      const corejsPkg = require('core-js/package.json')
+      corejsPolyfill = corejsPkg.version.slice(0, 1)
+    }
+  } catch {
+    corejsPolyfill = undefined
+  }
+
   const { dst } = this.addTemplate({
     src: resolve(libRoot, 'lib', 'plugin.js'),
     fileName: join('composition-api', 'plugin.js'),
-    options: {},
+    options: {
+      corejsPolyfill,
+    },
   })
 
   this.options.build = this.options.build || {}
@@ -18,21 +32,21 @@ const compositionApiModule: Module<any> = function () {
   this.options.build.transpile.push(/nuxt-composition-api/)
 
   this.options.plugins = this.options.plugins || []
-  this.options.plugins.push(resolve(this.options.buildDir || '', dst))
+  this.options.plugins.unshift(resolve(this.options.buildDir || '', dst))
 }
 
 export default compositionApiModule
 // eslint-disable-next-line
 export const meta = require('../package.json')
 
-export { useFetch } from './fetch'
-export { withContext, useContext } from './context'
-export { ssrRef, setSSRContext, shallowSsrRef } from './ssr-ref'
-export { onServerPrefetch } from './server-prefetch'
 export { useAsync } from './async'
-export { useHead } from './meta'
+export { defineComponent } from './component'
+export { useContext, withContext } from './context'
+export { useFetch } from './fetch'
+export { useMeta } from './meta'
+export { ssrRef, shallowSsrRef, setSSRContext } from './ssr-ref'
 
-export {
+export type {
   ComponentRenderProxy,
   InjectionKey,
   PropOptions,
@@ -40,10 +54,12 @@ export {
   Ref,
   SetupContext,
   VueWatcher,
+} from '@vue/composition-api'
+
+export {
   computed,
   createComponent,
   createElement,
-  defineComponent,
   getCurrentInstance,
   inject,
   isRef,
@@ -54,6 +70,7 @@ export {
   onDeactivated,
   onErrorCaptured,
   onMounted,
+  onServerPrefetch,
   onUnmounted,
   onUpdated,
   provide,

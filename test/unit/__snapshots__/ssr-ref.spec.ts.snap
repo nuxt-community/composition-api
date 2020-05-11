@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ssrRef reactivity ssrRefs react to change in state 1`] = `
+Object {
+  "nuxt": Object {
+    "ssrRefs": Object {
+      "name": "full name",
+    },
+  },
+}
+`;
+
+exports[`ssrRef reactivity ssrRefs react to deep change in array state 1`] = `
+Object {
+  "nuxt": Object {
+    "ssrRefs": Object {
+      "obj": Object {
+        "deep": Object {
+          "object": Array [
+            Object {
+              "name": "full name",
+            },
+          ],
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`ssrRef reactivity ssrRefs react to deep change in object state 1`] = `
+Object {
+  "nuxt": Object {
+    "ssrRefs": Object {
+      "obj": Object {
+        "deep": Object {
+          "object": Object {
+            "name": "full name",
+          },
+        },
+      },
+    },
+  },
+}
+`;

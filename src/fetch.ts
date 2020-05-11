@@ -1,8 +1,11 @@
 import Vue from 'vue'
-import { getCurrentInstance, onBeforeMount } from '@vue/composition-api'
-import { onServerPrefetch } from './server-prefetch'
+import {
+  getCurrentInstance,
+  onBeforeMount,
+  onServerPrefetch,
+} from '@vue/composition-api'
 
-import { ComponentInstance } from '@vue/composition-api/dist/component'
+import type { ComponentInstance } from '@vue/composition-api/dist/component'
 
 function normalizeError(err: any) {
   let message
@@ -114,6 +117,35 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
   )
 }
 
+/**
+ * Versions of Nuxt newer than v2.12 support a [custom hook called `fetch`](https://nuxtjs.org/api/pages-fetch/) that allows server-side and client-side asynchronous data-fetching.
+
+ * @param callback The async function you want to run.
+ * @example
+
+  ```ts
+  import { defineComponent, ref, useFetch } from 'nuxt-composition-api'
+  import axios from 'axios'
+
+  export default defineComponent({
+    setup() {
+      const name = ref('')
+
+      const { $fetch, $fetchState } = useFetch(async () => {
+        name.value = await axios.get('https://myapi.com/name')
+      })
+
+      // Manually trigger a refetch
+      $fetch()
+
+      // Access fetch error, pending and timestamp
+      $fetchState
+
+      return { name }
+    },
+  })
+  ```
+ */
 export const useFetch = (callback: Fetch) => {
   const vm = getCurrentInstance() as AugmentedComponentInstance | undefined
   if (!vm) throw new Error('This must be called within a setup function.')
@@ -144,7 +176,11 @@ export const useFetch = (callback: Fetch) => {
     }
   })
 
-  if (process.server || !isSsrHydration(vm)) return
+  if (process.server || !isSsrHydration(vm))
+    return {
+      $fetch: vm.$fetch,
+      $fetchState: vm.$fetchState,
+    }
 
   // Hydrate component
   vm._hydrated = true
@@ -154,7 +190,11 @@ export const useFetch = (callback: Fetch) => {
   // If fetch error
   if (data && data._error) {
     vm.$fetchState.error = data._error
-    return
+
+    return {
+      $fetch: vm.$fetch,
+      $fetchState: vm.$fetchState,
+    }
   }
 
   onBeforeMount(() => {
@@ -169,4 +209,9 @@ export const useFetch = (callback: Fetch) => {
       }
     }
   })
+
+  return {
+    $fetch: vm.$fetch,
+    $fetchState: vm.$fetchState,
+  }
 }

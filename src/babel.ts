@@ -1,6 +1,7 @@
 import * as types from '@babel/types'
-import { Visitor } from '@babel/traverse'
 import crypto from 'crypto'
+
+import type { Visitor } from '@babel/traverse'
 
 interface Babel {
   types: typeof types

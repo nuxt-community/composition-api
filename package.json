@@ -1,6 +1,6 @@
 {
   "name": "nuxt-composition-api",
-  "version": "0.4.1",
+  "version": "0.6.2",
   "description": "Composition API hooks for Nuxt",
   "license": "MIT",
   "repository": "nuxt-community/composition-api",
@@ -40,6 +40,7 @@
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts,vue}\"",
     "lint:eslint": "eslint --fix",
     "lint:prettier": "prettier --write --loglevel warn",
+    "now-build": "rm -rf .nuxt && NOW_BUILD=true nuxt generate -c test/fixture/nuxt.config.js",
     "prepare": "yarn build",
     "prepublishOnly": "yarn lint && yarn test",
     "release": "release-it",
@@ -58,7 +59,8 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@vue/composition-api": "^0.5.0"
+    "@vue/composition-api": "^0.5.0",
+    "defu": "^2.0.2"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.9.6",
@@ -74,7 +76,7 @@
     "babel-loader": "^8.1.0",
     "codecov": "^3.6.5",
     "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-jest": "^23.9.0",
+    "eslint-plugin-jest": "^23.10.0",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-promise": "^4.2.1",
     "jest": "^26.0.1",
@@ -84,7 +86,9 @@
     "prettier": "^2.0.5",
     "prettier-eslint-cli": "^5.0.0",
     "release-it": "13.5.8",
-    "rollup": "^2.8.2",
+    "rollup": "^2.9.1",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-dts": "^1.4.2",
     "rollup-plugin-typescript2": "^0.27.0",
     "start-server-and-test": "^1.11.0",
     "testcafe": "^1.8.4",

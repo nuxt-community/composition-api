@@ -1,5 +1,5 @@
-import { ref, Ref, computed } from '@vue/composition-api'
-import { onServerPrefetchEnd } from './server-prefetch'
+import { ref, computed } from '@vue/composition-api'
+import type { Ref } from '@vue/composition-api'
 
 function getValue<T>(value: T | (() => T)): T {
   if (value instanceof Function) return value()
@@ -9,19 +9,33 @@ function getValue<T>(value: T | (() => T)): T {
 let data: any = {}
 
 export function setSSRContext(ssrContext: any) {
+  data = Object.assign({}, {})
   ssrContext.nuxt.ssrRefs = data
 }
 
-function clone<T>(obj: T): T {
-  if (typeof obj === 'object') {
-    return JSON.parse(JSON.stringify(obj))
-  } else {
-    return obj
-  }
-}
+const isProxyable = (val: unknown): val is object =>
+  val && typeof val === 'object'
+
+const sanitise = (val: unknown) => val
 
 /**
- * Creates a Ref that is in sync with the client.
+ * `ssrRef` will automatically add ref values to `window.__NUXT__` on SSR if they have been changed from their initial value. It can be used outside of components, such as in shared utility functions, and it supports passing a factory function that will generate the initial value of the ref. **At the moment, an `ssrRef` is only suitable for one-offs, unless you provide your own unique key.**
+ * @param value This can be an initial value or a factory function that will be executed on server-side to get the initial value.
+ * @param key Under the hood, `ssrRef` requires a key to ensure that the ref values match between client and server. If you have added `nuxt-composition-api` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `nuxt-composition-api/babel` to your Babel plugins.
+ * @example
+  ```ts
+  import { ssrRef } from 'nuxt-composition-api'
+
+  const val = ssrRef('')
+
+  // When hard-reloaded, `val` will be initialised to 'server set'
+  if (process.server) val.value = 'server set'
+
+  // When hard-reloaded, the result of myExpensiveSetterFunction() will
+  // be encoded in nuxtState and used as the initial value of this ref.
+  // If client-loaded, the setter function will run to come up with initial value.
+  const val2 = ssrRef(myExpensiveSetterFunction)
+  ```
  */
 export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   if (!key) {
@@ -34,24 +48,32 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
     return ref((window as any).__NUXT__?.ssrRefs?.[key] ?? getValue(value))
   }
 
-  if (typeof value === 'function') {
-    const _ref = ref(getValue(value)) as Ref<T>
-    onServerPrefetchEnd(() => (data[key] = _ref.value))
+  const val = getValue(value)
+  const _ref = ref(val)
 
-    return _ref
-  } else {
-    const val = getValue(value)
-    const initVal = clone(val)
-    const _ref = ref(val) as Ref<T>
+  if (value instanceof Function) data[key] = sanitise(val)
 
-    onServerPrefetchEnd(() => {
-      if (initVal !== _ref.value) {
-        data[key] = _ref.value
-      }
+  const getProxy = <T extends Record<string | number, any>>(observable: T): T =>
+    new Proxy(observable, {
+      get(target, prop: string | number) {
+        if (isProxyable(target[prop])) return getProxy(target[prop])
+        return Reflect.get(target, prop)
+      },
+      set(obj, prop, val) {
+        data[key] = sanitise(_ref.value)
+        return Reflect.set(obj, prop, val)
+      },
     })
 
-    return _ref
-  }
+  const proxy = computed({
+    get: () => (isProxyable(_ref.value) ? getProxy(_ref.value) : _ref.value),
+    set: v => {
+      data[key] = sanitise(v)
+      _ref.value = v
+    },
+  })
+
+  return proxy as Ref<T>
 }
 
 // TODO: remove when https://github.com/vuejs/composition-api/pull/311 is merged
