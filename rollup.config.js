@@ -1,4 +1,6 @@
 import typescript from 'rollup-plugin-typescript2'
+import copy from 'rollup-plugin-copy'
+
 import pkg from './package.json'
 
 export default [
@@ -23,19 +25,9 @@ export default [
       typescript({
         typescript: require('typescript'),
       }),
-    ],
-  },
-  {
-    input: 'src/plugin.js',
-    output: [
-      {
-        file: 'lib/plugin.js',
-        format: 'es',
-      },
-    ],
-    external: [
-      ...Object.keys(pkg.dependencies || {}),
-      ...Object.keys(pkg.peerDependencies || {}),
+      copy({
+        targets: [{ src: 'src/plugin.js', dest: 'lib' }],
+      }),
     ],
   },
   {

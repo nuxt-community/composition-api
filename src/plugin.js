@@ -2,6 +2,14 @@
  * @typedef {import('@nuxt/types').Plugin} Plugin
  */
 
+<% if (options.corejsPolyfill === '3') { %>
+// Necessary polyfill for Composition API support for IE11
+import 'core-js/features/reflect/own-keys'
+<% } else if (options.corejsPolyfill === '2') { %>
+// Necessary polyfill for Composition API support for IE11
+import 'core-js/modules/es6.reflect.own-keys'
+<% } %>
+
 import Vue from 'vue'
 import CompositionApi from '@vue/composition-api'
 

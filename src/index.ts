@@ -3,10 +3,24 @@ import { Module } from '@nuxt/types'
 
 const compositionApiModule: Module<any> = function () {
   const libRoot = resolve(__dirname, '..')
+
+  let corejsPolyfill
+  try {
+    if (!this.options.modern) {
+      // eslint-disable-next-line
+      const corejsPkg = require('core-js/package.json')
+      corejsPolyfill = corejsPkg.version.slice(0, 1)
+    }
+  } catch {
+    corejsPolyfill = undefined
+  }
+
   const { dst } = this.addTemplate({
     src: resolve(libRoot, 'lib', 'plugin.js'),
     fileName: join('composition-api', 'plugin.js'),
-    options: {},
+    options: {
+      corejsPolyfill,
+    },
   })
 
   this.options.build = this.options.build || {}
