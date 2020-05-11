@@ -6,15 +6,16 @@
 This helper creates a [`shallowRef`](https://vue-composition-api-rfc.netlify.app/api.html#shallowref) (a ref that tracks its own .value mutation but doesn't make its value reactive) that is synced between client & server.
 
 ```ts
-import { shallowSsrRef } from 'nuxt-composition-api'
+import { shallowSsrRef, onMounted } from 'nuxt-composition-api'
 
 const shallow = shallowSsrRef({ v: 'init' })
 if (process.server) shallow.value = { v: 'changed' }
 
 // On client-side, shallow.value will be { v: changed }
-
-shallow.value.v = 'Hello World'
-// This won't trigger component updates.
+onMounted(() => {
+  // This and other changes outside of setup won't trigger component updates.
+  shallow.value.v = 'Hello World'
+})
 ```
 
 ::: warning

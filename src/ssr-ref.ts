@@ -91,15 +91,16 @@ function shallowRef<T>(value: T): Ref<T> {
  
  * @example
   ```ts
-  import { shallowSsrRef } from 'nuxt-composition-api'
+  import { shallowSsrRef, onMounted } from 'nuxt-composition-api'
 
   const shallow = shallowSsrRef({ v: 'init' })
   if (process.server) shallow.value = { v: 'changed' }
 
   // On client-side, shallow.value will be { v: changed }
-
-  shallow.value.v = 'Hello World'
-  // This won't trigger component updates.
+  onMounted(() => {
+    // This and other changes outside of setup won't trigger component updates.
+    shallow.value.v = 'Hello World'
+  })
   ```
  */
 export const shallowSsrRef = <T>(
