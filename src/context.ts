@@ -1,5 +1,6 @@
 import { getCurrentInstance } from '@vue/composition-api'
-import { Context } from '@nuxt/types'
+
+import type { Context } from '@nuxt/types'
 
 interface ContextCallback {
   (context: Context): void

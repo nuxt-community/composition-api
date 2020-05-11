@@ -1,5 +1,5 @@
 import { resolve, join } from 'path'
-import { Module } from '@nuxt/types'
+import type { Module } from '@nuxt/types'
 
 const compositionApiModule: Module<any> = function () {
   const libRoot = resolve(__dirname, '..')
@@ -46,7 +46,7 @@ export { useFetch } from './fetch'
 export { useMeta } from './meta'
 export { ssrRef, setSSRContext } from './ssr-ref'
 
-export {
+export type {
   ComponentRenderProxy,
   InjectionKey,
   PropOptions,
@@ -54,6 +54,9 @@ export {
   Ref,
   SetupContext,
   VueWatcher,
+} from '@vue/composition-api'
+
+export {
   computed,
   createComponent,
   createElement,

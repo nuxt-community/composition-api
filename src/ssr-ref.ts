@@ -1,4 +1,5 @@
-import { ref, Ref, computed } from '@vue/composition-api'
+import { ref, computed } from '@vue/composition-api'
+import type { Ref } from '@vue/composition-api'
 
 function getValue<T>(value: T | (() => T)): T {
   if (value instanceof Function) return value()

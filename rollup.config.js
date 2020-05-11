@@ -1,4 +1,5 @@
 import typescript from 'rollup-plugin-typescript2'
+import dts from 'rollup-plugin-dts'
 import copy from 'rollup-plugin-copy'
 
 import pkg from './package.json'
@@ -28,6 +29,11 @@ export default [
         targets: [{ src: 'src/plugin.js', dest: 'lib' }],
       }),
     ],
+  },
+  {
+    input: 'src/index.ts',
+    output: [{ file: 'lib/index.d.ts', format: 'es' }],
+    plugins: [dts()],
   },
   {
     input: 'src/babel.ts',

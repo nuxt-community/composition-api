@@ -1,7 +1,8 @@
-import { MetaInfo } from 'vue-meta'
 import defu from 'defu'
 import { getCurrentInstance, toRefs, Ref, reactive } from '@vue/composition-api'
-import { UnwrapRef } from '@vue/composition-api/dist/reactivity'
+
+import type { MetaInfo } from 'vue-meta'
+import type { UnwrapRef } from '@vue/composition-api/dist/reactivity'
 
 export type ReactiveHead<T = {}> = UnwrapRef<Ref<MetaInfo & T>>
 

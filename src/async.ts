@@ -1,4 +1,6 @@
-import { Ref, isRef, onServerPrefetch } from '@vue/composition-api'
+import { isRef, onServerPrefetch } from '@vue/composition-api'
+import type { Ref } from '@vue/composition-api'
+
 import { ssrRef } from './ssr-ref'
 
 export const useAsync = <T>(

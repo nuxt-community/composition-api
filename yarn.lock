@@ -12294,6 +12294,13 @@ rollup-plugin-copy@^3.3.0:
     globby "10.0.1"
     is-plain-object "^3.0.0"
 
+rollup-plugin-dts@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-dts/-/rollup-plugin-dts-1.4.2.tgz#eabe4cee9f85c0ad04c8c75ee9c8781d1cc0ed40"
+  integrity sha512-Ghd3+p9rczMcoJcJ6uq7eaVpiw150u+fB8oHnNY/CMD25RgKijltRdWVGUE6de6fdnec3iR76naQk7LVXp97gQ==
+  optionalDependencies:
+    "@babel/code-frame" "^7.8.3"
+
 rollup-plugin-typescript2@^0.27.0:
   version "0.27.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-typescript2/-/rollup-plugin-typescript2-0.27.0.tgz#95ff96f9e07d5000a9d2df4d76b548f9a1f83511"

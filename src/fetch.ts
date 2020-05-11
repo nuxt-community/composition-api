@@ -5,7 +5,7 @@ import {
   onServerPrefetch,
 } from '@vue/composition-api'
 
-import { ComponentInstance } from '@vue/composition-api/dist/component'
+import type { ComponentInstance } from '@vue/composition-api/dist/component'
 
 function normalizeError(err: any) {
   let message
