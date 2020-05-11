@@ -38,7 +38,7 @@ export default defineComponent({
     const noChange = ssrRef('initValue') // no Change => not in __NUXT__
     const shallow = shallowSsrRef({ v: 'init' }) // only deep change => not in __NUXT__
 
-    shallow.v = 'Hello World'
+    shallow.value.v = 'Hello World'
 
     const computedVal = computed(() => refValue.value)
 
