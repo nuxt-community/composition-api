@@ -1,7 +1,7 @@
 import { MetaInfo } from 'vue-meta'
 import defu from 'defu'
-import { getCurrentInstance, toRefs, reactive } from '@vue/composition-api'
-import { UnwrapRef, Ref } from '@vue/composition-api/dist/reactivity'
+import { getCurrentInstance, toRefs, Ref, reactive } from '@vue/composition-api'
+import { UnwrapRef } from '@vue/composition-api/dist/reactivity'
 
 export type ReactiveHead<T = {}> = UnwrapRef<Ref<MetaInfo & T>>
 
@@ -51,6 +51,10 @@ export const getHeadOptions = (options: any) => {
   return { _head, head }
 }
 
+type ToRefs<T extends Record<string, any>> = {
+  [P in keyof T]: Ref<T[P]>
+}
+
 export const useMeta = <T extends MetaInfo>(init?: T) => {
   const vm = getCurrentInstance()
   if (!vm) throw new Error('useMeta must be called within a component.')
@@ -64,9 +68,5 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
 
   Object.assign(_head, createEmptyMeta())
   Object.assign(_head, init || {})
-  return toRefs(
-    _head as UnwrapRef<
-      Ref<Exclude<ReturnType<typeof createEmptyMeta>, keyof T> & T>
-    >
-  )
+  return toRefs(_head) as ToRefs<ReturnType<typeof createEmptyMeta> & T>
 }
