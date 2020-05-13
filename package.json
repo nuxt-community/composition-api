@@ -88,7 +88,7 @@
     "release-it": "13.5.8",
     "rollup": "^2.10.0",
     "rollup-plugin-copy": "^3.3.0",
-    "rollup-plugin-dts": "^1.4.2",
+    "rollup-plugin-dts": "^1.4.3",
     "rollup-plugin-typescript2": "^0.27.1",
     "start-server-and-test": "^1.11.0",
     "testcafe": "^1.8.4",
