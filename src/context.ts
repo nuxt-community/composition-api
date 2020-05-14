@@ -1,4 +1,4 @@
-import { getCurrentInstance } from '@vue/composition-api'
+import { getCurrentInstance, computed } from '@vue/composition-api'
 
 import type { Context } from '@nuxt/types'
 
@@ -35,5 +35,11 @@ export const useContext = () => {
   const vm = getCurrentInstance()
   if (!vm) throw new Error('This must be called within a setup function.')
 
-  return vm.$nuxt.context
+  return {
+    ...vm.$nuxt.context,
+    route: computed(() => vm.$route),
+    query: computed(() => vm.$route.query),
+    from: computed(() => vm.$route.redirectedFrom),
+    params: computed(() => vm.$route.params),
+  }
 }

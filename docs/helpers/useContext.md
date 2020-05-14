@@ -15,3 +15,7 @@ export default defineComponent({
   },
 })
 ```
+
+::: tip
+Note that `route`, `query`, `from` and `params` are reactive refs (accessed with `.value`), but the rest of the context is not.
+:::
