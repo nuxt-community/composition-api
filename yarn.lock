@@ -2036,10 +2036,10 @@
     "@types/istanbul-lib-coverage" "*"
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@^25.2.1":
-  version "25.2.1"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-25.2.1.tgz#9544cd438607955381c1bdbdb97767a249297db5"
-  integrity sha512-msra1bCaAeEdkSyA0CZ6gW1ukMIvZ5YoJkdXw/qhQdsuuDlFTcEUrUw8CLCPt2rVRUfXlClVvK2gvPs9IokZaA==
+"@types/jest@^25.2.2":
+  version "25.2.2"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-25.2.2.tgz#6a752e7a00f69c3e790ea00c345029d5cefa92bf"
+  integrity sha512-aRctFbG8Pb7DSLzUt/fEtL3q/GKb9mretFuYhRub2J0q6NhzBYbx9HTQzHrWgBNIxYOlxGNVe6Z54cpbUt+Few==
   dependencies:
     jest-diff "^25.2.1"
     pretty-format "^25.2.1"
@@ -12294,10 +12294,10 @@ rollup-plugin-copy@^3.3.0:
     globby "10.0.1"
     is-plain-object "^3.0.0"
 
-rollup-plugin-dts@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-dts/-/rollup-plugin-dts-1.4.2.tgz#eabe4cee9f85c0ad04c8c75ee9c8781d1cc0ed40"
-  integrity sha512-Ghd3+p9rczMcoJcJ6uq7eaVpiw150u+fB8oHnNY/CMD25RgKijltRdWVGUE6de6fdnec3iR76naQk7LVXp97gQ==
+rollup-plugin-dts@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-dts/-/rollup-plugin-dts-1.4.3.tgz#debd56abd4c08bcaa619268927e13ad643a82bb5"
+  integrity sha512-/zs3KkyN7xEC3RJMrfcY0z1Hvn3TIuen4pjOh9ASAWMcoXsMNVnZZIO75izE8VyWopSJrNz3Rm4EXF2gjqvt5A==
   optionalDependencies:
     "@babel/code-frame" "^7.8.3"
 
