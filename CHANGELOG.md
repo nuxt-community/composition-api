@@ -1,3 +1,14 @@
+## [0.7.0](https://github.com/nuxt-community/composition-api/compare/0.6.3...0.7.0) (2020-05-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* `route`, `query`, `from` and `params` are now returned as refs from `useContext`, which was probably what you wanted anyway.
+
+### Bug Fixes
+
+* make route-related context reactive ([91292c8](https://github.com/nuxt-community/composition-api/commit/91292c8cb2d3cc2954ca67514ac59ab006f3ae73))
+
 ### [0.6.3](https://github.com/nuxt-community/composition-api/compare/0.6.2...0.6.3) (2020-05-11)
 
 
