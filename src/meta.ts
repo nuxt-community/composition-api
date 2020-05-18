@@ -1,5 +1,6 @@
 import defu from 'defu'
-import { getCurrentInstance, toRefs, Ref, reactive } from '@vue/composition-api'
+import { getCurrentInstance, toRefs, Ref, watch } from '@vue/composition-api'
+import Vue from 'vue'
 
 import type { MetaInfo } from 'vue-meta'
 import type { UnwrapRef } from '@vue/composition-api/dist/reactivity'
@@ -40,14 +41,25 @@ export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
   }
 }
 
+function objAssignReactive<T extends object>(target: T, ...mergeObj: any[]) {
+  mergeObj.forEach(mObj => {
+    Object.keys(mObj).forEach(k => Vue.set(target, k, mObj[k]))
+  })
+  return target
+}
+
 export const getHeadOptions = (options: any) => {
-  const _head: ReactiveHead = reactive<MetaInfo>({})
+  const _head: ReactiveHead = Vue.observable<MetaInfo>({})
   if (!(options.head instanceof Function)) {
-    Object.assign(_head, options.head)
+    objAssignReactive(_head, options.head)
   }
   const head =
     options.head instanceof Function
-      ? () => defu(_head, options.head())
+      ? () =>
+          objAssignReactive(
+            _head,
+            defu(Object.assign({}, _head), options.head())
+          )
       : () => _head
   return { _head, head }
 }
@@ -55,6 +67,8 @@ export const getHeadOptions = (options: any) => {
 type ToRefs<T extends Record<string, any>> = {
   [P in keyof T]: Ref<T[P]>
 }
+
+let metaRefsWatcher: any
 
 /**
  * `useMeta` lets you interact directly with [`head()` properties](https://nuxtjs.org/api/pages-head/) in `setup`. **Make sure you set `head: {}` in your component options.**
@@ -83,7 +97,12 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
 
   const { _head } = vm.$options as { _head: ReactiveHead }
 
-  Object.assign(_head, createEmptyMeta())
-  Object.assign(_head, init || {})
-  return toRefs(_head) as ToRefs<ReturnType<typeof createEmptyMeta> & T>
+  objAssignReactive(_head, createEmptyMeta(), init || {})
+  const refs = toRefs(_head) as ToRefs<ReturnType<typeof createEmptyMeta> & T>
+
+  if (process.client && !metaRefsWatcher) {
+    metaRefsWatcher = watch(Object.values(refs), () => vm.$meta().refresh())
+  }
+
+  return refs
 }
