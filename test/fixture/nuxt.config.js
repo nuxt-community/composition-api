@@ -6,7 +6,6 @@ module.exports = {
   buildDir: resolve(__dirname, '.nuxt'),
   srcDir: __dirname,
   head: {
-    title: 'My fixture',
     link: [
       {
         rel: "stylesheet", href: "https://newcss.net/lite.css"

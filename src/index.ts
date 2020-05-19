@@ -1,16 +1,18 @@
 import { resolve, join } from 'path'
+import Vue from 'vue'
+import CompositionApi from '@vue/composition-api'
 import type { Module } from '@nuxt/types'
+
+Vue.use(CompositionApi)
 
 const compositionApiModule: Module<any> = function () {
   const libRoot = resolve(__dirname, '..')
 
   let corejsPolyfill
   try {
-    if (!this.options.modern) {
-      // eslint-disable-next-line
-      const corejsPkg = require('core-js/package.json')
-      corejsPolyfill = corejsPkg.version.slice(0, 1)
-    }
+    // eslint-disable-next-line
+    const corejsPkg = require('core-js/package.json')
+    corejsPolyfill = corejsPkg.version.slice(0, 1)
   } catch {
     corejsPolyfill = undefined
   }

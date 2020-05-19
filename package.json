@@ -27,7 +27,6 @@
     "lib/index.d.ts",
     "!**/*.map"
   ],
-  "sideEffects": false,
   "scripts": {
     "build": "yarn clean && yarn compile",
     "watch": "yarn compile -w",

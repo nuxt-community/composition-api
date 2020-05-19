@@ -10,12 +10,7 @@ import 'core-js/features/reflect/own-keys'
 import 'core-js/modules/es6.reflect.own-keys'
 <% } %>
 
-import Vue from 'vue'
-import CompositionApi from '@vue/composition-api'
-
 import { setSSRContext } from 'nuxt-composition-api'
-
-Vue.use(CompositionApi)
 
 /**
  *
