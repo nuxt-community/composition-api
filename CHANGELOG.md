@@ -1,3 +1,10 @@
+### [0.7.1](https://github.com/nuxt-community/composition-api/compare/0.7.0...0.7.1) (2020-05-19)
+
+
+### Bug Fixes
+
+* register composition api before layouts ([93024a8](https://github.com/nuxt-community/composition-api/commit/93024a827af853c061ff70429a835ebc7df52786)), closes [#64](https://github.com/nuxt-community/composition-api/issues/64) [#65](https://github.com/nuxt-community/composition-api/issues/65)
+
 ## [0.7.0](https://github.com/nuxt-community/composition-api/compare/0.6.3...0.7.0) (2020-05-14)
 
 
