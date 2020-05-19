@@ -1,4 +1,4 @@
----
+nuxt-composition-api---
 ---
 
 # Introduction
