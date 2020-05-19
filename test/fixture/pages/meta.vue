@@ -1,8 +1,9 @@
 <template>
-  <div>
-    <div>title-{{ title }}</div>
-    <nuxt-link to="/">link back</nuxt-link>
-  </div>
+  <blockquote>
+    <p>
+      <code>title-{{ title }}</code>
+    </p>
+  </blockquote>
 </template>
 
 <script>

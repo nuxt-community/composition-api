@@ -1,13 +1,24 @@
 <template>
-  <div>
-    <div>ref-{{ computedVal }}</div>
-    <div>function-{{ funcValue }}</div>
-    <div>prefetched-{{ prefetchValue }}</div>
-    <div>on: {{ asyncValue }}</div>
-    <div>no-change: {{ noChange }}</div>
-    <div>shallow-{{ shallow.v.deep }}</div>
-    <nuxt-link to="/">home</nuxt-link>
-  </div>
+  <blockquote>
+    <p>
+      <code>ref-{{ computedVal }}</code>
+    </p>
+    <p>
+      <code>function-{{ funcValue }}</code>
+    </p>
+    <p>
+      <code>prefetched-{{ prefetchValue }}</code>
+    </p>
+    <p>
+      <code>on: {{ asyncValue }}</code>
+    </p>
+    <p>
+      <code>no-change: {{ noChange }}</code>
+    </p>
+    <p>
+      <code>shallow-{{ shallow.v.deep }}</code>
+    </p>
+  </blockquote>
 </template>
 
 <script>

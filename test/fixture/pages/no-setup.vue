@@ -1,8 +1,12 @@
 <template>
-  <div>
-    <div>ssrRef-{{ noSetup }}</div>
-    <div>async-{{ async }}</div>
-  </div>
+  <blockquote>
+    <p>
+      <code>ssrRef-{{ noSetup }}</code>
+    </p>
+    <p>
+      <code>async-{{ async }}</code>
+    </p>
+  </blockquote>
 </template>
 
 <script>

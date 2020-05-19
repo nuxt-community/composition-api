@@ -7,6 +7,11 @@ module.exports = {
   srcDir: __dirname,
   head: {
     title: 'My fixture',
+    link: [
+      {
+        rel: "stylesheet", href: "https://newcss.net/lite.css"
+      }
+    ]
   },
   ...(process.env.NOW_BUILD === 'true'
     ? {
