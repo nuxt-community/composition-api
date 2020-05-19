@@ -16,6 +16,9 @@ module.exports = {
     ? {
         generate: {
           dir: 'dist/fixture',
+          routes: [
+            '/context/a'
+          ]
         },
         router: {
           base: '/fixture/',
