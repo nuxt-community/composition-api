@@ -91,7 +91,7 @@
     "rollup-plugin-dts": "^1.4.6",
     "rollup-plugin-typescript2": "^0.27.1",
     "start-server-and-test": "^1.11.0",
-    "testcafe": "1.8.4",
+    "testcafe": "1.8.5",
     "tsd": "^0.11.0",
     "yorkie": "^2.0.0"
   },
