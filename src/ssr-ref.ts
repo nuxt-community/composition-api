@@ -13,7 +13,7 @@ export function setSSRContext(ssrContext: any) {
   ssrContext.nuxt.ssrRefs = data
 }
 
-const isProxyable = (val: unknown): val is object =>
+const isProxyable = (val: unknown): val is Record<string, unknown> =>
   val && typeof val === 'object'
 
 const sanitise = (val: unknown) => val

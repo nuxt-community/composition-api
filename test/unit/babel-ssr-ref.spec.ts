@@ -3,7 +3,7 @@ const babel = require('@babel/core')
 const plugin = require('../../lib/babel')
 /* eslint-enable */
 
-var example = `
+const example = `
 const ref = ref(1)
 const ref2 = ssrRef(2)
 const ref3 = ssrRef(3, 'custom-key')

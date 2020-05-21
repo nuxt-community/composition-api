@@ -4,14 +4,16 @@ import { getCurrentInstance, toRefs, Ref, reactive } from '@vue/composition-api'
 import type { MetaInfo } from 'vue-meta'
 import type { UnwrapRef } from '@vue/composition-api/dist/reactivity'
 
-export type ReactiveHead<T = {}> = UnwrapRef<Ref<MetaInfo & T>>
+export type ReactiveHead<T = Record<string, unknown>> = UnwrapRef<
+  Ref<MetaInfo & T>
+>
 
 type MetaInfoMapper<T> = {
   [P in keyof T]: P extends 'base'
     ? T[P] | undefined
-    : T[P] extends Function
+    : T[P] extends () => any
     ? T[P] | undefined
-    : T[P] extends Array<any> | Record<string, any>
+    : T[P] extends Array<any> | Record<string, unknown>
     ? T[P]
     : T[P] | undefined
 }
