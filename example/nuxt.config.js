@@ -1,13 +1,14 @@
 const fetch = require('node-fetch')
+const serverlessEnvironment = !!process.env.NOW_REGION
 
 export default {
   plugins: ['@/plugins/vue-placeholders.js'],
   modules: ['@nuxt/http'],
   router: {
-    base: '/example/',
+    base: serverlessEnvironment ? '/example/' : undefined,
   },
   build: {
-    publicPath: 'example',
+    publicPath: serverlessEnvironment ? 'example' : undefined,
   },
   buildModules: ['nuxt-composition-api'],
   generate: {
