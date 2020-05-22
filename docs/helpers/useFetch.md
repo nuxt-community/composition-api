@@ -15,15 +15,15 @@ export default defineComponent({
   setup() {
     const name = ref('')
 
-    const { $fetch, $fetchState } = useFetch(async () => {
+    const { fetch, fetchState } = useFetch(async () => {
       name.value = await axios.get('https://myapi.com/name')
     })
 
     // Manually trigger a refetch
-    $fetch()
+    fetch()
 
     // Access fetch error, pending and timestamp
-    $fetchState
+    fetchState
 
     return { name }
   },
@@ -32,4 +32,8 @@ export default defineComponent({
 
 ::: warning
 `useFetch` must be called synchronously within `setup()`. Any changes made to component data - that is, to properties _returned_ from `setup()` - will be sent to the client and directly loaded. Other side-effects of `useFetch` hook will not be persisted.
+:::
+
+::: tip
+`$fetch` and `$fetchState` will already be defined on the instance - so no need to return `fetch` or `fetchState` from setup.
 :::

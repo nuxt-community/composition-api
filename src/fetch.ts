@@ -131,15 +131,15 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
     setup() {
       const name = ref('')
 
-      const { $fetch, $fetchState } = useFetch(async () => {
+      const { fetch, fetchState } = useFetch(async () => {
         name.value = await axios.get('https://myapi.com/name')
       })
 
       // Manually trigger a refetch
-      $fetch()
+      fetch()
 
       // Access fetch error, pending and timestamp
-      $fetchState
+      fetchState
 
       return { name }
     },
@@ -178,6 +178,8 @@ export const useFetch = (callback: Fetch) => {
 
   if (process.server || !isSsrHydration(vm))
     return {
+      fetch: vm.$fetch,
+      fetchState: vm.$fetchState,
       $fetch: vm.$fetch,
       $fetchState: vm.$fetchState,
     }
@@ -192,6 +194,8 @@ export const useFetch = (callback: Fetch) => {
     vm.$fetchState.error = data._error
 
     return {
+      fetch: vm.$fetch,
+      fetchState: vm.$fetchState,
       $fetch: vm.$fetch,
       $fetchState: vm.$fetchState,
     }
@@ -211,6 +215,8 @@ export const useFetch = (callback: Fetch) => {
   })
 
   return {
+    fetch: vm.$fetch,
+    fetchState: vm.$fetchState,
     $fetch: vm.$fetch,
     $fetchState: vm.$fetchState,
   }
