@@ -1,3 +1,4 @@
 {
-  "extends": ["@nuxtjs"]
+  "extends": ["@nuxtjs"],
+  "ignoreDeps": ["testcafe"]
 }
