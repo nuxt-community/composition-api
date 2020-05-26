@@ -44,10 +44,10 @@ export function fetcher(result, time = 100) {
 
 export default defineComponent({
   setup() {
-    const refValue = ssrRef('') // changed => in __NUXT__
-    const prefetchValue = ssrRef('') // changed => in __NUXT__
-    const funcValue = ssrRef(() => 'runs SSR or client-side') // function => in __NUXT__
-    const noChange = ssrRef('initValue') // no Change => not in __NUXT__
+    const refValue = ssrRef('')
+    const prefetchValue = ssrRef('')
+    const funcValue = ssrRef(() => 'runs SSR or client-side')
+    const noChange = ssrRef('initValue')
 
     const shallow = shallowSsrRef({ v: { deep: 'init' } })
     if (process.server) shallow.value = { v: { deep: 'server' } }
@@ -66,11 +66,6 @@ export default defineComponent({
     const asyncValue = useAsync(() =>
       fetcher(process.server ? 'server' : 'client', 500)
     )
-
-    // Error handeling
-    // useAsync(() => {
-    //   throw '42'
-    // })
 
     return {
       computedVal,

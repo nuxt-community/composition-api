@@ -16,7 +16,8 @@ export function setSSRContext(ssrContext: any) {
 const isProxyable = (val: unknown): val is Record<string, unknown> =>
   val && typeof val === 'object'
 
-const sanitise = (val: unknown) => val
+const sanitise = (val: unknown) =>
+  (val && JSON.parse(JSON.stringify(val))) || val
 
 /**
  * `ssrRef` will automatically add ref values to `window.__NUXT__` on SSR if they have been changed from their initial value. It can be used outside of components, such as in shared utility functions, and it supports passing a factory function that will generate the initial value of the ref. **At the moment, an `ssrRef` is only suitable for one-offs, unless you provide your own unique key.**
@@ -60,8 +61,9 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
         return Reflect.get(target, prop)
       },
       set(obj, prop, val) {
+        const result = Reflect.set(obj, prop, val)
         data[key] = sanitise(_ref.value)
-        return Reflect.set(obj, prop, val)
+        return result
       },
     })
 

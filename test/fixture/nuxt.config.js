@@ -1,6 +1,8 @@
 // eslint-disable-next-line
 const { resolve } = require('path')
 
+const routes = ['/context/a']
+
 module.exports = {
   rootDir: resolve(__dirname, '../..'),
   buildDir: resolve(__dirname, '.nuxt'),
@@ -16,9 +18,7 @@ module.exports = {
     ? {
         generate: {
           dir: 'dist/fixture',
-          routes: [
-            '/context/a'
-          ]
+          routes
         },
         router: {
           base: '/fixture/',
@@ -27,7 +27,11 @@ module.exports = {
           publicPath: 'fixture',
         },
       }
-    : {}),
+    : {
+      generate: {
+        routes,
+      }
+    }),
   buildModules: [
     process.env.NODE_ENV === 'test'
       ? require('../..').default
