@@ -1,9 +1,6 @@
 import { resolve, join } from 'path'
-import Vue from 'vue'
-import CompositionApi from '@vue/composition-api'
-import type { Module } from '@nuxt/types'
 
-Vue.use(CompositionApi)
+import type { Module } from '@nuxt/types'
 
 const compositionApiModule: Module<any> = function () {
   const libRoot = resolve(__dirname, '..')
@@ -17,7 +14,7 @@ const compositionApiModule: Module<any> = function () {
     corejsPolyfill = undefined
   }
 
-  const { dst } = this.addTemplate({
+  const { dst: pluginDst } = this.addTemplate({
     src: resolve(libRoot, 'lib', 'plugin.js'),
     fileName: join('composition-api', 'plugin.js'),
     options: {
@@ -25,61 +22,31 @@ const compositionApiModule: Module<any> = function () {
     },
   })
 
+  const { dst: entryDst } = this.addTemplate({
+    src: resolve(libRoot, 'lib', 'entrypoint.js'),
+    fileName: join('composition-api', 'index.js'),
+  })
+
   this.options.build = this.options.build || {}
   this.options.build.babel = this.options.build.babel || {}
   this.options.build.babel.plugins = this.options.build.babel.plugins || []
   this.options.build.babel.plugins.push(join(__dirname, 'babel'))
 
-  this.options.build.transpile = this.options.build.transpile || []
-  this.options.build.transpile.push(/nuxt-composition-api/)
+  this.extendBuild(config => {
+    config.resolve = config.resolve || {}
+    config.resolve.alias = config.resolve.alias || {}
+    config.resolve.alias['nuxt-composition-api'] = resolve(
+      this.options.buildDir || '',
+      entryDst
+    )
+  })
 
   this.options.plugins = this.options.plugins || []
-  this.options.plugins.unshift(resolve(this.options.buildDir || '', dst))
+  this.options.plugins.unshift(resolve(this.options.buildDir || '', pluginDst))
 }
 
 export default compositionApiModule
 // eslint-disable-next-line
 export const meta = require('../package.json')
 
-export { useAsync } from './async'
-export { defineComponent } from './component'
-export { useContext, withContext } from './context'
-export { useFetch } from './fetch'
-export { useMeta } from './meta'
-export { ssrRef, shallowSsrRef, setSSRContext } from './ssr-ref'
-
-export type {
-  ComponentRenderProxy,
-  InjectionKey,
-  PropOptions,
-  PropType,
-  Ref,
-  SetupContext,
-  VueWatcher,
-} from '@vue/composition-api'
-
-export {
-  computed,
-  createComponent,
-  createElement,
-  getCurrentInstance,
-  inject,
-  isRef,
-  onActivated,
-  onBeforeMount,
-  onBeforeUnmount,
-  onBeforeUpdate,
-  onDeactivated,
-  onErrorCaptured,
-  onMounted,
-  onServerPrefetch,
-  onUnmounted,
-  onUpdated,
-  provide,
-  reactive,
-  ref,
-  set,
-  toRefs,
-  watch,
-  watchEffect,
-} from '@vue/composition-api'
+export * from './entrypoint'

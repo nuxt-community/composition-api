@@ -6,17 +6,11 @@ import pkg from './package.json'
 
 export default [
   {
-    input: 'src/index.ts',
-    output: [
-      {
-        file: pkg.main,
-        format: 'cjs',
-      },
-      {
-        file: pkg.module,
-        format: 'es',
-      },
-    ],
+    input: ['src/index.ts', 'src/entrypoint.ts'],
+    output: {
+      dir: 'lib',
+      format: 'es',
+    },
     external: [
       ...Object.keys(pkg.dependencies || {}),
       ...Object.keys(pkg.peerDependencies || {}),
@@ -31,7 +25,7 @@ export default [
     ],
   },
   {
-    input: 'src/index.ts',
+    input: 'src/entrypoint.ts',
     output: [{ file: 'lib/index.d.ts', format: 'es' }],
     plugins: [dts()],
   },
