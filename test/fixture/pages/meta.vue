@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { defineComponent, useMeta, computed } from 'nuxt-composition-api'
+import { defineComponent, useMeta, computed, onMounted } from 'nuxt-composition-api'
 
 export default defineComponent({
   head: {},
@@ -18,6 +18,12 @@ export default defineComponent({
 
     const { title: newImport, bodyAttrs } = useMeta()
     newImport.value = 'newSetTitle'
+
+    onMounted(() => {
+      setTimeout(() => {
+        title.value = 'mounted title'
+      }, 1000)
+    })
 
     bodyAttrs.value.class = ['dark-mode', 'mobile']
 

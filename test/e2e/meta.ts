@@ -8,6 +8,8 @@ test('Shows correct title on server-loaded page', async t => {
   await navigateTo('/meta')
   await t.expect(Selector('title').innerText).eql('newSetTitle')
   await expectOnPage('title-newSetTitle')
+  await t.expect(Selector('title').innerText).eql('mounted title')
+  await expectOnPage('title-mounted title')
   await t.expect(Selector('body').getAttribute('class')).eql('dark-mode mobile')
 
   await t.click(Selector('a').withText('back'))
@@ -20,4 +22,5 @@ test('Shows correct title on client-loaded page', async t => {
 
   await t.click(Selector('a').withText('meta'))
   await t.expect(Selector('title').innerText).eql('newSetTitle')
+  await t.expect(Selector('title').innerText).eql('mounted title')
 })
