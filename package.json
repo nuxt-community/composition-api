@@ -18,8 +18,6 @@
     "javascript"
   ],
   "main": "lib/index.js",
-  "module": "lib/index.es.js",
-  "browser": "lib/index.bundle.js",
   "types": "lib/index.d.ts",
   "files": [
     "lib/**/*",
