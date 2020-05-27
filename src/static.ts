@@ -83,7 +83,7 @@ export const useStatic = <T>(
       /* eslint-disable promise/always-return */
       if (!process.static) onFailure()
       else
-        fetch(`<%= options.publicPath %>/${key}.json`)
+        fetch(`<%= options.publicPath %>${key}.json`)
           .then(response => {
             if (!response.ok) throw new Error('Response invalid.')
             return response.json()

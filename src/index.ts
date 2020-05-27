@@ -43,6 +43,7 @@ const compositionApiModule: Module<any> = function () {
     fileName: join('composition-api', 'index.js'),
     options: {
       staticPath,
+      publicPath: join(this.options.router?.base || '', '/'),
     },
   })
 
