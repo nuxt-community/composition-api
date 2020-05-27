@@ -42,6 +42,7 @@
     "prepublishOnly": "yarn lint && yarn test",
     "release": "release-it",
     "test": "run-s test:*",
+    "test:e2e-globals": "GLOBALS=true start-server-and-test fixture:prod 3000 \"testcafe firefox:headless test/e2e\"",
     "test:e2e-ssr": "start-server-and-test fixture:prod 3000 \"testcafe firefox:headless test/e2e\"",
     "test:e2e-generated": "start-server-and-test fixture:generate 3000 \"GENERATE=true testcafe firefox:headless test/e2e\"",
     "test:types": "tsd",
