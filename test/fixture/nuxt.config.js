@@ -10,15 +10,24 @@ module.exports = {
   head: {
     link: [
       {
-        rel: "stylesheet", href: "https://newcss.net/lite.css"
-      }
-    ]
+        rel: 'stylesheet',
+        href: 'https://newcss.net/lite.css',
+      },
+    ],
   },
+  ...(process.env.GLOBALS === 'true'
+    ? {
+        globalName: 'bob',
+        globals: {
+          nuxt: globalName => `$my${globalName}`,
+        },
+      }
+    : {}),
   ...(process.env.NOW_BUILD === 'true'
     ? {
         generate: {
           dir: 'dist/fixture',
-          routes
+          routes,
         },
         router: {
           base: '/fixture/',
@@ -28,10 +37,10 @@ module.exports = {
         },
       }
     : {
-      generate: {
-        routes,
-      }
-    }),
+        generate: {
+          routes,
+        },
+      }),
   buildModules: [
     process.env.NODE_ENV === 'test'
       ? require('../..').default
