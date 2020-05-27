@@ -1,3 +1,10 @@
+### [0.7.3](https://github.com/nuxt-community/composition-api/compare/0.7.2...0.7.3) (2020-05-27)
+
+
+### Bug Fixes
+
+* `useMeta` refs should be reactive ([#81](https://github.com/nuxt-community/composition-api/issues/81)) ([74cb5ef](https://github.com/nuxt-community/composition-api/commit/74cb5ef4b5b1e896bd64af3b9fb43ddb636f5894))
+
 ### [0.7.2](https://github.com/nuxt-community/composition-api/compare/0.7.1...0.7.2) (2020-05-27)
 
 
