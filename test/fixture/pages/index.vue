@@ -49,13 +49,7 @@
 import { defineComponent, ref, computed, useFetch } from 'nuxt-composition-api'
 import ChildComp from '../components/comp.vue'
 
-export function fetcher(result, time = 100) {
-  return new Promise(resolve => {
-    return setTimeout(() => {
-      resolve(result)
-    }, time)
-  })
-}
+import { fetcher } from '../utils'
 
 export default defineComponent({
   components: {

@@ -7,6 +7,15 @@ module.exports = {
   rootDir: resolve(__dirname, '../..'),
   buildDir: resolve(__dirname, '.nuxt'),
   srcDir: __dirname,
+  serverMiddleware: [
+    {
+      path: '/api/posts',
+      handler: (req, res) => {
+        res.setHeader('Content-Type', 'application/json')
+        return res.end(JSON.stringify({ id: req.url.slice(1) }))
+      },
+    },
+  ],
   head: {
     link: [
       {

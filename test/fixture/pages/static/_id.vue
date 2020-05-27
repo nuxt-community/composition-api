@@ -17,13 +17,15 @@ import {
   useContext,
 } from 'nuxt-composition-api'
 
+import { fetcher } from '../../utils'
+
 export default defineComponent({
   setup() {
     const { params } = useContext()
     const id = computed(() => params.value.id)
     const post = useStatic(
-      id =>
-        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`).then(m =>
+      id => 
+        process.server && process.static ? fetcher({ id }) : fetch(`http://localhost:3000/api/posts/${id}`).then(m =>
           m.json()
         ),
       id,
