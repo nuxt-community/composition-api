@@ -33,6 +33,7 @@
     "compile": "rollup -c",
     "fixture": "nuxt -c test/fixture/nuxt.config.js",
     "fixture:prod": "rm -rf .nuxt && nuxt build -c test/fixture/nuxt.config.js && nuxt start -c test/fixture/nuxt.config.js",
+    "fixture:generate": "rm -rf .nuxt && nuxt generate -c test/fixture/nuxt.config.js && cd dist && python -m http.server 3000",
     "lint": "run-s lint:all:*",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.ts,.vue .",
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts,vue}\"",
@@ -43,7 +44,8 @@
     "prepublishOnly": "yarn lint && yarn test",
     "release": "release-it",
     "test": "run-s test:*",
-    "test:e2e": "start-server-and-test fixture:prod 3000 \"testcafe firefox:headless test/e2e\"",
+    "test:e2e-ssr": "start-server-and-test fixture:prod 3000 \"testcafe firefox:headless test/e2e\"",
+    "test:e2e-generated": "start-server-and-test fixture:generate 3000 \"GENERATE=true testcafe firefox:headless test/e2e\"",
     "test:types": "tsd",
     "test:unit": "jest"
   },
