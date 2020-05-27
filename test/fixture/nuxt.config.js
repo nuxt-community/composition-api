@@ -24,6 +24,14 @@ module.exports = {
       },
     ],
   },
+  ...(process.env.GLOBALS === 'true'
+    ? {
+        globalName: 'bob',
+        globals: {
+          nuxt: globalName => `$my${globalName}`,
+        },
+      }
+    : {}),
   ...(process.env.NOW_BUILD === 'true'
     ? {
         generate: {

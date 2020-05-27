@@ -37,6 +37,15 @@ const compositionApiModule: Module<any> = function () {
       copyFileSync(join(srcDir, file), join(distPath, file))
     )
   })
+  
+  const globalName = this.options.globalName || 'nuxt'
+  const globalContextFactory =
+    this.options.globals?.context ||
+    (globalName => `__${globalName.toUpperCase()}__`)
+  const globalNuxtFactory =
+    this.options.globals?.nuxt || (globalName => `$${globalName}`)
+  const globalContext = globalContextFactory(globalName)
+  const globalNuxt = globalNuxtFactory(globalName)
 
   const { dst: entryDst } = this.addTemplate({
     src: resolve(libRoot, 'lib', 'entrypoint.js'),
@@ -44,6 +53,8 @@ const compositionApiModule: Module<any> = function () {
     options: {
       staticPath,
       publicPath: join(this.options.router?.base || '', '/'),
+      globalContext,
+      globalNuxt,
     },
   })
 
