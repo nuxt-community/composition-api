@@ -25,15 +25,22 @@ export default function ssrRefPlugin({ loadOptions, getEnv, types: t }: Babel) {
     CallExpression(path) {
       if (
         !('name' in path.node.callee) ||
-        !['ssrRef', 'useAsync', 'shallowSsrRef'].includes(path.node.callee.name)
+        !['ssrRef', 'shallowSsrRef', 'useAsync', 'useStatic'].includes(
+          path.node.callee.name
+        )
       )
         return
-
-      if (path.node.arguments.length > 1) return
+      if (
+        path.node.arguments.length > 1 &&
+        (path.node.callee.name !== 'useStatic' ||
+          path.node.arguments.length > 2)
+      )
+        return
       const hash = crypto.createHash('md5')
 
       hash.update(`${cwd}-${path.node.callee.start}`)
       const digest = hash.digest('base64').toString()
+      if (path.node.arguments.length === 2) path.node.arguments.push()
       path.node.arguments.push(t.stringLiteral(`${varName}${digest}`))
     },
   }

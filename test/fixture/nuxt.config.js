@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 const { resolve } = require('path')
 
-const routes = ['/context/a']
+const routes = ['/context/a', '/static/1', '/static/2', '/static/3']
 
 module.exports = {
   rootDir: resolve(__dirname, '../..'),
@@ -10,15 +10,16 @@ module.exports = {
   head: {
     link: [
       {
-        rel: "stylesheet", href: "https://newcss.net/lite.css"
-      }
-    ]
+        rel: 'stylesheet',
+        href: 'https://newcss.net/lite.css',
+      },
+    ],
   },
   ...(process.env.NOW_BUILD === 'true'
     ? {
         generate: {
           dir: 'dist/fixture',
-          routes
+          routes,
         },
         router: {
           base: '/fixture/',
@@ -28,10 +29,10 @@ module.exports = {
         },
       }
     : {
-      generate: {
-        routes,
-      }
-    }),
+        generate: {
+          routes,
+        },
+      }),
   buildModules: [
     process.env.NODE_ENV === 'test'
       ? require('../..').default

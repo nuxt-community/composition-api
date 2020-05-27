@@ -1,4 +1,5 @@
 import { resolve, join } from 'path'
+import { rmdirSync, readdirSync, copyFileSync, existsSync, mkdirSync } from 'fs'
 
 import type { Module } from '@nuxt/types'
 
@@ -22,9 +23,27 @@ const compositionApiModule: Module<any> = function () {
     },
   })
 
+  const staticPath = join(this.options.buildDir || '', 'static-json')
+
+  this.nuxt.hook('build:compile', () => {
+    if (existsSync(staticPath)) rmdirSync(staticPath)
+    mkdirSync(staticPath)
+  })
+
+  this.nuxt.hook('generate:done', async (generator: any) => {
+    const srcDir = join(this.options.buildDir || '', 'static-json')
+    const { distPath } = generator
+    readdirSync(srcDir).forEach(file =>
+      copyFileSync(join(srcDir, file), join(distPath, file))
+    )
+  })
+
   const { dst: entryDst } = this.addTemplate({
     src: resolve(libRoot, 'lib', 'entrypoint.js'),
     fileName: join('composition-api', 'index.js'),
+    options: {
+      staticPath,
+    },
   })
 
   this.options.build = this.options.build || {}
