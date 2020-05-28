@@ -46,9 +46,4 @@ module.exports = {
       ? require('../..').default
       : require.resolve('../..'),
   ],
-  build: {
-    extend(config) {
-      config.resolve.alias['nuxt-composition-api'] = resolve(__dirname, '../..')
-    },
-  },
 }
