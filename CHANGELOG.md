@@ -1,3 +1,10 @@
+### [0.7.4](https://github.com/nuxt-community/composition-api/compare/0.7.3...0.7.4) (2020-05-28)
+
+
+### Bug Fixes
+
+* transpile buildModule ([2d5388d](https://github.com/nuxt-community/composition-api/commit/2d5388de3433d157a71393cc121fd34ed1398dad)), closes [#80](https://github.com/nuxt-community/composition-api/issues/80)
+
 ### [0.7.3](https://github.com/nuxt-community/composition-api/compare/0.7.2...0.7.3) (2020-05-27)
 
 
