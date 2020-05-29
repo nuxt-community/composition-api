@@ -11,10 +11,7 @@ module.exports = {
   serverMiddleware: [
     {
       path: '/api/posts',
-      handler: (req, res) => {
-        res.setHeader('Content-Type', 'application/json')
-        return res.end(JSON.stringify({ id: req.url.slice(1) }))
-      },
+      handler: './api/posts',
     },
   ],
   head: {
