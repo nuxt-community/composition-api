@@ -14,6 +14,7 @@ export default {
   } : {}),
   buildModules: ['nuxt-composition-api'],
   generate: {
+    interval: 2000,
     async routes() {
       const posts = await fetch('https://jsonplaceholder.typicode.com/posts')
         .then(res => res.json())

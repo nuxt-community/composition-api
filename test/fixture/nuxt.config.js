@@ -2,6 +2,7 @@
 const { resolve } = require('path')
 
 const routes = ['/context/a']
+const interval = 2000
 
 module.exports = {
   rootDir: resolve(__dirname, '../..'),
@@ -28,6 +29,7 @@ module.exports = {
         generate: {
           dir: 'dist/fixture',
           routes,
+          interval,
         },
         router: {
           base: '/fixture/',
@@ -39,6 +41,7 @@ module.exports = {
     : {
         generate: {
           routes,
+          interval,
         },
       }),
   buildModules: [
