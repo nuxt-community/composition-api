@@ -23,24 +23,30 @@ export default function ssrRefPlugin({ loadOptions, getEnv, types: t }: Babel) {
         }
       : {}),
     CallExpression(path) {
-      if (
-        !('name' in path.node.callee) ||
-        !['ssrRef', 'shallowSsrRef', 'useAsync', 'useStatic'].includes(
-          path.node.callee.name
-        )
-      )
-        return
-      if (
-        path.node.arguments.length > 1 &&
-        (path.node.callee.name !== 'useStatic' ||
-          path.node.arguments.length > 2)
-      )
-        return
-      const hash = crypto.createHash('md5')
+      if (!('name' in path.node.callee)) return
 
+      let method: crypto.HexBase64Latin1Encoding = 'base64'
+
+      switch (path.node.callee.name) {
+        case 'useStatic':
+          if (path.node.arguments.length > 2) return
+          if (path.node.arguments.length === 2) path.node.arguments.push()
+          method = 'hex'
+          break
+
+        case 'ssrRef':
+        case 'shallowSsrRef':
+        case 'useAsync':
+          if (path.node.arguments.length > 1) return
+          break
+
+        default:
+          return
+      }
+
+      const hash = crypto.createHash('md5')
       hash.update(`${cwd}-${path.node.callee.start}`)
-      const digest = hash.digest('base64').toString()
-      if (path.node.arguments.length === 2) path.node.arguments.push()
+      const digest = hash.digest(method).toString()
       path.node.arguments.push(t.stringLiteral(`${varName}${digest}`))
     },
   }

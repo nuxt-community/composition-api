@@ -8,6 +8,6 @@ const ref4 = ssrRef(() => 4, \\"ref4-h6IKM1doqCRBR49lWv2V/g==\\");
 const async1 = useAsync(() => null, \\"async1-nk1uJ/q39HMoKEMFH33Ryg==\\");
 const async2 = useAsync(() => null, 'key');
 const stat = useStatic(() => 4, '2', 'post');
-const stat2 = useStatic(() => 4, '2', \\"stat2-VcPimMnNPY6iZlJBtgYWKQ==\\");
-const stat3 = useStatic(() => 4, \\"stat3-3J/wEvTAVMP4k8DqjzzdxQ==\\");"
+const stat2 = useStatic(() => 4, '2', \\"stat2-55c3e298c9cd3d8ea2665241b6061629\\");
+const stat3 = useStatic(() => 4, \\"stat3-dc9ff012f4c054c3f893c0ea8f3cddc5\\");"
 `;
