@@ -1,3 +1,26 @@
+### [0.7.4](https://github.com/nuxt-community/composition-api/compare/0.7.3...0.7.4) (2020-05-28)
+
+
+### Bug Fixes
+
+* transpile buildModule ([2d5388d](https://github.com/nuxt-community/composition-api/commit/2d5388de3433d157a71393cc121fd34ed1398dad)), closes [#80](https://github.com/nuxt-community/composition-api/issues/80)
+
+### [0.7.3](https://github.com/nuxt-community/composition-api/compare/0.7.2...0.7.3) (2020-05-27)
+
+
+### Bug Fixes
+
+* `useMeta` refs should be reactive ([#81](https://github.com/nuxt-community/composition-api/issues/81)) ([74cb5ef](https://github.com/nuxt-community/composition-api/commit/74cb5ef4b5b1e896bd64af3b9fb43ddb636f5894))
+
+### [0.7.2](https://github.com/nuxt-community/composition-api/compare/0.7.1...0.7.2) (2020-05-27)
+
+
+### Bug Fixes
+
+* allow custom `globalContext` and `globalNuxt` ([#80](https://github.com/nuxt-community/composition-api/issues/80)) ([8b8d7eb](https://github.com/nuxt-community/composition-api/commit/8b8d7eb73a70fedfff630709fc03f6958a8d4961))
+* reduce chance of `$fetch`/`$fetchState` collision ([534dc43](https://github.com/nuxt-community/composition-api/commit/534dc432af43934d079b1cb0a4c8231e27053f6e)), closes [#74](https://github.com/nuxt-community/composition-api/issues/74)
+* sanitise ssrRefs ([fcb4a9d](https://github.com/nuxt-community/composition-api/commit/fcb4a9daca955b9537c6996f1de798b7eae6f94a))
+
 ### [0.7.1](https://github.com/nuxt-community/composition-api/compare/0.7.0...0.7.1) (2020-05-19)
 
 

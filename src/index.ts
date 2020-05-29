@@ -37,7 +37,7 @@ const compositionApiModule: Module<any> = function () {
       copyFileSync(join(srcDir, file), join(distPath, file))
     )
   })
-  
+
   const globalName = this.options.globalName || 'nuxt'
   const globalContextFactory =
     this.options.globals?.context ||
@@ -62,6 +62,9 @@ const compositionApiModule: Module<any> = function () {
   this.options.build.babel = this.options.build.babel || {}
   this.options.build.babel.plugins = this.options.build.babel.plugins || []
   this.options.build.babel.plugins.push(join(__dirname, 'babel'))
+
+  this.options.build.transpile = this.options.build.transpile || []
+  this.options.build.transpile.push(/nuxt-composition-api/)
 
   this.extendBuild(config => {
     config.resolve = config.resolve || {}

@@ -1,5 +1,12 @@
 import defu from 'defu'
-import { getCurrentInstance, toRefs, Ref, reactive } from '@vue/composition-api'
+import Vue from 'vue'
+import {
+  getCurrentInstance,
+  toRefs,
+  Ref,
+  reactive,
+  watch,
+} from '@vue/composition-api'
 
 import type { MetaInfo } from 'vue-meta'
 import type { UnwrapRef } from '@vue/composition-api/dist/reactivity'
@@ -16,6 +23,13 @@ type MetaInfoMapper<T> = {
     : T[P] extends Array<any> | Record<string, unknown>
     ? T[P]
     : T[P] | undefined
+}
+
+function assign<T extends Record<string, any>>(target: T, source: Partial<T>) {
+  Object.entries(source).forEach(([key, value]) => {
+    Vue.set(target, key, value)
+  })
+  return target
 }
 
 export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
@@ -42,11 +56,13 @@ export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
   }
 }
 
-export const getHeadOptions = (options: any) => {
-  const _head: ReactiveHead = reactive<MetaInfo>({})
-  if (!(options.head instanceof Function)) {
-    Object.assign(_head, options.head)
-  }
+export const getHeadOptions = (options: {
+  head: () => Record<string, any> | Record<string, any>
+}) => {
+  const _head: ReactiveHead =
+    options.head instanceof Function
+      ? reactive<MetaInfo>({})
+      : reactive<MetaInfo>(options.head)
   const head =
     options.head instanceof Function
       ? () => defu(_head, options.head())
@@ -85,7 +101,12 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
 
   const { _head } = vm.$options as { _head: ReactiveHead }
 
-  Object.assign(_head, createEmptyMeta())
-  Object.assign(_head, init || {})
-  return toRefs(_head) as ToRefs<ReturnType<typeof createEmptyMeta> & T>
+  assign(_head, createEmptyMeta())
+  assign<MetaInfo>(_head, init || {})
+
+  const refs = toRefs(_head) as ToRefs<ReturnType<typeof createEmptyMeta> & T>
+
+  if (process.client) watch(Object.values(refs), vm.$meta().refresh)
+
+  return refs
 }

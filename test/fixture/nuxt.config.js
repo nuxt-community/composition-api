@@ -2,6 +2,7 @@
 const { resolve } = require('path')
 
 const routes = ['/context/a', '/static/1', '/static/2', '/static/3']
+const interval = 2000
 
 module.exports = {
   rootDir: resolve(__dirname, '../..'),
@@ -37,6 +38,7 @@ module.exports = {
         generate: {
           dir: 'dist/fixture',
           routes,
+          interval,
         },
         router: {
           base: '/fixture/',
@@ -48,6 +50,7 @@ module.exports = {
     : {
         generate: {
           routes,
+          interval,
         },
       }),
   buildModules: [
@@ -55,9 +58,4 @@ module.exports = {
       ? require('../..').default
       : require.resolve('../..'),
   ],
-  build: {
-    extend(config) {
-      config.resolve.alias['nuxt-composition-api'] = resolve(__dirname, '../..')
-    },
-  },
 }
