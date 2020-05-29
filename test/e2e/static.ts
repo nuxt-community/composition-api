@@ -45,6 +45,7 @@ test('Shows appropriate data on client-loaded page', async t => {
 
   await t.click(Selector('a').withText('Next'))
   await expectOnPage('"id": "2"')
+  await t.wait(1000)
   await t.expect(apiLogger.logger.count(Boolean)).eql(2)
   await apiLogger.expectToBeCalledWith(r => r.request.url === url(2))
 })

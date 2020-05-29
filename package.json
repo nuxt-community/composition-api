@@ -31,7 +31,7 @@
     "compile": "rollup -c",
     "fixture": "nuxt -c test/fixture/nuxt.config.js",
     "fixture:prod": "rm -rf .nuxt && nuxt build -c test/fixture/nuxt.config.js && nuxt start -c test/fixture/nuxt.config.js",
-    "fixture:generate": "rm -rf .nuxt && nuxt generate -c test/fixture/nuxt.config.js && yarn http-server -p 3000 dist",
+    "fixture:generate": "rm -rf .nuxt && nuxt generate -c test/fixture/nuxt.config.js && yarn http-server -s -p 3000 dist",
     "lint": "run-s lint:all:*",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.ts,.vue .",
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts,vue}\"",
