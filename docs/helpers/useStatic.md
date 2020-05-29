@@ -38,7 +38,7 @@ If you are pregenerating some pages in your app note that you may need to increa
 ## SSR
 If the route is not pre-generated (including in dev mode), then:
 
-* On a hard-reload, the server will run the factory function and inline the result in `nuxtState` - so the client won't rerun the API request.
+* On a hard-reload, the server will run the factory function and inline the result in `nuxtState` - so the client won't rerun the API request. The result will be cached between requests.
 * On client navigation, the client will run the factory function.
 
 In both of these cases, the return result of `useStatic` is a `null` ref that is filled with the result of the factory function or JSON fetch when it resolves.
