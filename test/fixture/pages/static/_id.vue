@@ -27,7 +27,7 @@ export default defineComponent({
       id => 
         process.server && process.static ?
           fetcher({ id }) :
-          fetch(`http://localhost:3000/api/posts/${id}`).then(m =>
+          fetch((process.server ? 'http://localhost:3000' : '') + `/api/posts/${id}`).then(m =>
             m.json()
           ).catch(e => console.log(e)),
       id,
