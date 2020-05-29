@@ -20,6 +20,7 @@
   "routes": [
     { "src": "/api/posts/.*", "dest": "/test/fixture/api/posts.js" },
     { "handle": "filesystem" },
+    { "src": "/fixture/(.*)", "dest": "/fixture/200.html" },
     { "src": "/(.*)", "dest": "/docs/$1" }
   ]
 }
