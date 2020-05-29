@@ -32,8 +32,7 @@ test('Shows data on non-generated page', async t => {
   await navigateTo('/static/3')
   apiLogger.logger.clear()
   await t.click(Selector('a').withText('Next'))
-  const count = await apiLogger.logger.count(Boolean)
-  await t.expect(count).eql(2)
+  await t.expect(apiLogger.logger.count(Boolean)).eql(process.env.GENERATE ? 2 : 1)
 })
 
 test('Shows appropriate data on client-loaded page', async t => {
@@ -45,7 +44,6 @@ test('Shows appropriate data on client-loaded page', async t => {
 
   await t.click(Selector('a').withText('Next'))
   await expectOnPage('"id": "2"')
-  await t.wait(1000)
   await t.expect(apiLogger.logger.count(Boolean)).eql(2)
   await apiLogger.expectToBeCalledWith(r => r.request.url === url(2))
 })
