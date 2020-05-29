@@ -19,8 +19,7 @@ test('Shows data on ssr-loaded page', async t => {
   await navigateTo('/static/1')
   await expectOnPage('"id": "1"')
   const count = await apiLogger.logger.count(Boolean)
-  // TODO: remove once #44 is resolved
-  if (!process.env.GENERATE) await t.expect(count).eql(0)
+  await t.expect(count).eql(0)
 
   await t.click(Selector('a').withText('home'))
   await t.click(Selector('a').withText('static'))
