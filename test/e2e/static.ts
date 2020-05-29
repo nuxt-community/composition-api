@@ -28,6 +28,14 @@ test('Shows data on ssr-loaded page', async t => {
   await t.expect(newCount).eql(count)
 })
 
+test('Shows data on non-generated page', async t => {
+  await navigateTo('/static/3')
+  apiLogger.logger.clear()
+  await t.click(Selector('a').withText('Next'))
+  const count = await apiLogger.logger.count(Boolean)
+  await t.expect(count).eql(2)
+})
+
 test('Shows appropriate data on client-loaded page', async t => {
   await navigateTo('/')
   await t.click(Selector('a').withText('static'))

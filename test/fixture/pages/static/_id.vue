@@ -25,9 +25,11 @@ export default defineComponent({
     const id = computed(() => params.value.id)
     const post = useStatic(
       id => 
-        process.server && process.static ? fetcher({ id }) : fetch(`http://localhost:3000/api/posts/${id}`).then(m =>
-          m.json()
-        ),
+        process.server && process.static ?
+          fetcher({ id }) :
+          fetch(`http://localhost:3000/api/posts/${id}`).then(m =>
+            m.json()
+          ).catch(e => console.log(e)),
       id,
       'posts'
     )
