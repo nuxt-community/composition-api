@@ -1,3 +1,10 @@
+### [0.7.5](https://github.com/nuxt-community/composition-api/compare/0.7.4...0.7.5) (2020-05-30)
+
+
+### Bug Fixes
+
+* allow extension of `useContext` return type ([24d7586](https://github.com/nuxt-community/composition-api/commit/24d75865be7d6226aafd871cae7f2346bef021e1)), closes [#84](https://github.com/nuxt-community/composition-api/issues/84)
+
 ### [0.7.4](https://github.com/nuxt-community/composition-api/compare/0.7.3...0.7.4) (2020-05-28)
 
 
