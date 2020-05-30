@@ -12,13 +12,7 @@
 <script>
 import { defineComponent, ssrRef, onServerPrefetch } from 'nuxt-composition-api'
 
-export function fetcher(result, time = 100) {
-  return new Promise(resolve => {
-    return setTimeout(() => {
-      resolve(result)
-    }, time)
-  })
-}
+import { fetcher } from '../utils'
 
 const noSetup = ssrRef('default value')
 const async = ssrRef('default async')

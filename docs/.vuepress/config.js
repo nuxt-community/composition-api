@@ -24,6 +24,7 @@ module.exports = {
             '/helpers/useContext',
             '/helpers/useFetch',
             '/helpers/useMeta',
+            '/helpers/useStatic',
           ],
         },
         {

@@ -1,13 +1,19 @@
 // eslint-disable-next-line
 const { resolve } = require('path')
 
-const routes = ['/context/a']
+const routes = ['/context/a', '/static/1', '/static/2', '/static/3']
 const interval = 2000
 
 module.exports = {
   rootDir: resolve(__dirname, '../..'),
   buildDir: resolve(__dirname, '.nuxt'),
   srcDir: __dirname,
+  serverMiddleware: [
+    {
+      path: '/api/posts',
+      handler: './api/posts',
+    },
+  ],
   head: {
     link: [
       {

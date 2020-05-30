@@ -11,6 +11,10 @@ const ref4 = ssrRef(() => 4)
 
 const async1 = useAsync(() => null)
 const async2 = useAsync(() => null, 'key')
+
+const stat = useStatic(() => 4, '2', 'post')
+const stat2 = useStatic(() => 4, '2')
+const stat3 = useStatic(() => 4)
 `
 
 describe('ssrRef babel plugin', () => {

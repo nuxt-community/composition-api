@@ -36,6 +36,7 @@
       <li><nuxt-link to="/other">link forward</nuxt-link></li>
       <li><nuxt-link to="/ssr-ref">ssr refs</nuxt-link></li>
       <li><nuxt-link to="/context/a">context</nuxt-link></li>
+      <li><nuxt-link to="/static/1">static</nuxt-link></li>
       <li>
         <nuxt-link to="/no-setup">ssr ref defined outside of setup</nuxt-link>
       </li>
@@ -48,13 +49,7 @@
 import { defineComponent, ref, computed, useFetch } from 'nuxt-composition-api'
 import ChildComp from '../components/comp.vue'
 
-export function fetcher(result, time = 100) {
-  return new Promise(resolve => {
-    return setTimeout(() => {
-      resolve(result)
-    }, time)
-  })
-}
+import { fetcher } from '../utils'
 
 export default defineComponent({
   components: {

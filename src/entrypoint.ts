@@ -9,6 +9,7 @@ export { useContext, withContext } from './context'
 export { useFetch } from './fetch'
 export { useMeta } from './meta'
 export { ssrRef, shallowSsrRef, setSSRContext } from './ssr-ref'
+export { useStatic } from './static'
 
 export type {
   ComponentRenderProxy,
