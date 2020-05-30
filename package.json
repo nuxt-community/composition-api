@@ -63,7 +63,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.10.1",
-    "@babel/preset-env": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
     "@babel/preset-typescript": "^7.10.1",
     "@nuxt/types": "^0.7.7",
     "@nuxtjs/module-test-utils": "^1.6.1",
