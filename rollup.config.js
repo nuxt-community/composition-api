@@ -7,10 +7,16 @@ import pkg from './package.json'
 export default [
   {
     input: ['src/index.ts', 'src/entrypoint.ts'],
-    output: {
-      dir: 'lib',
-      format: 'es',
-    },
+    output: [
+      {
+        dir: 'lib',
+        format: 'es',
+      },
+      {
+        dir: 'lib/cjs',
+        format: 'cjs',
+      },
+    ],
     external: [
       ...Object.keys(pkg.dependencies || {}),
       ...Object.keys(pkg.peerDependencies || {}),

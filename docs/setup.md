@@ -43,4 +43,11 @@
 - The module automatically installs [`@vue/composition-api`](https://github.com/vuejs/composition-api) as a plugin, so you do not need to enable it separately, unless you are accessing Composition API methods in your layout components (outside of `setup()`).
 
 - For convenience, this package also exports the [`@vue/composition-api`](https://github.com/vuejs/composition-api) methods and hooks, so you can import directly from `nuxt-composition-api`.
+
+- If you need to use jest tests with this module installed, just add the following lines to your `jest.config.js`:
+```js
+moduleNameMapper: {
+  'nuxt-composition-api': 'nuxt-composition-api/lib/cjs/entrypoint.js',
+},
+```
   :::
