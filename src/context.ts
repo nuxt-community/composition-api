@@ -1,6 +1,8 @@
 import { getCurrentInstance, computed } from '@vue/composition-api'
 
+import type { Ref } from '@vue/composition-api'
 import type { Context } from '@nuxt/types'
+import type { Route } from 'vue-router'
 
 interface ContextCallback {
   (context: Context): void
@@ -17,8 +19,16 @@ export const withContext = (callback: ContextCallback) => {
   callback(vm['<%= options.globalNuxt %>' as '$nuxt'].context)
 }
 
+interface UseContextReturn
+  extends Omit<Context, 'route' | 'query' | 'from' | 'params'> {
+  route: Ref<Route>
+  query: Ref<Route['query']>
+  from: Ref<Route['redirectedFrom']>
+  params: Ref<Route['params']>
+}
+
 /**
- * `useContext` which will return the Nuxt context.
+ * `useContext` will return the Nuxt context.
  * @example
   ```ts
   import { defineComponent, ref, useContext } from 'nuxt-composition-api'
@@ -31,7 +41,7 @@ export const withContext = (callback: ContextCallback) => {
   })
   ```
  */
-export const useContext = () => {
+export const useContext = (): UseContextReturn => {
   const vm = getCurrentInstance()
   if (!vm) throw new Error('This must be called within a setup function.')
 
