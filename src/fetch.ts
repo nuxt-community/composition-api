@@ -38,7 +38,12 @@ const fetches = new WeakMap<ComponentInstance, Fetch[]>()
 const isSsrHydration = (vm: ComponentInstance) =>
   (vm.$vnode?.elm as any)?.dataset?.fetchKey
 const nuxtState =
-  process.client && (window as any)['<%= options.globalContext %>']
+  process.client &&
+  (window as any)[
+    '<%= options.globalContext %>'.includes('options')
+      ? '__NUXT__'
+      : ('<%= options.globalContext %>' as '__NUXT__')
+  ]
 
 interface AugmentedComponentInstance extends ComponentInstance {
   _fetchKey?: number
@@ -56,7 +61,11 @@ function registerCallback(vm: ComponentInstance, callback: Fetch) {
 async function callFetches(this: AugmentedComponentInstance) {
   const fetchesToCall = fetches.get(this)
   if (!fetchesToCall) return
-  ;(this['<%= options.globalNuxt %>' as '$nuxt'] as any).nbFetching++
+  ;(this[
+    '<%= options.globalNuxt %>'.includes('options')
+      ? '$nuxt'
+      : ('<%= options.globalNuxt %>' as '$nuxt')
+  ] as any).nbFetching++
 
   this.$fetchState.pending = true
   this.$fetchState.error = null
@@ -81,7 +90,12 @@ async function callFetches(this: AugmentedComponentInstance) {
   this.$fetchState.timestamp = Date.now()
 
   this.$nextTick(
-    () => (this['<%= options.globalNuxt %>' as '$nuxt'] as any).nbFetching--
+    () =>
+      (this[
+        '<%= options.globalNuxt %>'.includes('options')
+          ? '$nuxt'
+          : ('<%= options.globalNuxt %>' as '$nuxt')
+      ] as any).nbFetching--
   )
 }
 

@@ -47,8 +47,11 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
 
   if (process.client) {
     return ref(
-      (window as any)['<%= options.globalContext %>']?.ssrRefs?.[key] ??
-        getValue(value)
+      (window as any)[
+        '<%= options.globalContext %>'.includes('options')
+          ? '__NUXT__'
+          : '<%= options.globalContext %>'
+      ]?.ssrRefs?.[key] ?? getValue(value)
     )
   }
 
@@ -120,8 +123,11 @@ export const shallowSsrRef = <T>(
 
   if (process.client) {
     return shallowRef(
-      (window as any)['<%= options.globalContext %>']?.ssrRefs?.[key] ??
-        getValue(value)
+      (window as any)[
+        '<%= options.globalContext %>'.includes('options')
+          ? '__NUXT__'
+          : '<%= options.globalContext %>'
+      ]?.ssrRefs?.[key] ?? getValue(value)
     )
   }
 

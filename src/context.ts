@@ -16,7 +16,13 @@ export const withContext = (callback: ContextCallback) => {
   const vm = getCurrentInstance()
   if (!vm) throw new Error('This must be called within a setup function.')
 
-  callback(vm['<%= options.globalNuxt %>' as '$nuxt'].context)
+  callback(
+    vm[
+      '<%= options.globalNuxt %>'.includes('options')
+        ? '$nuxt'
+        : ('<%= options.globalNuxt %>' as '$nuxt')
+    ].context
+  )
 }
 
 interface UseContextReturn
@@ -46,7 +52,11 @@ export const useContext = (): UseContextReturn => {
   if (!vm) throw new Error('This must be called within a setup function.')
 
   return {
-    ...vm['<%= options.globalNuxt %>' as '$nuxt'].context,
+    ...vm[
+      '<%= options.globalNuxt %>'.includes('options')
+        ? '$nuxt'
+        : ('<%= options.globalNuxt %>' as '$nuxt')
+    ].context,
     route: computed(() => vm.$route),
     query: computed(() => vm.$route.query),
     from: computed(() => vm.$route.redirectedFrom),
