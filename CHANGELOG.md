@@ -1,3 +1,10 @@
+## [0.8.0](https://github.com/nuxt-community/composition-api/compare/0.7.5...0.8.0) (2020-05-30)
+
+
+### Features
+
+* add `useStatic` helper to inline results of API calls ([#79](https://github.com/nuxt-community/composition-api/issues/79)) ([460b615](https://github.com/nuxt-community/composition-api/commit/460b6152c93f678781a79a628a16894ca7795a02))
+
 ### [0.7.5](https://github.com/nuxt-community/composition-api/compare/0.7.4...0.7.5) (2020-05-30)
 
 
