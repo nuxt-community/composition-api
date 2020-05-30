@@ -7,7 +7,12 @@
 </template>
 
 <script>
-import { defineComponent, useMeta, computed, onMounted } from 'nuxt-composition-api'
+import {
+  defineComponent,
+  useMeta,
+  computed,
+  onMounted,
+} from 'nuxt-composition-api'
 
 export default defineComponent({
   head: {},
