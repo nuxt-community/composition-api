@@ -1,6 +1,7 @@
 import { isRef, onServerPrefetch } from '@vue/composition-api'
 import type { Ref } from '@vue/composition-api'
 
+import { globalNuxt } from './globals'
 import { ssrRef } from './ssr-ref'
 
 /**
@@ -39,7 +40,12 @@ export const useAsync = <T>(
 
   const _ref = isRef(key) ? key : ssrRef<T | null>(null, key)
 
-  if (!_ref.value) {
+  if (
+    !_ref.value ||
+    (process.env.NODE_ENV === 'development' &&
+      process.client &&
+      window[globalNuxt].context.isHMR)
+  ) {
     const p = cb()
 
     if (p instanceof Promise) {
