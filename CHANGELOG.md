@@ -1,3 +1,10 @@
+### [0.8.1](https://github.com/nuxt-community/composition-api/compare/0.8.0...0.8.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* re-run `ssrRef` factory functions on hot module reload ([282b8d2](https://github.com/nuxt-community/composition-api/commit/282b8d273cf049d9015d29ee8dc60f2ff0478248)), closes [#88](https://github.com/nuxt-community/composition-api/issues/88)
+
 ## [0.8.0](https://github.com/nuxt-community/composition-api/compare/0.7.5...0.8.0) (2020-05-30)
 
 
