@@ -7,6 +7,8 @@ import {
 
 import type { ComponentInstance } from '@vue/composition-api/dist/component'
 
+import { globalContext, globalNuxt } from './globals'
+
 function normalizeError(err: any) {
   let message
   if (!(err.message || typeof err === 'string')) {
@@ -37,13 +39,7 @@ const fetches = new WeakMap<ComponentInstance, Fetch[]>()
 
 const isSsrHydration = (vm: ComponentInstance) =>
   (vm.$vnode?.elm as any)?.dataset?.fetchKey
-const nuxtState =
-  process.client &&
-  (window as any)[
-    '<%= options.globalContext %>'.includes('options')
-      ? '__NUXT__'
-      : ('<%= options.globalContext %>' as '__NUXT__')
-  ]
+const nuxtState = process.client && (window as any)[globalContext]
 
 interface AugmentedComponentInstance extends ComponentInstance {
   _fetchKey?: number
@@ -61,11 +57,7 @@ function registerCallback(vm: ComponentInstance, callback: Fetch) {
 async function callFetches(this: AugmentedComponentInstance) {
   const fetchesToCall = fetches.get(this)
   if (!fetchesToCall) return
-  ;(this[
-    '<%= options.globalNuxt %>'.includes('options')
-      ? '$nuxt'
-      : ('<%= options.globalNuxt %>' as '$nuxt')
-  ] as any).nbFetching++
+  ;(this[globalNuxt] as any).nbFetching++
 
   this.$fetchState.pending = true
   this.$fetchState.error = null
@@ -89,14 +81,7 @@ async function callFetches(this: AugmentedComponentInstance) {
   this.$fetchState.pending = false
   this.$fetchState.timestamp = Date.now()
 
-  this.$nextTick(
-    () =>
-      (this[
-        '<%= options.globalNuxt %>'.includes('options')
-          ? '$nuxt'
-          : ('<%= options.globalNuxt %>' as '$nuxt')
-      ] as any).nbFetching--
-  )
+  this.$nextTick(() => (this[globalNuxt] as any).nbFetching--)
 }
 
 async function serverPrefetch(vm: AugmentedComponentInstance) {

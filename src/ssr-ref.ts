@@ -1,6 +1,8 @@
 import { ref, computed } from '@vue/composition-api'
 import type { Ref } from '@vue/composition-api'
 
+import { globalContext } from './globals'
+
 function getValue<T>(value: T | (() => T)): T {
   if (value instanceof Function) return value()
   return value
@@ -47,11 +49,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
 
   if (process.client) {
     return ref(
-      (window as any)[
-        '<%= options.globalContext %>'.includes('options')
-          ? '__NUXT__'
-          : '<%= options.globalContext %>'
-      ]?.ssrRefs?.[key] ?? getValue(value)
+      (window as any)[globalContext]?.ssrRefs?.[key] ?? getValue(value)
     )
   }
 
@@ -123,11 +121,7 @@ export const shallowSsrRef = <T>(
 
   if (process.client) {
     return shallowRef(
-      (window as any)[
-        '<%= options.globalContext %>'.includes('options')
-          ? '__NUXT__'
-          : '<%= options.globalContext %>'
-      ]?.ssrRefs?.[key] ?? getValue(value)
+      (window as any)[globalContext]?.ssrRefs?.[key] ?? getValue(value)
     )
   }
 
