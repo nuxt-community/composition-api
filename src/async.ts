@@ -44,7 +44,7 @@ export const useAsync = <T>(
     !_ref.value ||
     (process.env.NODE_ENV === 'development' &&
       process.client &&
-      window[globalNuxt].context.isHMR)
+      window[globalNuxt]?.context.isHMR)
   ) {
     const p = cb()
 

@@ -50,7 +50,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   if (process.client) {
     if (
       process.env.NODE_ENV === 'development' &&
-      window[globalNuxt].context.isHMR
+      window[globalNuxt]?.context.isHMR
     ) {
       return ref(getValue(value))
     }
@@ -128,7 +128,7 @@ export const shallowSsrRef = <T>(
   if (process.client) {
     if (
       process.env.NODE_ENV === 'development' &&
-      window[globalNuxt].context.isHMR
+      window[globalNuxt]?.context.isHMR
     ) {
       return shallowRef(getValue(value))
     }
