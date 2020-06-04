@@ -1,6 +1,6 @@
 {
   "name": "nuxt-composition-api",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Composition API hooks for Nuxt",
   "license": "MIT",
   "repository": "nuxt-community/composition-api",
