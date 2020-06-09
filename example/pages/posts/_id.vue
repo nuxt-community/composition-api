@@ -34,7 +34,7 @@
 import {
   defineComponent,
   useFetch,
-  withContext,
+  useContext,
   ref,
 } from 'nuxt-composition-api'
 
@@ -45,20 +45,17 @@ export default defineComponent({
     Author,
   },
   setup() {
-    const post = ref({})
+    const post = ref()
 
-    withContext(({ $http, route }) => {
-      useFetch(async () => {
-        post.value = await $http.$get(
-          `https://jsonplaceholder.typicode.com/posts/${route.params.id}`
-        )
-      })
-    })
+    const { $http, params } = useContext()
+
+    useFetch(async () => {
+      post.value = await $http.$get(
+        `https://jsonplaceholder.typicode.com/posts/${params.value.id}`
+      )
+    })    
 
     return { post }
-  },
-  head() {
-    return { title: this.post.title }
   },
 })
 </script>

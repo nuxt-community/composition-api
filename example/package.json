@@ -1,7 +1,7 @@
 {
   "name": "example-hello-world",
   "dependencies": {
-    "@nuxt/http": "^0.5.1",
+    "@nuxt/http": "^0.5.2",
     "nuxt-composition-api": "latest",
     "nuxt-start": "latest",
     "vue-content-placeholders": "^0.2.1"
@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "now-build": "nuxt generate",
+    "now-build": "NOW_BUILD=true nuxt generate",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "post-update": "yarn upgrade --latest"

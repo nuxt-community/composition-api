@@ -1,8 +1,13 @@
 import Vue from 'vue'
-import { getCurrentInstance, onBeforeMount } from '@vue/composition-api'
-import { onServerPrefetch } from './server-prefetch'
+import {
+  getCurrentInstance,
+  onBeforeMount,
+  onServerPrefetch,
+} from '@vue/composition-api'
 
-import { ComponentInstance } from '@vue/composition-api/dist/component'
+import type { ComponentInstance } from '@vue/composition-api/dist/component'
+
+import { globalContext, globalNuxt } from './globals'
 
 function normalizeError(err: any) {
   let message
@@ -34,7 +39,7 @@ const fetches = new WeakMap<ComponentInstance, Fetch[]>()
 
 const isSsrHydration = (vm: ComponentInstance) =>
   (vm.$vnode?.elm as any)?.dataset?.fetchKey
-const nuxtState = process.client && (window as any).__NUXT__
+const nuxtState = process.client && (window as any)[globalContext]
 
 interface AugmentedComponentInstance extends ComponentInstance {
   _fetchKey?: number
@@ -52,7 +57,7 @@ function registerCallback(vm: ComponentInstance, callback: Fetch) {
 async function callFetches(this: AugmentedComponentInstance) {
   const fetchesToCall = fetches.get(this)
   if (!fetchesToCall) return
-  ;(this.$nuxt as any).nbFetching++
+  ;(this[globalNuxt] as any).nbFetching++
 
   this.$fetchState.pending = true
   this.$fetchState.error = null
@@ -76,7 +81,7 @@ async function callFetches(this: AugmentedComponentInstance) {
   this.$fetchState.pending = false
   this.$fetchState.timestamp = Date.now()
 
-  this.$nextTick(() => (this.$nuxt as any).nbFetching--)
+  this.$nextTick(() => (this[globalNuxt] as any).nbFetching--)
 }
 
 async function serverPrefetch(vm: AugmentedComponentInstance) {
@@ -114,6 +119,35 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
   )
 }
 
+/**
+ * Versions of Nuxt newer than v2.12 support a [custom hook called `fetch`](https://nuxtjs.org/api/pages-fetch/) that allows server-side and client-side asynchronous data-fetching.
+
+ * @param callback The async function you want to run.
+ * @example
+
+  ```ts
+  import { defineComponent, ref, useFetch } from 'nuxt-composition-api'
+  import axios from 'axios'
+
+  export default defineComponent({
+    setup() {
+      const name = ref('')
+
+      const { fetch, fetchState } = useFetch(async () => {
+        name.value = await axios.get('https://myapi.com/name')
+      })
+
+      // Manually trigger a refetch
+      fetch()
+
+      // Access fetch error, pending and timestamp
+      fetchState
+
+      return { name }
+    },
+  })
+  ```
+ */
 export const useFetch = (callback: Fetch) => {
   const vm = getCurrentInstance() as AugmentedComponentInstance | undefined
   if (!vm) throw new Error('This must be called within a setup function.')
@@ -144,7 +178,13 @@ export const useFetch = (callback: Fetch) => {
     }
   })
 
-  if (process.server || !isSsrHydration(vm)) return
+  if (process.server || !isSsrHydration(vm))
+    return {
+      fetch: vm.$fetch,
+      fetchState: vm.$fetchState,
+      $fetch: vm.$fetch,
+      $fetchState: vm.$fetchState,
+    }
 
   // Hydrate component
   vm._hydrated = true
@@ -154,7 +194,13 @@ export const useFetch = (callback: Fetch) => {
   // If fetch error
   if (data && data._error) {
     vm.$fetchState.error = data._error
-    return
+
+    return {
+      fetch: vm.$fetch,
+      fetchState: vm.$fetchState,
+      $fetch: vm.$fetch,
+      $fetchState: vm.$fetchState,
+    }
   }
 
   onBeforeMount(() => {
@@ -169,4 +215,11 @@ export const useFetch = (callback: Fetch) => {
       }
     }
   })
+
+  return {
+    fetch: vm.$fetch,
+    fetchState: vm.$fetchState,
+    $fetch: vm.$fetch,
+    $fetchState: vm.$fetchState,
+  }
 }

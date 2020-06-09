@@ -14,7 +14,7 @@
 import {
   defineComponent,
   useFetch,
-  withContext,
+  useContext,
   ref,
 } from 'nuxt-composition-api'
 
@@ -28,12 +28,12 @@ export default defineComponent({
   setup(props) {
     const user = ref({})
 
-    withContext(({ $http }) => {
-      useFetch(async () => {
-        user.value = await $http.$get(
-          `https://jsonplaceholder.typicode.com/users/${props.userId}`
-        )
-      })
+    const { $http } = useContext()
+    
+    useFetch(async () => {
+      user.value = await $http.$get(
+        `https://jsonplaceholder.typicode.com/users/${props.userId}`
+      )
     })
 
     return { user }

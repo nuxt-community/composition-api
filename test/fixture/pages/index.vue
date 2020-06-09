@@ -1,29 +1,55 @@
 <template>
-  <div>
-    <div>name-{{ name }}</div>
-    <div v-if="$fetchState.pending">loading email</div>
-    <div>email-{{ email }}</div>
-    <div>{{ computedProp }}</div>
-    <div>{{ myFunction() }}</div>
-    <nuxt-link to="/other">link forward</nuxt-link>
-    <nuxt-link to="/ssr-ref">ssr refs</nuxt-link>
-    <nuxt-link to="/meta">meta</nuxt-link>
-    <button @click="$fetch">Refetch</button>
-    <child-comp />
-  </div>
+  <main>
+    <h2>
+      useFetch tests
+    </h2>
+    <p>
+      <button @click="$fetch">Refetch</button>
+    </p>
+    <blockquote>
+      <p>
+        <code>name-{{ name }}</code>
+      </p>
+      <p>
+        <code>
+          email-{{ email }}
+          <br />
+          <span v-if="$fetchState.pending">
+            loading email
+          </span>
+        </code>
+      </p>
+      <p>
+        <code>
+          {{ computedProp }}
+        </code>
+      </p>
+      <p>
+        <code>
+          {{ myFunction() }}
+        </code>
+      </p>
+      <child-comp />
+    </blockquote>
+    <h2>Links</h2>
+    <ul>
+      <li><nuxt-link to="/other">link forward</nuxt-link></li>
+      <li><nuxt-link to="/ssr-ref">ssr refs</nuxt-link></li>
+      <li><nuxt-link to="/context/a">context</nuxt-link></li>
+      <li><nuxt-link to="/static/1">static</nuxt-link></li>
+      <li>
+        <nuxt-link to="/no-setup">ssr ref defined outside of setup</nuxt-link>
+      </li>
+      <li><nuxt-link to="/meta">meta</nuxt-link></li>
+    </ul>
+  </main>
 </template>
 
 <script>
 import { defineComponent, ref, computed, useFetch } from 'nuxt-composition-api'
 import ChildComp from '../components/comp.vue'
 
-export function fetcher(result, time = 100) {
-  return new Promise(resolve => {
-    return setTimeout(() => {
-      resolve(result)
-    }, time)
-  })
-}
+import { fetcher } from '../utils'
 
 export default defineComponent({
   components: {

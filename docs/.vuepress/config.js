@@ -4,10 +4,9 @@ module.exports = {
   evergreen: true,
   dest: 'dist',
   themeConfig: {
-    repo: 'nuxt-community/composition-api',
     editLinks: true,
+    repo: 'nuxt-community/composition-api',
     docsDir: 'docs',
-    sidebarDepth: 2,
     sidebar: {
       '/': [
         {
@@ -19,17 +18,19 @@ module.exports = {
           title: 'Helpers',
           collapsable: false,
           children: [
+            '/helpers/shallowSsrRef',
             '/helpers/ssrRef',
             '/helpers/useAsync',
             '/helpers/useContext',
             '/helpers/useFetch',
-            '/helpers/useHead',
+            '/helpers/useMeta',
+            '/helpers/useStatic',
           ],
         },
         {
           title: 'Examples',
           collapsable: false,
-          children: ['/examples/useFetch'],
+          children: ['/examples/useFetch', '/examples/live'],
         },
       ],
     },

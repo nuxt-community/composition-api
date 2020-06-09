@@ -1,42 +1,39 @@
 import typescript from 'rollup-plugin-typescript2'
+import dts from 'rollup-plugin-dts'
+import copy from 'rollup-plugin-copy'
+
 import pkg from './package.json'
 
 export default [
   {
-    input: 'src/index.ts',
+    input: ['src/index.ts', 'src/entrypoint.ts'],
     output: [
       {
-        file: pkg.main,
-        format: 'cjs',
+        dir: 'lib',
+        format: 'es',
       },
       {
-        file: pkg.module,
-        format: 'es',
+        dir: 'lib/cjs',
+        format: 'cjs',
       },
     ],
     external: [
       ...Object.keys(pkg.dependencies || {}),
       ...Object.keys(pkg.peerDependencies || {}),
-      // 'prop-types',
     ],
     plugins: [
       typescript({
         typescript: require('typescript'),
       }),
+      copy({
+        targets: [{ src: 'src/plugin.js', dest: 'lib' }],
+      }),
     ],
   },
   {
-    input: 'src/plugin.js',
-    output: [
-      {
-        file: 'lib/plugin.js',
-        format: 'es',
-      },
-    ],
-    external: [
-      ...Object.keys(pkg.dependencies || {}),
-      ...Object.keys(pkg.peerDependencies || {}),
-    ],
+    input: 'src/entrypoint.ts',
+    output: [{ file: 'lib/index.d.ts', format: 'es' }],
+    plugins: [dts()],
   },
   {
     input: 'src/babel.ts',

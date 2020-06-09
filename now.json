@@ -5,9 +5,22 @@
       "use": "@now/static-build"
     },
     {
+      "src": "test/fixture/api/posts.js",
+      "use": "@now/node"
+    },
+    {
+      "src": "package.json",
+      "use": "@now/static-build"
+    },
+    {
       "src": "example/package.json",
       "use": "@now/static-build"
     }
   ],
-  "routes": [{ "handle": "filesystem" }, { "src": "/(.*)", "dest": "/docs/$1" }]
+  "routes": [
+    { "src": "/api/posts/.*", "dest": "/test/fixture/api/posts.js" },
+    { "handle": "filesystem" },
+    { "src": "/fixture/(.*)", "dest": "/fixture/200.html" },
+    { "src": "/(.*)", "dest": "/docs/$1" }
+  ]
 }

@@ -1,12 +1,24 @@
 <template>
-  <div>
-    <div>ref-{{ computedVal }}</div>
-    <div>function-{{ funcValue }}</div>
-    <div>prefetched-{{ prefetchValue }}</div>
-    <div>on: {{ asyncValue }}</div>
-    <div>no-change: {{ noChange }}</div>
-    <nuxt-link to="/">home</nuxt-link>
-  </div>
+  <blockquote>
+    <p>
+      <code>ref-{{ computedVal }}</code>
+    </p>
+    <p>
+      <code>function-{{ funcValue }}</code>
+    </p>
+    <p>
+      <code>prefetched-{{ prefetchValue }}</code>
+    </p>
+    <p>
+      <code>on: {{ asyncValue }}</code>
+    </p>
+    <p>
+      <code>no-change: {{ noChange }}</code>
+    </p>
+    <p>
+      <code>shallow-{{ shallow.v.deep }}</code>
+    </p>
+  </blockquote>
 </template>
 
 <script>
@@ -18,22 +30,24 @@ import {
   ssrRef,
   onServerPrefetch,
   useAsync,
+  shallowSsrRef,
+  onMounted,
 } from 'nuxt-composition-api'
 
-export function fetcher(result, time = 100) {
-  return new Promise(resolve => {
-    return setTimeout(() => {
-      resolve(result)
-    }, time)
-  })
-}
+import { fetcher } from '../utils'
 
 export default defineComponent({
   setup() {
-    const refValue = ssrRef('') // changed => in __NUXT__
-    const prefetchValue = ssrRef('') // changed => in __NUXT__
-    const funcValue = ssrRef(() => 'runs SSR or client-side') // function => in __NUXT__
-    const noChange = ssrRef('initValue') // no Change => not in __NUXT__
+    const refValue = ssrRef('')
+    const prefetchValue = ssrRef('')
+    const funcValue = ssrRef(() => 'runs SSR or client-side')
+    const noChange = ssrRef('initValue')
+
+    const shallow = shallowSsrRef({ v: { deep: 'init' } })
+    if (process.server) shallow.value = { v: { deep: 'server' } }
+    onMounted(() => {
+      shallow.value.v.deep = 'client'
+    })
 
     const computedVal = computed(() => refValue.value)
 
@@ -47,17 +61,13 @@ export default defineComponent({
       fetcher(process.server ? 'server' : 'client', 500)
     )
 
-    // Error handeling
-    // useAsync(() => {
-    //   throw '42'
-    // })
-
     return {
       computedVal,
       funcValue,
       prefetchValue,
       asyncValue,
       noChange,
+      shallow,
     }
   },
 })

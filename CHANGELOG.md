@@ -1,3 +1,120 @@
+### [0.8.2](https://github.com/nuxt-community/composition-api/compare/0.8.1...0.8.2) (2020-06-04)
+
+
+### Bug Fixes
+
+* regression if `ssrRef` is used outside setup (in dev) ([f2beecd](https://github.com/nuxt-community/composition-api/commit/f2beecd38396a1942a52aceb55cc516eb9de37b7))
+
+### [0.8.1](https://github.com/nuxt-community/composition-api/compare/0.8.0...0.8.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* re-run `ssrRef` factory functions on hot module reload ([282b8d2](https://github.com/nuxt-community/composition-api/commit/282b8d273cf049d9015d29ee8dc60f2ff0478248)), closes [#88](https://github.com/nuxt-community/composition-api/issues/88)
+
+## [0.8.0](https://github.com/nuxt-community/composition-api/compare/0.7.5...0.8.0) (2020-05-30)
+
+
+### Features
+
+* add `useStatic` helper to inline results of API calls ([#79](https://github.com/nuxt-community/composition-api/issues/79)) ([460b615](https://github.com/nuxt-community/composition-api/commit/460b6152c93f678781a79a628a16894ca7795a02))
+
+### [0.7.5](https://github.com/nuxt-community/composition-api/compare/0.7.4...0.7.5) (2020-05-30)
+
+
+### Bug Fixes
+
+* allow extension of `useContext` return type ([24d7586](https://github.com/nuxt-community/composition-api/commit/24d75865be7d6226aafd871cae7f2346bef021e1)), closes [#84](https://github.com/nuxt-community/composition-api/issues/84)
+
+### [0.7.4](https://github.com/nuxt-community/composition-api/compare/0.7.3...0.7.4) (2020-05-28)
+
+
+### Bug Fixes
+
+* transpile buildModule ([2d5388d](https://github.com/nuxt-community/composition-api/commit/2d5388de3433d157a71393cc121fd34ed1398dad)), closes [#80](https://github.com/nuxt-community/composition-api/issues/80)
+
+### [0.7.3](https://github.com/nuxt-community/composition-api/compare/0.7.2...0.7.3) (2020-05-27)
+
+
+### Bug Fixes
+
+* `useMeta` refs should be reactive ([#81](https://github.com/nuxt-community/composition-api/issues/81)) ([74cb5ef](https://github.com/nuxt-community/composition-api/commit/74cb5ef4b5b1e896bd64af3b9fb43ddb636f5894))
+
+### [0.7.2](https://github.com/nuxt-community/composition-api/compare/0.7.1...0.7.2) (2020-05-27)
+
+
+### Bug Fixes
+
+* allow custom `globalContext` and `globalNuxt` ([#80](https://github.com/nuxt-community/composition-api/issues/80)) ([8b8d7eb](https://github.com/nuxt-community/composition-api/commit/8b8d7eb73a70fedfff630709fc03f6958a8d4961))
+* reduce chance of `$fetch`/`$fetchState` collision ([534dc43](https://github.com/nuxt-community/composition-api/commit/534dc432af43934d079b1cb0a4c8231e27053f6e)), closes [#74](https://github.com/nuxt-community/composition-api/issues/74)
+* sanitise ssrRefs ([fcb4a9d](https://github.com/nuxt-community/composition-api/commit/fcb4a9daca955b9537c6996f1de798b7eae6f94a))
+
+### [0.7.1](https://github.com/nuxt-community/composition-api/compare/0.7.0...0.7.1) (2020-05-19)
+
+
+### Bug Fixes
+
+* register composition api before layouts ([93024a8](https://github.com/nuxt-community/composition-api/commit/93024a827af853c061ff70429a835ebc7df52786)), closes [#64](https://github.com/nuxt-community/composition-api/issues/64) [#65](https://github.com/nuxt-community/composition-api/issues/65)
+
+## [0.7.0](https://github.com/nuxt-community/composition-api/compare/0.6.3...0.7.0) (2020-05-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* `route`, `query`, `from` and `params` are now returned as refs from `useContext`, which was probably what you wanted anyway.
+
+### Bug Fixes
+
+* make route-related context reactive ([91292c8](https://github.com/nuxt-community/composition-api/commit/91292c8cb2d3cc2954ca67514ac59ab006f3ae73))
+
+### [0.6.3](https://github.com/nuxt-community/composition-api/compare/0.6.2...0.6.3) (2020-05-11)
+
+
+### Features
+
+* create shallowSsrRef ([#49](https://github.com/nuxt-community/composition-api/issues/49)) ([5ef0f6c](https://github.com/nuxt-community/composition-api/commit/5ef0f6c8d6597e38b7396fdad9ef087eb4194eb6))
+
+### [0.6.2](https://github.com/nuxt-community/composition-api/compare/0.6.1...0.6.2) (2020-05-11)
+
+
+### Features
+
+* use appropriate core-js polyfill for ie11 ([5281e66](https://github.com/nuxt-community/composition-api/commit/5281e66b1e77d762056909a2157ddbc72253fc71))
+
+
+### Bug Fixes
+
+* insert composition api plugin before others ([2ef608b](https://github.com/nuxt-community/composition-api/commit/2ef608b456fe945b47661d82af337dcd20c390c5))
+* reduce meta type definitions ([fa9efa3](https://github.com/nuxt-community/composition-api/commit/fa9efa37c8eadd71c523a7cdbe0e574e210f4f8b))
+* revert data sanitisation ([1a4bbed](https://github.com/nuxt-community/composition-api/commit/1a4bbed5025b9f1deb8294d568cf419d27b99a5e))
+* sanitise `ssrRef` data ([d86fdb2](https://github.com/nuxt-community/composition-api/commit/d86fdb2ec6b00f437fe2c1786133b18fffe78a3b))
+
+### [0.6.1](https://github.com/nuxt-community/composition-api/compare/0.6.0...0.6.1) (2020-05-10)
+
+
+### Features
+
+* allow `ssrRef` to work outside of setup ([#46](https://github.com/nuxt-community/composition-api/issues/46)) ([6a67c05](https://github.com/nuxt-community/composition-api/commit/6a67c05537f87254d2dcb0c95dd43c4747431a5f))
+
+
+### Bug Fixes
+
+* improve default values for `useMeta` ([f3024e1](https://github.com/nuxt-community/composition-api/commit/f3024e1e79a01a2d9714b4549bd6d6966b2ef260))
+
+## [0.6.0](https://github.com/nuxt-community/composition-api/compare/0.5.0...0.6.0) (2020-05-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* `useHead()` no longer exists and instead `useMeta` can be used directly within `setup`, as long as a minimal `head: {}` is defined in the component options.
+
+_Note_: Work has already begun on composable hooks for `vue-meta` that will mean we don't need to define a minimal `head` object: see [here](5d0eb1ab60ce476ed8a97e97d4d409e74284df9b).
+
+### Features
+
+* allow automatic injection of `head()` into components ([#43](https://github.com/nuxt-community/composition-api/issues/43)) ([f1bda39](https://github.com/nuxt-community/composition-api/commit/f1bda396ea096e42dff645df3275b5d4d288ac73)), closes [#41](https://github.com/nuxt-community/composition-api/issues/41)
+* return `$fetch` and `$fetchState` from `useFetch` ([c45177f](https://github.com/nuxt-community/composition-api/commit/c45177f341c57fd40136aaac8e0c55e97c4edd4a))
+
 ## [0.5.0](https://github.com/nuxt-community/composition-api/compare/0.4.1...0.5.0) (2020-05-08)
 
 
