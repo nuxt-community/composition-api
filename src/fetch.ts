@@ -111,6 +111,10 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
   const attrs = (vm.$vnode.data.attrs = vm.$vnode.data.attrs || {})
   attrs['data-fetch-key'] = vm._fetchKey
 
+  console.log(vm._data)
+  console.log(vm)
+  console.log(Object.keys(vm))
+
   // Add to ssrContext for window.__NUXT__.fetch
   vm.$ssrContext.nuxt.fetch.push(
     vm.$fetchState.error
