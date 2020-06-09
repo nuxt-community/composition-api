@@ -1,6 +1,7 @@
 import { defineComponent as define } from '@vue/composition-api'
 
 import { getHeadOptions } from './meta'
+import { isComputed } from './computed'
 
 /**
  * If you want to enable `useMeta`, make sure to include `head: {}` in your component definition.
@@ -17,10 +18,22 @@ import { getHeadOptions } from './meta'
   ```
  */
 export const defineComponent: typeof define = (options: any) => {
-  if (!('head' in options)) return options
+  if (options.setup) {
+    const old = options.setup
 
-  return {
+    options.setup = (...args: any[]) => {
+      const res = old(...args)
+
+      options.__n_comp = Object.keys(res).filter(key => isComputed(res[key]))
+
+      return res
+    }
+  }
+
+  if (!('head' in options)) return define(options)
+
+  return define({
     ...options,
     ...getHeadOptions(options),
-  }
+  })
 }

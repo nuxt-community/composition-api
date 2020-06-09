@@ -111,15 +111,19 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
   const attrs = (vm.$vnode.data.attrs = vm.$vnode.data.attrs || {})
   attrs['data-fetch-key'] = vm._fetchKey
 
-  console.log(vm._data)
-  console.log(vm)
-  console.log(Object.keys(vm))
+  const data: any = {}
+
+  Object.keys(vm._data).forEach(key => {
+    if ((vm.$options as any).__n_comp.indexOf(key) !== -1) {
+      data[key] = vm._data[key]
+    }
+  })
 
   // Add to ssrContext for window.__NUXT__.fetch
   vm.$ssrContext.nuxt.fetch.push(
     vm.$fetchState.error
       ? { _error: vm.$fetchState.error }
-      : JSON.parse(JSON.stringify(vm._data))
+      : JSON.parse(JSON.stringify(data))
   )
 }
 
@@ -210,13 +214,7 @@ export const useFetch = (callback: Fetch) => {
   onBeforeMount(() => {
     // Merge data
     for (const key in data) {
-      try {
-        Vue.set(vm, key, data[key])
-      } catch (e) {
-        if (process.env.NODE_ENV === 'development')
-          // eslint-disable-next-line
-          console.warn(`Could not hydrate ${key}.`)
-      }
+      Vue.set(vm, key, data[key])
     }
   })
 
