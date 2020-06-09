@@ -5,6 +5,7 @@ Vue.use(CompositionApi)
 
 export { useAsync } from './async'
 export { defineComponent } from './component'
+export { isComputed } from './computed'
 export { useContext, withContext } from './context'
 export { useFetch } from './fetch'
 export { useMeta } from './meta'
