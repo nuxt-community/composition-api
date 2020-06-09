@@ -114,7 +114,7 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
   const data: any = {}
 
   Object.keys(vm._data).forEach(key => {
-    if ((vm.$options as any).__n_comp.indexOf(key) !== -1) {
+    if ((vm._data.__n_comp as string[]).indexOf(key) === -1) {
       data[key] = vm._data[key]
     }
   })

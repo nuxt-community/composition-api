@@ -24,9 +24,9 @@ export const defineComponent: typeof define = (options: any) => {
     options.setup = (...args: any[]) => {
       const res = old(...args)
 
-      options.__n_comp = Object.keys(res).filter(key => isComputed(res[key]))
+      const __n_comp = Object.keys(res).filter(key => isComputed(res[key]))
 
-      return res
+      return { ...res, __n_comp }
     }
   }
 
