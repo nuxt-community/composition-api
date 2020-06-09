@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import { getCurrentInstance, onBeforeMount } from '@vue/composition-api'
-import { isComputed } from './computed'
 import { onServerPrefetch } from './server-prefetch'
 
 import { ComponentInstance } from '@vue/composition-api/dist/component'
@@ -161,8 +160,12 @@ export const useFetch = (callback: Fetch) => {
   onBeforeMount(() => {
     // Merge data
     for (const key in data) {
-      if (!isComputed((vm as any)[key])) {
+      try {
         Vue.set(vm, key, data[key])
+      } catch (e) {
+        if (process.env.NODE_ENV === 'development')
+          // eslint-disable-next-line
+          console.warn(`Could not hydrate ${key}.`)
       }
     }
   })
