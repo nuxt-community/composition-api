@@ -1,4 +1,4 @@
-<h1 align="center">🏗️ Nuxt Composition API</h1> 
+<h1 align="center">🏗️ Nuxt Composition API</h1>
 <p align="center">Composition API hooks for Nuxt</p>
 
 <p align="center">
