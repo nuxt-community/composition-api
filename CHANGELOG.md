@@ -1,3 +1,14 @@
+## [0.9.0](https://github.com/nuxt-community/composition-api/compare/0.8.2...0.9.0) (2020-06-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* There are a number of breaking changes in the latest upstream composition-api. See https://github.com/vuejs/composition-api/releases/tag/v0.6.0 for details.
+
+### Features
+
+* upgrade to `@vue/composition-api` v0.6.1 ([3d0bdc6](https://github.com/nuxt-community/composition-api/commit/3d0bdc62b509e0e95896ff8da79f12feaf0fb60b))
+
 ### [0.8.2](https://github.com/nuxt-community/composition-api/compare/0.8.1...0.8.2) (2020-06-04)
 
 
