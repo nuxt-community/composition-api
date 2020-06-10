@@ -13,12 +13,22 @@ export { useStatic } from './static'
 
 export type {
   ComponentRenderProxy,
+  ComputedRef,
+  FlushMode,
   InjectionKey,
   PropOptions,
   PropType,
   Ref,
   SetupContext,
+  UnwrapRef,
   VueWatcher,
+  WatchCallback,
+  WatchEffect,
+  WatchOptions,
+  WatchOptionsBase,
+  WatchSource,
+  WatchStopHandle,
+  WritableComputedRef,
 } from '@vue/composition-api'
 
 export {
@@ -27,7 +37,9 @@ export {
   createElement,
   getCurrentInstance,
   inject,
+  isReactive,
   isRef,
+  markRaw,
   onActivated,
   onBeforeMount,
   onBeforeUnmount,
@@ -42,7 +54,13 @@ export {
   reactive,
   ref,
   set,
+  shallowReactive,
+  shallowRef,
+  toRaw,
+  toRef,
   toRefs,
+  triggerRef,
+  unref,
   watch,
   watchEffect,
 } from '@vue/composition-api'

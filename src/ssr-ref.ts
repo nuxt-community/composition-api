@@ -1,5 +1,5 @@
-import { ref, computed } from '@vue/composition-api'
-import type { Ref } from '@vue/composition-api'
+import { ref, computed, shallowRef } from '@vue/composition-api'
+import type { Ref, UnwrapRef } from '@vue/composition-api'
 
 import { globalContext, globalNuxt } from './globals'
 
@@ -40,7 +40,10 @@ const sanitise = (val: unknown) =>
   const val2 = ssrRef(myExpensiveSetterFunction)
   ```
  */
-export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
+export const ssrRef = <T>(
+  value: T | (() => T),
+  key?: string
+): Ref<UnwrapRef<T>> => {
   if (!key) {
     throw new Error(
       "You must provide a key. You can have it generated automatically by adding 'nuxt-composition-api/babel' to your Babel plugins."
@@ -85,15 +88,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
     },
   })
 
-  return proxy as Ref<T>
-}
-
-// TODO: remove when https://github.com/vuejs/composition-api/pull/311 is merged
-function shallowRef<T>(value: T): Ref<T> {
-  return computed({
-    get: () => value,
-    set: v => (value = v),
-  })
+  return proxy
 }
 
 /**

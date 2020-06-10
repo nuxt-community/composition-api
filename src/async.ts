@@ -1,5 +1,5 @@
 import { isRef, onServerPrefetch } from '@vue/composition-api'
-import type { Ref } from '@vue/composition-api'
+import type { Ref, UnwrapRef } from '@vue/composition-api'
 
 import { globalNuxt } from './globals'
 import { ssrRef } from './ssr-ref'
@@ -51,14 +51,14 @@ export const useAsync = <T>(
     if (p instanceof Promise) {
       if (process.server) {
         onServerPrefetch(async () => {
-          _ref.value = await p
+          _ref.value = (await p) as UnwrapRef<T>
         })
       } else {
         // eslint-disable-next-line
-        p.then(res => (_ref.value = res))
+        p.then(res => (_ref.value = res as UnwrapRef<T>))
       }
     } else {
-      _ref.value = p
+      _ref.value = p as UnwrapRef<T>
     }
   }
 

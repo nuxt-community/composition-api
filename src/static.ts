@@ -1,5 +1,6 @@
 import { ssrRef } from './ssr-ref'
-import { Ref, onServerPrefetch, watch, computed } from '@vue/composition-api'
+import { onServerPrefetch, watch, computed, ref } from '@vue/composition-api'
+import type { Ref, UnwrapRef } from '@vue/composition-api'
 
 const staticPath = '<%= options.staticPath %>'
 const staticCache: Record<string, any> = {}
@@ -67,7 +68,7 @@ async function writeFile(key: string) {
  */
 export const useStatic = <T>(
   factory: (param: string, key: string) => Promise<T>,
-  param: Ref<string> = { value: '' },
+  param: Ref<string> = ref(''),
   keyBase: string
 ): Ref<T | null> => {
   const key = computed(() => `${keyBase}-${param.value}`)
@@ -79,40 +80,46 @@ export const useStatic = <T>(
     const onFailure = () =>
       factory(param.value, key.value).then(r => {
         staticCache[key.value] = r
-        result.value = r
+        result.value = r as UnwrapRef<T>
         return
       })
-    watch(key, key => {
-      if (key in staticCache) {
-        result.value = staticCache[key]
-        return
+    watch(
+      key,
+      key => {
+        if (key in staticCache) {
+          result.value = staticCache[key]
+          return
+        }
+        /* eslint-disable promise/always-return */
+        if (!process.static) onFailure()
+        else
+          fetch(`<%= options.publicPath %>${key}.json`)
+            .then(response => {
+              if (!response.ok) throw new Error('Response invalid.')
+              return response.json()
+            })
+            .then(json => {
+              staticCache[key] = json
+              result.value = json
+            })
+            .catch(onFailure)
+        /* eslint-enable */
+      },
+      {
+        immediate: true,
       }
-      /* eslint-disable promise/always-return */
-      if (!process.static) onFailure()
-      else
-        fetch(`<%= options.publicPath %>${key}.json`)
-          .then(response => {
-            if (!response.ok) throw new Error('Response invalid.')
-            return response.json()
-          })
-          .then(json => {
-            staticCache[key] = json
-            result.value = json
-          })
-          .catch(onFailure)
-      /* eslint-enable */
-    })
+    )
   } else {
     if (key.value in staticCache) {
       result.value = staticCache[key.value]
-      return result
+      return result as Ref<T | null>
     }
     onServerPrefetch(async () => {
-      result.value = await factory(param.value, key.value)
+      result.value = (await factory(param.value, key.value)) as UnwrapRef<T>
       staticCache[key.value] = result.value
       writeFile(key.value)
     })
   }
 
-  return result
+  return result as Ref<T | null>
 }

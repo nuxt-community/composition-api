@@ -106,7 +106,8 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
 
   const refs = toRefs(_head) as ToRefs<ReturnType<typeof createEmptyMeta> & T>
 
-  if (process.client) watch(Object.values(refs), vm.$meta().refresh)
+  if (process.client)
+    watch(Object.values(refs), vm.$meta().refresh, { immediate: true })
 
   return refs
 }

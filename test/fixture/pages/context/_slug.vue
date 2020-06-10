@@ -29,9 +29,13 @@ export default defineComponent({
   setup() {
     const { route, query, params } = useContext()
     const called = ref(0)
-    watch(route, () => {
-      called.value++
-    })
+    watch(
+      route,
+      () => {
+        called.value++
+      },
+      { immediate: true }
+    )
 
     return { route, query, params, called }
   },
