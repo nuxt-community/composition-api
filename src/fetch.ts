@@ -5,9 +5,9 @@ import {
   onServerPrefetch,
 } from '@vue/composition-api'
 
-import type { ComponentInstance } from '@vue/composition-api/dist/component'
-
 import { globalContext, globalNuxt } from './globals'
+
+type ComponentInstance = NonNullable<ReturnType<typeof getCurrentInstance>>
 
 function normalizeError(err: any) {
   let message

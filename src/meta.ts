@@ -6,10 +6,10 @@ import {
   Ref,
   reactive,
   watch,
+  UnwrapRef,
 } from '@vue/composition-api'
 
 import type { MetaInfo } from 'vue-meta'
-import type { UnwrapRef } from '@vue/composition-api/dist/reactivity'
 
 export type ReactiveHead<T = Record<string, unknown>> = UnwrapRef<
   Ref<MetaInfo & T>
