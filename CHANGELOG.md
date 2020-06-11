@@ -1,3 +1,5 @@
+### [0.9.1](https://github.com/nuxt-community/composition-api/compare/0.9.0...0.9.1) (2020-06-11)
+
 ## [0.9.0](https://github.com/nuxt-community/composition-api/compare/0.8.2...0.9.0) (2020-06-10)
 
 
