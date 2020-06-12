@@ -24,12 +24,15 @@ export default defineComponent({
     const { params } = useContext()
     const id = computed(() => params.value.id)
     const post = useStatic(
-      id => 
-        process.server && process.static ?
-          fetcher({ id }) :
-          fetch((process.server ? 'http://localhost:3000' : '') + `/api/posts/${id}`).then(m =>
-            m.json()
-          ).catch(e => console.log(e)),
+      id =>
+        process.server && process.static
+          ? fetcher({ id })
+          : fetch(
+              (process.server ? 'http://localhost:3000' : '') +
+                `/api/posts/${id}`
+            )
+              .then(m => m.json())
+              .catch(e => console.log(e)),
       id,
       'posts'
     )

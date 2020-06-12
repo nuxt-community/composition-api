@@ -1,19 +1,18 @@
 import { Selector } from 'testcafe'
-import {
-  navigateTo,
-  expectOnPage,
-  getLogger,
-} from './helpers'
+import { navigateTo, expectOnPage, getLogger } from './helpers'
 
 const apiLogger = getLogger(/posts/)
 
-const url = (id: string | number) => process.env.GENERATE ? `http://localhost:3000/posts-${id}.json`  : `http://localhost:3000/api/posts/${id}`
+const url = (id: string | number) =>
+  process.env.GENERATE
+    ? `http://localhost:3000/posts-${id}.json`
+    : `http://localhost:3000/api/posts/${id}`
 
 // eslint-disable-next-line
 fixture`useStatic`.beforeEach(async t => {
   await t.addRequestHooks(apiLogger.logger)
-  apiLogger.logger.clear()}
-)
+  apiLogger.logger.clear()
+})
 
 test('Shows data on ssr-loaded page', async t => {
   await navigateTo('/static/1')
@@ -32,7 +31,9 @@ test('Shows data on non-generated page', async t => {
   await navigateTo('/static/3')
   apiLogger.logger.clear()
   await t.click(Selector('a').withText('Next'))
-  await t.expect(apiLogger.logger.count(Boolean)).eql(process.env.GENERATE ? 2 : 1)
+  await t
+    .expect(apiLogger.logger.count(Boolean))
+    .eql(process.env.GENERATE ? 2 : 1)
 })
 
 test('Shows appropriate data on client-loaded page', async t => {

@@ -1,4 +1,4 @@
-import { t,Selector } from 'testcafe'
+import { t, Selector } from 'testcafe'
 import { navigateTo, expectOnPage } from './helpers'
 
 // eslint-disable-next-line
