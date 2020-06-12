@@ -8,6 +8,7 @@ module.exports = {
   rootDir: resolve(__dirname, '../..'),
   buildDir: resolve(__dirname, '.nuxt'),
   srcDir: __dirname,
+  plugins: [resolve(__dirname, './plugins/global.js')],
   serverMiddleware: [
     {
       path: '/api/posts',

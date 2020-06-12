@@ -18,6 +18,7 @@ module.exports = {
           title: 'Helpers',
           collapsable: false,
           children: [
+            '/helpers/onGlobalSetup',
             '/helpers/shallowSsrRef',
             '/helpers/ssrRef',
             '/helpers/useAsync',
