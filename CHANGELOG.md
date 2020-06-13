@@ -1,3 +1,20 @@
+### [0.9.2](https://github.com/nuxt-community/composition-api/compare/0.9.1...0.9.2) (2020-06-13)
+
+
+### Features
+
+* provide access to global `setup()` function ([7fd70d9](https://github.com/nuxt-community/composition-api/commit/7fd70d9ccb4687a3a20aceeb24a3295d53875146)), closes [#104](https://github.com/nuxt-community/composition-api/issues/104) [#111](https://github.com/nuxt-community/composition-api/issues/111)
+
+
+### Bug Fixes
+
+* remove duplicate static path definition ([48b9afb](https://github.com/nuxt-community/composition-api/commit/48b9afbe0531ffa90090c67d69d8fc65f02fa868))
+
+
+### Performance Improvements
+
+* remove unnecessary spread ([2300a93](https://github.com/nuxt-community/composition-api/commit/2300a93d79e826526645d732f57bf9712f59e52e))
+
 ### [0.9.1](https://github.com/nuxt-community/composition-api/compare/0.9.0...0.9.1) (2020-06-11)
 
 ## [0.9.0](https://github.com/nuxt-community/composition-api/compare/0.8.2...0.9.0) (2020-06-10)
