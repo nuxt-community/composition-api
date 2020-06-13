@@ -3,6 +3,7 @@ import type { Ref, UnwrapRef } from '@vue/composition-api'
 
 import { globalNuxt } from './globals'
 import { ssrRef } from './ssr-ref'
+import { validateKey } from './utils'
 
 /**
  * You can create reactive values that depend on asynchronous calls with `useAsync`.
@@ -32,11 +33,7 @@ export const useAsync = <T>(
   cb: () => T | Promise<T>,
   key?: string | Ref<null>
 ): Ref<null | T> => {
-  if (!key) {
-    throw new Error(
-      "You must provide a key. You can have it generated automatically by adding 'nuxt-composition-api/babel' to your Babel plugins."
-    )
-  }
+  validateKey(key)
 
   const _ref = isRef(key) ? key : ssrRef<T | null>(null, key)
 

@@ -23,15 +23,15 @@
 
 <script>
 import {
-  defineComponent,
-  ref,
   computed,
-  useFetch,
-  ssrRef,
-  onServerPrefetch,
-  useAsync,
-  shallowSsrRef,
+  defineComponent,
   onMounted,
+  onServerPrefetch,
+  ref,
+  shallowSsrRef,
+  ssrRef,
+  useAsync,
+  useFetch,
 } from 'nuxt-composition-api'
 
 import { fetcher } from '../utils'
@@ -45,7 +45,7 @@ export default defineComponent({
 
     const shallow = shallowSsrRef({ v: { deep: 'init' } })
     if (process.server) shallow.value = { v: { deep: 'server' } }
-    onMounted(() => {
+    onMounted(async () => {
       shallow.value.v.deep = 'client'
     })
 

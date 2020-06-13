@@ -20,6 +20,7 @@ module.exports = {
           children: [
             '/helpers/onGlobalSetup',
             '/helpers/shallowSsrRef',
+            '/helpers/ssrPromise',
             '/helpers/ssrRef',
             '/helpers/useAsync',
             '/helpers/useContext',

@@ -34,8 +34,9 @@ export default function ssrRefPlugin({ loadOptions, getEnv, types: t }: Babel) {
           method = 'hex'
           break
 
-        case 'ssrRef':
         case 'shallowSsrRef':
+        case 'ssrPromise':
+        case 'ssrRef':
         case 'useAsync':
           if (path.node.arguments.length > 1) return
           break

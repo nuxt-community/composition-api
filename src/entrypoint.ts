@@ -9,7 +9,7 @@ export { useContext, withContext } from './context'
 export { useFetch } from './fetch'
 export { globalPlugin, onGlobalSetup } from './hooks'
 export { useMeta } from './meta'
-export { ssrRef, shallowSsrRef, setSSRContext } from './ssr-ref'
+export { ssrRef, shallowSsrRef, setSSRContext, ssrPromise } from './ssr-ref'
 export { useStatic } from './static'
 
 export type {
