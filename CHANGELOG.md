@@ -1,3 +1,10 @@
+### [0.9.3](https://github.com/nuxt-community/composition-api/compare/0.9.2...0.9.3) (2020-06-13)
+
+
+### Features
+
+* add `ssrPromise` functionality ([461939d](https://github.com/nuxt-community/composition-api/commit/461939da38b0386c95b328ae49a10d2e57536aad)), closes [#115](https://github.com/nuxt-community/composition-api/issues/115)
+
 ### [0.9.2](https://github.com/nuxt-community/composition-api/compare/0.9.1...0.9.2) (2020-06-13)
 
 
