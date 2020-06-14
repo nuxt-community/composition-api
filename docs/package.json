@@ -6,6 +6,6 @@
     "now-build": "yarn docs:build"
   },
   "devDependencies": {
-    "vuepress": "^1.5.1"
+    "vuepress": "^1.5.2"
   }
 }
