@@ -58,7 +58,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@vue/composition-api": "^0.6.3",
+    "@vue/composition-api": "^0.6.4",
     "defu": "^2.0.4"
   },
   "devDependencies": {
