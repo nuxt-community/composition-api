@@ -65,7 +65,7 @@
     "@babel/plugin-transform-runtime": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-typescript": "^7.10.1",
-    "@nuxt/types": "^0.7.9",
+    "@nuxt/types": "^2.13.0",
     "@nuxtjs/module-test-utils": "^1.6.1",
     "@release-it/conventional-changelog": "^1.1.4",
     "@types/jest": "^26.0.0",
