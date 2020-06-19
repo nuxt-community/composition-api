@@ -31,7 +31,7 @@
     "compile": "rollup -c",
     "fixture": "nuxt -c test/fixture/nuxt.config.js",
     "fixture:prod": "rm -rf .nuxt && nuxt build -c test/fixture/nuxt.config.js && nuxt start -c test/fixture/nuxt.config.js",
-    "fixture:generate": "rm -rf .nuxt && nuxt generate -c test/fixture/nuxt.config.js && yarn http-server -s -p 3000 dist",
+    "fixture:generate": "rm -rf .nuxt && nuxt build -c test/fixture/nuxt.config.js && nuxt export -c test/fixture/nuxt.config.js && yarn http-server -s -p 3000 dist",
     "lint": "run-s lint:all:*",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.ts,.vue .",
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts,vue}\"",
@@ -44,7 +44,7 @@
     "test": "run-s test:*",
     "test:e2e-globals": "GLOBALS=true start-server-and-test fixture:prod 3000 \"testcafe firefox:headless test/e2e\"",
     "test:e2e-ssr": "start-server-and-test fixture:prod 3000 \"testcafe firefox:headless test/e2e\"",
-    "test:e2e-generated": "start-server-and-test fixture:generate 3000 \"GENERATE=true testcafe firefox:headless test/e2e\"",
+    "test:e2e-generated": "GENERATE=true start-server-and-test fixture:generate 3000 \"sleep 15 && testcafe firefox:headless test/e2e\"",
     "test:types": "tsd",
     "test:unit": "jest"
   },
@@ -91,7 +91,7 @@
     "rollup-plugin-dts": "^1.4.7",
     "rollup-plugin-typescript2": "^0.27.1",
     "start-server-and-test": "^1.11.0",
-    "testcafe": "1.8.4",
+    "testcafe": "1.8.6",
     "tsd": "^0.11.0",
     "yorkie": "^2.0.0"
   },

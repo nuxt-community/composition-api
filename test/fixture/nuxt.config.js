@@ -2,10 +2,22 @@
 const { resolve } = require('path')
 
 const routes = ['/context/a', '/static/1', '/static/2', '/static/3']
-const interval = 2000
+const interval = 3000
 
+const isGenerated = [process.env.GENERATE, process.env.NOW_BUILD].includes(
+  'true'
+)
+const isPublic = process.env.NOW_BUILD === 'true'
+const isTesting = process.env.NODE_ENV !== 'development' && !isPublic
+
+const rootDir = resolve(__dirname, '../..')
+
+/**
+ * @type {import('@nuxt/types').Configuration}
+ */
 module.exports = {
-  rootDir: resolve(__dirname, '../..'),
+  target: isGenerated ? 'static' : 'server',
+  rootDir,
   buildDir: resolve(__dirname, '.nuxt'),
   srcDir: __dirname,
   plugins: [resolve(__dirname, './plugins/global.js')],
@@ -16,12 +28,14 @@ module.exports = {
     },
   ],
   head: {
-    link: [
-      {
-        rel: 'stylesheet',
-        href: 'https://newcss.net/lite.css',
-      },
-    ],
+    link: isTesting
+      ? []
+      : [
+          {
+            rel: 'stylesheet',
+            href: 'https://newcss.net/lite.css',
+          },
+        ],
   },
   ...(process.env.GLOBALS === 'true'
     ? {
@@ -31,31 +45,19 @@ module.exports = {
         },
       }
     : {}),
-  ...(process.env.NOW_BUILD === 'true'
-    ? {
-        generate: {
-          dir: 'dist/fixture',
-          crawler: false,
-          routes,
-          interval,
-        },
-        router: {
-          base: '/fixture/',
-        },
-        build: {
-          publicPath: 'fixture',
-        },
-      }
-    : {
-        generate: {
-          crawler: false,
-          routes,
-          interval,
-        },
-      }),
+  generate: {
+    dir: isPublic ? 'dist/fixture' : undefined,
+    crawler: false,
+    routes,
+    interval,
+  },
+  router: {
+    base: isPublic ? '/fixture/' : undefined,
+  },
+  build: {
+    publicPath: isPublic ? 'fixture' : undefined,
+  },
   buildModules: [
-    process.env.NODE_ENV === 'test'
-      ? require('../..').default
-      : require.resolve('../..'),
+    process.env.NODE_ENV === 'test' ? require('../..').default : rootDir,
   ],
 }
