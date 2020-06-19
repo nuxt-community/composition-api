@@ -37,7 +37,7 @@
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts,vue}\"",
     "lint:eslint": "eslint --fix",
     "lint:prettier": "prettier --write --loglevel warn",
-    "now-build": "rm -rf .nuxt && NOW_BUILD=true nuxt generate -c test/fixture/nuxt.config.js",
+    "now-build": "rm -rf .nuxt && NOW_BUILD=true nuxt export -c test/fixture/nuxt.config.js",
     "prepare": "yarn build",
     "prepublishOnly": "yarn lint && yarn test",
     "release": "release-it",
