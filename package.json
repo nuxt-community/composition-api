@@ -96,8 +96,8 @@
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
-    "@nuxt/vue-app": "^2.12.2",
-    "nuxt": "^2.12.2",
+    "@nuxt/vue-app": "^2.13.0",
+    "nuxt": "^2.13.0",
     "vue": "^2"
   }
 }
