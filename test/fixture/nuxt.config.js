@@ -35,6 +35,7 @@ module.exports = {
     ? {
         generate: {
           dir: 'dist/fixture',
+          crawler: false,
           routes,
           interval,
         },
@@ -47,6 +48,7 @@ module.exports = {
       }
     : {
         generate: {
+          crawler: false,
           routes,
           interval,
         },
