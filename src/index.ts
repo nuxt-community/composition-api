@@ -60,7 +60,13 @@ const compositionApiModule: Module<any> = function () {
   this.options.build = this.options.build || {}
   this.options.build.babel = this.options.build.babel || {}
   this.options.build.babel.plugins = this.options.build.babel.plugins || []
-  this.options.build.babel.plugins.push(join(__dirname, 'babel'))
+  if (this.options.build.babel.plugins instanceof Function) {
+    console.warn(
+      'Unable to automatically add Babel plugin. Make sure your custom `build.babel.plugins` returns `nuxt-composition-api/babel`'
+    )
+  } else {
+    this.options.build.babel.plugins.push(join(__dirname, 'babel'))
+  }
 
   this.options.build.transpile = this.options.build.transpile || []
   this.options.build.transpile.push(/nuxt-composition-api/)
