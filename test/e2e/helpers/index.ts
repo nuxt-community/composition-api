@@ -1,6 +1,8 @@
 import { t, Selector, ClientFunction, RequestLogger } from 'testcafe'
 
-const url = `http://localhost:3000`
+const port = process.env.PORT || 3000
+const url = `http://localhost:${port}`
+
 export function navigateTo(path: string) {
   return t.navigateTo(`${url}${path}`)
 }

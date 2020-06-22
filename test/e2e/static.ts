@@ -3,10 +3,12 @@ import { navigateTo, expectOnPage, getLogger } from './helpers'
 
 const apiLogger = getLogger(/posts/)
 
+const port = process.env.PORT || 3000
+
 const url = (id: string | number) =>
   process.env.GENERATE
-    ? `http://localhost:3000/posts-${id}.json`
-    : `http://localhost:3000/api/posts/${id}`
+    ? `http://localhost:${port}/posts-${id}.json`
+    : `http://localhost:${port}/api/posts/${id}`
 
 // eslint-disable-next-line
 fixture`useStatic`.beforeEach(async t => {

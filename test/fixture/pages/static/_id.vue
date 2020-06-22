@@ -19,6 +19,8 @@ import {
 
 import { fetcher } from '../../utils'
 
+const port = process.env.PORT || 3000
+
 export default defineComponent({
   setup() {
     const { params } = useContext()
@@ -28,7 +30,7 @@ export default defineComponent({
         process.server && process.static
           ? fetcher({ id })
           : fetch(
-              (process.server ? 'http://localhost:3000' : '') +
+              (process.server ? `http://localhost:${port}` : '') +
                 `/api/posts/${id}`
             )
               .then(m => m.json())
