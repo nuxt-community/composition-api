@@ -2,6 +2,9 @@ const fetch = require('node-fetch')
 const serverlessEnvironment = !!process.env.NOW_BUILD
 
 export default {
+  server: {
+    port: process.env.PORT || 8000,
+  },
   plugins: ['@/plugins/vue-placeholders.js'],
   modules: ['@nuxt/http'],
   ...(serverlessEnvironment ? {
