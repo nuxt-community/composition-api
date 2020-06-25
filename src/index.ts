@@ -3,6 +3,9 @@ import { rmdirSync, readdirSync, copyFileSync, existsSync, mkdirSync } from 'fs'
 
 import type { Module } from '@nuxt/types'
 
+// eslint-disable-next-line
+const { isFullStatic } = require('@nuxt/utils')
+
 const compositionApiModule: Module<any> = function () {
   const libRoot = resolve(__dirname, '..')
 
@@ -50,6 +53,7 @@ const compositionApiModule: Module<any> = function () {
     src: resolve(libRoot, 'lib', 'entrypoint.js'),
     fileName: join('composition-api', 'index.js'),
     options: {
+      isFullStatic: isFullStatic(this.options),
       staticPath,
       publicPath: join(this.options.router?.base || '', '/'),
       globalContext,

@@ -1,11 +1,8 @@
 import Vue from 'vue'
-import {
-  getCurrentInstance,
-  onBeforeMount,
-  onServerPrefetch,
-} from '@vue/composition-api'
+import { getCurrentInstance, onBeforeMount } from '@vue/composition-api'
 
-import { globalContext, globalNuxt } from './globals'
+import { globalContext, globalNuxt, isFullStatic } from './globals'
+import type { NuxtApp } from '@nuxt/types/app'
 
 type ComponentInstance = NonNullable<ReturnType<typeof getCurrentInstance>>
 
@@ -32,10 +29,11 @@ function normalizeError(err: any) {
 }
 
 interface Fetch {
-  (context: ComponentInstance): void
+  (context: ComponentInstance): void | Promise<void>
 }
 
 const fetches = new WeakMap<ComponentInstance, Fetch[]>()
+const fetchPromises = new Map<Fetch, Promise<any>>()
 
 const isSsrHydration = (vm: ComponentInstance) =>
   (vm.$vnode?.elm as any)?.dataset?.fetchKey
@@ -47,6 +45,12 @@ interface AugmentedComponentInstance extends ComponentInstance {
   _hydrated?: boolean
   _fetchDelay?: number
   _fetchOnServer?: boolean
+}
+
+interface AugmentedNuxtApp extends NuxtApp {
+  isPreview?: boolean
+  _payloadFetchIndex?: number
+  _pagePayload?: any
 }
 
 function registerCallback(vm: ComponentInstance, callback: Fetch) {
@@ -67,7 +71,16 @@ async function callFetches(this: AugmentedComponentInstance) {
   const startTime = Date.now()
 
   try {
-    await Promise.all(fetchesToCall.map(fetch => fetch(this)))
+    await Promise.all(
+      fetchesToCall.map(fetch => {
+        if (fetchPromises.has(fetch)) return fetchPromises.get(fetch)
+        const promise = Promise.resolve(fetch(this)).finally(() =>
+          fetchPromises.delete(fetch)
+        )
+        fetchPromises.set(fetch, promise)
+        return promise
+      })
+    )
   } catch (err) {
     error = normalizeError(err)
   }
@@ -84,39 +97,33 @@ async function callFetches(this: AugmentedComponentInstance) {
   this.$nextTick(() => (this[globalNuxt] as any).nbFetching--)
 }
 
-async function serverPrefetch(vm: AugmentedComponentInstance) {
-  if (!vm._fetchOnServer) {
+const loadFullStatic = (vm: AugmentedComponentInstance) => {
+  // Check if component has been fetched on server
+  const { fetchOnServer } = vm.$options
+  const fetchedOnServer =
+    typeof fetchOnServer === 'function'
+      ? fetchOnServer.call(vm) !== false
+      : fetchOnServer !== false
+
+  const nuxt = vm.$nuxt as AugmentedNuxtApp
+  if (!fetchedOnServer || nuxt.isPreview || !nuxt._pagePayload) {
     return
   }
-  // Call and await on $fetch
-  vm.$fetchState =
-    vm.$fetchState ||
-    Vue.observable({
-      error: null,
-      pending: false,
-      timestamp: 0,
-    })
-  try {
-    await callFetches.call(vm)
-  } catch (err) {
-    vm.$fetchState.error = normalizeError(err)
+  vm._hydrated = true
+  nuxt._payloadFetchIndex = (nuxt._payloadFetchIndex || 0) + 1
+  vm._fetchKey = nuxt._payloadFetchIndex
+  const data = nuxt._pagePayload.fetch[vm._fetchKey]
+
+  // If fetch error
+  if (data && data._error) {
+    vm.$fetchState.error = data._error
+    return
   }
-  vm.$fetchState.pending = false
 
-  // Define an ssrKey for hydration
-  vm._fetchKey = vm.$ssrContext.nuxt.fetch.length
-
-  // Add data-fetch-key on parent element of Component
-  if (!vm.$vnode.data) vm.$vnode.data = {}
-  const attrs = (vm.$vnode.data.attrs = vm.$vnode.data.attrs || {})
-  attrs['data-fetch-key'] = vm._fetchKey
-
-  // Add to ssrContext for window.__NUXT__.fetch
-  vm.$ssrContext.nuxt.fetch.push(
-    vm.$fetchState.error
-      ? { _error: vm.$fetchState.error }
-      : JSON.parse(JSON.stringify(vm._data))
-  )
+  // Merge data
+  for (const key in data) {
+    Vue.set(vm.$data, key, data[key])
+  }
 }
 
 /**
@@ -152,6 +159,25 @@ export const useFetch = (callback: Fetch) => {
   const vm = getCurrentInstance() as AugmentedComponentInstance | undefined
   if (!vm) throw new Error('This must be called within a setup function.')
 
+  registerCallback(vm, callback)
+
+  if (process.server) {
+    vm.$options.fetch = callFetches.bind(vm)
+    return
+  }
+
+  function result() {
+    return {
+      fetch: vm!.$fetch,
+      fetchState: vm!.$fetchState,
+      $fetch: vm!.$fetch,
+      $fetchState: vm!.$fetchState,
+    }
+  }
+
+  vm._fetchDelay =
+    typeof vm.$options.fetchDelay === 'number' ? vm.$options.fetchDelay : 200
+
   vm.$fetchState =
     vm.$fetchState ||
     Vue.observable({
@@ -162,29 +188,13 @@ export const useFetch = (callback: Fetch) => {
 
   vm.$fetch = callFetches.bind(vm)
 
-  registerCallback(vm, callback)
+  onBeforeMount(() => !vm._hydrated && callFetches.call(vm))
 
-  if (typeof vm.$options.fetchOnServer === 'function') {
-    vm._fetchOnServer = vm.$options.fetchOnServer.call(vm) !== false
-  } else {
-    vm._fetchOnServer = vm.$options.fetchOnServer !== false
+  if (!isSsrHydration(vm)) {
+    if (isFullStatic) onBeforeMount(() => loadFullStatic(vm))
+    console.log('useFetch -> isFullStatic', isFullStatic)
+    return result()
   }
-
-  onServerPrefetch(() => serverPrefetch(vm))
-
-  onBeforeMount(() => {
-    if (!vm._hydrated) {
-      return callFetches.call(vm)
-    }
-  })
-
-  if (process.server || !isSsrHydration(vm))
-    return {
-      fetch: vm.$fetch,
-      fetchState: vm.$fetchState,
-      $fetch: vm.$fetch,
-      $fetchState: vm.$fetchState,
-    }
 
   // Hydrate component
   vm._hydrated = true
@@ -194,19 +204,16 @@ export const useFetch = (callback: Fetch) => {
   // If fetch error
   if (data && data._error) {
     vm.$fetchState.error = data._error
-
-    return {
-      fetch: vm.$fetch,
-      fetchState: vm.$fetchState,
-      $fetch: vm.$fetch,
-      $fetchState: vm.$fetchState,
-    }
+    return result()
   }
 
   onBeforeMount(() => {
     // Merge data
     for (const key in data) {
       try {
+        if (key in vm && typeof vm[key as keyof typeof vm] === 'function') {
+          continue
+        }
         Vue.set(vm, key, data[key])
       } catch (e) {
         if (process.env.NODE_ENV === 'development')
@@ -216,10 +223,5 @@ export const useFetch = (callback: Fetch) => {
     }
   })
 
-  return {
-    fetch: vm.$fetch,
-    fetchState: vm.$fetchState,
-    $fetch: vm.$fetch,
-    $fetchState: vm.$fetchState,
-  }
+  return result()
 }
