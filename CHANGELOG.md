@@ -1,3 +1,21 @@
+## [0.10.0](https://github.com/nuxt-community/composition-api/compare/0.9.3...0.10.0) (2020-06-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires nuxt 2.13+ for `useFetch`
+
+### Features
+
+* support static target for `useFetch` ([74205b5](https://github.com/nuxt-community/composition-api/commit/74205b5198e46f43f77601a9c786b49b1e6e9dc1)), closes [#127](https://github.com/nuxt-community/composition-api/issues/127)
+
+
+### Bug Fixes
+
+* handle preexisting babel plugins function ([c5c338f](https://github.com/nuxt-community/composition-api/commit/c5c338f1675a05264ce3481e8469ad24d2fe44d8))
+* specify type for inline function ([694f21b](https://github.com/nuxt-community/composition-api/commit/694f21bbfea097ea2409f70c8a9a8f700143b97f))
+* write static files synchronously ([eb91a5f](https://github.com/nuxt-community/composition-api/commit/eb91a5f5d85f98b6bd5a425aab28c151183abe0b))
+
 ### [0.9.3](https://github.com/nuxt-community/composition-api/compare/0.9.2...0.9.3) (2020-06-13)
 
 
