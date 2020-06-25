@@ -25,7 +25,7 @@ const compositionApiModule: Module<any> = function () {
 
   const staticPath = join(this.options.buildDir || '', 'static-json')
 
-  this.nuxt.hook('build:compile', () => {
+  this.nuxt.hook('generate:before', () => {
     if (existsSync(staticPath)) rmdirSync(staticPath)
     mkdirSync(staticPath)
   })

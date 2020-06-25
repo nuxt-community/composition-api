@@ -5,7 +5,7 @@ import type { Ref, UnwrapRef } from '@vue/composition-api'
 const staticPath = '<%= options.staticPath %>'
 const staticCache: Record<string, any> = {}
 
-async function writeFile(key: string) {
+function writeFile(key: string, value: string) {
   if (process.client || !process.static) return
 
   const { writeFileSync }: typeof import('fs') = process.client
@@ -14,10 +14,7 @@ async function writeFile(key: string) {
   const { join }: typeof import('path') = process.client ? '' : require('path')
 
   try {
-    writeFileSync(
-      join(staticPath, `${key}.json`),
-      JSON.stringify(staticCache[key])
-    )
+    writeFileSync(join(staticPath, `${key}.json`), value)
   } catch (e) {
     console.log(e)
   }
@@ -115,9 +112,11 @@ export const useStatic = <T>(
       return result as Ref<T | null>
     }
     onServerPrefetch(async () => {
-      result.value = (await factory(param.value, key.value)) as UnwrapRef<T>
-      staticCache[key.value] = result.value
-      writeFile(key.value)
+      const [_key, _param] = [key.value, param.value]
+
+      result.value = (await factory(_param, _key)) as UnwrapRef<T>
+      staticCache[_key] = result.value
+      writeFile(_key, JSON.stringify(result.value))
     })
   }
 
