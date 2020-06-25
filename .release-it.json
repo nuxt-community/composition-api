@@ -5,7 +5,6 @@
   "github": {
     "release": true
   },
-  "npm": false,
   "plugins": {
     "@release-it/conventional-changelog": {
       "preset": "conventionalcommits",
