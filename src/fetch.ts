@@ -192,7 +192,6 @@ export const useFetch = (callback: Fetch) => {
 
   if (!isSsrHydration(vm)) {
     if (isFullStatic) onBeforeMount(() => loadFullStatic(vm))
-    console.log('useFetch -> isFullStatic', isFullStatic)
     return result()
   }
 
