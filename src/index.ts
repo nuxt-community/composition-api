@@ -40,9 +40,9 @@ const compositionApiModule: Module<any> = function () {
   const globalName = this.options.globalName || 'nuxt'
   const globalContextFactory =
     this.options.globals?.context ||
-    (globalName => `__${globalName.toUpperCase()}__`)
+    ((globalName: string) => `__${globalName.toUpperCase()}__`)
   const globalNuxtFactory =
-    this.options.globals?.nuxt || (globalName => `$${globalName}`)
+    this.options.globals?.nuxt || ((globalName: string) => `$${globalName}`)
   const globalContext = globalContextFactory(globalName)
   const globalNuxt = globalNuxtFactory(globalName)
 
