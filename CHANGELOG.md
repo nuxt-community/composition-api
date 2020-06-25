@@ -1,3 +1,10 @@
+### [0.10.1](https://github.com/nuxt-community/composition-api/compare/0.10.0...0.10.1) (2020-06-25)
+
+
+### Features
+
+* export `nextTick` from `@vue/composition-api` ([df68e0a](https://github.com/nuxt-community/composition-api/commit/df68e0a3788dbfca3d3f400465228daf3d202851))
+
 ## [0.10.0](https://github.com/nuxt-community/composition-api/compare/0.9.3...0.10.0) (2020-06-25)
 
 
