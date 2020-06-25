@@ -41,6 +41,7 @@ export {
   isReactive,
   isRef,
   markRaw,
+  nextTick,
   onActivated,
   onBeforeMount,
   onBeforeUnmount,
