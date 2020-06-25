@@ -1,3 +1,10 @@
+### [0.10.2](https://github.com/nuxt-community/composition-api/compare/0.10.1...0.10.2) (2020-06-25)
+
+
+### Bug Fixes
+
+* remove `console.log` ([0b1d5a8](https://github.com/nuxt-community/composition-api/commit/0b1d5a8872760f28e4e7deb030cc6640b1b611cd))
+
 ### [0.10.1](https://github.com/nuxt-community/composition-api/compare/0.10.0...0.10.1) (2020-06-25)
 
 
