@@ -5,6 +5,7 @@ export default {
   server: {
     port: process.env.PORT || 8000,
   },
+  target: 'static',
   plugins: ['@/plugins/vue-placeholders.js'],
   modules: ['@nuxt/http'],
   ...(serverlessEnvironment ? {

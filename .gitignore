@@ -7,3 +7,4 @@ example/dist
 example/yarn.lock
 .now
 dist
+.vercel
