@@ -1,3 +1,10 @@
+### [0.10.3](https://github.com/nuxt-community/composition-api/compare/0.10.2...0.10.3) (2020-07-01)
+
+
+### Bug Fixes
+
+* check static path exists before copying files ([9f1bdc7](https://github.com/nuxt-community/composition-api/commit/9f1bdc7026336e018bec1f6b7d4b63713c451897))
+
 ### [0.10.2](https://github.com/nuxt-community/composition-api/compare/0.10.1...0.10.2) (2020-06-25)
 
 
