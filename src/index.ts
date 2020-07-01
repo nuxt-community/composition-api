@@ -34,6 +34,8 @@ const compositionApiModule: Module<any> = function () {
   })
 
   this.nuxt.hook('generate:done', async (generator: any) => {
+    if (!existsSync(staticPath)) return
+
     const { distPath } = generator
     readdirSync(staticPath).forEach(file =>
       copyFileSync(join(staticPath, file), join(distPath, file))
