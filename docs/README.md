@@ -14,3 +14,7 @@
 - 🗺️ **Head**: Interact directly with your `vue-meta` properties within `setup()`
 - ✨ **Automatic hydration**: Drop-in replacement for `ref` with automatic SSR stringification and hydration (`ssrRef`)
 - 💪 **TypeScript**: Written in TypeScript
+
+::: tip
+This package extends `@vue/composition-api` and exports all of its types and methods. You can find [a full reference for it here](https://composition-api.vuejs.org/api.html).
+:::
