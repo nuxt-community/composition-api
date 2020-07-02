@@ -67,7 +67,7 @@
     "@babel/plugin-transform-runtime": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
-    "@nuxt/types": "^2.13.2",
+    "@nuxt/types": "^2.13.3",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^1.1.4",
     "@types/jest": "^26.0.3",
@@ -84,7 +84,7 @@
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
     "npm-run-all": "^4.1.5",
-    "nuxt": "^2.13.2",
+    "nuxt": "^2.13.3",
     "prettier": "^2.0.5",
     "prettier-eslint-cli": "^5.0.0",
     "release-it": "13.6.4",
@@ -98,8 +98,8 @@
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
-    "@nuxt/vue-app": "^2.13.2",
-    "nuxt": "^2.13.2",
+    "@nuxt/vue-app": "^2.13.3",
+    "nuxt": "^2.13.3",
     "vue": "^2"
   }
 }
