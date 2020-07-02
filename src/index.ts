@@ -1,4 +1,4 @@
-import { resolve, join } from 'path'
+import { join, resolve, posix } from 'path'
 import { rmdirSync, readdirSync, copyFileSync, existsSync, mkdirSync } from 'fs'
 
 import type { Module } from '@nuxt/types'
@@ -56,8 +56,8 @@ const compositionApiModule: Module<any> = function () {
     fileName: join('composition-api', 'index.js'),
     options: {
       isFullStatic: isFullStatic(this.options),
-      staticPath,
-      publicPath: join(this.options.router?.base || '', '/'),
+      staticPath: posix.normalize(staticPath),
+      publicPath: posix.normalize(join(this.options.router?.base || '', '/')),
       globalContext,
       globalNuxt,
     },
