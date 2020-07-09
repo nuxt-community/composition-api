@@ -34,13 +34,15 @@ export type {
 
 export {
   computed,
-  createComponent,
-  createElement,
+  createApp,
+  customRef,
   getCurrentInstance,
+  h,
   inject,
   isReactive,
   isRef,
   markRaw,
+  markReactive,
   nextTick,
   onActivated,
   onBeforeMount,
@@ -63,6 +65,7 @@ export {
   toRefs,
   triggerRef,
   unref,
+  useCSSModule,
   watch,
   watchEffect,
 } from '@vue/composition-api'
