@@ -1,5 +1,5 @@
 import { resolve, join } from 'path'
-import { rmdirSync, readdirSync, copyFileSync, existsSync, mkdirSync } from 'fs'
+import { readdirSync, copyFileSync, existsSync, mkdirpSync } from 'fs-extra'
 
 import type { Module } from '@nuxt/types'
 
@@ -28,9 +28,8 @@ const compositionApiModule: Module<any> = function () {
 
   const staticPath = join(this.options.buildDir || '', 'static-json')
 
-  this.nuxt.hook('generate:before', () => {
-    if (existsSync(staticPath)) rmdirSync(staticPath)
-    mkdirSync(staticPath)
+  this.nuxt.hook('generate:route', () => {
+    mkdirpSync(staticPath)
   })
 
   this.nuxt.hook('generate:done', async (generator: any) => {
