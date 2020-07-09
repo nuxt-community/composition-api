@@ -1,3 +1,10 @@
+### [0.10.4](https://github.com/nuxt-community/composition-api/compare/0.10.3...0.10.4) (2020-07-09)
+
+
+### Bug Fixes
+
+* revert to custom ssr fetch handling ([6cde3df](https://github.com/nuxt-community/composition-api/commit/6cde3dfe4555f5bee6a2944d79715c4a705da496)), closes [#133](https://github.com/nuxt-community/composition-api/issues/133) [#141](https://github.com/nuxt-community/composition-api/issues/141) [#143](https://github.com/nuxt-community/composition-api/issues/143)
+
 ### [0.10.3](https://github.com/nuxt-community/composition-api/compare/0.10.2...0.10.3) (2020-07-01)
 
 
