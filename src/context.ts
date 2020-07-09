@@ -56,11 +56,11 @@ export const useContext = (): UseContextReturn => {
       ...vm[globalNuxt].context,
       route: ref(vm.$route),
       query: computed(() => _context.route.value.query),
-      from: computed(() => _context.route.value.from),
-      params: computed(() => _context.route.value.query.params),
+      from: computed(() => _context.route.value.redirectedFrom),
+      params: computed(() => _context.route.value.params),
     }
   } else {
-    const {route, query, from, params, ...rest} = vm[globalNuxt].context
+    const { route, query, from, params, ...rest } = vm[globalNuxt].context
     Object.assign(_context, rest)
     _context.route.value = vm.$route
   }
