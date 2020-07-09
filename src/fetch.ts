@@ -1,5 +1,9 @@
 import Vue from 'vue'
-import { getCurrentInstance, onBeforeMount } from '@vue/composition-api'
+import {
+  getCurrentInstance,
+  onBeforeMount,
+  onServerPrefetch,
+} from '@vue/composition-api'
 
 import { globalContext, globalNuxt, isFullStatic } from './globals'
 import type { NuxtApp } from '@nuxt/types/app'
@@ -97,6 +101,16 @@ async function callFetches(this: AugmentedComponentInstance) {
   this.$nextTick(() => (this[globalNuxt] as any).nbFetching--)
 }
 
+const setFetchState = (vm: AugmentedComponentInstance) => {
+  vm.$fetchState =
+    vm.$fetchState ||
+    Vue.observable({
+      error: null,
+      pending: false,
+      timestamp: 0,
+    })
+}
+
 const loadFullStatic = (vm: AugmentedComponentInstance) => {
   // Check if component has been fetched on server
   const { fetchOnServer } = vm.$options
@@ -124,6 +138,35 @@ const loadFullStatic = (vm: AugmentedComponentInstance) => {
   for (const key in data) {
     Vue.set(vm.$data, key, data[key])
   }
+}
+
+async function serverPrefetch(vm: AugmentedComponentInstance) {
+  if (!vm._fetchOnServer) return
+
+  // Call and await on $fetch
+  setFetchState(vm)
+
+  try {
+    await callFetches.call(vm)
+  } catch (err) {
+    vm.$fetchState.error = normalizeError(err)
+  }
+  vm.$fetchState.pending = false
+
+  // Define an ssrKey for hydration
+  vm._fetchKey = vm.$ssrContext.nuxt.fetch.length
+
+  // Add data-fetch-key on parent element of Component
+  if (!vm.$vnode.data) vm.$vnode.data = {}
+  const attrs = (vm.$vnode.data.attrs = vm.$vnode.data.attrs || {})
+  attrs['data-fetch-key'] = vm._fetchKey
+
+  // Add to ssrContext for window.__NUXT__.fetch
+  vm.$ssrContext.nuxt.fetch.push(
+    vm.$fetchState.error
+      ? { _error: vm.$fetchState.error }
+      : JSON.parse(JSON.stringify(vm._data))
+  )
 }
 
 /**
@@ -161,10 +204,15 @@ export const useFetch = (callback: Fetch) => {
 
   registerCallback(vm, callback)
 
-  if (process.server) {
-    vm.$options.fetch = callFetches.bind(vm)
-    return
+  if (typeof vm.$options.fetchOnServer === 'function') {
+    vm._fetchOnServer = vm.$options.fetchOnServer.call(vm) !== false
+  } else {
+    vm._fetchOnServer = vm.$options.fetchOnServer !== false
   }
+
+  setFetchState(vm)
+
+  onServerPrefetch(() => serverPrefetch(vm))
 
   function result() {
     return {
@@ -178,19 +226,11 @@ export const useFetch = (callback: Fetch) => {
   vm._fetchDelay =
     typeof vm.$options.fetchDelay === 'number' ? vm.$options.fetchDelay : 200
 
-  vm.$fetchState =
-    vm.$fetchState ||
-    Vue.observable({
-      error: null,
-      pending: false,
-      timestamp: 0,
-    })
-
   vm.$fetch = callFetches.bind(vm)
 
   onBeforeMount(() => !vm._hydrated && callFetches.call(vm))
 
-  if (!isSsrHydration(vm)) {
+  if (process.server || !isSsrHydration(vm)) {
     if (isFullStatic) onBeforeMount(() => loadFullStatic(vm))
     return result()
   }
