@@ -120,7 +120,7 @@ const loadFullStatic = (vm: AugmentedComponentInstance) => {
       : fetchOnServer !== false
 
   const nuxt = vm.$nuxt as AugmentedNuxtApp
-  if (!fetchedOnServer || nuxt.isPreview || !nuxt._pagePayload) {
+  if (!fetchedOnServer || nuxt?.isPreview || !nuxt?._pagePayload) {
     return
   }
   vm._hydrated = true
