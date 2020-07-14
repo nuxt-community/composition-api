@@ -1,11 +1,17 @@
-import { join, resolve } from 'path'
-import { rmdirSync, readdirSync, copyFileSync, existsSync, mkdirSync } from 'fs'
+import { resolve, join } from 'path'
+import {
+  rmdirSync,
+  readdirSync,
+  copyFileSync,
+  existsSync,
+  mkdirpSync,
+} from 'fs-extra'
 
 import type { Module } from '@nuxt/types'
 import normalize from 'normalize-path'
 
 // eslint-disable-next-line
-const { isFullStatic } = require('@nuxt/utils')
+const utils = require('@nuxt/utils')
 
 const compositionApiModule: Module<any> = function () {
   const libRoot = resolve(__dirname, '..')
@@ -29,9 +35,8 @@ const compositionApiModule: Module<any> = function () {
 
   const staticPath = join(this.options.buildDir || '', 'static-json')
 
-  this.nuxt.hook('generate:before', () => {
-    if (existsSync(staticPath)) rmdirSync(staticPath)
-    mkdirSync(staticPath)
+  this.nuxt.hook('generate:route', () => {
+    mkdirpSync(staticPath)
   })
 
   this.nuxt.hook('generate:done', async (generator: any) => {
@@ -56,7 +61,7 @@ const compositionApiModule: Module<any> = function () {
     src: resolve(libRoot, 'lib', 'entrypoint.js'),
     fileName: join('composition-api', 'index.js'),
     options: {
-      isFullStatic: isFullStatic(this.options),
+      isFullStatic: 'isFullStatic' in utils && utils.isFullStatic(this.options),
       staticPath: normalize(staticPath),
       publicPath: normalize(join(this.options.router?.base || '', '/')),
       globalContext,

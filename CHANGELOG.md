@@ -1,3 +1,18 @@
+### [0.10.5](https://github.com/nuxt-community/composition-api/compare/0.10.4...0.10.5) (2020-07-09)
+
+
+### Bug Fixes
+
+* create `static-json` dir at correct point in generate lifecycle ([2d4e10b](https://github.com/nuxt-community/composition-api/commit/2d4e10b645f982034a0e69a2d3ba338af9c0a255))
+* test for nuxt instance before loading static ([43d5ee6](https://github.com/nuxt-community/composition-api/commit/43d5ee6a18482b981365d3e1669146e96420fcae)), closes [#143](https://github.com/nuxt-community/composition-api/issues/143)
+
+### [0.10.4](https://github.com/nuxt-community/composition-api/compare/0.10.3...0.10.4) (2020-07-09)
+
+
+### Bug Fixes
+
+* revert to custom ssr fetch handling ([6cde3df](https://github.com/nuxt-community/composition-api/commit/6cde3dfe4555f5bee6a2944d79715c4a705da496)), closes [#133](https://github.com/nuxt-community/composition-api/issues/133) [#141](https://github.com/nuxt-community/composition-api/issues/141) [#143](https://github.com/nuxt-community/composition-api/issues/143)
+
 ### [0.10.3](https://github.com/nuxt-community/composition-api/compare/0.10.2...0.10.3) (2020-07-01)
 
 
