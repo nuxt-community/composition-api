@@ -1,8 +1,12 @@
 name: ci
 
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   lint:
@@ -48,8 +52,3 @@ jobs:
 
       - name: Test project
         run: yarn test
-
-      - name: Coverage
-        run: yarn codecov
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
