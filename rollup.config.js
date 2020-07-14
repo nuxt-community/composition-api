@@ -5,8 +5,8 @@ import copy from 'rollup-plugin-copy'
 import pkg from './package.json'
 
 export default [
-  {
-    input: ['src/index.ts', 'src/entrypoint.ts'],
+  ...['src/index.ts', 'src/entrypoint.ts'].map(input => ({
+    input,
     output: [
       {
         dir: 'lib',
@@ -29,7 +29,7 @@ export default [
         targets: [{ src: 'src/plugin.js', dest: 'lib' }],
       }),
     ],
-  },
+  })),
   {
     input: 'src/entrypoint.ts',
     output: [{ file: 'lib/index.d.ts', format: 'es' }],
