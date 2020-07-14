@@ -1,3 +1,11 @@
+### [0.10.6](https://github.com/nuxt-community/composition-api/compare/0.10.5...0.10.6) (2020-07-14)
+
+
+### Bug Fixes
+
+* add support for windows ([#140](https://github.com/nuxt-community/composition-api/issues/140)) ([c39773f](https://github.com/nuxt-community/composition-api/commit/c39773fcff157169e2c7761ca7bbd229bf089331))
+* correctly check for `isFullStatic` ([db87441](https://github.com/nuxt-community/composition-api/commit/db874411b9195d2d90fa1710fb9f4065a0fb153c))
+
 ### [0.10.5](https://github.com/nuxt-community/composition-api/compare/0.10.4...0.10.5) (2020-07-09)
 
 
