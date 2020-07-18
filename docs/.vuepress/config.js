@@ -27,7 +27,7 @@ module.exports = {
             '/helpers/useFetch',
             '/helpers/useMeta',
             '/helpers/useStatic',
-            '/helpers/defineNuxtHelpers',
+            '/helpers/definitionHelpers',
           ],
         },
         {

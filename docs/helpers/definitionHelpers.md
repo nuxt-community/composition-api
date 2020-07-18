@@ -1,13 +1,15 @@
 ---
 ---
 
-# defineNuxt... helpers
+# Definition helpers
 
-We added some helpers to optimize developer experience.
+There are some helpers to optimize developer experience when creating Nuxt plugins, middleware, server middleware and modules.
+
+These helpers simply return the function passed into them, adding the correct typings.
 
 ## defineNuxtPlugin
 
-Create a Nuxt plugin with types with
+Create a plugin with types with:
 
 ```ts
 import { defineNuxtPlugin } from 'nuxt-composition-api'
@@ -19,7 +21,7 @@ export default defineNuxtPlugin((ctx) => {
 
 ## defineNuxtMiddleware
 
-Create a Nuxt plugin with types with
+Create middleware with types with:
 
 ```ts
 import { defineNuxtMiddleware } from 'nuxt-composition-api'
@@ -31,12 +33,12 @@ export default defineNuxtMiddleware((ctx) => {
 
 ## defineNuxtModule
 
-Create a Nuxt plugin with types with
+Create a Nuxt module with types with:
 
 ```ts
 import { defineNuxtModule } from 'nuxt-composition-api'
 
-export default defineNuxtModule<{myOption: boolean}>((moduleOptions) => {
+export default defineNuxtModule<{ myOption: boolean }>((moduleOptions) => {
   // do stuff
 })
 ```
@@ -44,7 +46,7 @@ export default defineNuxtModule<{myOption: boolean}>((moduleOptions) => {
 
 ## defineNuxtServerMiddleware
 
-Create a Nuxt plugin with types with
+Create server middleware with types with:
 
 ```ts
 import { defineNuxtServerMiddleware } from 'nuxt-composition-api'
