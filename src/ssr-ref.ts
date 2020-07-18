@@ -1,5 +1,5 @@
 import {
-  customRef,
+  computed,
   onServerPrefetch,
   ref,
   shallowRef,
@@ -21,6 +21,9 @@ export function setSSRContext(ssrContext: any) {
   ssrContext.nuxt.ssrRefs = data
 }
 
+const isProxyable = (val: unknown): val is Record<string, unknown> =>
+  val && typeof val === 'object'
+
 const sanitise = (val: unknown) =>
   (val && JSON.parse(JSON.stringify(val))) || val
 
@@ -36,21 +39,6 @@ const ssrValue = <T>(value: T | (() => T), key: string): T => {
   }
   return getValue(value)
 }
-
-const serverRef = <T>(value: T, key: string) =>
-  customRef((track, trigger) => {
-    return {
-      get() {
-        track()
-        return value
-      },
-      set(newValue: T) {
-        data[key] = sanitise(newValue)
-        value = newValue
-        trigger()
-      },
-    }
-  })
 
 /**
  * `ssrRef` will automatically add ref values to `window.__NUXT__` on SSR if they have been changed from their initial value. It can be used outside of components, such as in shared utility functions, and it supports passing a factory function that will generate the initial value of the ref. **At the moment, an `ssrRef` is only suitable for one-offs, unless you provide your own unique key.**
@@ -76,15 +64,36 @@ export const ssrRef = <T>(
   key?: string
 ): Ref<UnwrapRef<T>> => {
   validateKey(key)
-  const _val = ssrValue(value, key)
+  const val = ssrValue(value, key)
 
-  if (process.client) return ref(_val)
+  if (process.client) return ref(val)
 
-  if (value instanceof Function) {
-    data[key] = sanitise(_val)
-  }
+  const _ref = ref(val)
 
-  return serverRef(_val, key) as Ref<UnwrapRef<T>>
+  if (value instanceof Function) data[key] = sanitise(val)
+
+  const getProxy = <T extends Record<string | number, any>>(observable: T): T =>
+    new Proxy(observable, {
+      get(target, prop: string | number) {
+        if (isProxyable(target[prop])) return getProxy(target[prop])
+        return Reflect.get(target, prop)
+      },
+      set(obj, prop, val) {
+        const result = Reflect.set(obj, prop, val)
+        data[key] = sanitise(_ref.value)
+        return result
+      },
+    })
+
+  const proxy = computed({
+    get: () => (isProxyable(_ref.value) ? getProxy(_ref.value) : _ref.value),
+    set: v => {
+      data[key] = sanitise(v)
+      _ref.value = v
+    },
+  })
+
+  return proxy
 }
 
 /**
@@ -112,15 +121,31 @@ export const shallowSsrRef = <T>(
 ): Ref<T> => {
   validateKey(key)
 
-  if (process.client) return shallowRef(ssrValue(value, key))
+  if (process.client) {
+    if (
+      process.env.NODE_ENV === 'development' &&
+      window[globalNuxt]?.context.isHMR
+    ) {
+      return shallowRef(getValue(value))
+    }
+    return shallowRef(
+      (window as any)[globalContext]?.ssrRefs?.[key] ?? getValue(value)
+    )
+  }
 
-  const _val = getValue(value)
+  let _val = getValue(value)
 
   if (value instanceof Function) {
     data[key] = sanitise(_val)
   }
 
-  return serverRef(_val, key)
+  return computed({
+    get: () => _val,
+    set: v => {
+      data[key] = sanitise(v)
+      _val = v
+    },
+  })
 }
 
 /**
