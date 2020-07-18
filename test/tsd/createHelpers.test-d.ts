@@ -17,7 +17,7 @@ defineNuxtPlugin((context, inject) => {
 defineNuxtModule<{
   option: string
 }>(function (options) {
-  expectType<string>(this.options.rootDir)
+  // expectType<string>(this.options.rootDir)
 
   this.addPlugin('filename')
 
