@@ -1,7 +1,14 @@
 import { resolve, join } from 'path'
-import { rmdirSync, readdirSync, copyFileSync, existsSync, mkdirSync } from 'fs'
+import {
+  rmdirSync,
+  readdirSync,
+  copyFileSync,
+  existsSync,
+  mkdirpSync,
+} from 'fs-extra'
 
 import type { Module } from '@nuxt/types'
+import normalize from 'normalize-path'
 
 // eslint-disable-next-line
 const utils = require('@nuxt/utils')
@@ -28,9 +35,8 @@ const compositionApiModule: Module<any> = function () {
 
   const staticPath = join(this.options.buildDir || '', 'static-json')
 
-  this.nuxt.hook('generate:before', () => {
-    if (existsSync(staticPath)) rmdirSync(staticPath)
-    mkdirSync(staticPath)
+  this.nuxt.hook('generate:route', () => {
+    mkdirpSync(staticPath)
   })
 
   this.nuxt.hook('generate:done', async (generator: any) => {
@@ -56,8 +62,8 @@ const compositionApiModule: Module<any> = function () {
     fileName: join('composition-api', 'index.js'),
     options: {
       isFullStatic: 'isFullStatic' in utils && utils.isFullStatic(this.options),
-      staticPath,
-      publicPath: join(this.options.router?.base || '', '/'),
+      staticPath: normalize(staticPath),
+      publicPath: normalize(join(this.options.router?.base || '', '/')),
       globalContext,
       globalNuxt,
     },

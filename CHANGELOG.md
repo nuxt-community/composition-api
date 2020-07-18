@@ -1,3 +1,19 @@
+### [0.10.6](https://github.com/nuxt-community/composition-api/compare/0.10.5...0.10.6) (2020-07-14)
+
+
+### Bug Fixes
+
+* add support for windows ([#140](https://github.com/nuxt-community/composition-api/issues/140)) ([c39773f](https://github.com/nuxt-community/composition-api/commit/c39773fcff157169e2c7761ca7bbd229bf089331))
+* correctly check for `isFullStatic` ([db87441](https://github.com/nuxt-community/composition-api/commit/db874411b9195d2d90fa1710fb9f4065a0fb153c))
+
+### [0.10.5](https://github.com/nuxt-community/composition-api/compare/0.10.4...0.10.5) (2020-07-09)
+
+
+### Bug Fixes
+
+* create `static-json` dir at correct point in generate lifecycle ([2d4e10b](https://github.com/nuxt-community/composition-api/commit/2d4e10b645f982034a0e69a2d3ba338af9c0a255))
+* test for nuxt instance before loading static ([43d5ee6](https://github.com/nuxt-community/composition-api/commit/43d5ee6a18482b981365d3e1669146e96420fcae)), closes [#143](https://github.com/nuxt-community/composition-api/issues/143)
+
 ### [0.10.4](https://github.com/nuxt-community/composition-api/compare/0.10.3...0.10.4) (2020-07-09)
 
 
