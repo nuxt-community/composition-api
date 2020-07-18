@@ -11,7 +11,7 @@ export { globalPlugin, onGlobalSetup } from './hooks'
 export { useMeta } from './meta'
 export { ssrRef, shallowSsrRef, setSSRContext, ssrPromise } from './ssr-ref'
 export { useStatic } from './static'
-export * from './createHelpers'
+export * from './defineHelpers'
 
 export type {
   ComponentRenderProxy,
