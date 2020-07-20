@@ -1,11 +1,5 @@
 import { resolve, join } from 'path'
-import {
-  rmdirSync,
-  readdirSync,
-  copyFileSync,
-  existsSync,
-  mkdirpSync,
-} from 'fs-extra'
+import { readdirSync, copyFileSync, existsSync, mkdirpSync } from 'fs-extra'
 
 import type { Module } from '@nuxt/types'
 import normalize from 'normalize-path'
