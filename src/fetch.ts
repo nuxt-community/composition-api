@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import {
   getCurrentInstance,
+  isRef,
   onBeforeMount,
   onServerPrefetch,
 } from '@vue/composition-api'
@@ -161,11 +162,20 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
   const attrs = (vm.$vnode.data.attrs = vm.$vnode.data.attrs || {})
   attrs['data-fetch-key'] = vm._fetchKey
 
+  const data = { ...vm._data }
+  Object.entries((vm as any).__composition_api_state__.rawBindings).forEach(
+    ([key, val]) => {
+      if (val instanceof Function || val instanceof Promise) return
+
+      data[key] = isRef(val) ? val.value : val
+    }
+  )
+
   // Add to ssrContext for window.__NUXT__.fetch
   vm.$ssrContext.nuxt.fetch.push(
     vm.$fetchState.error
       ? { _error: vm.$fetchState.error }
-      : JSON.parse(JSON.stringify(vm._data))
+      : JSON.parse(JSON.stringify(data))
   )
 }
 
