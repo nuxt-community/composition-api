@@ -7,6 +7,7 @@ import {
   reactive,
   watch,
   UnwrapRef,
+  customRef,
 } from '@vue/composition-api'
 
 import type { MetaInfo } from 'vue-meta'
@@ -38,7 +39,6 @@ export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
     __dangerouslyDisableSanitizersByTagID: {},
 
     title: undefined,
-    titleTemplate: undefined,
     htmlAttrs: {},
     headAttrs: {},
     bodyAttrs: {},
@@ -109,5 +109,22 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
   if (process.client)
     watch(Object.values(refs), vm.$meta().refresh, { immediate: true })
 
+  refs.titleTemplate = customRef((track, trigger) => {
+    return {
+      get() {
+        track()
+        return _head.titleTemplate
+      },
+      set(newValue) {
+        if(!_head.titleTemplate) {
+          Vue.set(_head, 'titleTemplate', newValue)
+        } else {
+          _head.titleTemplate = newValue
+        }
+        trigger()
+      }
+    }
+  })
+                         
   return refs
 }
