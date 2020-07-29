@@ -62,7 +62,7 @@
   },
   "dependencies": {
     "@vue/composition-api": "^0.6.7",
-    "defu": "^2.0.4",
+    "defu": "^3.0.1",
     "normalize-path": "^3.0.0"
   },
   "devDependencies": {
