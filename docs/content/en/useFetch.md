@@ -1,7 +1,9 @@
 ---
+title: useFetch
+description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+category: Helpers
+fullscreen: True
 ---
-
-# useFetch
 
 Versions of Nuxt newer than v2.12 support a [custom hook called `fetch`](https://nuxtjs.org/api/pages-fetch/) that allows server-side and client-side asynchronous data-fetching.
 
@@ -30,10 +32,14 @@ export default defineComponent({
 })
 ```
 
-::: warning
-`useFetch` must be called synchronously within `setup()`. Any changes made to component data - that is, to properties _returned_ from `setup()` - will be sent to the client and directly loaded. Other side-effects of `useFetch` hook will not be persisted.
-:::
+<alert>
 
-::: tip
+`useFetch` must be called synchronously within `setup()`. Any changes made to component data - that is, to properties _returned_ from `setup()` - will be sent to the client and directly loaded. Other side-effects of `useFetch` hook will not be persisted.
+
+</alert>
+
+<alert type="info">
+
 `$fetch` and `$fetchState` will already be defined on the instance - so no need to return `fetch` or `fetchState` from setup.
-:::
+
+</alert>

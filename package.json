@@ -32,7 +32,7 @@
     "compile": "rollup -c",
     "fixture": "cross-env CMD=dev yarn nuxt-run",
     "fixture:prod": "yarn clean:fixture && cross-env CMD=build yarn nuxt-run && cross-env CMD=start yarn nuxt-run",
-    "fixture:generate:export": "yarn clean:fixture && cross-env GENERATE=true CMD=build yarn nuxt-run && cross-env GENERATE=true PORT=6000 CMD=export yarn nuxt-run",
+    "fixture:generate:export": "yarn clean:fixture && cross-env GENERATE=true PORT=6000 CMD=generate yarn nuxt-run",
     "fixture:generate": "yarn fixture:generate:export && yarn http-server -s -p 5000 dist",
     "lint": "run-s lint:all:*",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.ts,.vue .",
@@ -103,8 +103,8 @@
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
-    "@nuxt/vue-app": "^2.13.3",
-    "nuxt": "^2.13.3",
+    "@nuxt/vue-app": "^2.14.0",
+    "nuxt": "^2.14.0",
     "vue": "^2"
   }
 }

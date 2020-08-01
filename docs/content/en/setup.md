@@ -1,21 +1,34 @@
 ---
+title: Quick start
+description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+category: Getting started
+position: 2
 ---
 
-# Quick start
+## Quick start
 
 1. First, install `nuxt-composition-api`:
 
-   ```bash
-   yarn add nuxt-composition-api
+  <code-group>
+    <code-block label="Yarn" active>
 
-   # or npm
+    ```bash
+    yarn add nuxt-composition-api
+    ```
 
-   npm install nuxt-composition-api --save
-   ```
+    </code-block>
+    <code-block label="NPM">
 
-2. Enable the module in your `nuxt.config.js`.
+    ```bash
+    npm install nuxt-composition-api --save
+    ```
 
-   ```js
+    </code-block>
+  </code-group>
+
+2. Enable the module.
+
+   ```js[nuxt.config.js]
    {
      buildModules: [
        'nuxt-composition-api'
@@ -25,9 +38,9 @@
 
    Note that [using `buildModules`](https://nuxtjs.org/api/configuration-modules#-code-buildmodules-code-) requires Nuxt >= 2.9. Just add it to your `modules` if you're on a lower version.
 
-3. **Optional**. Currently [there's an issue with static site generation and async functions](https://github.com/nuxt-community/composition-api/issues/44) which means that you'll need to add time between pages being generated to allow for any async functions to resolve, if you are pre-generating any of your pages, in your `nuxt.config.js`:
+3. **Optional**. Currently [there's an issue with static site generation and async functions](https://github.com/nuxt-community/composition-api/issues/44) which means that you'll need to add time between pages being generated to allow for any async functions to resolve, if you are pre-generating any of your pages:
 
-  ```js
+  ```js[nuxt.config.js]
   {
     generate: {
       // choose to suit your project
@@ -38,16 +51,19 @@
 
 4. You're good to go!
 
-::: tip
+<alert type="info">
+
 
 - The module automatically installs [`@vue/composition-api`](https://github.com/vuejs/composition-api) as a plugin, so you do not need to enable it separately.
 
 - For convenience, this package also exports the [`@vue/composition-api`](https://github.com/vuejs/composition-api) methods and hooks, so you can import directly from `nuxt-composition-api`.
-:::
+
+</alert>
 
 ## Testing with Jest
+
 If you need to use jest tests with this module installed, just add the following lines to your `jest.config.js`:
-```js
+```js[jest.config.js]
 moduleNameMapper: {
   'nuxt-composition-api': 'nuxt-composition-api/lib/cjs/entrypoint.js',
 },

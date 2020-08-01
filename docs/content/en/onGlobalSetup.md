@@ -1,11 +1,13 @@
 ---
+title: onGlobalSetup
+description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+category: Helpers
+fullscreen: True
 ---
-
-# onGlobalSetup
 
 This helper will run a callback function in the global setup function.
  
-```ts
+```ts[~/plugins/myPlugin.js]
 import { onGlobalSetup } from 'nuxt-composition-api'
 
 export default () => {
@@ -15,6 +17,6 @@ export default () => {
 }
 ```
 
-::: warning
+<alert>
 This should be called from within a plugin rather than in a component context.
-:::
+</alert>

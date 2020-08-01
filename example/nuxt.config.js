@@ -27,5 +27,6 @@ export default {
 
       return ['/'].concat(routes)
     },
+    exclude: ['/posts/23']
   },
 }

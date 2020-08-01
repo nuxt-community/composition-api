@@ -1,7 +1,9 @@
 ---
+title: shallowSsrRef
+description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+category: Helpers
+fullscreen: True
 ---
-
-# shallowSsrRef
 
 This helper creates a [`shallowRef`](https://vue-composition-api-rfc.netlify.app/api.html#shallowref) (a ref that tracks its own .value mutation but doesn't make its value reactive) that is synced between client & server.
 
@@ -18,7 +20,8 @@ onMounted(() => {
 })
 ```
 
-::: warning
+<alert>
+
 At the moment, an `shallowSsrRef` is only suitable for one-offs, unless you provide your own unique key.
 
 This is because server and client `shallowSsrRef` matches up based on line number within your code.
@@ -38,4 +41,5 @@ b.value = 'changed'
 ```
 
 If you want to use this pattern, make sure to set a unique key based on each calling of the function.
-:::
+
+</alert>

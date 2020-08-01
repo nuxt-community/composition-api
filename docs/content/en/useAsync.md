@@ -1,7 +1,9 @@
 ---
+title: useAsync
+description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+category: Helpers
+fullscreen: True
 ---
-
-# `useAsync`
 
 You can create reactive values that depend on asynchronous calls with `useAsync`.
 
