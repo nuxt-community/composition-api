@@ -1094,12 +1094,12 @@
     rc9 "^1.0.0"
     std-env "^2.2.1"
 
-"@nuxt/content-theme-docs@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@nuxt/content-theme-docs/-/content-theme-docs-0.1.3.tgz#c474ebce91b5e9ee1a175f5b727f21eb95287ca7"
-  integrity sha512-X5scv9eY/kYd0M6kQQM4gMxjLWaNf7wEcGqN8ydFMznu/dp8cvnGa0367J1FRbkWf1TqTf5vNAFLigtRPmxWpw==
+"@nuxt/content-theme-docs@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@nuxt/content-theme-docs/-/content-theme-docs-0.2.0.tgz#05294a429aebe43c32ad35fda43ad22895df5051"
+  integrity sha512-ekE51mg/6poKpisS4fpU2t198UMlX4IG75j+8KHri6H+i0Dodr5kg27IZdMnT1NGsJXJUjkyB88PtOCRpAVhkg==
   dependencies:
-    "@nuxt/content" "^1.5.2"
+    "@nuxt/content" "^1.5.3"
     "@nuxtjs/color-mode" "^1.0.2"
     "@nuxtjs/google-fonts" "^1.0.0"
     "@nuxtjs/pwa" "^3.0.0-beta.20"
@@ -1114,14 +1114,13 @@
     vue-multiselect "^2.1.6"
     vue-scrollactive "^0.9.3"
 
-"@nuxt/content@^1.5.2":
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@nuxt/content/-/content-1.5.2.tgz#c82f569a258dd8c7a00ebcd65d75a0c6fbeb5b5d"
-  integrity sha512-a9P8qgzgzJh41WA7CZkIM7edDYXIkPfW2IBOmNriP2t4IyU6eZNpuS2DUhB8e+i4eE/6DuhUHRg415wqWz1lcA==
+"@nuxt/content@^1.5.3":
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/@nuxt/content/-/content-1.5.3.tgz#34de4ae5a556c783ab5c51ac2f3d11744e62acac"
+  integrity sha512-Ev4HXkZgjdv12828hvspXGrq3IimwZGUGjQgt6i7qOtdWB2GvIGenfjFSy5d/x8z26CV9pTfIL8+oDgIc7UBcA==
   dependencies:
     "@lokidb/full-text-search" "^2.0.0-beta.9"
     "@lokidb/loki" "^2.0.0-beta.9"
-    "@nuxt/content" "^1.5.2"
     change-case "^4.1.1"
     chokidar "^3.4.1"
     consola "^2.14.0"
