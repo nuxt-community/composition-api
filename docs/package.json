@@ -6,7 +6,7 @@
     "now-build": "yarn generate"
   },
   "devDependencies": {
-    "@nuxt/content-theme-docs": "^0.2.0",
+    "@nuxt/content-theme-docs": "^0.3.0",
     "nuxt": "^2.14.0"
   }
 }
