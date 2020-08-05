@@ -94,7 +94,7 @@
     "release-it": "13.6.6",
     "rollup": "^2.23.0",
     "rollup-plugin-copy": "^3.3.0",
-    "rollup-plugin-dts": "^1.4.9",
+    "rollup-plugin-dts": "^1.4.10",
     "rollup-plugin-typescript2": "^0.27.1",
     "shx": "^0.3.2",
     "start-server-and-test": "^1.11.2",
