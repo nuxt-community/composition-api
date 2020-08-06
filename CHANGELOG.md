@@ -1,3 +1,10 @@
+## [0.11.0](https://github.com/nuxt-community/composition-api/compare/0.10.6...0.11.0) (2020-07-27)
+
+
+### Features
+
+* add nuxt helpers ([#160](https://github.com/nuxt-community/composition-api/issues/160)) ([8a9885e](https://github.com/nuxt-community/composition-api/commit/8a9885e5a78dc3c07c38134e45887185be7d6139))
+
 ### [0.10.6](https://github.com/nuxt-community/composition-api/compare/0.10.5...0.10.6) (2020-07-14)
 
 

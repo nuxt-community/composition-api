@@ -1,7 +1,9 @@
 ---
+title: ssrRef
+description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+category: Helpers
+fullscreen: True
 ---
-
-# ssrRef
 
 When creating composition utility functions, often there will be server-side state that needs to be conveyed to the client.
 
@@ -21,11 +23,14 @@ if (process.server) val.value = 'server set'
 const val2 = ssrRef(myExpensiveSetterFunction)
 ```
 
-::: tip
-Under the hood, `ssrRef` requires a key to ensure that the ref values match between client and server. If you have added `nuxt-composition-api` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `nuxt-composition-api/babel` to your Babel plugins.
-:::
+<alert type="info">
 
-::: warning
+Under the hood, `ssrRef` requires a key to ensure that the ref values match between client and server. If you have added `nuxt-composition-api` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `nuxt-composition-api/babel` to your Babel plugins.
+
+</alert>
+
+<alert>
+
 At the moment, an `ssrRef` is only suitable for one-offs, unless you provide your own unique key.
 
 This is because server and client `ssrRef` matches up based on line number within your code.
@@ -45,4 +50,5 @@ b.value = 'changed'
 ```
 
 If you want to use this pattern, make sure to set a unique key based on each calling of the function.
-:::
+
+</alert>
