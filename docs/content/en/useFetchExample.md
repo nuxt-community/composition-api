@@ -1,7 +1,7 @@
 ---
 title: useFetch
 category: Examples
-link: https://codesandbox.io/s/github/nuxt-community/composition-api/tree/master/example?from-embed
+link: https://codesandbox.io/s/github/nuxt-community/composition-api/tree/main/example?from-embed
 fullscreen: True
 ---
 
