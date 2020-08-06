@@ -1,10 +1,10 @@
 import {
-  computed,
+  customRef,
   onServerPrefetch,
   ref,
   shallowRef,
 } from '@vue/composition-api'
-import type { Ref, UnwrapRef } from '@vue/composition-api'
+import type { Ref } from '@vue/composition-api'
 
 import { globalContext, globalNuxt } from './globals'
 import { validateKey } from './utils'
@@ -59,39 +59,46 @@ const ssrValue = <T>(value: T | (() => T), key: string): T => {
   const val2 = ssrRef(myExpensiveSetterFunction)
   ```
  */
-export const ssrRef = <T>(
-  value: T | (() => T),
-  key?: string
-): Ref<UnwrapRef<T>> => {
+export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   validateKey(key)
-  const val = ssrValue(value, key)
+  let val = ssrValue(value, key)
 
-  if (process.client) return ref(val)
-
-  const _ref = ref(val)
+  if (process.client) return ref(val) as Ref<T>
 
   if (value instanceof Function) data[key] = sanitise(val)
 
-  const getProxy = <T extends Record<string | number, any>>(observable: T): T =>
+  const getProxy = <T extends Record<string | number, any>>(
+    track: () => void,
+    trigger: () => void,
+    observable: T
+  ): T =>
     new Proxy(observable, {
       get(target, prop: string | number) {
-        if (isProxyable(target[prop])) return getProxy(target[prop])
+        track()
+        if (isProxyable(target[prop]))
+          return getProxy(track, trigger, target[prop])
         return Reflect.get(target, prop)
       },
-      set(obj, prop, val) {
-        const result = Reflect.set(obj, prop, val)
-        data[key] = sanitise(_ref.value)
+      set(obj, prop, newVal) {
+        const result = Reflect.set(obj, prop, newVal)
+        data[key] = sanitise(val)
+        trigger()
         return result
       },
     })
 
-  const proxy = computed({
-    get: () => (isProxyable(_ref.value) ? getProxy(_ref.value) : _ref.value),
-    set: v => {
-      data[key] = sanitise(v)
-      _ref.value = v
+  const proxy = customRef((track, trigger) => ({
+    get: () => {
+      track()
+      if (isProxyable(val)) return getProxy(track, trigger, val)
+      return val
     },
-  })
+    set: (v: T) => {
+      data[key] = sanitise(v)
+      val = v
+      trigger()
+    },
+  }))
 
   return proxy
 }
@@ -121,31 +128,25 @@ export const shallowSsrRef = <T>(
 ): Ref<T> => {
   validateKey(key)
 
-  if (process.client) {
-    if (
-      process.env.NODE_ENV === 'development' &&
-      window[globalNuxt]?.context.isHMR
-    ) {
-      return shallowRef(getValue(value))
-    }
-    return shallowRef(
-      (window as any)[globalContext]?.ssrRefs?.[key] ?? getValue(value)
-    )
-  }
+  if (process.client) return shallowRef(ssrValue(value, key))
 
-  let _val = getValue(value)
+  const _val = getValue(value)
 
   if (value instanceof Function) {
     data[key] = sanitise(_val)
   }
 
-  return computed({
-    get: () => _val,
-    set: v => {
-      data[key] = sanitise(v)
-      _val = v
+  return customRef((track, trigger) => ({
+    get() {
+      track()
+      return _val
     },
-  })
+    set(newValue: T) {
+      data[key] = sanitise(newValue)
+      value = newValue
+      trigger()
+    },
+  }))
 }
 
 /**

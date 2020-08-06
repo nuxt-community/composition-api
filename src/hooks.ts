@@ -37,7 +37,7 @@ export const globalPlugin: Plugin = context => {
   context.app.setup = (...args) => {
     let result = {}
     if (setup instanceof Function) {
-      result = setup(...args)
+      result = setup(...args) || {}
     }
     for (const fn of globalSetup) {
       result = { ...result, ...(fn(...args) || {}) }

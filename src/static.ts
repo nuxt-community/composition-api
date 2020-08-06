@@ -1,6 +1,6 @@
 import { ssrRef } from './ssr-ref'
 import { onServerPrefetch, watch, computed, ref } from '@vue/composition-api'
-import type { Ref, UnwrapRef } from '@vue/composition-api'
+import type { Ref } from '@vue/composition-api'
 
 const staticPath = '<%= options.staticPath %>'
 const staticCache: Record<string, any> = {}
@@ -77,7 +77,7 @@ export const useStatic = <T>(
     const onFailure = () =>
       factory(param.value, key.value).then(r => {
         staticCache[key.value] = r
-        result.value = r as UnwrapRef<T>
+        result.value = r
         return
       })
     watch(
@@ -114,7 +114,7 @@ export const useStatic = <T>(
     onServerPrefetch(async () => {
       const [_key, _param] = [key.value, param.value]
 
-      result.value = (await factory(_param, _key)) as UnwrapRef<T>
+      result.value = await factory(_param, _key)
       staticCache[_key] = result.value
       writeFile(_key, JSON.stringify(result.value))
     })
