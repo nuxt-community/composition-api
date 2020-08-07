@@ -32,7 +32,7 @@ import {
   ssrRef,
   useAsync,
   useFetch,
-} from 'nuxt-composition-api'
+} from '@nuxtjs/composition-api'
 
 import { fetcher } from '../utils'
 

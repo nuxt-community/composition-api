@@ -12,7 +12,7 @@ import {
   useMeta,
   computed,
   onMounted,
-} from 'nuxt-composition-api'
+} from '@nuxtjs/composition-api'
 
 export default defineComponent({
   head: {},

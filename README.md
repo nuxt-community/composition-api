@@ -2,14 +2,14 @@
 <p align="center">Composition API hooks for Nuxt</p>
 
 <p align="center">
-<a href="https://npmjs.com/package/nuxt-composition-api">
-    <img alt="" src="https://img.shields.io/npm/v/nuxt-composition-api/latest.svg?style=flat-square">
+<a href="https://npmjs.com/package/@nuxtjs/composition-api">
+    <img alt="" src="https://img.shields.io/npm/v/@nuxtjs/composition-api/latest.svg?style=flat-square">
 </a>
-<a href="https://bundlephobia.com/result?p=nuxt-composition-api">
-    <img alt="" src="https://img.shields.io/bundlephobia/minzip/nuxt-composition-api?style=flat-square">
+<a href="https://bundlephobia.com/result?p=@nuxtjs/composition-api">
+    <img alt="" src="https://img.shields.io/bundlephobia/minzip/@nuxtjs/composition-api?style=flat-square">
 </a>
-<a href="https://npmjs.com/package/nuxt-composition-api">
-    <img alt="" src="https://img.shields.io/npm/dt/nuxt-composition-api.svg?style=flat-square">
+<a href="https://npmjs.com/package/@nuxtjs/composition-api">
+    <img alt="" src="https://img.shields.io/npm/dt/@nuxtjs/composition-api.svg?style=flat-square">
 </a>
 <a href="https://lgtm.com/projects/g/nuxt-community/composition-api">
     <img alt="" src="https://img.shields.io/lgtm/alerts/github/nuxt-community/composition-api?style=flat-square">
@@ -22,7 +22,7 @@
 </a>
 </p>
 
-> `nuxt-composition-api` provides a way to use the Vue 3 Composition API in with Nuxt-specific features.
+> `@nuxtjs/composition-api` provides a way to use the Vue 3 Composition API in with Nuxt-specific features.
 
 **Note**: the main aim is to allow experimentation and feedback before the final release of Nuxt 3. It is not recommended to use this package in production.
 

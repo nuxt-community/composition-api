@@ -186,7 +186,7 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
  * @example
 
   ```ts
-  import { defineComponent, ref, useFetch } from 'nuxt-composition-api'
+  import { defineComponent, ref, useFetch } from '@nuxtjs/composition-api'
   import axios from 'axios'
 
   export default defineComponent({

@@ -1,6 +1,6 @@
 ---
 title: Definition helpers
-description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
 position: 3
 ---
@@ -14,7 +14,7 @@ These helpers simply return the function passed into them, adding the correct ty
 Create a plugin with types with:
 
 ```ts
-import { defineNuxtPlugin } from 'nuxt-composition-api'
+import { defineNuxtPlugin } from '@nuxtjs/composition-api'
 
 export default defineNuxtPlugin((ctx) => {
   // do stuff
@@ -26,7 +26,7 @@ export default defineNuxtPlugin((ctx) => {
 Create middleware with types with:
 
 ```ts
-import { defineNuxtMiddleware } from 'nuxt-composition-api'
+import { defineNuxtMiddleware } from '@nuxtjs/composition-api'
 
 export default defineNuxtMiddleware((ctx) => {
   // do stuff
@@ -38,7 +38,7 @@ export default defineNuxtMiddleware((ctx) => {
 Create a Nuxt module with types with:
 
 ```ts
-import { defineNuxtModule } from 'nuxt-composition-api'
+import { defineNuxtModule } from '@nuxtjs/composition-api'
 
 export default defineNuxtModule<{ myOption: boolean }>((moduleOptions) => {
   // do stuff
@@ -51,7 +51,7 @@ export default defineNuxtModule<{ myOption: boolean }>((moduleOptions) => {
 Create server middleware with types with:
 
 ```ts
-import { defineNuxtServerMiddleware } from 'nuxt-composition-api'
+import { defineNuxtServerMiddleware } from '@nuxtjs/composition-api'
 
 export default defineNuxtServerMiddleware((req, res, next) => {
   // do stuff

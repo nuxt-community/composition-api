@@ -12,7 +12,7 @@ import {
   onBeforeMount,
   ref,
   ssrPromise,
-} from 'nuxt-composition-api'
+} from '@nuxtjs/composition-api'
 
 import { fetcher } from '../utils'
 

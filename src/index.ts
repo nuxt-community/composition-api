@@ -68,19 +68,19 @@ const compositionApiModule: Module<any> = function () {
   this.options.build.babel.plugins = this.options.build.babel.plugins || []
   if (this.options.build.babel.plugins instanceof Function) {
     console.warn(
-      'Unable to automatically add Babel plugin. Make sure your custom `build.babel.plugins` returns `nuxt-composition-api/babel`'
+      'Unable to automatically add Babel plugin. Make sure your custom `build.babel.plugins` returns `@nuxtjs/composition-api/babel`'
     )
   } else {
     this.options.build.babel.plugins.push(join(__dirname, 'babel'))
   }
 
   this.options.build.transpile = this.options.build.transpile || []
-  this.options.build.transpile.push(/nuxt-composition-api/)
+  this.options.build.transpile.push(/@nuxtjs[\\/]composition-api/)
 
   this.extendBuild(config => {
     config.resolve = config.resolve || {}
     config.resolve.alias = config.resolve.alias || {}
-    config.resolve.alias['nuxt-composition-api'] = resolve(
+    config.resolve.alias['@nuxtjs/composition-api'] = resolve(
       this.options.buildDir || '',
       entryDst
     )

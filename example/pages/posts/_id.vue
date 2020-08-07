@@ -36,7 +36,7 @@ import {
   useFetch,
   useContext,
   ref,
-} from 'nuxt-composition-api'
+} from '@nuxtjs/composition-api'
 
 import Author from '~/components/Author.vue'
 

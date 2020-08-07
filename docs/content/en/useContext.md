@@ -1,6 +1,6 @@
 ---
 title: useContext
-description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
 fullscreen: True
 ---
@@ -8,7 +8,7 @@ fullscreen: True
 You can access the Nuxt context more easily using `useContext`, which will return the Nuxt context.
 
 ```ts
-import { defineComponent, ref, useContext } from 'nuxt-composition-api'
+import { defineComponent, ref, useContext } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   setup() {

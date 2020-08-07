@@ -1,6 +1,6 @@
 ---
 title: useMeta
-description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
 fullscreen: True
 ---
@@ -8,7 +8,7 @@ fullscreen: True
 You can interact directly with [head properties](https://nuxtjs.org/api/pages-head/) in `setup` by means of the `useMeta()` helper.
 
 ```ts
-import { defineComponent, useMeta, computed } from 'nuxt-composition-api'
+import { defineComponent, useMeta, computed } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   // You need to define an empty head to activate this functionality

@@ -1,6 +1,6 @@
 ---
 title: onGlobalSetup
-description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
 fullscreen: True
 ---
@@ -8,7 +8,7 @@ fullscreen: True
 This helper will run a callback function in the global setup function.
  
 ```ts[~/plugins/myPlugin.js]
-import { onGlobalSetup } from 'nuxt-composition-api'
+import { onGlobalSetup } from '@nuxtjs/composition-api'
 
 export default () => {
   onGlobalSetup(() => {

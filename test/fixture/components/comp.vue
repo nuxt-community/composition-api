@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, computed, useFetch } from 'nuxt-composition-api'
+import { defineComponent, ref, computed, useFetch } from '@nuxtjs/composition-api'
 
 export function fetcher(result, time = 100) {
   return new Promise(resolve => {
