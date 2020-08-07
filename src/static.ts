@@ -29,7 +29,7 @@ function writeFile(key: string, value: string) {
     2. On hard-reload of a generated page, the JSON will be inlined into the page and cached.
     3. On client navigation to a generated page, this JSON will be fetched - and once fetched it will be cached for subsequent navigations. If for whatever reason this JSON doesn't exist, such as if the page *wasn't* pre-generated, the original factory function will be run on client-side.
 
-  If you are pregenerating some pages in your app note that you may need to increase `generate.interval`. (See [setup instructions](https://composition-api.now.sh/setup.html).)
+  If you are pregenerating some pages in your app note that you may need to increase `generate.interval`. (See [setup instructions](https://composition-api.nuxtjs.org/setup.html).)
 
   * 
   * __SSR__

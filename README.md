@@ -36,7 +36,7 @@
 - 💪 **TypeScript**: Written in TypeScript
 
 <p align="center">
-<a href="https://composition-api.now.sh/">Read Documentation</a>
+<a href="https://composition-api.nuxtjs.org/">Read Documentation</a>
 </p>
 
 ## Contributors
