@@ -16,7 +16,7 @@ const globalSetup = new Set<SetupFunction>()
  * @param fn The function to run in the setup function. It receives the global props and context.
  * @example
     ```ts
-    import { onGlobalSetup } from 'nuxt-composition-api'
+    import { onGlobalSetup } from '@nuxtjs/composition-api'
     
     export default () => {
       onGlobalSetup(() => {

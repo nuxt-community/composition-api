@@ -6,7 +6,7 @@ import { getHeadOptions } from './meta'
  * If you want to enable `useMeta`, make sure to include `head: {}` in your component definition.
  * @example
   ```ts
-  import { defineComponent } from 'nuxt-composition-api'
+  import { defineComponent } from '@nuxtjs/composition-api'
 
   export default defineComponent({
     head: {},

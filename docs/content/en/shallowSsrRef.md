@@ -1,6 +1,6 @@
 ---
 title: shallowSsrRef
-description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
 fullscreen: True
 ---
@@ -8,7 +8,7 @@ fullscreen: True
 This helper creates a [`shallowRef`](https://vue-composition-api-rfc.netlify.app/api.html#shallowref) (a ref that tracks its own .value mutation but doesn't make its value reactive) that is synced between client & server.
 
 ```ts
-import { shallowSsrRef, onMounted } from 'nuxt-composition-api'
+import { shallowSsrRef, onMounted } from '@nuxtjs/composition-api'
 
 const shallow = shallowSsrRef({ v: 'init' })
 if (process.server) shallow.value = { v: 'changed' }

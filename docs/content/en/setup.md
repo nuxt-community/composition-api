@@ -1,26 +1,26 @@
 ---
 title: Quick start
-description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Getting started
 position: 2
 ---
 
 ## Quick start
 
-1. First, install `nuxt-composition-api`:
+1. First, install `@nuxtjs/composition-api`:
 
   <code-group>
     <code-block label="Yarn" active>
 
     ```bash
-    yarn add nuxt-composition-api
+    yarn add @nuxtjs/composition-api
     ```
 
     </code-block>
     <code-block label="NPM">
 
     ```bash
-    npm install nuxt-composition-api --save
+    npm install @nuxtjs/composition-api --save
     ```
 
     </code-block>
@@ -31,7 +31,7 @@ position: 2
    ```js[nuxt.config.js]
    {
      buildModules: [
-       'nuxt-composition-api'
+       '@nuxtjs/composition-api'
      ]
    }
    ```
@@ -56,7 +56,7 @@ position: 2
 
 - The module automatically installs [`@vue/composition-api`](https://github.com/vuejs/composition-api) as a plugin, so you do not need to enable it separately.
 
-- For convenience, this package also exports the [`@vue/composition-api`](https://github.com/vuejs/composition-api) methods and hooks, so you can import directly from `nuxt-composition-api`.
+- For convenience, this package also exports the [`@vue/composition-api`](https://github.com/vuejs/composition-api) methods and hooks, so you can import directly from `@nuxtjs/composition-api`.
 
 </alert>
 
@@ -65,6 +65,6 @@ position: 2
 If you need to use jest tests with this module installed, just add the following lines to your `jest.config.js`:
 ```js[jest.config.js]
 moduleNameMapper: {
-  'nuxt-composition-api': 'nuxt-composition-api/lib/cjs/entrypoint.js',
+  '@nuxtjs/composition-api': '@nuxtjs/composition-api/lib/cjs/entrypoint.js',
 },
 ```

@@ -1,6 +1,6 @@
 ---
 title: ssrRef
-description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
 fullscreen: True
 ---
@@ -10,7 +10,7 @@ When creating composition utility functions, often there will be server-side sta
 `ssrRef` will automatically add ref values to `window.__NUXT__` on SSR if they have been changed from their initial value. It can be used outside of components, such as in shared utility functions, and it supports passing a factory function that will generate the initial value of the ref.
 
 ```ts
-import { ssrRef } from 'nuxt-composition-api'
+import { ssrRef } from '@nuxtjs/composition-api'
 
 const val = ssrRef('')
 
@@ -25,7 +25,7 @@ const val2 = ssrRef(myExpensiveSetterFunction)
 
 <alert type="info">
 
-Under the hood, `ssrRef` requires a key to ensure that the ref values match between client and server. If you have added `nuxt-composition-api` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `nuxt-composition-api/babel` to your Babel plugins.
+Under the hood, `ssrRef` requires a key to ensure that the ref values match between client and server. If you have added `@nuxtjs/composition-api` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `@nuxtjs/composition-api/babel` to your Babel plugins.
 
 </alert>
 

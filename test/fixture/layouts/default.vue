@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { defineComponent, useContext, useMeta } from 'nuxt-composition-api'
+import { defineComponent, useContext, useMeta } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   head: {},

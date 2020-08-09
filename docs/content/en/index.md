@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Getting started
 position: 1
 items:
@@ -12,7 +12,7 @@ items:
 
 ---
 
-> `nuxt-composition-api` provides a way to use the Vue 3 Composition API in with Nuxt-specific features.
+> `@nuxtjs/composition-api` provides a way to use the Vue 3 Composition API in with Nuxt-specific features.
 
 **Note**: the main aim is to allow experimentation and feedback before the final release of Nuxt 3. It is not recommended to use this package in production.
 

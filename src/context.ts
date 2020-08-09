@@ -33,7 +33,7 @@ interface UseContextReturn
  * `useContext` will return the Nuxt context.
  * @example
   ```ts
-  import { defineComponent, ref, useContext } from 'nuxt-composition-api'
+  import { defineComponent, ref, useContext } from '@nuxtjs/composition-api'
 
   export default defineComponent({
     setup() {

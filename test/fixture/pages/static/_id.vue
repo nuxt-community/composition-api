@@ -15,7 +15,7 @@ import {
   computed,
   useStatic,
   useContext,
-} from 'nuxt-composition-api'
+} from '@nuxtjs/composition-api'
 
 import { fetcher } from '../../utils'
 

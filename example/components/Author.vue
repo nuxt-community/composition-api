@@ -16,7 +16,7 @@ import {
   useFetch,
   useContext,
   ref,
-} from 'nuxt-composition-api'
+} from '@nuxtjs/composition-api'
 
 export default defineComponent({
   props: {

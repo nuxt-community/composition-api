@@ -1,6 +1,6 @@
 ---
 title: ssrPromise
-description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
 fullscreen: True
 ---
@@ -13,7 +13,7 @@ import {
   onBeforeMount,
   ref,
   ssrPromise,
-} from 'nuxt-composition-api'
+} from '@nuxtjs/composition-api'
 
 export default defineComponent({
   setup() {
@@ -35,7 +35,7 @@ export default defineComponent({
 
 <alert type="info">
 
-Under the hood, `ssrPromise` requires a key to ensure that the ref values match between client and server. If you have added `nuxt-composition-api` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `nuxt-composition-api/babel` to your Babel plugins.
+Under the hood, `ssrPromise` requires a key to ensure that the ref values match between client and server. If you have added `@nuxtjs/composition-api` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `@nuxtjs/composition-api/babel` to your Babel plugins.
 
 </alert>
 

@@ -6,6 +6,6 @@ import 'core-js/features/reflect/own-keys'
 import 'core-js/modules/es6.reflect.own-keys'
 <% } %>
 
-import { globalPlugin } from 'nuxt-composition-api'
+import { globalPlugin } from '@nuxtjs/composition-api'
 
 export default globalPlugin

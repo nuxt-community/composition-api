@@ -1,4 +1,4 @@
-import { onGlobalSetup, provide, ref, ssrRef } from 'nuxt-composition-api'
+import { onGlobalSetup, provide, ref, ssrRef } from '@nuxtjs/composition-api'
 
 export const ranSsr = ssrRef(false)
 export const ran = ref(false)

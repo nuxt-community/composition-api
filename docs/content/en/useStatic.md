@@ -1,13 +1,13 @@
 ---
 title: useStatic
-description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
 ---
 
 You can pre-run expensive functions using `useStatic`.
 
 ```ts
-import { defineComponent, useContext, useStatic, computed } from 'nuxt-composition-api'
+import { defineComponent, useContext, useStatic, computed } from '@nuxtjs/composition-api'
 import axios from 'axios'
 
 export default defineComponent({

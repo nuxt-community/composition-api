@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { defineComponent, inject } from 'nuxt-composition-api'
+import { defineComponent, inject } from '@nuxtjs/composition-api'
 import { ran, ranSsr } from '../plugins/global'
 
 export default defineComponent({

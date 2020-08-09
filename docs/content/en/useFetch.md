@@ -1,6 +1,6 @@
 ---
 title: useFetch
-description: 'nuxt-composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
 fullscreen: True
 ---
@@ -10,7 +10,7 @@ Versions of Nuxt newer than v2.12 support a [custom hook called `fetch`](https:/
 You can access this with this package as follows:
 
 ```ts
-import { defineComponent, ref, useFetch } from 'nuxt-composition-api'
+import { defineComponent, ref, useFetch } from '@nuxtjs/composition-api'
 import axios from 'axios'
 
 export default defineComponent({
