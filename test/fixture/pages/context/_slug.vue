@@ -23,7 +23,12 @@
 </template>
 
 <script>
-import { defineComponent, useContext, ref, watch } from '@nuxtjs/composition-api'
+import {
+  defineComponent,
+  useContext,
+  ref,
+  watch,
+} from '@nuxtjs/composition-api'
 
 export default defineComponent({
   setup() {

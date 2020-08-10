@@ -10,7 +10,11 @@
 </template>
 
 <script>
-import { defineComponent, ssrRef, onServerPrefetch } from '@nuxtjs/composition-api'
+import {
+  defineComponent,
+  ssrRef,
+  onServerPrefetch,
+} from '@nuxtjs/composition-api'
 
 import { fetcher } from '../utils'
 
