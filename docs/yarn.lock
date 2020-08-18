@@ -1018,16 +1018,16 @@
     rc9 "^1.0.0"
     std-env "^2.2.1"
 
-"@nuxt/content-theme-docs@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@nuxt/content-theme-docs/-/content-theme-docs-0.5.0.tgz#f17f66244f4b4d6a1773966ddb73935f58fa4bca"
-  integrity sha512-aqVFO+SphQs2VC8tIor2SqlkTFUqkfuN9+vb+5q1P0nd1tr+Srj8Y9y66GrP3j15ny75Ayj1fiCVRkoFimi3xQ==
+"@nuxt/content-theme-docs@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@nuxt/content-theme-docs/-/content-theme-docs-0.5.1.tgz#75728144d384ade745f2b89267fad72489827973"
+  integrity sha512-PGQUa0wwrpU1F4qWGZb2lBnj9cUwa4bn/ZbpWAdaIkyFyN8HIrCuWlPPBXCZU+Qz7myyYimC7LK9ZgCmYVOVyw==
   dependencies:
     "@nuxt/content" "^1.6.1"
     "@nuxt/types" "^2.14.3"
     "@nuxtjs/color-mode" "^1.0.3"
     "@nuxtjs/google-fonts" "^1.0.0"
-    "@nuxtjs/pwa" "^3.0.0"
+    "@nuxtjs/pwa" "^3.0.1"
     "@nuxtjs/tailwindcss" "^3.0.0"
     "@tailwindcss/typography" "^0.2.0"
     clipboard "^2.0.6"
@@ -1334,10 +1334,10 @@
     consola "^2.14.0"
     google-fonts-helper "^1.0.1"
 
-"@nuxtjs/pwa@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/pwa/-/pwa-3.0.0.tgz#5d08b8e73aabe5ff2cceca5a704d34f1b81b98fb"
-  integrity sha512-joqeeJbNHhexc8s+PjT/JkH9z5C0eGrDG/rs2ziKSG41CiNOp1wSg0OMBuNaHqML6Qsw/KVoy/50/tGu4ue0pA==
+"@nuxtjs/pwa@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/pwa/-/pwa-3.0.1.tgz#eead598fa407a3347b4888409918e77e546c44f1"
+  integrity sha512-AkNeuOTHcshX/hNT5pBHUgOaeIfd+pBz9saScYZH0u69c51SxzQe7712Cc51+YTK8OUjVPBOXPr1kUvKggW6hw==
   dependencies:
     defu "^3.1.0"
     execa "^4.0.3"
