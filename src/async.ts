@@ -43,19 +43,15 @@ export const useAsync = <T>(
       process.client &&
       window[globalNuxt]?.context.isHMR)
   ) {
-    const p = cb()
+    const p = Promise.resolve(cb())
 
-    if (p instanceof Promise) {
-      if (process.server) {
-        onServerPrefetch(async () => {
-          _ref.value = await p
-        })
-      } else {
-        // eslint-disable-next-line
-        p.then(res => (_ref.value = res))
-      }
+    if (process.server) {
+      onServerPrefetch(async () => {
+        _ref.value = await p
+      })
     } else {
-      _ref.value = p
+      // eslint-disable-next-line
+      p.then(res => (_ref.value = res))
     }
   }
 
