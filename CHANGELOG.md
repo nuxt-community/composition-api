@@ -1,3 +1,10 @@
+### [0.12.2](https://github.com/nuxt-community/composition-api/compare/0.12.1...0.12.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* use `Promise.resolve()` to cover all possible promise cases ([#211](https://github.com/nuxt-community/composition-api/issues/211)) ([6d10312](https://github.com/nuxt-community/composition-api/commit/6d10312f65cefb219c00bbceb946d3547abc25f4)), closes [#210](https://github.com/nuxt-community/composition-api/issues/210)
+
 ### [0.12.1](https://github.com/nuxt-community/composition-api/compare/0.12.0...0.12.1) (2020-08-16)
 
 ## [0.12.0](https://github.com/nuxt-community/composition-api/compare/0.11.0...0.12.0) (2020-08-09)
