@@ -54,7 +54,7 @@ export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
 
     changed: undefined,
     afterNavigation: undefined,
-  }
+  } as any
 }
 
 export const getHeadOptions = (options: {
