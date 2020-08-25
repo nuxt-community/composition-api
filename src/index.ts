@@ -4,8 +4,17 @@ import { readdirSync, copyFileSync, existsSync, mkdirpSync } from 'fs-extra'
 import type { Module } from '@nuxt/types'
 import normalize from 'normalize-path'
 
-// eslint-disable-next-line
-const utils = require('@nuxt/utils')
+const loadUtils = () => {
+  try {
+    // Try to load nuxt edge utils first
+    return require('@nuxt/utils-edge')
+  } catch {
+    // if it fails, fall back to normal nuxt utils
+    return require('@nuxt/utils')
+  }
+}
+
+const utils = loadUtils()
 
 const compositionApiModule: Module<any> = function () {
   const libRoot = resolve(__dirname, '..')
