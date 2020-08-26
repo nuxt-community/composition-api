@@ -107,9 +107,6 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
 
   const refs = toRefs(_head) as ToRefs<ReturnType<typeof createEmptyMeta> & T>
 
-  if (process.client)
-    watch(Object.values(refs), vm.$meta().refresh, { immediate: true })
-
   refs.titleTemplate = customRef((track, trigger) => {
     return {
       get() {
@@ -126,6 +123,9 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
       },
     }
   })
-  
+
+  if (process.client)
+    watch(Object.values(refs), vm.$meta().refresh, { immediate: true })
+
   return refs
 }

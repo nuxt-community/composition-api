@@ -2,6 +2,9 @@
   <blockquote>
     <p>
       <code>title-{{ title }}</code>
+      <button @click="changeTitleTemplate">
+        Change title template
+      </button>
     </p>
   </blockquote>
 </template>
@@ -21,7 +24,7 @@ export default defineComponent({
 
     title.value = 'oldSetTitle'
 
-    const { title: newImport, bodyAttrs } = useMeta()
+    const { title: newImport, bodyAttrs, titleTemplate } = useMeta()
     newImport.value = 'newSetTitle'
 
     onMounted(() => {
@@ -32,7 +35,11 @@ export default defineComponent({
 
     bodyAttrs.value.class = ['dark-mode', 'mobile']
 
-    return { title }
+    function changeTitleTemplate() {
+      titleTemplate.value = `%s - Changed`
+    }
+
+    return { title, changeTitleTemplate, titleTemplate }
   },
 })
 </script>
