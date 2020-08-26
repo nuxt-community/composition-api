@@ -117,13 +117,13 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
         return _head.titleTemplate
       },
       set(newValue) {
-        if(!_head.titleTemplate) {
+        if (!_head.titleTemplate) {
           Vue.set(_head, 'titleTemplate', newValue)
         } else {
           _head.titleTemplate = newValue
         }
         trigger()
-      }
+      },
     }
   })
   
