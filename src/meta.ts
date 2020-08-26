@@ -7,6 +7,7 @@ import {
   reactive,
   watch,
   UnwrapRef,
+  customRef,
 } from '@vue/composition-api'
 
 import type { MetaInfo } from 'vue-meta'
@@ -32,13 +33,15 @@ function assign<T extends Record<string, any>>(target: T, source: Partial<T>) {
   return target
 }
 
-export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
+export function createEmptyMeta(): Omit<
+  MetaInfoMapper<Required<MetaInfo>>,
+  'titleTemplate'
+> {
   return {
     __dangerouslyDisableSanitizers: [],
     __dangerouslyDisableSanitizersByTagID: {},
 
     title: undefined,
-    titleTemplate: undefined,
     htmlAttrs: {},
     headAttrs: {},
     bodyAttrs: {},
@@ -104,7 +107,30 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
   assign(_head, createEmptyMeta())
   assign<MetaInfo>(_head, init || {})
 
-  const refs = toRefs(_head) as ToRefs<ReturnType<typeof createEmptyMeta> & T>
+  const refs = toRefs(_head) as ToRefs<
+    ReturnType<typeof createEmptyMeta> & {
+      titleTemplate: ReactiveHead['titleTemplate']
+    } & T
+  >
+
+  refs.titleTemplate = customRef<ReactiveHead['titleTemplate']>(
+    (track, trigger) => {
+      return {
+        get() {
+          track()
+          return _head.titleTemplate
+        },
+        set(newValue) {
+          if (!_head.titleTemplate) {
+            Vue.set(_head, 'titleTemplate', newValue)
+          } else {
+            _head.titleTemplate = newValue
+          }
+          trigger()
+        },
+      }
+    }
+  )
 
   if (process.client)
     watch(Object.values(refs), vm.$meta().refresh, { immediate: true })

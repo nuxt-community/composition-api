@@ -28,6 +28,7 @@ module.exports = {
     },
   ],
   head: {
+    titleTemplate: title => `${title} - fixture`,
     link: isTesting
       ? []
       : [
