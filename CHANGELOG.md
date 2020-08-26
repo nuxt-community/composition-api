@@ -1,3 +1,11 @@
+### [0.12.3](https://github.com/nuxt-community/composition-api/compare/0.12.2...0.12.3) (2020-08-26)
+
+
+### Bug Fixes
+
+* load nuxt edge utils if available ([#219](https://github.com/nuxt-community/composition-api/issues/219)) ([563bb3c](https://github.com/nuxt-community/composition-api/commit/563bb3c33fb7bfc9d5a57353b006c8cc8f268eb0))
+* overwrite titleTemplate with undefined ([#220](https://github.com/nuxt-community/composition-api/issues/220)) ([dc6f253](https://github.com/nuxt-community/composition-api/commit/dc6f25360554aab4cb29ec8d0f021939c5660168))
+
 ### [0.12.2](https://github.com/nuxt-community/composition-api/compare/0.12.1...0.12.2) (2020-08-18)
 
 
