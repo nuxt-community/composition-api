@@ -4,6 +4,7 @@ import type { Ref } from '@vue/composition-api'
 import { globalNuxt } from './globals'
 import { ssrRef } from './ssr-ref'
 import { validateKey } from './utils'
+import { useContext } from './context'
 
 /**
  * You can create reactive values that depend on asynchronous calls with `useAsync`.
@@ -34,6 +35,9 @@ export const useAsync = <T>(
   key?: string | Ref<null>
 ): Ref<null | T> => {
   validateKey(key)
+
+  // ensure reexecution after route change
+  key += useContext().route.value.fullPath
 
   const _ref = isRef(key) ? key : ssrRef<T | null>(null, key)
 
