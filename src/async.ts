@@ -37,7 +37,7 @@ export const useAsync = <T>(
   validateKey(key)
 
   // ensure reexecution after route change
-  key += useContext().route.value.fullPath
+  if (!isRef(key)) key += useContext().route.value.fullPath
 
   const _ref = isRef(key) ? key : ssrRef<T | null>(null, key)
 
