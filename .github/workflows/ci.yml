@@ -15,11 +15,24 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: actions/cache@v1
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+      - uses: actions/cache@v2
         id: cache
         with:
-          path: "node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          path: |
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            .yarn/*
+            !.yarn/releases
+            !.yarn/plugins
+            !.yarn/sdks
+            !.yarn/versions
+            .pnp.js
+          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
@@ -37,11 +50,24 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: actions/cache@v1
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+      - uses: actions/cache@v2
         id: cache
         with:
-          path: "node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          path: |
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            .yarn/*
+            !.yarn/releases
+            !.yarn/plugins
+            !.yarn/sdks
+            !.yarn/versions
+            .pnp.js
+          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
