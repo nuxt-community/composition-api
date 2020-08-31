@@ -74,7 +74,7 @@ jobs:
         run: yarn
 
       - name: Build project
-        run: yarn build
+        run: yarn compile
 
       - name: Test project
         run: yarn test
