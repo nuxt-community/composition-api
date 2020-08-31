@@ -44,7 +44,7 @@
     "prepare": "yarn build",
     "prepublishOnly": "yarn lint && yarn test",
     "release": "release-it",
-    "test": "yarn test:e2e-globals && yarn test:e2e-ssr && test:e2e-generated && yarn test:types && yarn test:unit",
+    "test": "yarn test:e2e-globals && yarn test:e2e-ssr && yarn test:e2e-generated && yarn test:types && yarn test:unit",
     "test:e2e-globals": "GLOBALS=true PORT=3000 start-test 'yarn fixture:prod' 3000 'yarn testcafe firefox:headless test/e2e'",
     "test:e2e-ssr": "PORT=4000 start-test 'yarn fixture:prod' 4000 'yarn testcafe firefox:headless test/e2e'",
     "test:e2e-generated": "GENERATE=true PORT=5000 start-test 'yarn fixture:generate' 5000 'yarn testcafe -q firefox:headless test/e2e'",
