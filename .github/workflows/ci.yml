@@ -24,13 +24,13 @@ jobs:
         with:
           path: |
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            node_modules
             .yarn/*
             !.yarn/releases
             !.yarn/plugins
             !.yarn/sdks
             !.yarn/versions
-            .pnp.js
-          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-nopnp
           restore-keys: |
             ${{ runner.os }}-yarn
 
@@ -59,13 +59,13 @@ jobs:
         with:
           path: |
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            node_modules
             .yarn/*
             !.yarn/releases
             !.yarn/plugins
             !.yarn/sdks
             !.yarn/versions
-            .pnp.js
-          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-nopnp
           restore-keys: |
             ${{ runner.os }}-yarn
 
