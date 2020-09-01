@@ -3832,9 +3832,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"api-1ee977@workspace:test/fixture/api":
+"api@workspace:test/fixture/api":
   version: 0.0.0-use.local
-  resolution: "api-1ee977@workspace:test/fixture/api"
+  resolution: "api@workspace:test/fixture/api"
   languageName: unknown
   linkType: soft
 
