@@ -25,18 +25,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.11.1":
-  version: 7.11.1
-  resolution: "@babel/core@npm:7.11.1"
+"@babel/core@npm:^7.11.4":
+  version: 7.11.5
+  resolution: "@babel/core@npm:7.11.5"
   dependencies:
     "@babel/code-frame": ^7.10.4
-    "@babel/generator": ^7.11.0
+    "@babel/generator": ^7.11.5
     "@babel/helper-module-transforms": ^7.11.0
     "@babel/helpers": ^7.10.4
-    "@babel/parser": ^7.11.1
+    "@babel/parser": ^7.11.5
     "@babel/template": ^7.10.4
-    "@babel/traverse": ^7.11.0
-    "@babel/types": ^7.11.0
+    "@babel/traverse": ^7.11.5
+    "@babel/types": ^7.11.5
     convert-source-map: ^1.7.0
     debug: ^4.1.0
     gensync: ^1.0.0-beta.1
@@ -44,8 +44,8 @@ __metadata:
     lodash: ^4.17.19
     resolve: ^1.3.2
     semver: ^5.4.1
-    source-map: ^0.5.0
-  checksum: c6bb33b1f7eb803de5832342841ed615f0152e333efa601bf18460c8070bfd0e77cea83010a18a409bf8886096ec57397dd8bf388bc4d85f1337dc2bc6e3f7ef
+    source-map: ^0.6.1
+  checksum: acde8bbe025ac8a6e5c5d273e37f4e5d2fed984965dd88c4dc2aa488ad5ceec85c1774f628d99cbcc19663dc7b5fdc0a43ce720e2d7befd9674764aadde0e729
   languageName: node
   linkType: hard
 
@@ -57,6 +57,17 @@ __metadata:
     jsesc: ^2.5.1
     source-map: ^0.5.0
   checksum: aec10e0792f506b88b0abf859d7a76d7d4a8e9a4c3865f13ce9c2fc6d67234e205859c20f8aef633f2b6a23acc7b8af1d70d77ad186b3d0af155ab9252e13b10
+  languageName: node
+  linkType: hard
+
+"@babel/generator@npm:^7.11.5":
+  version: 7.11.5
+  resolution: "@babel/generator@npm:7.11.5"
+  dependencies:
+    "@babel/types": ^7.11.5
+    jsesc: ^2.5.1
+    source-map: ^0.6.1
+  checksum: c353387c67289b123af6ca665a83c6da9fe5a77ed4d52a3b05a6f4fb47d0595f2aa51c214061860931ff87f449570c6a4866edfe47eb41a35ffc75ac416ffa34
   languageName: node
   linkType: hard
 
@@ -325,12 +336,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.10.4, @babel/parser@npm:^7.11.0, @babel/parser@npm:^7.11.1, @babel/parser@npm:^7.5.5, @babel/parser@npm:^7.9.6":
+"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.10.4, @babel/parser@npm:^7.11.0, @babel/parser@npm:^7.5.5, @babel/parser@npm:^7.9.6":
   version: 7.11.2
   resolution: "@babel/parser@npm:7.11.2"
   bin:
     parser: ./bin/babel-parser.js
   checksum: 1de840088600846f90477ec809120aec5cf6a0bac1d5b404154c91345c2b0475f1549951cac695739788002085cd2243f6cdb94e30754f8dc4eee10ccc2ebd0d
+  languageName: node
+  linkType: hard
+
+"@babel/parser@npm:^7.11.5":
+  version: 7.11.5
+  resolution: "@babel/parser@npm:7.11.5"
+  bin:
+    parser: ./bin/babel-parser.js
+  checksum: ef2874e4d27eaa86777680505e57a7b36549c9602c682372d8b7c6234dff84cb8d03bdce65002a3e98921d83233b5af451d6c9dd9c681232ebe4c4ee9f41318e
   languageName: node
   linkType: hard
 
@@ -1166,7 +1186,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/traverse@npm:^7.10.4, @babel/traverse@npm:^7.11.0, @babel/traverse@npm:^7.5.5":
+"@babel/traverse@npm:^7.10.4, @babel/traverse@npm:^7.5.5":
   version: 7.11.0
   resolution: "@babel/traverse@npm:7.11.0"
   dependencies:
@@ -1183,6 +1203,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/traverse@npm:^7.11.5":
+  version: 7.11.5
+  resolution: "@babel/traverse@npm:7.11.5"
+  dependencies:
+    "@babel/code-frame": ^7.10.4
+    "@babel/generator": ^7.11.5
+    "@babel/helper-function-name": ^7.10.4
+    "@babel/helper-split-export-declaration": ^7.11.0
+    "@babel/parser": ^7.11.5
+    "@babel/types": ^7.11.5
+    debug: ^4.1.0
+    globals: ^11.1.0
+    lodash: ^4.17.19
+  checksum: 206010caeed881da55cf0e76f1c8688af072eba8dd38aa94b01fc04ab7b9ca2007b5fbc566d478555e78ae0780f399bdac1434c9ee6ea3ac2a452832fa4cab02
+  languageName: node
+  linkType: hard
+
 "@babel/types@npm:^7.0.0, @babel/types@npm:^7.10.4, @babel/types@npm:^7.10.5, @babel/types@npm:^7.11.0, @babel/types@npm:^7.3.0, @babel/types@npm:^7.4.4":
   version: 7.11.0
   resolution: "@babel/types@npm:7.11.0"
@@ -1191,6 +1228,17 @@ __metadata:
     lodash: ^4.17.19
     to-fast-properties: ^2.0.0
   checksum: 46e2fcd49d1c6d3261fcc3e88906fa39661a193365325ca94b9b1d59f949cef8546e3aba3e13a122b1bf2a493120ad00c06533ae0c428ad60ce81ee2a2649964
+  languageName: node
+  linkType: hard
+
+"@babel/types@npm:^7.11.5":
+  version: 7.11.5
+  resolution: "@babel/types@npm:7.11.5"
+  dependencies:
+    "@babel/helper-validator-identifier": ^7.10.4
+    lodash: ^4.17.19
+    to-fast-properties: ^2.0.0
+  checksum: a1515b3ed19a8499f1f27d2c90537803b3e77f6d100ef1c327c86f85817ad2d915a61ae777eaacd9d955999db4ea68d6bb3b5933e0611d3d18a6ffc95430f44a
   languageName: node
   linkType: hard
 
@@ -1276,11 +1324,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/babel-preset-app@npm:2.14.3":
-  version: 2.14.3
-  resolution: "@nuxt/babel-preset-app@npm:2.14.3"
+"@nuxt/babel-preset-app@npm:2.14.4":
+  version: 2.14.4
+  resolution: "@nuxt/babel-preset-app@npm:2.14.4"
   dependencies:
-    "@babel/core": ^7.11.1
+    "@babel/core": ^7.11.4
     "@babel/helper-compilation-targets": ^7.10.4
     "@babel/plugin-proposal-class-properties": ^7.10.4
     "@babel/plugin-proposal-decorators": ^7.10.5
@@ -1289,18 +1337,18 @@ __metadata:
     "@babel/runtime": ^7.11.2
     "@vue/babel-preset-jsx": ^1.1.2
     core-js: ^2.6.5
-  checksum: c2dbe3e5d1999adfa1aaa495e3c6a0074ecbd53241e09570ceae3a2ccff9a956872ee5ba165c24893a1bf9a83124b054fd5f8d4f5aefc84840fcb459b6a7cf48
+  checksum: e310d1eb2b23232d19337c1b387cfb4f83b70960630f69c14b437ab083187d676ef40ea125bca38d04d2d55b7ba4b6b97ec336a528e01312a91742f730b2e959
   languageName: node
   linkType: hard
 
-"@nuxt/builder@npm:2.14.3":
-  version: 2.14.3
-  resolution: "@nuxt/builder@npm:2.14.3"
+"@nuxt/builder@npm:2.14.4":
+  version: 2.14.4
+  resolution: "@nuxt/builder@npm:2.14.4"
   dependencies:
     "@nuxt/devalue": ^1.2.4
-    "@nuxt/utils": 2.14.3
-    "@nuxt/vue-app": 2.14.3
-    "@nuxt/webpack": 2.14.3
+    "@nuxt/utils": 2.14.4
+    "@nuxt/vue-app": 2.14.4
+    "@nuxt/webpack": 2.14.4
     chalk: ^3.0.0
     chokidar: ^3.4.2
     consola: ^2.15.0
@@ -1313,17 +1361,17 @@ __metadata:
     semver: ^7.3.2
     serialize-javascript: ^4.0.0
     upath: ^1.2.0
-  checksum: 4171d46e6651b3c730c405d779f446b98d89cb4c5dc0ce057b61cb1c841791e4e71a9708c5e16589a8c8ea06ed869014e6cf5f2012807fbaa3e54fb265333e0e
+  checksum: 6dd201c6485e1b9401ddfc4c4a5e7638855d3b3a408f92fbed035ec0c5db2589b8bf3480588104e132de6b478c070a2407a660773dfd23d8b2654ae1af137b06
   languageName: node
   linkType: hard
 
-"@nuxt/cli@npm:2.14.3":
-  version: 2.14.3
-  resolution: "@nuxt/cli@npm:2.14.3"
+"@nuxt/cli@npm:2.14.4":
+  version: 2.14.4
+  resolution: "@nuxt/cli@npm:2.14.4"
   dependencies:
-    "@nuxt/config": 2.14.3
+    "@nuxt/config": 2.14.4
     "@nuxt/static": ^1.0.0
-    "@nuxt/utils": 2.14.3
+    "@nuxt/utils": 2.14.4
     boxen: ^4.2.0
     chalk: ^3.0.0
     compression: ^1.7.4
@@ -1346,7 +1394,7 @@ __metadata:
     wrap-ansi: ^6.2.0
   bin:
     nuxt-cli: bin/nuxt-cli.js
-  checksum: 063341570fdfb445bf90917b0022cec4b6bc830b8178110702e75e55ea93de8c04aa2aba1d5b8516df0454858ff5b860a2c116b9be2e2689909a384ab9bc0fa1
+  checksum: c9d019a28f87d809c0ff0c459152b1b5d50436518a674e9291c01a437a760f5aa8db7b655ff1a033ae710bd323d8ca8e1c6bd602de18917d2328e46f0dff2eee
   languageName: node
   linkType: hard
 
@@ -1364,11 +1412,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/config@npm:2.14.3":
-  version: 2.14.3
-  resolution: "@nuxt/config@npm:2.14.3"
+"@nuxt/config@npm:2.14.4":
+  version: 2.14.4
+  resolution: "@nuxt/config@npm:2.14.4"
   dependencies:
-    "@nuxt/utils": 2.14.3
+    "@nuxt/utils": 2.14.4
     consola: ^2.15.0
     create-require: ^1.0.2
     defu: ^2.0.4
@@ -1378,20 +1426,20 @@ __metadata:
     jiti: ^0.1.11
     rc9: ^1.0.0
     std-env: ^2.2.1
-  checksum: 4faf5e378f03bb4f48736e0bd392e0b0103917b9f5930b0cc1d1dc984831a99b3971128b80d019186ca4d46cfe9057c76cb2c6af7f14f8687395b80e04f98f04
+  checksum: 2f4c36c1ddb23b77aa1c86ac7d76e2b9f182e51733ada18efe888efa9f005b6e45571a7bb372767d0705adcff296c175287d2f99cd32b0a714ccc3fad3edb282
   languageName: node
   linkType: hard
 
-"@nuxt/content-theme-docs@npm:^0.5.3":
-  version: 0.5.3
-  resolution: "@nuxt/content-theme-docs@npm:0.5.3"
+"@nuxt/content-theme-docs@npm:^0.5.4":
+  version: 0.5.4
+  resolution: "@nuxt/content-theme-docs@npm:0.5.4"
   dependencies:
-    "@nuxt/content": ^1.7.0
-    "@nuxt/types": ^2.14.3
+    "@nuxt/content": ^1.7.1
+    "@nuxt/types": ^2.14.4
     "@nuxtjs/color-mode": ^1.0.3
     "@nuxtjs/google-fonts": ^1.0.0
-    "@nuxtjs/pwa": ^3.0.1
-    "@nuxtjs/tailwindcss": ^3.0.1
+    "@nuxtjs/pwa": ^3.0.2
+    "@nuxtjs/tailwindcss": ^3.0.2
     "@tailwindcss/typography": ^0.2.0
     clipboard: ^2.0.6
     defu: ^3.1.0
@@ -1400,17 +1448,17 @@ __metadata:
     nuxt-i18n: ^6.13.12
     prism-themes: ^1.4.0
     vue-scrollactive: ^0.9.3
-  checksum: ab4152e1d8fa88343edc3808409380d19bbb2d8854fe2d724d83c6cbab9e1ca62b166fb0c389c87e49414ee84c474fb5a6fa75e8a9a04a65b6279753b53a0ce8
+  checksum: f810b30e95ed69b2665b27d5e196459da688ee6559fbaf3c37ed1fc1fbf13a6c70fa85cc7e7517f966f1cb98f394be3eff64a5533ddfde3eb14b4d980e9bfe40
   languageName: node
   linkType: hard
 
-"@nuxt/content@npm:^1.7.0":
-  version: 1.7.0
-  resolution: "@nuxt/content@npm:1.7.0"
+"@nuxt/content@npm:^1.7.1":
+  version: 1.7.1
+  resolution: "@nuxt/content@npm:1.7.1"
   dependencies:
     "@lokidb/full-text-search": ^2.1.0
     "@lokidb/loki": ^2.1.0
-    "@nuxt/types": ^2.14.3
+    "@nuxt/types": ^2.14.4
     "@types/js-yaml": ^3.12.5
     "@types/xml2js": ^0.4.5
     change-case: ^4.1.1
@@ -1421,6 +1469,7 @@ __metadata:
     escape-html: ^1.0.3
     graceful-fs: ^4.2.4
     gray-matter: ^4.0.2
+    hasha: ^5.2.0
     hookable: ^4.1.2
     html-tags: ^3.1.0
     js-yaml: 3.14.0
@@ -1442,19 +1491,19 @@ __metadata:
     unified: ^9.2.0
     ws: ^7.3.1
     xml2js: ^0.4.23
-  checksum: 1b621d74b7dae3fa0681eb284b8baa9a562865ab01d0941a8c867bb83f596bd7c6568fef0225f08e1ecaffacf776f593eb2036e8b420765345f1e0e6e146fd76
+  checksum: 45c7d942ed5086c8f5b0f814b55d8a7f2de69e18220ddc894ce10a861859fb89ea919f890ddaaa02ee50381078c35bb40906c15a0ee5eda6380889a378dd38f1
   languageName: node
   linkType: hard
 
-"@nuxt/core@npm:2.14.3":
-  version: 2.14.3
-  resolution: "@nuxt/core@npm:2.14.3"
+"@nuxt/core@npm:2.14.4":
+  version: 2.14.4
+  resolution: "@nuxt/core@npm:2.14.4"
   dependencies:
-    "@nuxt/config": 2.14.3
+    "@nuxt/config": 2.14.4
     "@nuxt/devalue": ^1.2.4
-    "@nuxt/server": 2.14.3
-    "@nuxt/utils": 2.14.3
-    "@nuxt/vue-renderer": 2.14.3
+    "@nuxt/server": 2.14.4
+    "@nuxt/utils": 2.14.4
+    "@nuxt/vue-renderer": 2.14.4
     consola: ^2.15.0
     debug: ^4.1.1
     esm: ^3.2.25
@@ -1462,7 +1511,7 @@ __metadata:
     hable: ^3.0.0
     hash-sum: ^2.0.0
     std-env: ^2.2.1
-  checksum: 0c62d0436255768bda4d7b0c1e3eb2b6bfcd6c9a24e207d2c87977cd8b53b46f487414fc7801c24d226812cc616b38bed6c1467848460e7001ca3c7b526f590f
+  checksum: 76b35e3da94be3ef2c4a31aabd6afb6ec694d2e3f89e39a93b34f8815f9e67d8d485999c90024d21e459bf090a9f2a93a4d3707a35ef229b6d12b25e447c697a
   languageName: node
   linkType: hard
 
@@ -1489,17 +1538,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/generator@npm:2.14.3":
-  version: 2.14.3
-  resolution: "@nuxt/generator@npm:2.14.3"
+"@nuxt/generator@npm:2.14.4":
+  version: 2.14.4
+  resolution: "@nuxt/generator@npm:2.14.4"
   dependencies:
-    "@nuxt/utils": 2.14.3
+    "@nuxt/utils": 2.14.4
     chalk: ^3.0.0
     consola: ^2.15.0
     fs-extra: ^8.1.0
     html-minifier: ^4.0.0
     node-html-parser: ^1.2.20
-  checksum: bc2c4ae7b5b6ade685cad85829fabca079f63788099e647eceb927c8ba692567befc04b841905e9f9b037ea0cd10804e07bd4dccdeb41d61a78a1af55146a82c
+  checksum: 8c49bb3399040ec1c33df3ca76ee179aced6f4ef6be91920d0aa50d403d481193ba7ea8b9410c54b8c13eef89a9af6c78706a3c5cdfa0a5d1c556aefc59c4be5
   languageName: node
   linkType: hard
 
@@ -1529,13 +1578,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/server@npm:2.14.3":
-  version: 2.14.3
-  resolution: "@nuxt/server@npm:2.14.3"
+"@nuxt/server@npm:2.14.4":
+  version: 2.14.4
+  resolution: "@nuxt/server@npm:2.14.4"
   dependencies:
-    "@nuxt/config": 2.14.3
-    "@nuxt/utils": 2.14.3
-    "@nuxt/vue-renderer": 2.14.3
+    "@nuxt/config": 2.14.4
+    "@nuxt/utils": 2.14.4
+    "@nuxt/vue-renderer": 2.14.4
     "@nuxtjs/youch": ^4.2.3
     chalk: ^3.0.0
     compression: ^1.7.4
@@ -1551,7 +1600,7 @@ __metadata:
     serve-placeholder: ^1.2.2
     serve-static: ^1.14.1
     server-destroy: ^1.0.1
-  checksum: 8c4e58bad8b748a55c788a1699808fb54e542dbe06a8a9a04016edbd8a3735af660655c7c82124cab88e213757b654c805e63080dc424207337144f5d4eb4913
+  checksum: d22c2434b56ab0cda2ba0d476ecda272290a47d953fb06e4eaa11797eb353608d50bc21681d921bfd8eb091cf170ab0f4db147448355aeb7a24c7cd69e5c6c9d
   languageName: node
   linkType: hard
 
@@ -1597,9 +1646,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/types@npm:^2.14.3":
-  version: 2.14.3
-  resolution: "@nuxt/types@npm:2.14.3"
+"@nuxt/types@npm:^2.14.4":
+  version: 2.14.4
+  resolution: "@nuxt/types@npm:2.14.4"
   dependencies:
     "@types/autoprefixer": ^9.7.2
     "@types/babel__core": ^7.1.9
@@ -1617,15 +1666,15 @@ __metadata:
     "@types/terser-webpack-plugin": ^2.2.0
     "@types/webpack": ^4.41.21
     "@types/webpack-bundle-analyzer": ^3.8.0
-    "@types/webpack-dev-middleware": ^3.7.1
+    "@types/webpack-dev-middleware": ^3.7.2
     "@types/webpack-hot-middleware": ^2.25.3
-  checksum: 33e21fc142f12adae8f9c7c05d12163f655022e8d0446f50e1c9ebeb1a6695b4e38cc7a81158b921c2d309d5eeeaef641b54e0777869d90438dbd12b7e605e49
+  checksum: 4d39779879f85e1c46f8cb44e2052e00c9f89240a59e90bbe5a71595bdcaf13282534c1a3f1010f950afa6ba4699a978bb75dda07c28e604329e33d4c1cdcdb6
   languageName: node
   linkType: hard
 
-"@nuxt/utils@npm:2.14.3":
-  version: 2.14.3
-  resolution: "@nuxt/utils@npm:2.14.3"
+"@nuxt/utils@npm:2.14.4":
+  version: 2.14.4
+  resolution: "@nuxt/utils@npm:2.14.4"
   dependencies:
     consola: ^2.15.0
     fs-extra: ^8.1.0
@@ -1635,54 +1684,54 @@ __metadata:
     serialize-javascript: ^4.0.0
     signal-exit: ^3.0.3
     ua-parser-js: ^0.7.21
-  checksum: efd08b9367f65a0add8d2640cb8ffb527ff9069caf5d3c0029907684b2f170c6c0ae2f4337146d9d68a38ee0a321ee95bc8a2c28d26bc8198563b8d6b44b722f
+  checksum: 7e778b6aa73343f317e238b090db7b191b960b1ecb419234e5ae570f3226dca09dd5b1a34b0ea868cdb556a6367a34232b60abe5931db88078813f519ae77c2b
   languageName: node
   linkType: hard
 
-"@nuxt/vue-app@npm:2.14.3":
-  version: 2.14.3
-  resolution: "@nuxt/vue-app@npm:2.14.3"
+"@nuxt/vue-app@npm:2.14.4":
+  version: 2.14.4
+  resolution: "@nuxt/vue-app@npm:2.14.4"
   dependencies:
     node-fetch: ^2.6.0
     unfetch: ^4.1.0
-    vue: ^2.6.11
+    vue: ^2.6.12
     vue-client-only: ^2.0.0
     vue-meta: ^2.4.0
     vue-no-ssr: ^1.1.1
     vue-router: ^3.4.3
-    vue-template-compiler: ^2.6.11
+    vue-template-compiler: ^2.6.12
     vuex: ^3.5.1
-  checksum: c24b2dc9e28529bce07d13d9246572b70b746232f84941874c8ea413f66f505ca632897fc646f59d51603189aded7620d760ce15bc88e84c23e104d62ede8ff7
+  checksum: 5b1968822b2c14fa97fe9718d32612b199326626297e7fe962b93b6d0f689566f8cf087a130206f7b5ec45a38674ae03031756e05ae5e0c42cfacd514c1463a7
   languageName: node
   linkType: hard
 
-"@nuxt/vue-renderer@npm:2.14.3":
-  version: 2.14.3
-  resolution: "@nuxt/vue-renderer@npm:2.14.3"
+"@nuxt/vue-renderer@npm:2.14.4":
+  version: 2.14.4
+  resolution: "@nuxt/vue-renderer@npm:2.14.4"
   dependencies:
     "@nuxt/devalue": ^1.2.4
-    "@nuxt/utils": 2.14.3
+    "@nuxt/utils": 2.14.4
     consola: ^2.15.0
     fs-extra: ^8.1.0
     lru-cache: ^5.1.1
-    vue: ^2.6.11
+    vue: ^2.6.12
     vue-meta: ^2.4.0
-    vue-server-renderer: ^2.6.11
-  checksum: 98fb1876ce6ddcec46e1d5e32a5f603aa6241aadda51f07f1edbcb588bdee91e136d41dca9ff7b79656d094da04ab6568f07a837ea6467d1ad70ea607706d45b
+    vue-server-renderer: ^2.6.12
+  checksum: 98067da87b21d37bd219f717028c90dbb348c4aebb74179471bc69d0f3c699bc80c283c76ce2260a4678304782f0563864a2b94036d24107aec631bd897635b7
   languageName: node
   linkType: hard
 
-"@nuxt/webpack@npm:2.14.3":
-  version: 2.14.3
-  resolution: "@nuxt/webpack@npm:2.14.3"
+"@nuxt/webpack@npm:2.14.4":
+  version: 2.14.4
+  resolution: "@nuxt/webpack@npm:2.14.4"
   dependencies:
-    "@babel/core": ^7.11.1
-    "@nuxt/babel-preset-app": 2.14.3
+    "@babel/core": ^7.11.4
+    "@nuxt/babel-preset-app": 2.14.4
     "@nuxt/friendly-errors-webpack-plugin": ^2.5.0
-    "@nuxt/utils": 2.14.3
+    "@nuxt/utils": 2.14.4
     babel-loader: ^8.1.0
     cache-loader: ^4.1.0
-    caniuse-lite: ^1.0.30001114
+    caniuse-lite: ^1.0.30001118
     chalk: ^3.0.0
     consola: ^2.15.0
     create-require: ^1.0.2
@@ -1716,9 +1765,9 @@ __metadata:
     webpack-bundle-analyzer: ^3.8.0
     webpack-dev-middleware: ^3.7.2
     webpack-hot-middleware: ^2.25.0
-    webpack-node-externals: ^2.5.1
+    webpack-node-externals: ^2.5.2
     webpackbar: ^4.0.0
-  checksum: f9d9b487bd444e937abf7ea166d91407b1d505ffb1bab0809dfa7d10cdd1d23ae01b1f3701828836c5fcf23441eeb90b189b33d6326d2c6bb28fdc0cfba0cb78
+  checksum: 193b437456acc34908602586799582ead1c2b5a3eca57e52046516b3f7de463bd4986cd7a5d4df486b3d3f8906cd4445456e39885fa9fd5903441a33ccd4cf04
   languageName: node
   linkType: hard
 
@@ -1742,9 +1791,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxtjs/pwa@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@nuxtjs/pwa@npm:3.0.1"
+"@nuxtjs/pwa@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "@nuxtjs/pwa@npm:3.0.2"
   dependencies:
     defu: ^3.1.0
     execa: ^4.0.3
@@ -1752,11 +1801,11 @@ __metadata:
     hasha: ^5.2.0
     jimp-compact: ^0.12.1
     workbox-cdn: ^5.1.3
-  checksum: d3c349aae480b4b2555863e6720f02d0740f8f7bdfc0578cf73d3d883dcf77e11f27fcaa851e0cf41862854c91da90640abf2c8ca866644624ad1ba33bd53a8d
+  checksum: 3cadd0c4cd9454b91e635ac92594a8ced1dd52daf3f3635fb162bfaaa60db9fae7d926d32d10d89978910a917d2be66a4e2223eee06ae26edd7adfcaf1ba8c26
   languageName: node
   linkType: hard
 
-"@nuxtjs/tailwindcss@npm:^3.0.1":
+"@nuxtjs/tailwindcss@npm:^3.0.2":
   version: 3.0.2
   resolution: "@nuxtjs/tailwindcss@npm:3.0.2"
   dependencies:
@@ -2182,15 +2231,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/webpack-dev-middleware@npm:^3.7.1":
-  version: 3.7.1
-  resolution: "@types/webpack-dev-middleware@npm:3.7.1"
+"@types/webpack-dev-middleware@npm:^3.7.2":
+  version: 3.7.2
+  resolution: "@types/webpack-dev-middleware@npm:3.7.2"
   dependencies:
     "@types/connect": "*"
     "@types/memory-fs": "*"
     "@types/webpack": "*"
     loglevel: ^1.6.2
-  checksum: e359a31885bed713fe2917e24d2fedbd97d39a5357037438d9de9640a3952177079720bdfa34b83ae7e9313184858f439dea8b1aa829525e8663a470c8209943
+  checksum: 9dc1452f874745f9607b3849082b653d9bd63c41c7a4e7ef74e05fc77803cf2d0800db9a32fb127b5c0d3664b78c37dc8b75cb86ecf2f42c97e385a4ecddd370
   languageName: node
   linkType: hard
 
@@ -3530,10 +3579,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001114":
-  version: 1.0.30001114
-  resolution: "caniuse-lite@npm:1.0.30001114"
-  checksum: 23b73c98d7cc1bffb3e975ad73ebc927d8ad204c549597a531d41e34a29a91816fc51ab4cda7d45ba221e7cca7b0d124a9def647e6461fe24f6f3e88af95bf51
+"caniuse-lite@npm:^1.0.30001118":
+  version: 1.0.30001122
+  resolution: "caniuse-lite@npm:1.0.30001122"
+  checksum: d5ef9ffe0617dccbd42f1c85dc05d78ed914ce2dd8fed68e34b3f9db48fc1aedaa8310cf7807d74db68e2107a81540c25eba2433d21ccf9fb2a4cdab4521dc09
   languageName: node
   linkType: hard
 
@@ -8402,23 +8451,23 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"nuxt@npm:^2.14.3":
-  version: 2.14.3
-  resolution: "nuxt@npm:2.14.3"
+"nuxt@npm:^2.14.4":
+  version: 2.14.4
+  resolution: "nuxt@npm:2.14.4"
   dependencies:
-    "@nuxt/builder": 2.14.3
-    "@nuxt/cli": 2.14.3
+    "@nuxt/builder": 2.14.4
+    "@nuxt/cli": 2.14.4
     "@nuxt/components": ^1.1.0
-    "@nuxt/core": 2.14.3
-    "@nuxt/generator": 2.14.3
+    "@nuxt/core": 2.14.4
+    "@nuxt/generator": 2.14.4
     "@nuxt/loading-screen": ^2.0.2
     "@nuxt/opencollective": ^0.3.0
     "@nuxt/static": ^1.0.0
     "@nuxt/telemetry": ^1.2.3
-    "@nuxt/webpack": 2.14.3
+    "@nuxt/webpack": 2.14.4
   bin:
     nuxt: bin/nuxt.js
-  checksum: 602bb27d52aff0426a2bb39cff3fb6458b171d6297dc7aec491e53d22567ad30b70ad0a9442d4fd59513150ecfa44bc6e235fd8478e86ce266ff3069d0cb5de8
+  checksum: 9baa66900eb2cbbc5eaf592bd16b6de6c676bf65bb874a065a8f2c536ac6ec371a7dce20537dd658b761fb50a44352f69fd134776dfc5a749627ab6992f28ff0
   languageName: node
   linkType: hard
 
@@ -10637,8 +10686,8 @@ fsevents@~2.1.2:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@nuxt/content-theme-docs": ^0.5.3
-    nuxt: ^2.14.3
+    "@nuxt/content-theme-docs": ^0.5.4
+    nuxt: ^2.14.4
   languageName: unknown
   linkType: soft
 
@@ -10815,13 +10864,6 @@ fsevents@~2.1.2:
     tslib: ^1.10.0
     upper-case-first: ^2.0.1
   checksum: cfa123198b9c5303b0c132bd8dd9c456513fa6798264e5f492e0a9cb9d08643dfc40ed7d678940e2162aa1795de9843962cffea082b7586ae650bd1b2be37a96
-  languageName: node
-  linkType: hard
-
-"serialize-javascript@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "serialize-javascript@npm:2.1.2"
-  checksum: 9a4d4da6469e327332203438eed9a408e0618519d18aaba3790c88bf87712df4d577423d8fbd7122753800fa12afe19540cba111178ab0cf1f33c2b5771731bf
   languageName: node
   linkType: hard
 
@@ -12401,9 +12443,9 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"vue-server-renderer@npm:^2.6.11":
-  version: 2.6.11
-  resolution: "vue-server-renderer@npm:2.6.11"
+"vue-server-renderer@npm:^2.6.12":
+  version: 2.6.12
+  resolution: "vue-server-renderer@npm:2.6.12"
   dependencies:
     chalk: ^1.1.3
     hash-sum: ^1.0.2
@@ -12411,9 +12453,9 @@ fsevents@~2.1.2:
     lodash.template: ^4.5.0
     lodash.uniq: ^4.5.0
     resolve: ^1.2.0
-    serialize-javascript: ^2.1.2
+    serialize-javascript: ^3.1.0
     source-map: 0.5.6
-  checksum: f054c33a57dd38593f0f2f08933d22a2c1c1c372ae4280b341c86f520ad2ec1305b5d6c8ffe1d7e70418bd534fdd7c157e5a76a5c50b8bb0742d30b65550497c
+  checksum: 86a2999401aec8c36c5130c77a9736420a8f84a6098ac461554994ef01fb5ac43825c188f0df95c1640f4e837c992b6cbbe7668d2f9c27fe42c1adb0ea8e6da7
   languageName: node
   linkType: hard
 
@@ -12427,13 +12469,13 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"vue-template-compiler@npm:^2.6.11":
-  version: 2.6.11
-  resolution: "vue-template-compiler@npm:2.6.11"
+"vue-template-compiler@npm:^2.6.12":
+  version: 2.6.12
+  resolution: "vue-template-compiler@npm:2.6.12"
   dependencies:
     de-indent: ^1.0.2
     he: ^1.1.0
-  checksum: 36834e209793d8fac90603a4362eb9808ef313edb8a13c59a62d2918cf468ea0c6a2a08130753156eb7cf6d9b8d7edf05dcc9199777c0dbfa9b22c02ba1e3380
+  checksum: 5b05dda398cc1df7ba244316ddfb8f6463dbaafb4d23a4ac7e1cb8914e813a464f4ac055e41ac6e60feeadd4cccdeec1111fac592f2bb4eeb320889846a18912
   languageName: node
   linkType: hard
 
@@ -12444,10 +12486,10 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"vue@npm:^2.6.11":
-  version: 2.6.11
-  resolution: "vue@npm:2.6.11"
-  checksum: ba12fa9632c3fa4e46eec0fffeb6ec03fae6eb999bf502628e0e1c4312a3f5ed62e34378b80a4f21c00fe20d772435f56e87f7c0ee761b47cb2999fb6f7fb722
+"vue@npm:^2.6.12":
+  version: 2.6.12
+  resolution: "vue@npm:2.6.12"
+  checksum: 92ed547e55a4b27a2a45aa9ab7ff5999f891dc9754562a37226dd190b323d9f99daec892dd8bd39786e404e6e065d808e165b1a0c127ce8d45fd1bde79ec7312
   languageName: node
   linkType: hard
 
@@ -12570,10 +12612,10 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"webpack-node-externals@npm:^2.5.1":
-  version: 2.5.1
-  resolution: "webpack-node-externals@npm:2.5.1"
-  checksum: 3497be1d1631760fd6849de9f7ec1e6f337a17b5b095d51a214a012193a382c56fc2fe9cae476bdc63f859edf2a3f5fab13d31b6220165d07940a18ee1b39099
+"webpack-node-externals@npm:^2.5.2":
+  version: 2.5.2
+  resolution: "webpack-node-externals@npm:2.5.2"
+  checksum: 79faea373738549ea3a8ce8f0d136629ad1a6f539e154f73f8dfb4f658ad8d24f5e393c03d88dd5821b9b38f493716a1fda581992083e710c41eb956c3d1a028
   languageName: node
   linkType: hard
 

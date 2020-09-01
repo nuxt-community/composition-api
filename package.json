@@ -9,11 +9,6 @@
     "email": "daniel@roe.dev",
     "url": "https://roe.dev"
   },
-  "workspaces": [
-    "docs",
-    "example",
-    "test/fixture/api"
-  ],
   "keywords": [
     "vue",
     "vuejs",
