@@ -91,7 +91,7 @@
     "nuxt": "^2.14.4",
     "prettier": "^2.1.1",
     "prettier-eslint-cli": "^5.0.0",
-    "release-it": "13.7.0",
+    "release-it": "14.0.1",
     "rollup": "^2.26.8",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-dts": "^1.4.10",
