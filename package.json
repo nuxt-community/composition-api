@@ -71,7 +71,7 @@
     "@babel/preset-typescript": "^7.10.4",
     "@nuxt/types": "^2.14.4",
     "@nuxtjs/module-test-utils": "^1.6.3",
-    "@release-it/conventional-changelog": "^1.1.4",
+    "@release-it/conventional-changelog": "^2.0.0",
     "@types/jest": "^26.0.10",
     "@types/normalize-path": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
