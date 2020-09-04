@@ -11,6 +11,8 @@ import { useContext } from './context'
  * On the server, this helper will inline the result of the async call in your HTML and automatically inject them into your client code. Much like `asyncData`, it _won't_ re-run these async calls client-side.
  *
  * However, if the call hasn't been carried out on SSR (such as if you have navigated to the page after initial load), it returns a `null` ref that is filled with the result of the async call when it resolves.
+ * 
+ * If you load the page with SSR leave the page and return to the exact same route the function will not rerun! If the route changes in any way the function will rerun.
  *
  * **At the moment, `useAsync` is only suitable for one-offs, unless you provide your own unique key.**
  * @param cb The async function that will populate the ref this function returns.
