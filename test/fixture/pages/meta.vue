@@ -2,9 +2,7 @@
   <blockquote>
     <p>
       <code>title-{{ title }}</code>
-      <button @click="changeTitleTemplate">
-        Change title template
-      </button>
+      <button @click="changeTitleTemplate">Change title template</button>
     </p>
   </blockquote>
 </template>

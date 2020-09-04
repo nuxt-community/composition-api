@@ -1,8 +1,6 @@
 <template>
   <main>
-    <h2>
-      useFetch tests
-    </h2>
+    <h2>useFetch tests</h2>
     <p>
       <button @click="$fetch">Refetch</button>
     </p>
@@ -14,9 +12,7 @@
         <code>
           email-{{ email }}
           <br />
-          <span v-if="$fetchState.pending">
-            loading email
-          </span>
+          <span v-if="$fetchState.pending"> loading email </span>
         </code>
       </p>
       <p>

@@ -14,9 +14,7 @@
     </p>
     <ul>
       <li>
-        <nuxt-link :to="{ query: { test: true } }">
-          Link with query
-        </nuxt-link>
+        <nuxt-link :to="{ query: { test: true } }"> Link with query </nuxt-link>
       </li>
     </ul>
   </blockquote>

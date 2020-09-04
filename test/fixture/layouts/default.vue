@@ -8,9 +8,7 @@
         <code>route: {{ route.path }}</code>
       </p>
       <p>
-        <nuxt-link to="/">
-          Link back home
-        </nuxt-link>
+        <nuxt-link to="/"> Link back home </nuxt-link>
       </p>
     </footer>
   </div>
