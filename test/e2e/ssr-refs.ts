@@ -21,6 +21,7 @@ test('Shows data on ssr-loaded page', async t => {
   await t.click(Selector('a').withText('ssr refs'))
   await expectOnPage('ref-only SSR rendered')
   await expectOnPage('shallow-client')
+  await expectOnPage('on: client')
 })
 
 test('Shows appropriate data on client-loaded page', async t => {

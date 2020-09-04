@@ -34,7 +34,7 @@
     <h2>Links</h2>
     <ul>
       <li><nuxt-link to="/other">link forward</nuxt-link></li>
-      <li><nuxt-link to="/ssr-ref">ssr refs</nuxt-link></li>
+      <li><nuxt-link to="/ssr-ref?fromHome=true">ssr refs</nuxt-link></li>
       <li><nuxt-link to="/promise">promise</nuxt-link></li>
       <li><nuxt-link to="/context/a">context</nuxt-link></li>
       <li><nuxt-link to="/hooks">hooks</nuxt-link></li>
