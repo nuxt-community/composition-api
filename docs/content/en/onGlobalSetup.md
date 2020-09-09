@@ -8,7 +8,7 @@ fullscreen: True
 This helper will run a callback function in the global setup function.
  
 ```ts[~/plugins/myPlugin.js]
-import { onGlobalSetup } from '@nuxtjs/composition-api'
+import { onGlobalSetup, provide } from '@nuxtjs/composition-api'
 
 export default () => {
   onGlobalSetup(() => {
