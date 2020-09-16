@@ -45,7 +45,6 @@ export {
   isReadonly,
   isRef,
   markRaw,
-  markReactive,
   nextTick,
   onActivated,
   onBeforeMount,
