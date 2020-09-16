@@ -1,3 +1,10 @@
+### [0.12.4](https://github.com/nuxt-community/composition-api/compare/0.12.3...0.12.4) (2020-09-16)
+
+
+### Bug Fixes
+
+* remove `markReactive` export ([#239](https://github.com/nuxt-community/composition-api/issues/239)) ([d455d0f](https://github.com/nuxt-community/composition-api/commit/d455d0f87e5a798403ffb7bb0263f4e30de0c4ce)), closes [#238](https://github.com/nuxt-community/composition-api/issues/238)
+
 ### [0.12.3](https://github.com/nuxt-community/composition-api/compare/0.12.2...0.12.3) (2020-08-26)
 
 
