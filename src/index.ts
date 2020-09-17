@@ -85,6 +85,7 @@ const compositionApiModule: Module<any> = function () {
 
   this.options.build.transpile = this.options.build.transpile || []
   this.options.build.transpile.push(/@nuxtjs[\\/]composition-api/)
+  this.options.build.transpile.push(/@vue[\\/]composition-api/)
 
   this.extendBuild(config => {
     config.resolve = config.resolve || {}
