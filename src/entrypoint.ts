@@ -70,6 +70,7 @@ export {
   triggerRef,
   unref,
   useCSSModule,
+  version,
   watch,
   watchEffect,
 } from '@vue/composition-api'
