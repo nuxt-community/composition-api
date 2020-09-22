@@ -12,14 +12,14 @@ On the server, this helper will inline the result of the async call in your HTML
 However, if the call hasn't been carried out on SSR (such as if you have navigated to the page after initial load), it returns a `null` ref that is filled with the result of the async call when it resolves.
 
 ```ts
-import { defineComponent, useAsync, computed } from '@nuxtjs/composition-api'
-import axios from 'axios'
+import { defineComponent, useAsync, useContext } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   setup() {
-    const posts = useAsync(() => axios.get('/api/posts'))
+    const { $http } = useContext()
+    const posts = useAsync(() => $http.$get('/api/posts'))
 
-    return { posts }
+    return { posts }`
   },
 })
 ```
