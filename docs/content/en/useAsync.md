@@ -19,7 +19,7 @@ export default defineComponent({
     const { $http } = useContext()
     const posts = useAsync(() => $http.$get('/api/posts'))
 
-    return { posts }`
+    return { posts }
   },
 })
 ```
