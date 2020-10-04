@@ -28,7 +28,11 @@ type MetaInfoMapper<T> = {
 
 function assign<T extends Record<string, any>>(target: T, source: Partial<T>) {
   Object.entries(source).forEach(([key, value]) => {
-    Vue.set(target, key, value)
+    if (process.client) {
+      Vue.set(target, key, value)
+    } else {
+      target[key as keyof typeof target] = value
+    }
   })
   return target
 }
@@ -102,7 +106,7 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
       'In order to enable `useMeta`, please make sure you include `head: {}` within your component definition, and you are using the `defineComponent` exported from @nuxtjs/composition-api.'
     )
 
-  const { _head } = vm.$options as { _head: ReactiveHead }
+  const { _head = reactive({}) as ReactiveHead } = vm.$options
 
   assign(_head, createEmptyMeta())
   assign<MetaInfo>(_head, init || {})
@@ -121,7 +125,7 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
           return _head.titleTemplate
         },
         set(newValue) {
-          if (!_head.titleTemplate) {
+          if (!_head.titleTemplate && process.client) {
             Vue.set(_head, 'titleTemplate', newValue)
           } else {
             _head.titleTemplate = newValue
