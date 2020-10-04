@@ -21,7 +21,7 @@ export const withContext = (callback: ContextCallback) => {
   callback(vm[globalNuxt].context)
 }
 
-interface UseContextReturn
+export interface UseContextReturn
   extends Omit<Context, 'route' | 'query' | 'from' | 'params'> {
   route: Ref<Route>
   query: Ref<Route['query']>
