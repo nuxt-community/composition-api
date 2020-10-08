@@ -1,7 +1,7 @@
 {
   "name": "example-hello-world",
   "dependencies": {
-    "@nuxt/http": "^0.5.12",
+    "@nuxt/http": "^0.5.13",
     "@nuxtjs/composition-api": "latest",
     "vue-content-placeholders": "^0.2.1"
   },
