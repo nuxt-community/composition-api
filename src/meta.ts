@@ -1,12 +1,12 @@
 import defu from 'defu'
 import Vue from 'vue'
 import {
+  computed,
   getCurrentInstance,
-  toRefs,
-  Ref,
   reactive,
+  toRefs,
   watch,
-  ref,
+  Ref,
   UnwrapRef,
 } from '@vue/composition-api'
 
@@ -35,9 +35,7 @@ function assign<T extends Record<string, any>>(target: T, source: Partial<T>) {
 
 export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
   return {
-    // eslint-disable-next-line
-    // @ts-ignore
-    titleTemplate: null,
+    titleTemplate: (null as unknown) as undefined,
 
     __dangerouslyDisableSanitizers: [],
     __dangerouslyDisableSanitizersByTagID: {},
@@ -67,11 +65,13 @@ export const getHeadOptions = (options: {
     options.head instanceof Function
       ? reactive<MetaInfo>({})
       : reactive<MetaInfo>(options.head)
+  const _computedHead: Array<Ref<MetaInfo>> = []
   const head =
     options.head instanceof Function
-      ? () => defu(_head, options.head())
-      : () => _head
-  return { _head, head }
+      ? () =>
+          defu(..._computedHead.map(val => val.value), _head, options.head())
+      : () => defu(..._computedHead.map(val => val.value), _head, {})
+  return { _head, _computedHead, head }
 }
 
 type ToRefs<T extends Record<string, any>> = {
@@ -94,7 +94,7 @@ type ToRefs<T extends Record<string, any>> = {
     ```
  * @param init Whatever defaults you want to set for `head` properties.
  */
-export const useMeta = <T extends MetaInfo>(init?: T) => {
+export const useMeta = <T extends MetaInfo>(init?: T | (() => T)) => {
   const vm = getCurrentInstance()
   if (!vm) throw new Error('useMeta must be called within a component.')
 
@@ -103,10 +103,17 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
       'In order to enable `useMeta`, please make sure you include `head: {}` within your component definition, and you are using the `defineComponent` exported from @nuxtjs/composition-api.'
     )
 
-  const { _head } = vm.$options as { _head: ReactiveHead }
+  const { _head, _computedHead = [] } = vm.$options as {
+    _head: ReactiveHead
+    _computedHead: Array<Ref<MetaInfo>>
+  }
 
   assign(_head, createEmptyMeta())
-  assign<MetaInfo>(_head, init || {})
+  if (init instanceof Function) {
+    _computedHead.push(computed(init))
+  } else {
+    assign<MetaInfo>(_head, init || {})
+  }
 
   const refs = toRefs(_head) as ToRefs<ReturnType<typeof createEmptyMeta> & T>
 

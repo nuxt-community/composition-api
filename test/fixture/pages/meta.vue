@@ -3,6 +3,7 @@
     <p>
       <code>title-{{ title }}</code>
       <button @click="changeTitleTemplate">Change title template</button>
+      <button @click="setMessage">Set message</button>
     </p>
   </blockquote>
 </template>
@@ -11,6 +12,7 @@
 import {
   defineComponent,
   useMeta,
+  ref,
   computed,
   onMounted,
 } from '@nuxtjs/composition-api'
@@ -23,6 +25,16 @@ export default defineComponent({
     title.value = 'oldSetTitle'
 
     const { title: newImport, bodyAttrs, titleTemplate } = useMeta()
+
+    const message = ref('')
+    const setMessage = () => (message.value = 'new message')
+    useMeta(() => ({
+      meta: [{
+        name: 'message',
+        content: message.value
+      }]
+    }))
+
     newImport.value = 'newSetTitle'
 
     onMounted(() => {
@@ -37,7 +49,7 @@ export default defineComponent({
       titleTemplate.value = `%s - Changed`
     }
 
-    return { title, changeTitleTemplate, titleTemplate }
+    return { title, changeTitleTemplate, titleTemplate, setMessage }
   },
 })
 </script>

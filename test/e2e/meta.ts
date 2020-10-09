@@ -15,6 +15,9 @@ test('Shows correct title on server-loaded page', async t => {
   await t.click(Selector('button').withText('Change'))
   await t.expect(Selector('title').innerText).eql('mounted title - Changed')
 
+  await t.click(Selector('button').withText('Set'))
+  await t.expect(Selector('meta').getAttribute('content')).eql('new message')
+
   await t.click(Selector('a').withText('back'))
   await t.expect(Selector('title').innerText).eql('My fixture - fixture')
 })
@@ -30,4 +33,7 @@ test('Shows correct title on client-loaded page', async t => {
 
   await t.click(Selector('button').withText('Change'))
   await t.expect(Selector('title').innerText).eql('mounted title - Changed')
+
+  await t.click(Selector('button').withText('Set'))
+  await t.expect(Selector('meta').getAttribute('content')).eql('new message')
 })
