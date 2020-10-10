@@ -4,6 +4,7 @@ import {
   isRef,
   onBeforeMount,
   onServerPrefetch,
+  set,
 } from '@vue/composition-api'
 
 import { globalContext, globalNuxt, isFullStatic } from './globals'
@@ -137,7 +138,7 @@ const loadFullStatic = (vm: AugmentedComponentInstance) => {
 
   // Merge data
   for (const key in data) {
-    Vue.set(vm.$data, key, data[key])
+    set(vm.$data, key, data[key])
   }
 }
 
@@ -263,7 +264,7 @@ export const useFetch = (callback: Fetch) => {
         if (key in vm && typeof vm[key as keyof typeof vm] === 'function') {
           continue
         }
-        Vue.set(vm, key, data[key])
+        set(vm, key, data[key])
       } catch (e) {
         if (process.env.NODE_ENV === 'development')
           // eslint-disable-next-line

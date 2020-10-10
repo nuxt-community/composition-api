@@ -1,5 +1,4 @@
 import defu from 'defu'
-import Vue from 'vue'
 import {
   computed,
   getCurrentInstance,
@@ -7,6 +6,7 @@ import {
   toRefs,
   watch,
   Ref,
+  set,
   UnwrapRef,
 } from '@vue/composition-api'
 
@@ -28,7 +28,7 @@ type MetaInfoMapper<T> = {
 
 function assign<T extends Record<string, any>>(target: T, source: Partial<T>) {
   Object.entries(source).forEach(([key, value]) => {
-    Vue.set(target, key, value)
+    set(target, key, value)
   })
   return target
 }
@@ -103,7 +103,7 @@ export const useMeta = <T extends MetaInfo>(init?: T | (() => T)) => {
       'In order to enable `useMeta`, please make sure you include `head: {}` within your component definition, and you are using the `defineComponent` exported from @nuxtjs/composition-api.'
     )
 
-  const { _head, _computedHead = [] } = vm.$options as {
+  const { _head, _computedHead } = vm.$options as {
     _head: ReactiveHead
     _computedHead: Array<Ref<MetaInfo>>
   }

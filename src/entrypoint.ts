@@ -41,6 +41,7 @@ export {
   getCurrentInstance,
   h,
   inject,
+  isRaw,
   isReactive,
   isReadonly,
   isRef,
