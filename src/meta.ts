@@ -122,7 +122,7 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
           return _head.titleTemplate
         },
         set(newValue) {
-          if (!_head.titleTemplate && process.client) {
+          if (!_head.titleTemplate) {
             set(_head, 'titleTemplate', newValue)
           } else {
             _head.titleTemplate = newValue
