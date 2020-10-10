@@ -8,6 +8,7 @@ import {
   watch,
   UnwrapRef,
   customRef,
+  set,
 } from '@vue/composition-api'
 
 import type { MetaInfo } from 'vue-meta'
@@ -28,11 +29,7 @@ type MetaInfoMapper<T> = {
 
 function assign<T extends Record<string, any>>(target: T, source: Partial<T>) {
   Object.entries(source).forEach(([key, value]) => {
-    if (process.client) {
-      Vue.set(target, key, value)
-    } else {
-      target[key as keyof typeof target] = value
-    }
+    set(target, key, value)
   })
   return target
 }
@@ -126,7 +123,7 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
         },
         set(newValue) {
           if (!_head.titleTemplate && process.client) {
-            Vue.set(_head, 'titleTemplate', newValue)
+            set(_head, 'titleTemplate', newValue)
           } else {
             _head.titleTemplate = newValue
           }
