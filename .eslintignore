@@ -6,5 +6,5 @@ example
 ./dist
 docs
 coverage
-src/plugin.js
+templates
 dist
