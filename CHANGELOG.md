@@ -1,3 +1,15 @@
+## [0.13.0](https://github.com/nuxt-community/composition-api/compare/0.12.6...0.13.0) (2020-10-12)
+
+
+### Features
+
+* allow computed properties within `useMeta` ([#255](https://github.com/nuxt-community/composition-api/issues/255)) ([7152ed4](https://github.com/nuxt-community/composition-api/commit/7152ed42785585507c26c7df6deced7c6e16f590))
+
+
+### Bug Fixes
+
+* use `siroc` to build ([79106c2](https://github.com/nuxt-community/composition-api/commit/79106c22a9da153c720251aef1dc3b7c66acb300)), closes [#259](https://github.com/nuxt-community/composition-api/issues/259)
+
 ### [0.12.6](https://github.com/nuxt-community/composition-api/compare/0.12.5...0.12.6) (2020-10-10)
 
 ### [0.12.5](https://github.com/nuxt-community/composition-api/compare/0.12.4...0.12.5) (2020-09-18)
