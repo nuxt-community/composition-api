@@ -29,10 +29,12 @@ export default defineComponent({
     const message = ref('')
     const setMessage = () => (message.value = 'new message')
     useMeta(() => ({
-      meta: [{
-        name: 'message',
-        content: message.value
-      }]
+      meta: [
+        {
+          name: 'message',
+          content: message.value,
+        },
+      ],
     }))
 
     newImport.value = 'newSetTitle'
