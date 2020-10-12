@@ -1,14 +1,13 @@
 import defu from 'defu'
-import Vue from 'vue'
 import {
+  computed,
   getCurrentInstance,
-  toRefs,
-  Ref,
   reactive,
+  toRefs,
   watch,
-  UnwrapRef,
-  customRef,
+  Ref,
   set,
+  UnwrapRef,
 } from '@vue/composition-api'
 
 import type { MetaInfo } from 'vue-meta'
@@ -34,11 +33,10 @@ function assign<T extends Record<string, any>>(target: T, source: Partial<T>) {
   return target
 }
 
-export function createEmptyMeta(): Omit<
-  MetaInfoMapper<Required<MetaInfo>>,
-  'titleTemplate'
-> {
+export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
   return {
+    titleTemplate: (null as unknown) as undefined,
+
     __dangerouslyDisableSanitizers: [],
     __dangerouslyDisableSanitizersByTagID: {},
 
@@ -67,11 +65,13 @@ export const getHeadOptions = (options: {
     options.head instanceof Function
       ? reactive<MetaInfo>({})
       : reactive<MetaInfo>(options.head)
+  const _computedHead: Array<Ref<MetaInfo>> = []
   const head =
     options.head instanceof Function
-      ? () => defu(_head, options.head())
-      : () => _head
-  return { _head, head }
+      ? () =>
+          defu(..._computedHead.map(val => val.value), _head, options.head())
+      : () => defu(..._computedHead.map(val => val.value), _head, {})
+  return { _head, _computedHead, head }
 }
 
 type ToRefs<T extends Record<string, any>> = {
@@ -94,7 +94,7 @@ type ToRefs<T extends Record<string, any>> = {
     ```
  * @param init Whatever defaults you want to set for `head` properties.
  */
-export const useMeta = <T extends MetaInfo>(init?: T) => {
+export const useMeta = <T extends MetaInfo>(init?: T | (() => T)) => {
   const vm = getCurrentInstance()
   if (!vm) throw new Error('useMeta must be called within a component.')
 
@@ -103,38 +103,23 @@ export const useMeta = <T extends MetaInfo>(init?: T) => {
       'In order to enable `useMeta`, please make sure you include `head: {}` within your component definition, and you are using the `defineComponent` exported from @nuxtjs/composition-api.'
     )
 
-  const { _head = reactive({}) as ReactiveHead } = vm.$options
+  const { _head, _computedHead } = vm.$options as {
+    _head: ReactiveHead
+    _computedHead: Array<Ref<MetaInfo>>
+  }
 
   assign(_head, createEmptyMeta())
-  assign<MetaInfo>(_head, init || {})
+  if (init instanceof Function) {
+    _computedHead.push(computed(init))
+  } else {
+    assign<MetaInfo>(_head, init || {})
+  }
 
-  const refs = toRefs(_head) as ToRefs<
-    ReturnType<typeof createEmptyMeta> & {
-      titleTemplate: ReactiveHead['titleTemplate']
-    } & T
-  >
+  const refs = toRefs(_head) as ToRefs<ReturnType<typeof createEmptyMeta> & T>
 
-  refs.titleTemplate = customRef<ReactiveHead['titleTemplate']>(
-    (track, trigger) => {
-      return {
-        get() {
-          track()
-          return _head.titleTemplate
-        },
-        set(newValue) {
-          if (!_head.titleTemplate) {
-            set(_head, 'titleTemplate', newValue)
-          } else {
-            _head.titleTemplate = newValue
-          }
-          trigger()
-        },
-      }
-    }
-  )
-
-  if (process.client)
-    watch(Object.values(refs), vm.$meta().refresh, { immediate: true })
+  if (process.client) {
+    watch(Object.values(refs), () => vm.$meta().refresh(), { immediate: true })
+  }
 
   return refs
 }
