@@ -34,7 +34,7 @@ If you are generating the whole app (or just prerendering some routes with `nuxt
 
 <alert>
 
-If you are pregenerating some pages in your app note that you may need to increase `generate.interval`. (See [setup instructions](/setup.html).)
+If you are pregenerating some pages in your app note that you may need to increase `generate.interval`. (See [setup instructions](/setup).)
 
 </alert>
 
