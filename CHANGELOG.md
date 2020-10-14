@@ -1,3 +1,10 @@
+### [0.13.1](https://github.com/nuxt-community/composition-api/compare/0.13.0...0.13.1) (2020-10-14)
+
+
+### Bug Fixes
+
+* prevent `useMeta` from sharing state in ssr ([#268](https://github.com/nuxt-community/composition-api/issues/268)) ([e54cefe](https://github.com/nuxt-community/composition-api/commit/e54cefe61c28fbdb5956dc8ecf53e313567da1ee))
+
 ## [0.13.0](https://github.com/nuxt-community/composition-api/compare/0.12.6...0.13.0) (2020-10-12)
 
 
