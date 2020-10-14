@@ -63,7 +63,6 @@ export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
 }
 
 type ComputedHead = Array<MetaInfo | Ref<MetaInfo>>
-type MetaRefs = ToRefs<ReturnType<typeof createEmptyMeta>>
 
 export const getHeadOptions = (options: { head: () => MetaInfo }) => {
   const head = function (this: {
@@ -105,7 +104,12 @@ type ToRefs<T extends Record<string, any>> = {
  ```
  * @param init Whatever defaults you want to set for `head` properties.
  */
-export const useMeta = <T extends MetaInfo>(init?: T | (() => T)) => {
+export const useMeta = <
+  T extends MetaInfo,
+  MetaRefs extends ToRefs<ReturnType<typeof createEmptyMeta> & T>
+>(
+  init?: T | (() => T)
+) => {
   const vm = getCurrentInstance() as ReturnType<typeof getCurrentInstance> & {
     _computedHead?: ComputedHead
     _metaRefs?: MetaRefs
@@ -140,5 +144,5 @@ export const useMeta = <T extends MetaInfo>(init?: T | (() => T)) => {
     }
   }
 
-  return vm._metaRefs
+  return vm._metaRefs!
 }
