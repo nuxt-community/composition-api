@@ -3,10 +3,14 @@ import {
   computed,
   getCurrentInstance,
   reactive,
+  ref,
   toRefs,
   watch,
   Ref,
   set,
+  isReactive,
+  isRef,
+  toRaw,
   UnwrapRef,
 } from '@vue/composition-api'
 
@@ -58,20 +62,26 @@ export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
   }
 }
 
-export const getHeadOptions = (options: {
-  head: () => Record<string, any> | Record<string, any>
-}) => {
-  const _head: ReactiveHead =
-    options.head instanceof Function
-      ? reactive<MetaInfo>({})
-      : reactive<MetaInfo>(options.head)
-  const _computedHead: Array<Ref<MetaInfo>> = []
-  const head =
-    options.head instanceof Function
-      ? () =>
-          defu(..._computedHead.map(val => val.value), _head, options.head())
-      : () => defu(..._computedHead.map(val => val.value), _head, {})
-  return { _head, _computedHead, head }
+type ComputedHead = Array<MetaInfo | Ref<MetaInfo>>
+
+export const getHeadOptions = (options: { head: () => MetaInfo }) => {
+  const head = function (this: {
+    head?: MetaInfo | (() => MetaInfo)
+    _computedHead?: ComputedHead
+  }) {
+    const optionHead =
+      options.head instanceof Function ? options.head.call(this) : options.head
+
+    if (!this._computedHead) return optionHead
+
+    const computedHead = this._computedHead.map(h => {
+      if (isReactive(h)) return toRaw(h)
+      if (isRef(h)) return h.value
+    })
+    return defu(...computedHead.reverse(), optionHead)
+  }
+
+  return { head }
 }
 
 type ToRefs<T extends Record<string, any>> = {
@@ -94,32 +104,43 @@ type ToRefs<T extends Record<string, any>> = {
     ```
  * @param init Whatever defaults you want to set for `head` properties.
  */
-export const useMeta = <T extends MetaInfo>(init?: T | (() => T)) => {
-  const vm = getCurrentInstance()
+export const useMeta = <
+  T extends MetaInfo,
+  MetaRefs extends ToRefs<ReturnType<typeof createEmptyMeta> & T>
+>(
+  init?: T | (() => T)
+) => {
+  const vm = getCurrentInstance() as ReturnType<typeof getCurrentInstance> & {
+    _computedHead?: ComputedHead
+    _metaRefs?: MetaRefs
+  }
   if (!vm) throw new Error('useMeta must be called within a component.')
 
-  if (!('_head' in vm.$options))
+  if (!('head' in vm.$options))
     throw new Error(
       'In order to enable `useMeta`, please make sure you include `head: {}` within your component definition, and you are using the `defineComponent` exported from @nuxtjs/composition-api.'
     )
 
-  const { _head, _computedHead } = vm.$options as {
-    _head: ReactiveHead
-    _computedHead: Array<Ref<MetaInfo>>
+  const refreshMeta = () => vm.$meta().refresh()
+
+  if (!vm._computedHead) {
+    const metaRefs = reactive(createEmptyMeta())
+    vm._computedHead = [metaRefs]
+    vm._metaRefs = toRefs(metaRefs) as MetaRefs
+
+    if (process.client) {
+      watch(Object.values(vm._metaRefs), refreshMeta, { immediate: true })
+    }
   }
 
-  assign(_head, createEmptyMeta())
-  if (init instanceof Function) {
-    _computedHead.push(computed(init))
-  } else {
-    assign<MetaInfo>(_head, init || {})
+  if (init) {
+    const initRef = init instanceof Function ? computed(init) : ref(init)
+    vm._computedHead.push(initRef)
+
+    if (process.client) {
+      watch(initRef, refreshMeta, { immediate: true })
+    }
   }
 
-  const refs = toRefs(_head) as ToRefs<ReturnType<typeof createEmptyMeta> & T>
-
-  if (process.client) {
-    watch(Object.values(refs), () => vm.$meta().refresh(), { immediate: true })
-  }
-
-  return refs
+  return vm._metaRefs!
 }
