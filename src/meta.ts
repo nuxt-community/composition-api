@@ -91,17 +91,17 @@ type ToRefs<T extends Record<string, any>> = {
 /**
  * `useMeta` lets you interact directly with [`head()` properties](https://nuxtjs.org/api/pages-head/) in `setup`. **Make sure you set `head: {}` in your component options.**
  * @example
- ```ts
- import { defineComponent, useMeta, computed } from '@nuxtjs/composition-api'
+    ```ts
+    import { defineComponent, useMeta, computed } from '@nuxtjs/composition-api'
 
- export default defineComponent({
+    export default defineComponent({
       head: {},
       setup() {
         const { title } = useMeta()
         title.value = 'My page'
       })
     })
- ```
+    ```
  * @param init Whatever defaults you want to set for `head` properties.
  */
 export const useMeta = <
@@ -121,9 +121,7 @@ export const useMeta = <
       'In order to enable `useMeta`, please make sure you include `head: {}` within your component definition, and you are using the `defineComponent` exported from @nuxtjs/composition-api.'
     )
 
-  function refreshMeta() {
-    vm!.$meta().refresh()
-  }
+  const refreshMeta = () => vm.$meta().refresh()
 
   if (!vm._computedHead) {
     const metaRefs = reactive(createEmptyMeta())
