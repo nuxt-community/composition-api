@@ -1,9 +1,15 @@
 <template>
   <blockquote>
     <p>
-      <code>global setup was {{ ranSsr ? 'run' : 'not run' }} {{ ranSsr }} times on server</code>
+      <code>
+        global setup was {{ ranSsr ? 'run' : 'not run' }} {{ ranSsr }} times on
+        server
+      </code>
       <br />
-      <code>global setup was {{ ran ? 'run' : 'not run' }} {{ ran }} times on client</code>
+      <code>
+        global setup was {{ ran ? 'run' : 'not run' }} {{ ran }} times on
+        client
+      </code>
       <br />
       <code>
         globally injected value was
