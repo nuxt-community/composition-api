@@ -41,6 +41,6 @@ Under the hood, `ssrPromise` requires a key to ensure that the ref values match 
 
 <alert>
 
-At the moment, an `ssrPromise` is only suitable for one-offs, unless you provide your own unique key. See [the `ssrRef` documentation](./ssrRef.md) for more information.
+At the moment, an `ssrPromise` is only suitable for one-offs, unless you provide your own unique key. See [the `ssrRef` documentation](/ssrRef) for more information.
 
 </alert>

@@ -11,6 +11,8 @@ On the server, this helper will inline the result of the async call in your HTML
 
 However, if the call hasn't been carried out on SSR (such as if you have navigated to the page after initial load), it returns a `null` ref that is filled with the result of the async call when it resolves.
 
+<alert>Note that there are some gotchas when using `ssrRef` (which this helper does) - see [the ssrRef docs](/ssrRef) for more information.</alert>
+
 ```ts
 import { defineComponent, useAsync, useContext } from '@nuxtjs/composition-api'
 
