@@ -48,7 +48,7 @@ export const useContext = (): UseContextReturn => {
   if (!vm) throw new Error('This must be called within a setup function.')
 
   return {
-    ...vm[globalNuxt].context,
+    ...(vm[globalNuxt] || vm.$options).context,
     route: computed(() => vm.$route),
     query: computed(() => vm.$route.query),
     from: computed(() => vm.$route.redirectedFrom),

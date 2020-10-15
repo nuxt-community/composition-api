@@ -15,6 +15,11 @@
         globally injected value was
         {{ globalInject ? 'received' : 'not received' }}
       </code>
+      <br />
+      <code>
+        globally injected config from context was
+        {{ globalConfig.globalInject }}
+      </code>
     </p>
   </blockquote>
 </template>
@@ -26,7 +31,9 @@ import { ran, ranSsr } from '../plugins/global'
 export default defineComponent({
   setup() {
     const globalInject = inject('globalKey', false)
-    return { globalInject, ran, ranSsr }
+    const globalConfig = inject('globalContext', {})
+
+    return { globalInject, ran, ranSsr, globalConfig }
   },
 })
 </script>

@@ -17,6 +17,9 @@ const rootDir = resolve(__dirname, '../..')
  */
 module.exports = {
   target: isGenerated ? 'static' : 'server',
+  publicRuntimeConfig: {
+    globalInject: 'injected',
+  },
   rootDir,
   buildDir: resolve(__dirname, '.nuxt'),
   srcDir: __dirname,

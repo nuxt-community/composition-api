@@ -35,13 +35,13 @@ export const onGlobalSetup = (fn: SetupFunction) => {
 export const globalPlugin: Plugin = context => {
   const { setup } = context.app
   globalSetup = new Set<SetupFunction>()
-  context.app.setup = (...args) => {
+  context.app.setup = function (...args) {
     let result = {}
     if (setup instanceof Function) {
       result = setup(...args) || {}
     }
     for (const fn of globalSetup) {
-      result = { ...result, ...(fn(...args) || {}) }
+      result = { ...result, ...(fn.call(this, ...args) || {}) }
     }
     return result
   }
