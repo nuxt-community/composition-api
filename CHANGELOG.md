@@ -1,3 +1,10 @@
+### [0.13.2](https://github.com/nuxt-community/composition-api/compare/0.13.1...0.13.2) (2020-10-15)
+
+
+### Bug Fixes
+
+* reinitialise global setup callbacks on each request ([7816afe](https://github.com/nuxt-community/composition-api/commit/7816afe9ca46e3118ba18be34a88240d986ec75f)), closes [#270](https://github.com/nuxt-community/composition-api/issues/270)
+
 ### [0.13.1](https://github.com/nuxt-community/composition-api/compare/0.13.0...0.13.1) (2020-10-14)
 
 
