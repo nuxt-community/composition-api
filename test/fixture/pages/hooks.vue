@@ -7,8 +7,7 @@
       </code>
       <br />
       <code>
-        global setup was {{ ran ? 'run' : 'not run' }} {{ ran }} times on
-        client
+        global setup was {{ ran ? 'run' : 'not run' }} {{ ran }} times on client
       </code>
       <br />
       <code>
