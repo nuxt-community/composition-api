@@ -1,3 +1,10 @@
+### [0.13.3](https://github.com/nuxt-community/composition-api/compare/0.13.2...0.13.3) (2020-10-15)
+
+
+### Bug Fixes
+
+* fallback to instance for nuxt context ([d40c07b](https://github.com/nuxt-community/composition-api/commit/d40c07b7edf8190c8556866e418ee32100f5991a)), closes [#264](https://github.com/nuxt-community/composition-api/issues/264)
+
 ### [0.13.2](https://github.com/nuxt-community/composition-api/compare/0.13.1...0.13.2) (2020-10-15)
 
 
