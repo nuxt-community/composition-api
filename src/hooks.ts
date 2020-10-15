@@ -9,7 +9,7 @@ type SetupFunction = (
   ctx: SetupContext
 ) => void | Record<any, any>
 
-const globalSetup = new Set<SetupFunction>()
+let globalSetup: Set<SetupFunction>
 
 /**
  * Run a callback function in the global setup function. This should be called from a Nuxt plugin.
@@ -34,6 +34,7 @@ export const onGlobalSetup = (fn: SetupFunction) => {
  */
 export const globalPlugin: Plugin = context => {
   const { setup } = context.app
+  globalSetup = new Set<SetupFunction>()
   context.app.setup = (...args) => {
     let result = {}
     if (setup instanceof Function) {

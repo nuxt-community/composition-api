@@ -5,12 +5,15 @@ import { navigateTo, expectOnPage } from './helpers'
 fixture`onGlobalSetup`
 
 const assertions = async () => {
-  await expectOnPage('global setup was run on server')
-  await expectOnPage('global setup was run on client')
+  await expectOnPage('global setup was run 1 times on server')
+  await expectOnPage('global setup was run 1 times on client')
   await expectOnPage('globally injected value was received')
 }
 
 test('Runs plugin on server side page', async () => {
+  await navigateTo('/hooks')
+  await assertions()
+
   await navigateTo('/hooks')
   await assertions()
 })
