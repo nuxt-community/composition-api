@@ -7,7 +7,7 @@ version: 0.133
 position: 12
 ---
 
-`reqRef` declares a normal `ref` with one key difference. It resets the value of this ref on each request. You can find out [more information here](/gotchas#shared-server-state).
+`reqRef` declares a normal `ref` with one key difference. It resets the value of this ref on each request. You can find out [more information here](/getting-started/gotchas#shared-server-state).
 
 <alert>You should take especial care because of the danger of shared state when using refs in this way.</alert>
 
