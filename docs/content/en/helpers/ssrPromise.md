@@ -3,6 +3,7 @@ title: ssrPromise
 description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
 fullscreen: True
+position: 13
 ---
 
 `ssrPromise` runs a promise on the server and serialises the result as a resolved promise for the client. It needs to be run within the `setup()` function but note that it returns a promise which will require special handling. (For example, you cannot just return a promise from setup and use it in the template.)
@@ -41,6 +42,6 @@ Under the hood, `ssrPromise` requires a key to ensure that the ref values match 
 
 <alert>
 
-At the moment, an `ssrPromise` is only suitable for one-offs, unless you provide your own unique key. See [the `ssrRef` documentation](/ssrRef) for more information.
+At the moment, an `ssrPromise` is only suitable for one-offs, unless you provide your own unique key. [More information](/getting-started/gotchas#keyed-functions).
 
 </alert>

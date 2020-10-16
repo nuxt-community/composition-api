@@ -2,7 +2,7 @@
 title: Definition helpers
 description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
-position: 3
+position: 10
 ---
 
 There are some helpers to optimize developer experience when creating Nuxt plugins, middleware, server middleware and modules.

@@ -22,9 +22,9 @@ export function setSSRContext(ssrContext: any) {
 }
 
 const isProxyable = (val: unknown): val is Record<string, unknown> =>
-  val && typeof val === 'object'
+  !!val && typeof val === 'object'
 
-const sanitise = (val: unknown) =>
+export const sanitise = (val: unknown) =>
   (val && JSON.parse(JSON.stringify(val))) || val
 
 const ssrValue = <T>(value: T | (() => T), key: string): T => {

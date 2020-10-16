@@ -37,6 +37,7 @@ export default function ssrRefPlugin({ loadOptions, getEnv, types: t }: Babel) {
         case 'shallowSsrRef':
         case 'ssrPromise':
         case 'ssrRef':
+        case 'reqSsrRef':
         case 'useAsync':
           if (path.node.arguments.length > 1) return
           break

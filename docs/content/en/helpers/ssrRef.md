@@ -1,11 +1,14 @@
 ---
-title: ssrRef
+title: ssrRef, shallowSsrRef
 description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
 fullscreen: True
+position: 14
 ---
 
 When creating composition utility functions, often there will be server-side state that needs to be conveyed to the client.
+
+## ssrRef
 
 `ssrRef` will automatically add ref values to `window.__NUXT__` on SSR if they have been changed from their initial value. It can be used outside of components, such as in shared utility functions, and it supports passing a factory function that will generate the initial value of the ref.
 
@@ -31,24 +34,29 @@ Under the hood, `ssrRef` requires a key to ensure that the ref values match betw
 
 <alert>
 
-At the moment, an `ssrRef` is only suitable for one-offs, unless you provide your own unique key.
+At the moment, an `ssrRef` is only suitable for one-offs, unless you provide your own unique key. [More information](/getting-started/gotchas#keyed-functions).
 
-This is because server and client `ssrRef` matches up based on line number within your code.
+</alert>
+
+## shallowSsrRef
+
+This helper creates a [`shallowRef`](https://vue-composition-api-rfc.netlify.app/api.html#shallowref) (a ref that tracks its own .value mutation but doesn't make its value reactive) that is synced between client & server.
 
 ```ts
-function useMyFeature() {
-  // Only one unique key is generated
-  const feature = ssrRef('')
-  return feature
-}
+import { shallowSsrRef, onMounted } from '@nuxtjs/composition-api'
 
-const a = useMyFeature()
-const b = useMyFeature()
+const shallow = shallowSsrRef({ v: 'init' })
+if (process.server) shallow.value = { v: 'changed' }
 
-b.value = 'changed'
-// On client-side, a's value will also be initialised to 'changed'
+// On client-side, shallow.value will be { v: changed }
+onMounted(() => {
+  // This and other changes outside of setup won't trigger component updates.
+  shallow.value.v = 'Hello World'
+})
 ```
 
-If you want to use this pattern, make sure to set a unique key based on each calling of the function.
+<alert>
+
+At the moment, a `shallowSsrRef` is only suitable for one-offs, unless you provide your own unique key. [More information](/getting-started/gotchas#keyed-functions).
 
 </alert>

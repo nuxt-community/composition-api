@@ -3,6 +3,7 @@ title: onGlobalSetup
 description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
 fullscreen: True
+position: 11
 ---
 
 This helper will run a callback function in the global setup function.

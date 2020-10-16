@@ -2,6 +2,7 @@
 title: useStatic
 description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
 category: Helpers
+position: 19
 ---
 
 You can pre-run expensive functions using `useStatic`.
@@ -34,7 +35,7 @@ If you are generating the whole app (or just prerendering some routes with `nuxt
 
 <alert>
 
-If you are pregenerating some pages in your app note that you may need to increase `generate.interval`. (See [setup instructions](/setup).)
+If you are pregenerating some pages in your app note that you may need to increase `generate.interval`. (See [setup instructions](/getting-started/setup).)
 
 </alert>
 

@@ -1,6 +1,7 @@
 import type { Plugin } from '@nuxt/types'
 import type { SetupContext } from '@vue/composition-api'
 
+import { reqRefs } from './req-ref'
 import { setSSRContext } from './ssr-ref'
 
 type SetupFunction = (
@@ -35,6 +36,9 @@ export const onGlobalSetup = (fn: SetupFunction) => {
 export const globalPlugin: Plugin = context => {
   const { setup } = context.app
   globalSetup = new Set<SetupFunction>()
+  if (process.server) {
+    reqRefs.forEach(reset => reset())
+  }
   context.app.setup = function (...args) {
     let result = {}
     if (setup instanceof Function) {
