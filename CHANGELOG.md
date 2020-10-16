@@ -1,3 +1,10 @@
+### [0.13.4](https://github.com/nuxt-community/composition-api/compare/0.13.3...0.13.4) (2020-10-16)
+
+
+### Features
+
+* add `reqRef` and `ssrReqRef` for refs to be reset per-request ([b6f327c](https://github.com/nuxt-community/composition-api/commit/b6f327ca55f1cd48f6b39c257b487a7d25a15f59))
+
 ### [0.13.3](https://github.com/nuxt-community/composition-api/compare/0.13.2...0.13.3) (2020-10-15)
 
 
