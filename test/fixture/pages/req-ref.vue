@@ -18,7 +18,9 @@ export default defineComponent({
     if (process.server) reqSsrRefCounter.value++
 
     return {
-      reqRefCounter, ssrRefCounter, reqSsrRefCounter,
+      reqRefCounter,
+      ssrRefCounter,
+      reqSsrRefCounter,
     }
   },
 })
