@@ -51,6 +51,9 @@ interface AugmentedComponentInstance extends ComponentInstance {
   _hydrated?: boolean
   _fetchDelay?: number
   _fetchOnServer?: boolean
+  context: {
+    ssrContext?: any
+  }
 }
 
 interface AugmentedNuxtApp extends NuxtApp {
@@ -156,12 +159,14 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
   vm.$fetchState.pending = false
 
   // Define an ssrKey for hydration
-  vm._fetchKey = vm.$ssrContext.nuxt.fetch.length
+  vm._fetchKey = (vm.$ssrContext || vm.context.ssrContext).nuxt.fetch.length
 
-  // Add data-fetch-key on parent element of Component
-  if (!vm.$vnode.data) vm.$vnode.data = {}
-  const attrs = (vm.$vnode.data.attrs = vm.$vnode.data.attrs || {})
-  attrs['data-fetch-key'] = vm._fetchKey
+  // Add data-fetch-key on parent element of Component if it exists
+  if (vm.$vnode) {
+    if (!vm.$vnode.data) vm.$vnode.data = {}
+    const attrs = (vm.$vnode.data.attrs = vm.$vnode.data.attrs || {})
+    attrs['data-fetch-key'] = vm._fetchKey
+  }
 
   const data = { ...vm._data }
   Object.entries((vm as any).__composition_api_state__.rawBindings).forEach(
@@ -173,7 +178,7 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
   )
 
   // Add to ssrContext for window.__NUXT__.fetch
-  vm.$ssrContext.nuxt.fetch.push(
+  ;(vm.$ssrContext || vm.context.ssrContext).nuxt.fetch.push(
     vm.$fetchState.error
       ? { _error: vm.$fetchState.error }
       : JSON.parse(JSON.stringify(data))
