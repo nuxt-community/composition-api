@@ -30,13 +30,6 @@ type MetaInfoMapper<T> = {
     : T[P] | undefined
 }
 
-function assign<T extends Record<string, any>>(target: T, source: Partial<T>) {
-  Object.entries(source).forEach(([key, value]) => {
-    set(target, key, value)
-  })
-  return target
-}
-
 export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
   return {
     titleTemplate: (null as unknown) as undefined,
