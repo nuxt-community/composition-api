@@ -39,6 +39,7 @@ export {
   computed,
   createApp,
   customRef,
+  del,
   getCurrentInstance,
   h,
   inject,
