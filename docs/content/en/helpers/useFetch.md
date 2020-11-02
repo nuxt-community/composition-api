@@ -44,3 +44,9 @@ export default defineComponent({
 `$fetch` and `$fetchState` will already be defined on the instance - so no need to return `fetch` or `fetchState` from setup.
 
 </alert>
+
+<alert type="info">
+
+Note that `useFetch` doesn't support use within `onGlobalSetup`.
+
+</alert>
