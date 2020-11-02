@@ -1,3 +1,10 @@
+## [0.14.0](https://github.com/nuxt-community/composition-api/compare/0.13.5...0.14.0) (2020-11-02)
+
+
+### Features
+
+* add new export from upstream (`del`) ([6595d04](https://github.com/nuxt-community/composition-api/commit/6595d043579efca1140d95218dc5823346e042a1))
+
 ### [0.13.5](https://github.com/nuxt-community/composition-api/compare/0.13.4...0.13.5) (2020-10-17)
 
 ### [0.13.4](https://github.com/nuxt-community/composition-api/compare/0.13.3...0.13.4) (2020-10-16)
