@@ -74,7 +74,7 @@
     "@nuxt/types": "^2.14.7",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^2.0.0",
-    "@types/fs-extra": "^9.0.2",
+    "@types/fs-extra": "^9.0.3",
     "@types/jest": "^26.0.15",
     "@types/normalize-path": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
