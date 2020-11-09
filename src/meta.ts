@@ -69,8 +69,9 @@ export const getHeadOptions = (options: { head: () => MetaInfo }) => {
     const computedHead = this._computedHead.map(h => {
       if (isReactive(h)) return toRaw(h)
       if (isRef(h)) return h.value
+      return h
     })
-    return defu(...computedHead.reverse(), optionHead)
+    return defu({} as MetaInfo, ...computedHead.reverse(), optionHead)
   }
 
   return { head }
