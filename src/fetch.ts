@@ -121,7 +121,7 @@ const loadFullStatic = (vm: AugmentedComponentInstance) => {
       ? fetchOnServer.call(vm) !== false
       : fetchOnServer !== false
 
-  const nuxt = vm.$nuxt as AugmentedNuxtApp
+  const nuxt = vm[globalNuxt] as AugmentedNuxtApp
   if (!fetchedOnServer || nuxt?.isPreview || !nuxt?._pagePayload) {
     return
   }
