@@ -1,3 +1,16 @@
+## [0.15.0](https://github.com/nuxt-community/composition-api/compare/0.13.5...0.15.0) (2020-11-09)
+
+
+### Features
+
+* add new export from upstream (`del`) ([4845254](https://github.com/nuxt-community/composition-api/commit/4845254b6fa25427ffcae459fec29d1596c78c97))
+
+
+### Bug Fixes
+
+* address TS bug ([e87d610](https://github.com/nuxt-community/composition-api/commit/e87d6108722df76446bc6eb041c00a0592ac4c18))
+* use globalNuxt in full static mode ([1479665](https://github.com/nuxt-community/composition-api/commit/14796657f53d35134c6898a6e2aa9ab2640ee49c))
+
 ## [0.14.0](https://github.com/nuxt-community/composition-api/compare/0.13.5...0.14.0) (2020-11-02)
 
 
