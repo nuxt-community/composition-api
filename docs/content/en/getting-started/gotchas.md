@@ -54,7 +54,7 @@ export default useMyFeature
 
 If you are declaring refs in the global state of your application - such as within plugins or in state/store files (for example, as a replacement for Vuex) - you should be aware that these refs are persisted across requests when your site is in production mode.
 
-You should take especial care with declaring refs in this way.
+You should take special care with declaring refs in this way.
 
 <alert type="info">
 
