@@ -20,7 +20,7 @@ import { reqRef } from '@nuxtjs/composition-api'
 export const user = reqRef(null)
 
 export const fetchUser = async () => {
-    const r = await fetch('https://api.com/users)
+    const r = await fetch('https://api.com/users')
     user.value = await r.json()
 }
 ```
