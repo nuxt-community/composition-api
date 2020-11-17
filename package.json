@@ -18,14 +18,18 @@
     "url": "https://roe.dev"
   },
   "exports": {
-    "babel": {
-      "require": "./lib/babel.js",
-      "import": "./lib/babel.es.js"
+    ".": {
+      "default": "./lib/index.js",
+      "babel": {
+        "require": "./lib/babel.js",
+        "import": "./lib/babel.es.js"
+      },
+      "entrypoint": {
+        "require": "./lib/entrypoint.js",
+        "import": "./lib/entrypoint.es.js"
+      }
     },
-    "entrypoint": {
-      "require": "./lib/entrypoint.js",
-      "import": "./lib/entrypoint.es.js"
-    }
+    "./package.json": "./package.json"
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
