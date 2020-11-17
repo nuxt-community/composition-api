@@ -63,8 +63,10 @@ position: 2
 ## Testing with Jest
 
 If you need to use jest tests with this module installed, just add the following lines to your `jest.config.js`:
-```js[jest.config.js]
+```js{}[jest.config.js]
 moduleNameMapper: {
   '@nuxtjs/composition-api': '@nuxtjs/composition-api/lib/entrypoint.js',
+  // alternatively, depending on your node version
+  // '@nuxtjs/composition-api': '@nuxtjs/composition-api/entrypoint',
 },
 ```
