@@ -9,22 +9,22 @@ position: 2
 
 1. First, install `@nuxtjs/composition-api`:
 
-  <code-group>
-    <code-block label="Yarn" active>
+<code-group>
+  <code-block label="Yarn" active>
 
-    ```bash
-    yarn add @nuxtjs/composition-api
-    ```
+```bash
+yarn add @nuxtjs/composition-api
+```
 
-    </code-block>
-    <code-block label="NPM">
+  </code-block>
+  <code-block label="NPM">
 
-    ```bash
-    npm install @nuxtjs/composition-api --save
-    ```
+```bash
+npm install @nuxtjs/composition-api --save
+```
 
-    </code-block>
-  </code-group>
+  </code-block>
+</code-group>
 
 2. Enable the module.
 
