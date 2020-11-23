@@ -22,4 +22,4 @@ items:
 
 ## API reference
 
-This package extends `@vue/composition-api` and exports all of its types and methods. You can find [a full reference for it here](https://v3.vuejs.org/api/composition-api.html)).
+This package extends `@vue/composition-api` and exports all of its types and methods. You can find [a full reference for it in the Vue 3 docs](https://v3.vuejs.org/api/composition-api.html) and [in the initial Composition API RFC](https://composition-api.vuejs.org/api.html)).
