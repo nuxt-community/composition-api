@@ -9,7 +9,7 @@ position: 16
 You can access the Nuxt context more easily using `useContext`, which will return the Nuxt context.
 
 ```ts
-import { defineComponent, ref, useContext } from '@nuxtjs/composition-api'
+import { defineComponent, useContext } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   setup() {
