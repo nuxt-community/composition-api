@@ -1,3 +1,15 @@
+## [0.16.0](https://github.com/nuxt-community/composition-api/compare/0.15.1...0.16.0) (2020-11-24)
+
+
+### Features
+
+* allow accessing meta properties in `onGlobalSetup` ([15cf20e](https://github.com/nuxt-community/composition-api/commit/15cf20ece6d49e4067f8d648b626c373e76129c0)), closes [#305](https://github.com/nuxt-community/composition-api/issues/305)
+
+
+### Bug Fixes
+
+* **docs:** update lockfile ([952259b](https://github.com/nuxt-community/composition-api/commit/952259b04cb560e36731c68644f654ac83777e0d))
+
 ### [0.15.1](https://github.com/nuxt-community/composition-api/compare/0.15.0...0.15.1) (2020-11-17)
 
 ## [0.15.0](https://github.com/nuxt-community/composition-api/compare/0.13.5...0.15.0) (2020-11-09)
