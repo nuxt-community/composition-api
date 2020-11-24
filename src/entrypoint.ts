@@ -74,6 +74,7 @@ export {
   unref,
   useCSSModule,
   version,
+  warn,
   watch,
   watchEffect,
 } from '@vue/composition-api'
