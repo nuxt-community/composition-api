@@ -1,5 +1,6 @@
 import {
   onGlobalSetup,
+  useMeta,
   provide,
   ref,
   ssrRef,
@@ -15,6 +16,9 @@ export default () => {
 
   onGlobalSetup(() => {
     const { $config } = useContext()
+
+    const { title } = useMeta()
+    title.value = 'My fixture'
 
     ran.value++
     if (process.server) ranSsr.value++

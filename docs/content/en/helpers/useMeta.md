@@ -6,7 +6,7 @@ fullscreen: True
 position: 18
 ---
 
-You can interact directly with [head properties](https://nuxtjs.org/api/pages-head/) in `setup` by means of the `useMeta()` helper.
+You can interact directly with [head properties](https://nuxtjs.org/api/pages-head/) in `setup` (and within the `onGlobalSetup` method) by means of the `useMeta()` helper.
 
 ```ts
 import { defineComponent, useMeta, computed, ref } from '@nuxtjs/composition-api'

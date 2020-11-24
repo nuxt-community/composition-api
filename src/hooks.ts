@@ -1,5 +1,6 @@
 import type { Plugin } from '@nuxt/types'
 import type { SetupContext } from '@vue/composition-api'
+import { getHeadOptions } from './meta'
 
 import { reqRefs } from './req-ref'
 import { setSSRContext } from './ssr-ref'
@@ -39,6 +40,10 @@ export const globalPlugin: Plugin = context => {
   if (process.server) {
     reqRefs.forEach(reset => reset())
   }
+
+  const { head } = context.app
+  Object.assign(context.app, getHeadOptions({ head: head as any }))
+
   context.app.setup = function (...args) {
     let result = {}
     if (setup instanceof Function) {

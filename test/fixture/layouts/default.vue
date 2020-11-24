@@ -22,10 +22,7 @@ export default defineComponent({
   setup() {
     const { route } = useContext()
 
-    const { title } = useMeta()
-    title.value = 'My fixture'
-
-    return { route, title }
+    return { route }
   },
 })
 </script>
