@@ -19,11 +19,15 @@ const utils = loadUtils()
 const compositionApiModule: Module<any> = function () {
   const libRoot = resolve(__dirname, '..')
 
-  let corejsPolyfill
+  let corejsPolyfill = this.nuxt.options.build.corejs
+    ? String(this.nuxt.options.build.corejs)
+    : undefined
   try {
-    // eslint-disable-next-line
-    const corejsPkg = require('core-js/package.json')
-    corejsPolyfill = corejsPkg.version.slice(0, 1)
+    if (!corejsPolyfill) {
+      // eslint-disable-next-line
+      const corejsPkg = require('core-js/package.json')
+      corejsPolyfill = corejsPkg.version.slice(0, 1)
+    }
   } catch {
     corejsPolyfill = undefined
   }
@@ -36,7 +40,7 @@ const compositionApiModule: Module<any> = function () {
     },
   })
 
-  this.addPlugin({
+  const { dst: metaPluginDst } = this.addTemplate({
     src: resolve(libRoot, 'templates', 'meta.js'),
     fileName: join('composition-api', 'meta.js'),
   })
@@ -102,6 +106,7 @@ const compositionApiModule: Module<any> = function () {
 
   this.options.plugins = this.options.plugins || []
   this.options.plugins.unshift(resolve(this.options.buildDir || '', pluginDst))
+  this.options.plugins.push(resolve(this.options.buildDir || '', metaPluginDst))
 }
 
 export default compositionApiModule
