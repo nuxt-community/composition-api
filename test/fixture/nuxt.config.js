@@ -32,6 +32,11 @@ module.exports = {
   ],
   head: {
     titleTemplate: title => `${title} - fixture`,
+    noscript: [
+      {
+        innerHTML: 'Test',
+      },
+    ],
     link: isTesting
       ? []
       : [
