@@ -19,9 +19,9 @@ test('Shows correct title on server-loaded page', async t => {
   await t
     .expect(Selector('meta[name=message]').getAttribute('content'))
     .eql('new message')
-  await t
-    .expect(Selector('meta[name=viewport]').getAttribute('content'))
-    .eql('width=device-width, initial-scale=1')
+  // await t
+  // .expect(Selector('meta[name=viewport]').getAttribute('content'))
+  // .eql('width=device-width, initial-scale=1')
   await t.expect(Selector('noscript').textContent).eql('Test')
 
   await t.click(Selector('a').withText('back'))
@@ -44,8 +44,8 @@ test('Shows correct title on client-loaded page', async t => {
   await t
     .expect(Selector('meta[name=message]').getAttribute('content'))
     .eql('new message')
-  await t
-    .expect(Selector('meta[name=viewport]').getAttribute('content'))
-    .eql('width=device-width, initial-scale=1')
+  // await t
+  // .expect(Selector('meta[name=viewport]').getAttribute('content'))
+  // .eql('width=device-width, initial-scale=1')
   await t.expect(Selector('noscript').textContent).eql('Test')
 })

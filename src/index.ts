@@ -106,7 +106,18 @@ const compositionApiModule: Module<any> = function () {
 
   this.options.plugins = this.options.plugins || []
   this.options.plugins.unshift(resolve(this.options.buildDir || '', pluginDst))
-  this.options.plugins.push(resolve(this.options.buildDir || '', metaPluginDst))
+  if (
+    !(this.nuxt.options.buildModules || []).includes('@nuxtjs/pwa') &&
+    !this.nuxt.options.modules.includes('@nuxtjs/pwa')
+  ) {
+    this.options.plugins.push(
+      resolve(this.options.buildDir || '', metaPluginDst)
+    )
+  } else if (this.nuxt.options.dev) {
+    console.warn(
+      'useMeta is not supported in onGlobalSetup as @nuxtjs/pwa detected.\nSee https://github.com/nuxt-community/composition-api/issues/307'
+    )
+  }
 }
 
 export default compositionApiModule
