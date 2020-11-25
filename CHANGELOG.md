@@ -1,3 +1,10 @@
+### [0.16.3](https://github.com/nuxt-community/composition-api/compare/0.16.2...0.16.3) (2020-11-25)
+
+
+### Features
+
+* respect explicitly set `build.corejs` version in `nuxt.config` ([b1603cb](https://github.com/nuxt-community/composition-api/commit/b1603cbbcca3aa99f7fffc2f408011c42861912e))
+
 ### [0.16.2](https://github.com/nuxt-community/composition-api/compare/0.16.1...0.16.2) (2020-11-25)
 
 
