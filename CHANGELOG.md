@@ -1,3 +1,10 @@
+### [0.16.4](https://github.com/nuxt-community/composition-api/compare/0.16.3...0.16.4) (2020-11-25)
+
+
+### Bug Fixes
+
+* completely disable support for global `useMeta` if `@nuxtjs/pwa` detected ([5dc5e34](https://github.com/nuxt-community/composition-api/commit/5dc5e345500f437bb4332cee541dfe4af59e8254))
+
 ### [0.16.3](https://github.com/nuxt-community/composition-api/compare/0.16.2...0.16.3) (2020-11-25)
 
 
