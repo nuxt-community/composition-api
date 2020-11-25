@@ -75,6 +75,7 @@
     "@babel/preset-typescript": "^7.12.7",
     "@nuxt/types": "^2.14.7",
     "@nuxtjs/module-test-utils": "^1.6.3",
+    "@nuxtjs/pwa": "^3.2.2",
     "@release-it/conventional-changelog": "^2.0.0",
     "@types/fs-extra": "^9.0.4",
     "@types/jest": "^26.0.15",

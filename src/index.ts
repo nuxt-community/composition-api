@@ -36,6 +36,11 @@ const compositionApiModule: Module<any> = function () {
     },
   })
 
+  this.addPlugin({
+    src: resolve(libRoot, 'templates', 'meta.js'),
+    fileName: join('composition-api', 'meta.js'),
+  })
+
   const staticPath = join(this.options.buildDir || '', 'static-json')
 
   this.nuxt.hook('generate:route', () => {

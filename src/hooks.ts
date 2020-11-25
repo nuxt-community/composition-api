@@ -32,6 +32,15 @@ export const onGlobalSetup = (fn: SetupFunction) => {
 }
 
 /**
+ *
+ * @private
+ */
+export const setMetaPlugin: Plugin = context => {
+  const { head } = context.app
+  Object.assign(context.app, getHeadOptions({ head: head as any }))
+}
+
+/**
  * @private
  */
 export const globalPlugin: Plugin = context => {
@@ -40,9 +49,6 @@ export const globalPlugin: Plugin = context => {
   if (process.server) {
     reqRefs.forEach(reset => reset())
   }
-
-  const { head } = context.app
-  Object.assign(context.app, getHeadOptions({ head: head as any }))
 
   context.app.setup = function (...args) {
     let result = {}

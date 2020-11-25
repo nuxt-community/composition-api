@@ -68,5 +68,11 @@ module.exports = {
   },
   buildModules: [
     process.env.NODE_ENV === 'test' ? require('../..').default : rootDir,
+    '@nuxtjs/pwa',
   ],
+  pwa: {
+    icon: false,
+    manifest: false,
+    workbox: false,
+  },
 }
