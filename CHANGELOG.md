@@ -1,3 +1,10 @@
+### [0.16.2](https://github.com/nuxt-community/composition-api/compare/0.16.1...0.16.2) (2020-11-25)
+
+
+### Bug Fixes
+
+* ensure meta plugin is loaded last ([c5c7299](https://github.com/nuxt-community/composition-api/commit/c5c72997f755b51b5d0d08e4807581df1f0c919c))
+
 ### [0.16.1](https://github.com/nuxt-community/composition-api/compare/0.16.0...0.16.1) (2020-11-25)
 
 
