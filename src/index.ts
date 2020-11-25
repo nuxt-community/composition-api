@@ -23,7 +23,7 @@ const compositionApiModule: Module<any> = function () {
     ? String(this.nuxt.options.build.corejs)
     : undefined
   try {
-    if (!corejsPolyfill) {
+    if (!['2', '3'].includes(corejsPolyfill || '')) {
       // eslint-disable-next-line
       const corejsPkg = require('core-js/package.json')
       corejsPolyfill = corejsPkg.version.slice(0, 1)
