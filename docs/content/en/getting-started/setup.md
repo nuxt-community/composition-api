@@ -10,22 +10,21 @@ version: 0.161
 
 1. First, install `@nuxtjs/composition-api`:
 
-  <code-group>
+    <code-group>
     <code-block label="Yarn" active>
 
     ```bash
     yarn add @nuxtjs/composition-api
     ```
 
-    </code-block>
-    <code-block label="NPM">
+    </code-block><code-block label="NPM">
 
     ```bash
     npm install @nuxtjs/composition-api --save
     ```
 
-    </code-block>
-  </code-group>
+   </code-block>
+   </code-group>
 
 2. Enable the module.
 
@@ -41,14 +40,14 @@ version: 0.161
 
 3. **Optional**. Currently [there's an issue with static site generation and async functions](https://github.com/nuxt-community/composition-api/issues/44) which means that you'll need to add time between pages being generated to allow for any async functions to resolve, if you are pre-generating any of your pages:
 
-  ```js[nuxt.config.js]
-  {
-    generate: {
-      // choose to suit your project
-      interval: 2000,
-    }
-  }
-  ```
+   ```js[nuxt.config.js]
+   {
+     generate: {
+       // choose to suit your project
+       interval: 2000,
+     }
+   }
+   ```
 
 4. You're good to go!
 
