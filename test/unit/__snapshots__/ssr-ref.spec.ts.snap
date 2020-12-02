@@ -44,7 +44,7 @@ Object {
 }
 `;
 
-exports[`ssrRef reactivity ssrRefs within multiple requests  1`] = `
+exports[`ssrRef reactivity ssrRefs within multiple requests 1`] = `
 Object {
   "nuxt": Object {
     "ssrRefs": Object {
