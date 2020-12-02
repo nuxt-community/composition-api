@@ -73,7 +73,7 @@
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-typescript": "^7.12.7",
-    "@nuxt/types": "^2.14.8",
+    "@nuxt/types": "^2.14.9",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^2.0.0",
     "@types/fs-extra": "^9.0.4",
@@ -104,7 +104,7 @@
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
-    "@nuxt/vue-app": "^2.14.8",
+    "@nuxt/vue-app": "^2.14.9",
     "fs-extra": "^8.1.0",
     "nuxt": "^2.14.8",
     "vue": "^2"
