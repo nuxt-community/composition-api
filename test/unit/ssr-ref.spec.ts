@@ -1,7 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { ssrRef, setSSRContext } from '../..'
+import { ssrRef, globalPlugin } from '../..'
+import * as cAPI from '@vue/composition-api'
 
 jest.setTimeout(60000)
 
@@ -45,8 +46,14 @@ describe('ssrRef reactivity', () => {
   let ssrContext: Record<string, any>
 
   beforeEach(async () => {
+    process.server = true
     ssrContext = Object.assign({}, { nuxt: {} })
-    setSSRContext(ssrContext)
+    cAPI.getCurrentInstance = () => ({
+      $options: {
+        context: { ssrContext },
+      },
+    })
+    globalPlugin({ app: { context: { ssrContext } } } as any, null)
   })
   test('ssrRefs react to change in state', async () => {
     process.client = false
@@ -65,6 +72,20 @@ describe('ssrRef reactivity', () => {
     process.client = false
     const obj = ssrRef({ deep: { object: [{ name: 'nothing' }] } }, 'obj')
     obj.value.deep.object[0].name = 'full name'
+    expect(ssrContext).toMatchSnapshot()
+  })
+
+  test('ssrRefs within multiple requests', async () => {
+    const concurrentRef = ssrRef(1, 'concurrentRef')
+
+    // simulate the new request comes in
+    globalPlugin(
+      { app: { context: { ssrContext: { nuxt: {} } } } } as any,
+      null
+    )
+
+    concurrentRef.value = 2
+
     expect(ssrContext).toMatchSnapshot()
   })
 })
