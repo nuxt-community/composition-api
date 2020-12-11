@@ -104,9 +104,9 @@
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
-    "@nuxt/vue-app": "^2.14.10",
+    "@nuxt/vue-app": "^2.14.11",
     "fs-extra": "^8.1.0",
-    "nuxt": "^2.14.10",
+    "nuxt": "^2.14.11",
     "vue": "^2"
   },
   "gitHooks": {
