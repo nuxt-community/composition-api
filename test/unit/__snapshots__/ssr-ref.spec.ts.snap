@@ -3,6 +3,7 @@
 exports[`ssrRef reactivity ssrRefs react to change in state 1`] = `
 Object {
   "nuxt": Object {
+    "globalRefs": Object {},
     "ssrRefs": Object {
       "name": "full name",
     },
@@ -13,6 +14,7 @@ Object {
 exports[`ssrRef reactivity ssrRefs react to deep change in array state 1`] = `
 Object {
   "nuxt": Object {
+    "globalRefs": Object {},
     "ssrRefs": Object {
       "obj": Object {
         "deep": Object {
@@ -31,6 +33,7 @@ Object {
 exports[`ssrRef reactivity ssrRefs react to deep change in object state 1`] = `
 Object {
   "nuxt": Object {
+    "globalRefs": Object {},
     "ssrRefs": Object {
       "obj": Object {
         "deep": Object {
@@ -47,6 +50,7 @@ Object {
 exports[`ssrRef reactivity ssrRefs within multiple requests 1`] = `
 Object {
   "nuxt": Object {
+    "globalRefs": Object {},
     "ssrRefs": Object {
       "concurrentRef": 2,
     },

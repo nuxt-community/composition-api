@@ -6,10 +6,8 @@ import * as cAPI from '@vue/composition-api'
 
 jest.setTimeout(60000)
 
-/* eslint-disable @typescript-eslint/no-var-requires */
-const { setup, get } = require('@nuxtjs/module-test-utils')
-const config = require('../fixture/nuxt.config')
-/* eslint-enable */
+import { setup, get } from '@nuxtjs/module-test-utils'
+import config from '../fixture/nuxt.config'
 
 let nuxt
 
@@ -48,8 +46,8 @@ describe('ssrRef reactivity', () => {
   beforeEach(async () => {
     process.server = true
     ssrContext = Object.assign({}, { nuxt: {} })
-    cAPI.getCurrentInstance = () => ({
-      $options: {
+    ;(cAPI as any).getCurrentInstance = () => ({
+      $nuxt: {
         context: { ssrContext },
       },
     })
