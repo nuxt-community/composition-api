@@ -63,6 +63,7 @@ module.exports = {
   router: {
     base: isPublic ? '/fixture/' : undefined,
   },
+  watch: ['../../src/*.ts'],
   build: {
     publicPath: isPublic ? 'fixture' : undefined,
   },
