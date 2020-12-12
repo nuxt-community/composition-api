@@ -1,5 +1,6 @@
 import {
   customRef,
+  getCurrentInstance,
   onServerPrefetch,
   ref,
   shallowRef,
@@ -14,11 +15,39 @@ function getValue<T>(value: T | (() => T)): T {
   return value
 }
 
-let data: any = {}
+let globalRefs: any = {}
 
-export function setSSRContext(ssrContext: any) {
-  data = Object.assign({}, {})
-  ssrContext.nuxt.ssrRefs = data
+export function setSSRContext(app: any) {
+  globalRefs = Object.assign({}, {})
+  app.context.ssrContext.nuxt.globalRefs = globalRefs
+}
+
+const useServerData = () => {
+  let type: 'globalRefs' | 'ssrRefs' = 'globalRefs'
+
+  const vm = getCurrentInstance()
+
+  if (vm) {
+    type = 'ssrRefs'
+    if (process.server) {
+      const { ssrContext } = vm[globalNuxt].context
+      ;(ssrContext as any).nuxt.ssrRefs = (ssrContext as any).nuxt.ssrRefs || {}
+    }
+  }
+
+  const setData = (key: string, val: any) => {
+    switch (type) {
+      case 'globalRefs':
+        globalRefs[key] = sanitise(val)
+        break
+      case 'ssrRefs':
+        ;(vm![globalNuxt].context.ssrContext as any).nuxt.ssrRefs[
+          key
+        ] = sanitise(val)
+    }
+  }
+
+  return { type, setData }
 }
 
 const isProxyable = (val: unknown): val is Record<string, unknown> =>
@@ -27,7 +56,11 @@ const isProxyable = (val: unknown): val is Record<string, unknown> =>
 export const sanitise = (val: unknown) =>
   (val && JSON.parse(JSON.stringify(val))) || val
 
-const ssrValue = <T>(value: T | (() => T), key: string): T => {
+const ssrValue = <T>(
+  value: T | (() => T),
+  key: string,
+  type: 'globalRefs' | 'ssrRefs' = 'globalRefs'
+): T => {
   if (process.client) {
     if (
       process.env.NODE_ENV === 'development' &&
@@ -35,7 +68,7 @@ const ssrValue = <T>(value: T | (() => T), key: string): T => {
     ) {
       return getValue(value)
     }
-    return (window as any)[globalContext]?.ssrRefs?.[key] ?? getValue(value)
+    return (window as any)[globalContext]?.[type]?.[key] ?? getValue(value)
   }
   return getValue(value)
 }
@@ -61,11 +94,14 @@ const ssrValue = <T>(value: T | (() => T), key: string): T => {
  */
 export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
   validateKey(key)
-  let val = ssrValue(value, key)
+
+  const { type, setData } = useServerData()
+
+  let val = ssrValue(value, key, type)
 
   if (process.client) return ref(val) as Ref<T>
 
-  if (value instanceof Function) data[key] = sanitise(val)
+  if (value instanceof Function) setData(key, val)
 
   const getProxy = <T extends Record<string | number, any>>(
     track: () => void,
@@ -81,7 +117,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
       },
       set(obj, prop, newVal) {
         const result = Reflect.set(obj, prop, newVal)
-        data[key] = sanitise(val)
+        setData(key, val)
         trigger()
         return result
       },
@@ -94,7 +130,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
       return val
     },
     set: (v: T) => {
-      data[key] = sanitise(v)
+      setData(key, v)
       val = v
       trigger()
     },
@@ -107,7 +143,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
  * This helper creates a [`shallowRef`](https://vue-composition-api-rfc.netlify.app/api.html#shallowref) (a ref that tracks its own .value mutation but doesn't make its value reactive) that is synced between client & server.
  * @param value This can be an initial value or a factory function that will be executed on server-side to get the initial value.
  * @param key Under the hood, `shallowSsrRef` requires a key to ensure that the ref values match between client and server. If you have added `@nuxtjs/composition-api` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `@nuxtjs/composition-api/babel` to your Babel plugins.
- 
+
  * @example
   ```ts
   import { shallowSsrRef, onMounted } from '@nuxtjs/composition-api'
@@ -127,13 +163,14 @@ export const shallowSsrRef = <T>(
   key?: string
 ): Ref<T> => {
   validateKey(key)
+  const { type, setData } = useServerData()
 
-  if (process.client) return shallowRef(ssrValue(value, key))
+  if (process.client) return shallowRef(ssrValue(value, key, type))
 
   const _val = getValue(value)
 
   if (value instanceof Function) {
-    data[key] = sanitise(_val)
+    setData(key, _val)
   }
 
   return customRef((track, trigger) => ({
@@ -142,7 +179,7 @@ export const shallowSsrRef = <T>(
       return _val
     },
     set(newValue: T) {
-      data[key] = sanitise(newValue)
+      setData(key, newValue)
       value = newValue
       trigger()
     },
@@ -167,13 +204,13 @@ export const shallowSsrRef = <T>(
       setup() {
         const _promise = ssrPromise(async () => myAsyncFunction())
         const resolvedPromise = ref(null)
-        
+
         onBeforeMount(async () => {
           resolvedPromise.value = await _promise
         })
 
         return {
-          // On the server, this will be null until the promise resolves. 
+          // On the server, this will be null until the promise resolves.
           // On the client, if server-rendered, this will always be the resolved promise.
           resolvedPromise,
         }
@@ -186,12 +223,13 @@ export const ssrPromise = <T>(
   key?: string
 ): Promise<T> => {
   validateKey(key)
+  const { type, setData } = useServerData()
 
-  const val = ssrValue(value, key)
+  const val = ssrValue(value, key, type)
   if (process.client) return Promise.resolve(val)
 
   onServerPrefetch(async () => {
-    data[key] = sanitise(await val)
+    setData(key, await val)
   })
   return val
 }

@@ -8,6 +8,8 @@ position: 14
 
 When creating composition utility functions, often there will be server-side state that needs to be conveyed to the client.
 
+<alert>If initialised within `setup()` or via `onGlobalSetup`, `ssrRef` data will exist *only* within the request state. If initialised *outside* a component there is the possibility that an `ssrRef` may share state across requests.</alert>
+
 ## ssrRef
 
 `ssrRef` will automatically add ref values to `window.__NUXT__` on SSR if they have been changed from their initial value. It can be used outside of components, such as in shared utility functions, and it supports passing a factory function that will generate the initial value of the ref.

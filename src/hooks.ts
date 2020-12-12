@@ -44,11 +44,13 @@ export const setMetaPlugin: Plugin = context => {
  * @private
  */
 export const globalPlugin: Plugin = context => {
-  const { setup } = context.app
-  globalSetup = new Set<SetupFunction>()
   if (process.server) {
     reqRefs.forEach(reset => reset())
+    setSSRContext(context.app)
   }
+
+  const { setup } = context.app
+  globalSetup = new Set<SetupFunction>()
 
   context.app.setup = function (...args) {
     let result = {}
@@ -59,10 +61,5 @@ export const globalPlugin: Plugin = context => {
       result = { ...result, ...(fn.call(this, ...args) || {}) }
     }
     return result
-  }
-
-  if (!process.server) return
-  if (context.app.context.ssrContext) {
-    setSSRContext(context.app.context.ssrContext)
   }
 }
