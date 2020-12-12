@@ -1,3 +1,15 @@
+## [0.17.0](https://github.com/nuxt-community/composition-api/compare/0.16.4...0.17.0) (2020-12-12)
+
+
+### Features
+
+* upgrade to vca beta 21 (adds `readonly`) ([9277489](https://github.com/nuxt-community/composition-api/commit/92774896b27548352de75344ce319d1d899718e2))
+
+
+### Bug Fixes
+
+* ensure `ssrRef` doesn't share state across requests when used in `setup()` ([#310](https://github.com/nuxt-community/composition-api/issues/310)) ([61a3b55](https://github.com/nuxt-community/composition-api/commit/61a3b550afa1ffbeb285aad69c0cba62234da9be))
+
 ### [0.16.4](https://github.com/nuxt-community/composition-api/compare/0.16.3...0.16.4) (2020-11-25)
 
 
