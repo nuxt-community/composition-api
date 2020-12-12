@@ -17,6 +17,7 @@ export * from './defineHelpers'
 export type {
   ComponentRenderProxy,
   ComputedRef,
+  DeepReadonly,
   FlushMode,
   InjectionKey,
   PropOptions,
@@ -62,6 +63,7 @@ export {
   provide,
   proxyRefs,
   reactive,
+  readonly,
   ref,
   set,
   shallowReactive,

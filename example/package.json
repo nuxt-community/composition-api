@@ -1,7 +1,7 @@
 {
   "name": "example-hello-world",
   "dependencies": {
-    "@nuxt/http": "^0.6.0",
+    "@nuxt/http": "^0.6.1",
     "@nuxtjs/composition-api": "latest",
     "vue-content-placeholders": "^0.2.1"
   },
@@ -17,6 +17,6 @@
     "post-update": "yarn upgrade --latest"
   },
   "volta": {
-    "node": "12.19.1"
+    "node": "12.20.0"
   }
 }
