@@ -4,6 +4,9 @@ import { sanitise, ssrRef } from './ssr-ref'
 
 export const reqRefs = new Set<() => void>()
 
+/**
+ * @deprecated
+ */
 export const reqRef = <T>(initialValue: T): Ref<T> => {
   const _ref = ref(initialValue)
 
@@ -12,6 +15,9 @@ export const reqRef = <T>(initialValue: T): Ref<T> => {
   return _ref as Ref<T>
 }
 
+/**
+ * @deprecated
+ */
 export const reqSsrRef = <T>(initialValue: T, key?: string) => {
   const _ref = ssrRef(initialValue, key)
 
