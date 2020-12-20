@@ -1,7 +1,6 @@
 import defu from 'defu'
 import {
   computed,
-  getCurrentInstance,
   reactive,
   ref,
   toRefs,
@@ -14,6 +13,8 @@ import {
 } from '@vue/composition-api'
 
 import type { MetaInfo } from 'vue-meta'
+
+import { getCurrentInstance } from './utils'
 
 export type ReactiveHead<T = Record<string, unknown>> = UnwrapRef<
   Ref<MetaInfo & T>

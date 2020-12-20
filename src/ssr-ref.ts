@@ -1,6 +1,5 @@
 import {
   customRef,
-  getCurrentInstance,
   onServerPrefetch,
   ref,
   shallowRef,
@@ -8,7 +7,7 @@ import {
 import type { Ref } from '@vue/composition-api'
 
 import { globalContext, globalNuxt } from './globals'
-import { validateKey } from './utils'
+import { getCurrentInstance, validateKey } from './utils'
 
 function getValue<T>(value: T | (() => T)): T {
   if (value instanceof Function) return value()

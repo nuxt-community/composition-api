@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import {
-  getCurrentInstance,
   isRef,
   onBeforeMount,
   onServerPrefetch,
@@ -10,7 +9,7 @@ import {
 import { globalContext, globalNuxt, isFullStatic } from './globals'
 import type { NuxtApp } from '@nuxt/types/app'
 
-type ComponentInstance = NonNullable<ReturnType<typeof getCurrentInstance>>
+import { getCurrentInstance, ComponentInstance } from './utils'
 
 function normalizeError(err: any) {
   let message

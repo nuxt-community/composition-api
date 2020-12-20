@@ -47,8 +47,10 @@ describe('ssrRef reactivity', () => {
     process.server = true
     ssrContext = Object.assign({}, { nuxt: {} })
     ;(cAPI as any).getCurrentInstance = () => ({
-      $nuxt: {
-        context: { ssrContext },
+      proxy: {
+        $nuxt: {
+          context: { ssrContext },
+        },
       },
     })
     globalPlugin({ app: { context: { ssrContext } } } as any, null)

@@ -1,10 +1,11 @@
-import { getCurrentInstance, computed } from '@vue/composition-api'
+import { computed } from '@vue/composition-api'
 
 import type { Ref } from '@vue/composition-api'
 import type { Context } from '@nuxt/types'
 import type { Route } from 'vue-router'
 
 import { globalNuxt } from './globals'
+import { getCurrentInstance } from './utils'
 
 interface ContextCallback {
   (context: Context): void
