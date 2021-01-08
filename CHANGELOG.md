@@ -1,3 +1,14 @@
+## [0.18.0](https://github.com/nuxt-community/composition-api/compare/0.17.0...0.18.0) (2021-01-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade `@vue/composition-api`
+
+### Miscellaneous Chores
+
+* upgrade `@vue/composition-api` ([a8fa46d](https://github.com/nuxt-community/composition-api/commit/a8fa46d74d00d84ee0055dc444b07aa0ad2dbbdf))
+
 ## [0.17.0](https://github.com/nuxt-community/composition-api/compare/0.16.4...0.17.0) (2020-12-12)
 
 
