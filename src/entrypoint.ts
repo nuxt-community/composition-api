@@ -74,6 +74,7 @@ export {
   toRefs,
   triggerRef,
   unref,
+  useCssModule,
   useCSSModule,
   version,
   warn,
