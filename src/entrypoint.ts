@@ -15,15 +15,20 @@ export { useStatic } from './static'
 export * from './defineHelpers'
 
 export type {
+  ComponentInstance,
   ComponentRenderProxy,
   ComputedRef,
+  Data,
   DeepReadonly,
+  ExtractDefaultPropTypes,
+  ExtractPropTypes,
   FlushMode,
   InjectionKey,
   PropOptions,
   PropType,
   Ref,
   SetupContext,
+  SetupFunction,
   ShallowUnwrapRef,
   UnwrapRef,
   VueWatcher,

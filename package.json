@@ -65,7 +65,7 @@
     "watch": "yarn compile -w"
   },
   "dependencies": {
-    "@vue/composition-api": "1.0.0-beta.25",
+    "@vue/composition-api": "1.0.0-beta.26",
     "defu": "^3.2.2",
     "normalize-path": "^3.0.0"
   },
