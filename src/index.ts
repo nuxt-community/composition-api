@@ -32,9 +32,16 @@ const compositionApiModule: Module<any> = function () {
     corejsPolyfill = undefined
   }
 
-  const { dst: pluginDst } = this.addTemplate({
+  const { dst: pluginServerDst } = this.addTemplate({
     src: resolve(libRoot, 'templates', 'plugin.js'),
-    fileName: join('composition-api', 'plugin.js'),
+    fileName: join('composition-api', 'plugin.server.js'),
+    mode: 'server',
+  })
+
+  const { dst: pluginClientDst } = this.addTemplate({
+    src: resolve(libRoot, 'templates', 'plugin.js'),
+    fileName: join('composition-api', 'plugin.client.js'),
+    mode: 'client',
     options: {
       corejsPolyfill,
     },
@@ -105,7 +112,8 @@ const compositionApiModule: Module<any> = function () {
   })
 
   this.options.plugins = this.options.plugins || []
-  this.options.plugins.unshift(resolve(this.options.buildDir || '', pluginDst))
+  this.options.plugins.unshift(resolve(this.options.buildDir || '', pluginClientDst))
+  this.options.plugins.unshift(resolve(this.options.buildDir || '', pluginServerDst))
   if (
     !(this.nuxt.options.buildModules || []).includes('@nuxtjs/pwa') &&
     !this.nuxt.options.modules.includes('@nuxtjs/pwa')
