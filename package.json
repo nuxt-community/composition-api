@@ -67,7 +67,7 @@
   "dependencies": {
     "@vue/composition-api": "1.0.0-rc.1",
     "defu": "^3.2.2",
-    "normalize-path": "^3.0.0"
+    "upath": "^2.0.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.12.10",

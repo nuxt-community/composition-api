@@ -1,8 +1,7 @@
-import { resolve, join } from 'path'
+import { resolve, join } from 'upath'
 import { readdirSync, copyFileSync, existsSync, mkdirpSync } from 'fs-extra'
 
 import type { Module } from '@nuxt/types'
-import normalize from 'normalize-path'
 
 const loadUtils = () => {
   try {
@@ -16,9 +15,7 @@ const loadUtils = () => {
 
 const utils = loadUtils()
 
-const compositionApiModule: Module<any> = function () {
-  const libRoot = resolve(__dirname, '..')
-
+const compositionApiModule: Module<any> = function compositionApiModule() {
   let corejsPolyfill = this.nuxt.options.build.corejs
     ? String(this.nuxt.options.build.corejs)
     : undefined
@@ -32,6 +29,7 @@ const compositionApiModule: Module<any> = function () {
     corejsPolyfill = undefined
   }
 
+  const libRoot = resolve(__dirname, '..')
   const { dst: pluginDst } = this.addTemplate({
     src: resolve(libRoot, 'templates', 'plugin.js'),
     fileName: join('composition-api', 'plugin.js'),
@@ -74,8 +72,8 @@ const compositionApiModule: Module<any> = function () {
     fileName: join('composition-api', 'index.js'),
     options: {
       isFullStatic: 'isFullStatic' in utils && utils.isFullStatic(this.options),
-      staticPath: normalize(staticPath),
-      publicPath: normalize(join(this.options.router?.base || '', '/')),
+      staticPath: staticPath,
+      publicPath: join(this.options.router?.base || '', '/'),
       globalContext,
       globalNuxt,
     },
@@ -121,7 +119,9 @@ const compositionApiModule: Module<any> = function () {
 }
 
 export default compositionApiModule
+
 // eslint-disable-next-line
-export const meta = require('../package.json')
+// @ts-ignore
+compositionApiModule.meta = require('../package.json')
 
 export * from './entrypoint'
