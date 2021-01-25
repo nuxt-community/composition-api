@@ -67,7 +67,7 @@
   "dependencies": {
     "@vue/composition-api": "1.0.0-rc.1",
     "defu": "^3.2.2",
-    "normalize-path": "^3.0.0"
+    "upath": "^2.0.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.12.10",
@@ -97,7 +97,7 @@
     "nuxt": "^2.14.12",
     "prettier": "^2.2.1",
     "release-it": "14.2.2",
-    "siroc": "0.6.3",
+    "siroc": "0.6.0",
     "start-server-and-test": "^1.11.7",
     "testcafe": "1.10.1",
     "tsd": "^0.14.0",
