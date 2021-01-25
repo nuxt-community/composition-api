@@ -1,3 +1,16 @@
+## [0.19.0](https://github.com/nuxt-community/composition-api/compare/0.18.1...0.19.0) (2021-01-25)
+
+
+### Features
+
+* add compositionAPI flag in jsx babel configuration ([#304](https://github.com/nuxt-community/composition-api/issues/304)) ([fec4218](https://github.com/nuxt-community/composition-api/commit/fec4218aa623f31556dad776c7af936abbaf87b8))
+
+
+### Bug Fixes
+
+* don't import core-js polyfill in server build ([#353](https://github.com/nuxt-community/composition-api/issues/353)) ([2755d6b](https://github.com/nuxt-community/composition-api/commit/2755d6beeec2cfb4d28ba7e300362286e38876d9))
+* revert `siroc` to fix windows error ([#356](https://github.com/nuxt-community/composition-api/issues/356)) ([acdf18d](https://github.com/nuxt-community/composition-api/commit/acdf18ddccc015d8ce531631ddaea62dfb12efd0))
+
 ### [0.18.1](https://github.com/nuxt-community/composition-api/compare/0.18.0...0.18.1) (2021-01-14)
 
 ## [0.18.0](https://github.com/nuxt-community/composition-api/compare/0.17.0...0.18.0) (2021-01-08)
