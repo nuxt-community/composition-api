@@ -81,6 +81,7 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
 
   this.options.build = this.options.build || {}
   this.options.build.babel = this.options.build.babel || {}
+
   this.options.build.babel.plugins = this.options.build.babel.plugins || []
   if (this.options.build.babel.plugins instanceof Function) {
     console.warn(
@@ -92,6 +93,27 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
 
   this.options.build.transpile = this.options.build.transpile || []
   this.options.build.transpile.push(/@nuxtjs[\\/]composition-api/)
+
+  const actualPresets = this.options.build.babel.presets
+
+  this.options.build.babel.presets = (
+    env,
+    [defaultPreset, defaultOptions]: [string, Record<string, any>]
+  ) => {
+    const newOptions = {
+      ...defaultOptions,
+      jsx: {
+        ...(typeof defaultOptions.jsx === 'object' ? defaultOptions.jsx : {}),
+        compositionAPI: true,
+      },
+    }
+
+    if (typeof actualPresets === 'function') {
+      return actualPresets(env, [defaultPreset, newOptions])
+    }
+
+    return [[defaultPreset, newOptions]]
+  }
 
   this.extendBuild(config => {
     config.resolve = config.resolve || {}
