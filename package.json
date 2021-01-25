@@ -97,7 +97,7 @@
     "nuxt": "^2.14.12",
     "prettier": "^2.2.1",
     "release-it": "14.2.2",
-    "siroc": "0.6.3",
+    "siroc": "0.6.0",
     "start-server-and-test": "^1.11.7",
     "testcafe": "1.10.1",
     "tsd": "^0.14.0",
