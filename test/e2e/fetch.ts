@@ -40,6 +40,16 @@ test('Refetches with $fetch', async t => {
   await expectOnPage('loading email')
 })
 
+test('TTFB is lower than 100ms', async t => {
+  await navigateTo('/')
+  const ttfbRegex = /TTFB: (\d+)ms/
+  const selector = Selector('*').withText(new RegExp(ttfbRegex, 'i'))
+  const text = await selector.innerText
+  const [, msString] = /TTFB: (\d+)ms/.exec(text)!
+  const ms = Number(msString)
+  t.expect(ms).lte(100)
+})
+
 test("Doesn't overwrite methods and getters", async () => {
   await navigateTo('/')
   await expectOnPage('computed')
