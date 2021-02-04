@@ -234,7 +234,7 @@ export const useFetch = (callback: Fetch) => {
   }
 
   vm._fetchDelay =
-    typeof vm.$options.fetchDelay === 'number' ? vm.$options.fetchDelay : 200
+    typeof vm.$options.fetchDelay === 'number' ? vm.$options.fetchDelay : 10
 
   vm.$fetch = callFetches.bind(vm)
 
