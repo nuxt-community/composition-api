@@ -41,6 +41,9 @@
       </li>
       <li><nuxt-link to="/meta">meta</nuxt-link></li>
     </ul>
+    <div>
+      TTFB: {{ ttfb }}ms
+    </div>
   </main>
 </template>
 
@@ -50,6 +53,7 @@ import {
   ref,
   computed,
   useFetch,
+  onMounted
 } from '@nuxtjs/composition-api'
 import ChildComp from '../components/comp.vue'
 
@@ -73,11 +77,17 @@ export default defineComponent({
       if (process.client) email.value = await fetcher('long@load.com', 2000)
     })
 
+    const ttfb = ref(-1)
+    onMounted(() => {
+      ttfb.value = globalThis.performance.getEntriesByType('navigation')[0].responseStart
+    })
+
     return {
       name,
       email,
       computedProp,
       myFunction,
+      ttfb
     }
   },
 })
