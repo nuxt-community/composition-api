@@ -41,7 +41,7 @@ test('Refetches with $fetch', async t => {
 })
 
 test('TTFB is lower than 100ms', async t => {
-  await navigateTo('/')
+  await navigateTo('/ttfb')
   const ttfbRegex = /TTFB: (\d+)ms/
   const selector = await Selector('*').withText(new RegExp(ttfbRegex, 'i'))
   const text = await selector.innerText
