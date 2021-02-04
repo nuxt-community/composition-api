@@ -1,3 +1,10 @@
+### [0.19.1](https://github.com/nuxt-community/composition-api/compare/0.19.0...0.19.1) (2021-02-04)
+
+
+### Bug Fixes
+
+* set `useFetch` delay to 0 by default ([#362](https://github.com/nuxt-community/composition-api/issues/362)) ([33b9790](https://github.com/nuxt-community/composition-api/commit/33b979043356f3406766389b61ee32002f68127d))
+
 ## [0.19.0](https://github.com/nuxt-community/composition-api/compare/0.18.1...0.19.0) (2021-01-25)
 
 
