@@ -1,13 +1,27 @@
 ---
-title: Definition helpers
-description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
-category: Helpers
+title: defineNuxt*
+description: 'You can get automatic type-hinting for Nuxt configuration, plugins, middleware, modules and serverMiddleware.'
+category: Typings
 position: 10
+version: 0.192
+
 ---
 
 There are some helpers to optimize developer experience when creating Nuxt plugins, middleware, server middleware and modules.
 
-These helpers simply return the function passed into them, adding the correct typings.
+These helpers simply return the function or object passed into them, adding the correct typings.
+
+## defineNuxtConfig
+
+Create your `nuxt.config.js` with types with:
+
+```ts
+import { defineNuxtConfig } from '@nuxtjs/composition-api'
+
+export default defineNuxtConfig({
+  // your nuxt config
+})
+```
 
 ## defineNuxtPlugin
 
@@ -57,4 +71,3 @@ export default defineNuxtServerMiddleware((req, res, next) => {
   // do stuff
 })
 ```
-
