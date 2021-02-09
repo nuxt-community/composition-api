@@ -1,11 +1,11 @@
 ---
 title: reqRef, reqSsrRef
-description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
-category: Helpers
+description: 'You can define server-side refs that are reset on each request.'
+category: Data
 fullscreen: True
 badge: deprecated
 version: 0.133
-position: 12
+position: 32
 ---
 
 `reqRef` declares a normal `ref` with one key difference. It resets the value of this ref on each request. You can find out [more information here](/getting-started/gotchas#shared-server-state).

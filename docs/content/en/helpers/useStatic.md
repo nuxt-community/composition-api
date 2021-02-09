@@ -1,8 +1,8 @@
 ---
 title: useStatic
-description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
-category: Helpers
-position: 19
+description: 'You can define async calls that will be produce static JSON on site generation.'
+category: API
+position: 39
 ---
 
 You can pre-run expensive functions using `useStatic`.

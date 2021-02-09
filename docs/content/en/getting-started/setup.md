@@ -1,6 +1,6 @@
 ---
 title: Quick start
-description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+description: 'Getting started with the Nuxt Composition API.'
 category: Getting started
 position: 2
 version: 0.161

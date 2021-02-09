@@ -1,9 +1,9 @@
 ---
 title: ssrRef, shallowSsrRef
-description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
-category: Helpers
+description: 'You can define data on the server that is stringified and hydrated on client-side.'
+category: Data
 fullscreen: True
-position: 14
+position: 34
 ---
 
 When creating composition utility functions, often there will be server-side state that needs to be conveyed to the client.

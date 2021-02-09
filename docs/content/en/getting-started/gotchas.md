@@ -1,6 +1,6 @@
 ---
 title: Gotchas
-description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
+description: 'There are a couple of key points to remember when using the composition API.'
 category: Getting started
 fullscreen: True
 position: 3

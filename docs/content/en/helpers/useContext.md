@@ -1,9 +1,9 @@
 ---
 title: useContext
-description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
-category: Helpers
+description: 'You can access the Nuxt context within the composition API'
+category: API
 fullscreen: True
-position: 16
+position: 36
 ---
 
 You can access the Nuxt context more easily using `useContext`, which will return the Nuxt context.

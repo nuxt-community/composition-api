@@ -1,9 +1,9 @@
 ---
 title: useAsync
-description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
-category: Helpers
+description: 'You can define async functions that run once and persist the data on client-side.'
+category: API
 fullscreen: True
-position: 15
+position: 35
 ---
 
 You can create reactive values that depend on asynchronous calls with `useAsync`.

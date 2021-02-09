@@ -1,9 +1,9 @@
 ---
 title: ssrPromise
-description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
-category: Helpers
+description: 'You can create promises on the server that are resolved on the client'
+category: Data
 fullscreen: True
-position: 13
+position: 33
 ---
 
 `ssrPromise` runs a promise on the server and serialises the result as a resolved promise for the client. It needs to be run within the `setup()` function but note that it returns a promise which will require special handling. (For example, you cannot just return a promise from setup and use it in the template.)
