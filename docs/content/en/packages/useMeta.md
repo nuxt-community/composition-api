@@ -1,9 +1,9 @@
 ---
 title: useMeta
-description: '@nuxtjs/composition-api provides a way to use the Vue 3 Composition API with Nuxt-specific features.'
-category: Helpers
+description: 'You can define your head and meta properties with the Nuxt Composition API.'
+category: Packages
 fullscreen: True
-position: 18
+position: 10
 ---
 
 You can interact directly with [head properties](https://nuxtjs.org/api/pages-head/) in `setup` (and within the `onGlobalSetup` method) by means of the `useMeta()` helper.

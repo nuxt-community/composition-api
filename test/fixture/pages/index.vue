@@ -40,6 +40,7 @@
         <nuxt-link to="/no-setup">ssr ref defined outside of setup</nuxt-link>
       </li>
       <li><nuxt-link to="/meta">meta</nuxt-link></li>
+      <li><nuxt-link to="/wrappers">wrappers</nuxt-link></li>
     </ul>
     <div>
       TTFB: {{ ttfb }}ms

@@ -13,6 +13,7 @@ export { reqRef, reqSsrRef } from './req-ref'
 export { ssrRef, shallowSsrRef, setSSRContext, ssrPromise } from './ssr-ref'
 export { useStatic } from './static'
 export * from './defineHelpers'
+export * from './wrappers'
 
 export type {
   ComponentInstance,
