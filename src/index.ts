@@ -68,7 +68,7 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
   const globalNuxt = globalNuxtFactory(globalName)
 
   const { dst: entryDst } = this.addTemplate({
-    src: resolve(libRoot, 'lib', 'entrypoint.js'),
+    src: resolve(libRoot, 'lib', 'entrypoint.es.js'),
     fileName: join('composition-api', 'index.js'),
     options: {
       isFullStatic: 'isFullStatic' in utils && utils.isFullStatic(this.options),
