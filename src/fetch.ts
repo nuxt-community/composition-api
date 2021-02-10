@@ -12,7 +12,7 @@ import type { NuxtApp } from '@nuxt/types/app'
 import { getCurrentInstance, ComponentInstance } from './utils'
 
 function normalizeError(err: any) {
-  let message
+  let message: string
   if (!(err.message || typeof err === 'string')) {
     try {
       message = JSON.stringify(err, null, 2)
@@ -33,6 +33,15 @@ function normalizeError(err: any) {
   }
 }
 
+function createGetCounter(counterObject: Record<string, any>, defaultKey = '') {
+  return function getCounter(id = defaultKey) {
+    if (counterObject[id] === undefined) {
+      counterObject[id] = 0
+    }
+    return counterObject[id]++
+  }
+}
+
 interface Fetch {
   (context: ComponentInstance): void | Promise<void>
 }
@@ -45,7 +54,7 @@ const isSsrHydration = (vm: ComponentInstance) =>
 const nuxtState = process.client && (window as any)[globalContext]
 
 interface AugmentedComponentInstance extends ComponentInstance {
-  _fetchKey?: number
+  _fetchKey?: number | string
   _data?: any
   _hydrated?: boolean
   _fetchDelay?: number
@@ -87,6 +96,9 @@ async function callFetches(this: AugmentedComponentInstance) {
       })
     )
   } catch (err) {
+    if ((process as any).dev) {
+      console.error('Error in fetch():', err)
+    }
     error = normalizeError(err)
   }
 
@@ -125,9 +137,7 @@ const loadFullStatic = (vm: AugmentedComponentInstance) => {
     return
   }
   vm._hydrated = true
-  nuxt._payloadFetchIndex = (nuxt._payloadFetchIndex || 0) + 1
-  vm._fetchKey = nuxt._payloadFetchIndex
-  const data = nuxt._pagePayload.fetch[vm._fetchKey]
+  const data = nuxt._pagePayload.fetch[vm._fetchKey!]
 
   // If fetch error
   if (data && data._error) {
@@ -150,12 +160,19 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
   try {
     await callFetches.call(vm)
   } catch (err) {
+    if ((process as any).dev) {
+      console.error('Error in fetch():', err)
+    }
     vm.$fetchState.error = normalizeError(err)
   }
   vm.$fetchState.pending = false
 
   // Define an ssrKey for hydration
-  vm._fetchKey = vm.$ssrContext.nuxt.fetch.length
+  vm._fetchKey =
+    // Nuxt 2.15+ uses a different format - an object rather than an array
+    'push' in vm.$ssrContext.nuxt.fetch
+      ? vm.$ssrContext.nuxt.fetch.length
+      : vm._fetchKey || vm.$ssrContext.fetchCounters['']++
 
   // Add data-fetch-key on parent element of Component
   if (!vm.$vnode.data) vm.$vnode.data = {}
@@ -172,11 +189,44 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
   )
 
   // Add to ssrContext for window.__NUXT__.fetch
-  vm.$ssrContext.nuxt.fetch.push(
-    vm.$fetchState.error
-      ? { _error: vm.$fetchState.error }
-      : JSON.parse(JSON.stringify(data))
+  const content = vm.$fetchState.error
+    ? { _error: vm.$fetchState.error }
+    : JSON.parse(JSON.stringify(data))
+  if ('push' in vm.$ssrContext.nuxt.fetch) {
+    vm.$ssrContext.nuxt.fetch.push(content)
+  } else {
+    vm.$ssrContext.nuxt.fetch[vm._fetchKey!] = content
+  }
+}
+
+function getKey(vm: AugmentedComponentInstance) {
+  if (process.server && 'push' in vm.$ssrContext.nuxt.fetch) {
+    return undefined
+  } else if (process.client && 'push' in nuxtState.fetch) {
+    nuxtState._payloadFetchIndex = (nuxtState._payloadFetchIndex || 0) + 1
+    return nuxtState._payloadFetchIndex
+  }
+  const defaultKey = (vm.$options as any)._scopeId || vm.$options.name || ''
+  const getCounter = createGetCounter(
+    process.server
+      ? vm.$ssrContext.fetchCounters
+      : (vm[globalNuxt] as any)._fetchCounters,
+    defaultKey
   )
+
+  const options: {
+    fetchKey:
+      | ((getCounter: ReturnType<typeof createGetCounter>) => string)
+      | string
+  } = vm.$options as any
+
+  if (typeof options.fetchKey === 'function') {
+    return options.fetchKey.call(vm, getCounter)
+  } else {
+    const key =
+      'string' === typeof options.fetchKey ? options.fetchKey : defaultKey
+    return key + getCounter(key)
+  }
 }
 
 /**
@@ -220,6 +270,10 @@ export const useFetch = (callback: Fetch) => {
     vm._fetchOnServer = vm.$options.fetchOnServer !== false
   }
 
+  if (process.server) {
+    vm._fetchKey = getKey(vm)
+  }
+
   setFetchState(vm)
 
   onServerPrefetch(() => serverPrefetch(vm))
@@ -247,8 +301,8 @@ export const useFetch = (callback: Fetch) => {
 
   // Hydrate component
   vm._hydrated = true
-  vm._fetchKey = +(vm.$vnode.elm as any)?.dataset.fetchKey
-  const data = nuxtState.fetch[vm._fetchKey]
+  vm._fetchKey = (vm.$vnode.elm as any)?.dataset.fetchKey || getKey(vm)
+  const data = nuxtState.fetch[vm._fetchKey!]
 
   // If fetch error
   if (data && data._error) {
