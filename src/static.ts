@@ -1,6 +1,10 @@
-import { ssrRef } from './ssr-ref'
 import { onServerPrefetch, watch, computed, ref } from '@vue/composition-api'
 import type { Ref } from '@vue/composition-api'
+
+import { joinURL } from 'ufo'
+
+import { ssrRef } from './ssr-ref'
+import { globalContext } from './globals'
 
 const staticPath = '<%= options.staticPath %>'
 const staticCache: Record<string, any> = {}
@@ -74,6 +78,9 @@ export const useStatic = <T>(
   if (result.value) staticCache[key.value] = result.value
 
   if (process.client) {
+    const publicPath =
+      (window as any)[globalContext].$config?.app?.cdnURL ||
+      '<%= options.publicPath %>'
     const onFailure = () =>
       factory(param.value, key.value).then(r => {
         staticCache[key.value] = r
@@ -90,7 +97,7 @@ export const useStatic = <T>(
         /* eslint-disable promise/always-return */
         if (!process.static) onFailure()
         else
-          fetch(`<%= options.publicPath %>${key}.json`)
+          fetch(joinURL(publicPath, `${key}.json`))
             .then(response => {
               if (!response.ok) throw new Error('Response invalid.')
               return response.json()

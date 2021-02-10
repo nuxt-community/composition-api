@@ -1,6 +1,8 @@
 import { resolve, join } from 'upath'
 import { readdirSync, copyFileSync, existsSync, mkdirpSync } from 'fs-extra'
 
+import { withTrailingSlash } from 'ufo'
+
 import type { Module } from '@nuxt/types'
 
 const loadUtils = () => {
@@ -14,6 +16,10 @@ const loadUtils = () => {
 }
 
 const utils = loadUtils()
+
+const isUrl = function isUrl(url: string) {
+  return ['http', '//'].some(str => url.startsWith(str))
+}
 
 const compositionApiModule: Module<any> = function compositionApiModule() {
   let corejsPolyfill = this.nuxt.options.build.corejs
@@ -71,13 +77,16 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
   const globalContext = globalContextFactory(globalName)
   const globalNuxt = globalNuxtFactory(globalName)
 
+  const routerBase = withTrailingSlash(this.options.router?.base)
+  const publicPath = withTrailingSlash(this.options.build?.publicPath)
+
   const { dst: entryDst } = this.addTemplate({
     src: resolve(libRoot, 'lib', 'entrypoint.es.js'),
     fileName: join('composition-api', 'index.js'),
     options: {
       isFullStatic: 'isFullStatic' in utils && utils.isFullStatic(this.options),
       staticPath: staticPath,
-      publicPath: join(this.options.router?.base || '', '/'),
+      publicPath: isUrl(publicPath) ? publicPath : routerBase,
       globalContext,
       globalNuxt,
     },
