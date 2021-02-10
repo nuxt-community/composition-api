@@ -45,6 +45,10 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
 
   const staticPath = join(this.options.buildDir || '', 'static-json')
 
+  this.nuxt.hook('builder:prepared', () => {
+    mkdirpSync(staticPath)
+  })
+
   this.nuxt.hook('generate:route', () => {
     mkdirpSync(staticPath)
   })
