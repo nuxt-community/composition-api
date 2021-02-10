@@ -1,7 +1,5 @@
 <template>
-  <main>
-    TTFB: {{ ttfb }}ms
-  </main>
+  <main>TTFB: {{ ttfb }}ms</main>
 </template>
 
 <script>
@@ -10,7 +8,7 @@ import {
   ref,
   computed,
   useFetch,
-  onMounted
+  onMounted,
 } from '@nuxtjs/composition-api'
 import ChildComp from '../components/comp.vue'
 
@@ -22,11 +20,13 @@ export default defineComponent({
 
     const ttfb = ref(-1)
     onMounted(() => {
-      ttfb.value = globalThis.performance.getEntriesByType('navigation')[0].responseStart
+      ttfb.value = globalThis.performance.getEntriesByType(
+        'navigation'
+      )[0].responseStart
     })
 
     return {
-      ttfb
+      ttfb,
     }
   },
 })
