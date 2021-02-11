@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import { defineComponent, useContext, useMeta } from '@nuxtjs/composition-api'
+import { defineComponent, useRoute } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   head: {},
   setup() {
-    const { route } = useContext()
+    const route = useRoute()
 
     return { route }
   },

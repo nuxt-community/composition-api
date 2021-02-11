@@ -2,10 +2,10 @@ import { t, Selector } from 'testcafe'
 import { navigateTo, expectOnPage } from './helpers'
 
 // eslint-disable-next-line
-fixture`useContext`
+fixture`useRoute`
 
-async function displaysContextCorrectly() {
-  await expectOnPage('path: /context/a')
+async function displaysRouteCorrectly() {
+  await expectOnPage('path: /route/a')
   await expectOnPage('watch function called: 1')
   await t.click(Selector('a').withText('Link with query'))
   await expectOnPage('route query test: true')
@@ -13,13 +13,13 @@ async function displaysContextCorrectly() {
   await expectOnPage('route param slug: a')
 }
 
-test('Shows correct context info on server-loaded page', async () => {
-  await navigateTo('/context/a')
-  await displaysContextCorrectly()
+test('Shows correct route info on server-loaded page', async () => {
+  await navigateTo('/route/a')
+  await displaysRouteCorrectly()
 })
 
-test('Shows correct context info on client-loaded page', async t => {
+test('Shows correct route info on client-loaded page', async t => {
   await navigateTo('/')
-  await t.click(Selector('a').withText('context'))
-  await displaysContextCorrectly()
+  await t.click(Selector('a').withText('route'))
+  await displaysRouteCorrectly()
 })

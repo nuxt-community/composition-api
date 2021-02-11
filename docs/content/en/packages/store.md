@@ -2,7 +2,6 @@
 title: useStore
 description: 'Access this.$store with the Nuxt Composition API.'
 category: Packages
-badge: migration
 position: 12
 ---
 
@@ -22,7 +21,7 @@ export default defineComponent({
 })
 ```
 
-You can also provide an injection key to get back a semi-typed store:
+You can also provide an injection key or custom type to get back a semi-typed store:
 
 ```ts
 import { defineComponent, useStore } from '@nuxtjs/composition-api'
@@ -36,7 +35,8 @@ export const key: InjectionKey<Store<State>> = Symbol()
 export default defineComponent({
   setup() {
     const store = useStore(key)
-    // store.state.count will be typed as a number
+    const store = useStore<State>()
+    // In both of these cases, store.state.count will be typed as a number
   }
 })
 ```

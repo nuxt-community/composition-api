@@ -22,15 +22,18 @@
 
 <script>
 import {
+  computed,
   defineComponent,
-  useContext,
+  useRoute,
   ref,
   watch,
 } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   setup() {
-    const { route, query, params } = useContext()
+    const route = useRoute()
+    const query = computed(() => route.value.query)
+    const params = computed(() => route.value.params)
     const called = ref(0)
     watch(
       route,
