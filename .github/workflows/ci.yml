@@ -9,10 +9,61 @@ on:
       - main
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: "node_modules"
+          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn
+
+      - name: Lint project
+        run: yarn lint
+
+  e2e:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+        test:
+          - e2e-generated
+          - e2e-globals
+          - e2e-ssr
+    runs-on: "${{ matrix.os }}"
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: "node_modules"
+          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn
+
+      - name: Build project
+        run: yarn build
+
+      - name: Test project
+        run: yarn test:${{ matrix.test }}
+
   unit:
     strategy:
       matrix:
         os:
+          - ubuntu-latest
           - windows-latest
     runs-on: "${{ matrix.os }}"
 
@@ -27,16 +78,10 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn && yarn add --dev siroc@0.6.4-beta0
+        run: yarn
 
       - name: Build project
         run: yarn build
-
-      - name: Save built repo
-        uses: actions/upload-artifact@v2
-        with:
-          name: built files
-          path: lib
 
       - name: Test types
         run: yarn test:types
