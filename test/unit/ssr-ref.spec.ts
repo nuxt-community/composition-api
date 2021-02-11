@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { ssrRef, globalPlugin } from '../..'
+import { ssrRef, globalPlugin } from '../../lib/entrypoint'
 import * as cAPI from '@vue/composition-api'
 
 jest.setTimeout(60000)

@@ -67,9 +67,7 @@ module.exports = {
   build: {
     publicPath: isPublic ? 'fixture' : undefined,
   },
-  buildModules: [
-    process.env.NODE_ENV === 'test' ? require('../..').default : rootDir,
-  ],
+  buildModules: [process.env.NODE_ENV === 'test' ? require('../..') : rootDir],
   pwa: {
     icon: false,
     manifest: false,
