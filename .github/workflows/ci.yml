@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
+        run: yarn && yarn add --dev siroc@0.6.4-beta0
 
       - name: Build project
         run: yarn build
