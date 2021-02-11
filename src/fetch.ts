@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import {
   isRef,
+  nextTick,
   onBeforeMount,
   onServerPrefetch,
   set,
@@ -10,6 +11,8 @@ import { globalContext, globalNuxt, isFullStatic } from './globals'
 import type { NuxtApp } from '@nuxt/types/app'
 
 import { getCurrentInstance, ComponentInstance } from './utils'
+
+const nuxtState = process.client && (window as any)[globalContext]
 
 function normalizeError(err: any) {
   let message: string
@@ -51,7 +54,6 @@ const fetchPromises = new Map<Fetch, Promise<any>>()
 
 const isSsrHydration = (vm: ComponentInstance) =>
   (vm.$vnode?.elm as any)?.dataset?.fetchKey
-const nuxtState = process.client && (window as any)[globalContext]
 
 interface AugmentedComponentInstance extends ComponentInstance {
   _fetchKey?: number | string
@@ -125,6 +127,7 @@ const setFetchState = (vm: AugmentedComponentInstance) => {
 }
 
 const loadFullStatic = (vm: AugmentedComponentInstance) => {
+  vm._fetchKey = getKey(vm)
   // Check if component has been fetched on server
   const { fetchOnServer } = vm.$options
   const fetchedOnServer =
@@ -145,10 +148,12 @@ const loadFullStatic = (vm: AugmentedComponentInstance) => {
     return
   }
 
-  // Merge data
-  for (const key in data) {
-    set(vm.$data, key, data[key])
-  }
+  onBeforeMount(() => {
+    // Merge data
+    for (const key in data) {
+      set(vm, key, data[key])
+    }
+  })
 }
 
 async function serverPrefetch(vm: AugmentedComponentInstance) {
@@ -200,11 +205,12 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
 }
 
 function getKey(vm: AugmentedComponentInstance) {
+  const nuxtState = vm[globalNuxt] as any
   if (process.server && 'push' in vm.$ssrContext.nuxt.fetch) {
     return undefined
-  } else if (process.client && 'push' in nuxtState.fetch) {
-    nuxtState._payloadFetchIndex = (nuxtState._payloadFetchIndex || 0) + 1
-    return nuxtState._payloadFetchIndex
+  } else if (process.client && '_payloadFetchIndex' in nuxtState) {
+    nuxtState._payloadFetchIndex = nuxtState._payloadFetchIndex || 0
+    return nuxtState._payloadFetchIndex++
   }
   const defaultKey = (vm.$options as any)._scopeId || vm.$options.name || ''
   const getCounter = createGetCounter(
@@ -295,7 +301,7 @@ export const useFetch = (callback: Fetch) => {
   onBeforeMount(() => !vm._hydrated && callFetches.call(vm))
 
   if (process.server || !isSsrHydration(vm)) {
-    if (isFullStatic) onBeforeMount(() => loadFullStatic(vm))
+    if (process.client && isFullStatic) return loadFullStatic(vm)
     return result()
   }
 
