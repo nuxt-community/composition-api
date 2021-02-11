@@ -8,7 +8,7 @@ position: 34
 
 When creating composition utility functions, often there will be server-side state that needs to be conveyed to the client.
 
-<alert>If initialised within `setup()` or via `onGlobalSetup`, `ssrRef` data will exist *only* within the request state. If initialised *outside* a component there is the possibility that an `ssrRef` may share state across requests.</alert>
+<alert>If initialised within `setup()` or via `onGlobalSetup`, `ssrRef` data will exist _only_ within the request state. If initialised _outside_ a component there is the possibility that an `ssrRef` may share state across requests.</alert>
 
 ## ssrRef
 

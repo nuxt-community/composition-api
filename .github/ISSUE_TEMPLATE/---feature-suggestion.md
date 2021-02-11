@@ -4,11 +4,11 @@ about: Suggest an idea
 title: 'feat: '
 labels: enhancement
 assignees: danielroe
-
 ---
 
 **🆒 Your use case**
 Add a description of your use case, and how this feature would help you.
+
 > Ex. When I do [...] I would expect to be able to do [...]
 
 **🆕 The solution you'd like**

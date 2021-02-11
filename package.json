@@ -48,7 +48,7 @@
     "fixture:prod": "yarn clean:fixture && cross-env CMD=build yarn nuxt-run && cross-env CMD=start yarn nuxt-run",
     "lint": "run-s lint:all:*",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.ts,.vue .",
-    "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts,vue}\"",
+    "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts,vue,md}\"",
     "lint:eslint": "eslint --fix",
     "lint:prettier": "prettier --write --loglevel warn",
     "now-build": "NOW_BUILD=true yarn fixture:generate:export",

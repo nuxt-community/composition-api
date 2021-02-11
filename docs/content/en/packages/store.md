@@ -17,7 +17,7 @@ import { defineComponent, useStore } from '@nuxtjs/composition-api'
 export default defineComponent({
   setup() {
     const store = useStore()
-  }
+  },
 })
 ```
 
@@ -37,6 +37,6 @@ export default defineComponent({
     const store = useStore(key)
     const store = useStore<State>()
     // In both of these cases, store.state.count will be typed as a number
-  }
+  },
 })
 ```

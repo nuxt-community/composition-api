@@ -2,6 +2,6 @@ lib
 example
 .nuxt
 ./dist
-docs
 coverage
 templates
+CHANGELOG.md

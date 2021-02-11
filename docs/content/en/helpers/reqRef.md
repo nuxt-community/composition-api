@@ -14,7 +14,6 @@ position: 32
 
 <alert type="warning">You should take especial care because of the danger of shared state when using refs in this way.</alert>
 
-
 ## Example
 
 ```ts[~/state/sampleModule.js]
@@ -27,5 +26,3 @@ export const fetchUser = async () => {
     user.value = await r.json()
 }
 ```
-
-

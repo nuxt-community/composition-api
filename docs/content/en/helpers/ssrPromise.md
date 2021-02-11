@@ -20,13 +20,13 @@ export default defineComponent({
   setup() {
     const _promise = ssrPromise(async () => myAsyncFunction())
     const resolvedPromise = ref(null)
-    
+
     onBeforeMount(async () => {
       resolvedPromise.value = await _promise
     })
 
     return {
-      // On the server, this will be null until the promise resolves. 
+      // On the server, this will be null until the promise resolves.
       // On the client, if server-rendered, this will always be the resolved promise.
       resolvedPromise,
     }
