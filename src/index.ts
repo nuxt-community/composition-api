@@ -158,5 +158,3 @@ export default compositionApiModule
 // eslint-disable-next-line
 // @ts-ignore
 compositionApiModule.meta = require('../package.json')
-
-export * from './entrypoint'
