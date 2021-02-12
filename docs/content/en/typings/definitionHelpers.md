@@ -22,6 +22,8 @@ export default defineNuxtConfig({
 })
 ```
 
+<alert type="warning">Note that if you define your Nuxt config this way you will need to ensure that `@nuxtjs/composition-api` is present in your `dependencies` rather than `devDependencies`.</alert>
+
 ## defineNuxtPlugin
 
 Create a plugin with types with:
