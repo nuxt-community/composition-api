@@ -1,7 +1,7 @@
 import { resolve, join } from 'upath'
 import { withTrailingSlash } from 'ufo'
 
-import type { Module } from '@nuxt/types'
+import type { Module, NuxtConfig } from '@nuxt/types'
 
 const foolWebpack = (id: string) => require(id)
 
@@ -177,3 +177,7 @@ Object.keys(require('./entrypoint')).forEach(helper => {
   // @ts-ignore
   compositionApiModule[helper] = warnToAddModule
 })
+
+// eslint-disable-next-line
+// @ts-ignore
+compositionApiModule.defineNuxtConfig = (config: NuxtConfig) => config
