@@ -4,11 +4,10 @@ description: 'You can run functions (or provide data) in the global Nuxt setup()
 category: Lifecycle
 fullscreen: True
 position: 21
-
 ---
 
 This helper will run a callback function in the global setup function.
- 
+
 ```ts [~/plugins/myPlugin.js]
 import { onGlobalSetup, provide } from '@nuxtjs/composition-api'
 

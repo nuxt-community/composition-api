@@ -13,15 +13,15 @@ version: 0.161
     <code-group>
     <code-block label="Yarn" active>
 
-    ```bash
-    yarn add @nuxtjs/composition-api
-    ```
+   ```bash
+   yarn add @nuxtjs/composition-api
+   ```
 
-    </code-block><code-block label="NPM">
+   </code-block><code-block label="NPM">
 
-    ```bash
-    npm install @nuxtjs/composition-api --save
-    ```
+   ```bash
+   npm install @nuxtjs/composition-api --save
+   ```
 
    </code-block>
    </code-group>
@@ -53,7 +53,6 @@ version: 0.161
 
 <alert type="info">
 
-
 - The module automatically installs [`@vue/composition-api`](https://github.com/vuejs/composition-api) as a plugin, so you do not need to enable it separately.
 
 - For convenience, this package also exports the [`@vue/composition-api`](https://github.com/vuejs/composition-api) methods and hooks, so you can import directly from `@nuxtjs/composition-api`.
@@ -63,6 +62,7 @@ version: 0.161
 ## Testing with Jest
 
 If you need to use jest tests with this module installed, just add the following lines to your `jest.config.js`:
+
 ```js{}[jest.config.js]
 moduleNameMapper: {
   '@nuxtjs/composition-api': '@nuxtjs/composition-api/lib/entrypoint.js',

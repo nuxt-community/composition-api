@@ -4,7 +4,6 @@ about: How do I ... ?
 title: 'docs: '
 labels: documentation
 assignees: danielroe
-
 ---
 
 **📚 Is your documentation request related to a problem? Please describe.**

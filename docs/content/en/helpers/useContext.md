@@ -19,8 +19,6 @@ export default defineComponent({
 })
 ```
 
-<alert type="info">
+<alert type="info">Note that `route`, `query`, `from` and `params` are reactive refs (accessed with `.value`), but the rest of the context is not.</alert>
 
-Note that `route`, `query`, `from` and `params` are reactive refs (accessed with `.value`), but the rest of the context is not.
-
-</alert>
+<alert type="warning">To smooth your upgrade to Nuxt 3, it is recommended not to access `route`, `query`, `from` and `params` from `useContext` but rather to use the `useRoute` helper function.</alert>

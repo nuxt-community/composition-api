@@ -4,12 +4,11 @@ description: '@nuxtjs/composition-api provides a way to use the Vue 3 Compositio
 category: Getting started
 position: 1
 items:
- - Support for the new Nuxt fetch in v2.12+
- - Easy access to router, app, store within setup()
- - Interact directly with your vue-meta properties within setup()
- - Drop-in replacement for ref with automatic SSR stringification and hydration (ssrRef)
- - Written in TypeScript
-
+  - Support for the new Nuxt fetch in v2.12+
+  - Easy access to router, app, store within setup()
+  - Interact directly with your vue-meta properties within setup()
+  - Drop-in replacement for ref with automatic SSR stringification and hydration (ssrRef)
+  - Written in TypeScript
 ---
 
 > `@nuxtjs/composition-api` provides a way to use the Vue 3 Composition API in with Nuxt-specific features.

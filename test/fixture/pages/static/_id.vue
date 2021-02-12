@@ -14,7 +14,7 @@ import {
   defineComponent,
   computed,
   useStatic,
-  useContext,
+  useRoute,
 } from '@nuxtjs/composition-api'
 
 import { fetcher } from '../../utils'
@@ -23,8 +23,8 @@ const port = process.env.PORT || 3000
 
 export default defineComponent({
   setup() {
-    const { params } = useContext()
-    const id = computed(() => params.value.id)
+    const route = useRoute()
+    const id = computed(() => route.value.params.id)
     const post = useStatic(
       id =>
         process.server && process.static

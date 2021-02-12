@@ -50,9 +50,21 @@ export const useContext = (): UseContextReturn => {
 
   return {
     ...(vm[globalNuxt] || vm.$options).context,
+    /**
+     * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `route` from `useContext` but rather to use the `useRoute` helper function.
+     */
     route: computed(() => vm.$route),
+    /**
+     * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `query` from `useContext` but rather to use the `useRoute` helper function.
+     */
     query: computed(() => vm.$route.query),
+    /**
+     * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `from` from `useContext` but rather to use the `useRoute` helper function.
+     */
     from: computed(() => vm.$route.redirectedFrom),
+    /**
+     * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `params` from `useContext` but rather to use the `useRoute` helper function.
+     */
     params: computed(() => vm.$route.params),
   }
 }

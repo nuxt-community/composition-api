@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 const { resolve } = require('path')
 
-const routes = ['/context/a', '/static/1', '/static/2', '/static/3']
+const routes = ['/route/a', '/static/1', '/static/2', '/static/3']
 const interval = 3000
 
 const isGenerated = [process.env.GENERATE, process.env.NOW_BUILD].includes(
@@ -67,9 +67,7 @@ module.exports = {
   build: {
     publicPath: isPublic ? 'fixture' : undefined,
   },
-  buildModules: [
-    process.env.NODE_ENV === 'test' ? require('../..').default : rootDir,
-  ],
+  buildModules: [process.env.NODE_ENV === 'test' ? require('../..') : rootDir],
   pwa: {
     icon: false,
     manifest: false,

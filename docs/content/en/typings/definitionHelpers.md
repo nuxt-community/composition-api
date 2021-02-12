@@ -4,7 +4,6 @@ description: 'You can get automatic type-hinting for Nuxt configuration, plugins
 category: Typings
 position: 10
 version: 0.192
-
 ---
 
 There are some helpers to optimize developer experience when creating Nuxt plugins, middleware, server middleware and modules.
@@ -30,7 +29,7 @@ Create a plugin with types with:
 ```ts
 import { defineNuxtPlugin } from '@nuxtjs/composition-api'
 
-export default defineNuxtPlugin((ctx) => {
+export default defineNuxtPlugin(ctx => {
   // do stuff
 })
 ```
@@ -42,7 +41,7 @@ Create middleware with types with:
 ```ts
 import { defineNuxtMiddleware } from '@nuxtjs/composition-api'
 
-export default defineNuxtMiddleware((ctx) => {
+export default defineNuxtMiddleware(ctx => {
   // do stuff
 })
 ```
@@ -54,11 +53,10 @@ Create a Nuxt module with types with:
 ```ts
 import { defineNuxtModule } from '@nuxtjs/composition-api'
 
-export default defineNuxtModule<{ myOption: boolean }>((moduleOptions) => {
+export default defineNuxtModule<{ myOption: boolean }>(moduleOptions => {
   // do stuff
 })
 ```
-
 
 ## defineNuxtServerMiddleware
 

@@ -1,27 +1,30 @@
 import { resolve, join } from 'upath'
-import { readdirSync, copyFileSync, existsSync, mkdirpSync } from 'fs-extra'
-
 import { withTrailingSlash } from 'ufo'
 
 import type { Module } from '@nuxt/types'
 
+const foolWebpack = (id: string) => require(id)
+
 const loadUtils = () => {
   try {
     // Try to load nuxt edge utils first
-    return require('@nuxt/utils-edge')
+    return foolWebpack('@nuxt/utils-edge')
   } catch {
     // if it fails, fall back to normal nuxt utils
-    return require('@nuxt/utils')
+    return foolWebpack('@nuxt/utils')
   }
 }
-
-const utils = loadUtils()
 
 const isUrl = function isUrl(url: string) {
   return ['http', '//'].some(str => url.startsWith(str))
 }
 
 const compositionApiModule: Module<any> = function compositionApiModule() {
+  const utils = loadUtils()
+  const { readdirSync, copyFileSync, existsSync, mkdirpSync } = foolWebpack(
+    'fs-extra'
+  ) as typeof import('fs-extra')
+
   let corejsPolyfill = this.nuxt.options.build.corejs
     ? String(this.nuxt.options.build.corejs)
     : undefined
@@ -160,4 +163,18 @@ export default compositionApiModule
 // @ts-ignore
 compositionApiModule.meta = require('../package.json')
 
-export * from './entrypoint'
+const warnToAddModule = () => {
+  console.error(
+    'You need to add `@nuxtjs/composition-api` to your buildModules in order to use it. See https://composition-api.nuxtjs.org/getting-started/setup.'
+  )
+  throw new Error(
+    'You need to add `@nuxtjs/composition-api` to your buildModules in order to use it. See https://composition-api.nuxtjs.org/getting-started/setup.'
+  )
+}
+
+// eslint-disable-next-line
+Object.keys(require('./entrypoint')).forEach(helper => {
+  // eslint-disable-next-line
+  // @ts-ignore
+  compositionApiModule[helper] = warnToAddModule
+})
