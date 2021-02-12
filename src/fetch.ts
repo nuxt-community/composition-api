@@ -231,7 +231,7 @@ function getKey(vm: AugmentedComponentInstance) {
   } else {
     const key =
       'string' === typeof options.fetchKey ? options.fetchKey : defaultKey
-    return key + getCounter(key)
+    return key ? key + ':' + getCounter(key) : String(getCounter(key))
   }
 }
 
