@@ -1,3 +1,28 @@
+## [0.20.0](https://github.com/nuxt-community/composition-api/compare/0.19.1...0.20.0) (2021-02-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* split out types and imports
+
+### Features
+
+* add `defineNuxtConfig` helper ([6484e97](https://github.com/nuxt-community/composition-api/commit/6484e97aca55bdfa14dd2633c8e2146358b186e6))
+* add `useRoute`, `useRouter` and `useStore` wrapper functions ([80e6c08](https://github.com/nuxt-community/composition-api/commit/80e6c084528f8b513e5711643b7703804534a6ed))
+* add `wrapProperty` helper information ([bc0e091](https://github.com/nuxt-community/composition-api/commit/bc0e091554e2e5a9e9001c1f030e53483c641953))
+* do some very dodgy things to improve dx ([0998d66](https://github.com/nuxt-community/composition-api/commit/0998d66e7dba9dd3251d779bbca4110243e3fb77)), closes [#334](https://github.com/nuxt-community/composition-api/issues/334)
+* fetch improvements ([#366](https://github.com/nuxt-community/composition-api/issues/366)) ([d4bdbfb](https://github.com/nuxt-community/composition-api/commit/d4bdbfbae5c9dfe7314542e10a1b956c0aff0089)), closes [#364](https://github.com/nuxt-community/composition-api/issues/364) [nuxt/nuxt.js#8781](https://github.com/nuxt/nuxt.js/issues/8781) [#292](https://github.com/nuxt-community/composition-api/issues/292)
+
+
+### Bug Fixes
+
+* correct `static-json` path with custom router base or cdnURL ([fca527e](https://github.com/nuxt-community/composition-api/commit/fca527e539a28df89adfd0866b83849253cbf14e)), closes [#351](https://github.com/nuxt-community/composition-api/issues/351)
+* create `static-json` folder before dev/build ([27e2ffa](https://github.com/nuxt-community/composition-api/commit/27e2ffac50f9199ababec628b1cb50702838986c)), closes [#337](https://github.com/nuxt-community/composition-api/issues/337)
+* ensure `defineNuxtConfig` is accessible within config file ([06500ab](https://github.com/nuxt-community/composition-api/commit/06500ab07581b40f4f754b7ec486d3f283f643cf))
+* split out types and imports ([cc81ad6](https://github.com/nuxt-community/composition-api/commit/cc81ad61c50bca4d966604e110ef77331bc83f3a)), closes [#334](https://github.com/nuxt-community/composition-api/issues/334)
+* type issues with new wrapper functions ([fb2aa09](https://github.com/nuxt-community/composition-api/commit/fb2aa0906991cb2d63cc1a292e02c5bc400b6a81))
+* use es module version of entrypoint in build ([72e753a](https://github.com/nuxt-community/composition-api/commit/72e753a29edf35e86c0e26469b1a66a9f679a40c))
+
 ### [0.19.1](https://github.com/nuxt-community/composition-api/compare/0.19.0...0.19.1) (2021-02-04)
 
 
