@@ -87,7 +87,8 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
     src: resolve(libRoot, 'lib', 'entrypoint.es.js'),
     fileName: join('composition-api', 'index.js'),
     options: {
-      isFullStatic: 'isFullStatic' in utils && utils.isFullStatic(this.options),
+      isFullStatic:
+        'isFullStatic' in utils && utils.isFullStatic(this.nuxt.options),
       staticPath: staticPath,
       publicPath: isUrl(publicPath) ? publicPath : routerBase,
       globalContext,

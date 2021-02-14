@@ -8,4 +8,4 @@ export const globalContext = '<%= options.globalContext %>'.includes('options')
 
 export const isFullStatic = '<%= options.isFullStatic %>'.includes('options')
   ? false
-  : ('<%= options.isFullStatic %>' as unknown) === 'true'
+  : JSON.parse('<%= options.isFullStatic %>')

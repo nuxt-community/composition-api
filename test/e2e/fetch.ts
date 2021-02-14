@@ -27,10 +27,14 @@ test('Shows loading state', async t => {
   await navigateTo('/other')
   await t.click(Selector('a'))
   await expectPathnameToBe('/')
-  await expectOnPage('loading email')
   await t.wait(4000)
-  await expectOnPage('long@load.com')
-  await expectNotOnPage('loading email')
+  if (process.env.GENERATE) {
+    await expectNotOnPage('loading email')
+    await expectNotOnPage('long@load.com')
+  } else {
+    await expectOnPage('long@load.com')
+    await expectNotOnPage('loading email')
+  }
 })
 
 test('Refetches with $fetch', async t => {
