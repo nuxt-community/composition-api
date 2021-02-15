@@ -64,9 +64,6 @@
     "test:unit": "jest",
     "watch": "yarn compile -w"
   },
-  "resolutions": {
-    "@types/connect": "^3.4.34"
-  },
   "dependencies": {
     "@vue/composition-api": "1.0.0-rc.1",
     "defu": "^3.2.2",
@@ -109,9 +106,9 @@
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
-    "@nuxt/vue-app": "^2.14.12",
+    "@nuxt/vue-app": "^2.15",
     "fs-extra": "^8.1.0",
-    "nuxt": "^2.14.12",
+    "nuxt": "^2.15",
     "vue": "^2"
   },
   "gitHooks": {
