@@ -1,3 +1,10 @@
+### [0.20.1](https://github.com/nuxt-community/composition-api/compare/0.20.0...0.20.1) (2021-02-15)
+
+
+### Bug Fixes
+
+* always return $fetch and $fetchState ([e0a9cf4](https://github.com/nuxt-community/composition-api/commit/e0a9cf4842ae558396bda40f60bb0919224f958c)), closes [#372](https://github.com/nuxt-community/composition-api/issues/372)
+
 ## [0.20.0](https://github.com/nuxt-community/composition-api/compare/0.19.1...0.20.0) (2021-02-14)
 
 
