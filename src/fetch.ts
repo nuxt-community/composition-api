@@ -301,7 +301,7 @@ export const useFetch = (callback: Fetch) => {
   onBeforeMount(() => !vm._hydrated && callFetches.call(vm))
 
   if (process.server || !isSsrHydration(vm)) {
-    if (process.client && isFullStatic) return loadFullStatic(vm)
+    if (process.client && isFullStatic) loadFullStatic(vm)
     return result()
   }
 
