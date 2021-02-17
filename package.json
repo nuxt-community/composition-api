@@ -39,8 +39,8 @@
   ],
   "scripts": {
     "build": "yarn clean && yarn compile",
-    "clean": "rm -rf lib/*",
-    "clean:fixture": "rm -rf dist/ test/fixture/.nuxt",
+    "clean": "rimraf lib/*",
+    "clean:fixture": "rimraf dist/ test/fixture/.nuxt",
     "compile": "siroc build",
     "fixture": "cross-env CMD=dev yarn nuxt-run",
     "fixture:generate": "yarn fixture:generate:export && yarn http-server -s -p 5000 dist",
@@ -67,6 +67,7 @@
   "dependencies": {
     "@vue/composition-api": "1.0.0-rc.1",
     "defu": "^3.2.2",
+    "rimraf": "^3.0.2",
     "ufo": "^0.6.6",
     "upath": "^2.0.1"
   },
