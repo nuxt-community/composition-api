@@ -4,6 +4,7 @@ description: 'You can create a custom helper for any Vue instance property.'
 category: API
 fullscreen: True
 position: 40
+version: 0.201
 ---
 
 You might want to create a custom helper to 'convert' a non-Composition API property to a Composition-ready one. `wrapProperty` enables you to do that easily, returning either a computed or a bare property as required.

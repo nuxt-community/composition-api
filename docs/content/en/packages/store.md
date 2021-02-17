@@ -3,6 +3,7 @@ title: useStore
 description: 'Access this.$store with the Nuxt Composition API.'
 category: Packages
 position: 12
+version: 0.201
 ---
 
 Vuex v4 [provides a helper function](https://next.vuex.vuejs.org/api/#usestore) for accessing it within the Composition API. This helper provides an equivalent while using Nuxt 2
