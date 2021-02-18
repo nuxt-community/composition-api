@@ -6,6 +6,9 @@
     "release": true,
     "releaseName": "v${version}"
   },
+  "npm": {
+    "skipChecks": true
+  },
   "plugins": {
     "@release-it/conventional-changelog": {
       "preset": "conventionalcommits",
