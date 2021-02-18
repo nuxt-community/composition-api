@@ -29,7 +29,7 @@ const useServerData = () => {
   if (vm) {
     type = 'ssrRefs'
     if (process.server) {
-      const { ssrContext } = vm[globalNuxt].context
+      const { ssrContext } = (vm[globalNuxt] || vm.$options).context
       ;(ssrContext as any).nuxt.ssrRefs = (ssrContext as any).nuxt.ssrRefs || {}
     }
   }
