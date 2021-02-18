@@ -1,3 +1,15 @@
+### [0.20.2](https://github.com/nuxt-community/composition-api/compare/0.20.1...0.20.2) (2021-02-18)
+
+
+### Features
+
+* add new exports from composition-api ([#380](https://github.com/nuxt-community/composition-api/issues/380)) ([9cd5e93](https://github.com/nuxt-community/composition-api/commit/9cd5e93aa39015b3e95fc29d55ae6e452411e1bd))
+
+
+### Bug Fixes
+
+* allow `ssrRef` in globalSetup ([fcf91a7](https://github.com/nuxt-community/composition-api/commit/fcf91a73b9195dde075b72d816fc8f71f52b3465)), closes [#379](https://github.com/nuxt-community/composition-api/issues/379)
+
 ### [0.20.1](https://github.com/nuxt-community/composition-api/compare/0.20.0...0.20.1) (2021-02-15)
 
 
