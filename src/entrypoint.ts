@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import CompositionApi from '@vue/composition-api'
 
-Vue.use(CompositionApi)
+if (!('__composition_api_installed__' in Vue)) {
+  Vue.use(CompositionApi)
+}
 
 export { useAsync } from './async'
 export { defineComponent } from './component'

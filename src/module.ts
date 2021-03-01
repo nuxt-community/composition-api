@@ -1,29 +1,27 @@
 import { resolve, join } from 'upath'
 import { withTrailingSlash } from 'ufo'
+import { readdirSync, copyFileSync, existsSync, mkdirpSync } from 'fs-extra'
 
 import type { Module } from '@nuxt/types'
 
-const foolWebpack = (id: string) => require(id)
+import { compositionApiPlugin } from './vite'
 
-const loadUtils = () => {
-  try {
-    // Try to load nuxt edge utils first
-    return foolWebpack('@nuxt/utils-edge')
-  } catch {
-    // if it fails, fall back to normal nuxt utils
-    return foolWebpack('@nuxt/utils')
+async function loadUtils() {
+  // Try to load nuxt edge utils first
+  const utils = ['@nuxt/utils-edge', '@nuxt/utils']
+  for (const util of utils) {
+    try {
+      return await import(util)
+    } catch {}
   }
 }
 
-const isUrl = function isUrl(url: string) {
+function isUrl(url: string) {
   return ['http', '//'].some(str => url.startsWith(str))
 }
 
-export const compositionApiModule: Module<any> = function compositionApiModule() {
-  const utils = loadUtils()
-  const { readdirSync, copyFileSync, existsSync, mkdirpSync } = foolWebpack(
-    'fs-extra'
-  ) as typeof import('fs-extra')
+export const compositionApiModule: Module<any> = async function compositionApiModule() {
+  const utils = await loadUtils()
 
   let corejsPolyfill = this.nuxt.options.build.corejs
     ? String(this.nuxt.options.build.corejs)
@@ -101,6 +99,18 @@ export const compositionApiModule: Module<any> = function compositionApiModule()
     },
   })
 
+  // Fake alias to prevent shadowing actual node_module
+  const aliases = ['@nuxtjs/composition-api', '@nuxtjs/vite-composition-api']
+
+  for (const alias of aliases) {
+    this.options.alias[alias] = resolve(this.options.buildDir || '', entryDst)
+  }
+
+  this.nuxt.hook('vite:extend', (ctx: any) => {
+    ctx.config.plugins.push(compositionApiPlugin())
+    ctx.config.optimizeDeps.exclude.push('@vue/composition-api')
+  })
+
   this.options.build = this.options.build || {}
   this.options.build.babel = this.options.build.babel || {}
 
@@ -136,11 +146,6 @@ export const compositionApiModule: Module<any> = function compositionApiModule()
 
     return [[defaultPreset, newOptions]]
   }
-
-  this.nuxt.options.alias['@nuxtjs/composition-api'] = resolve(
-    this.options.buildDir || '',
-    entryDst
-  )
 
   this.options.plugins = this.options.plugins || []
   this.options.plugins.unshift(resolve(this.options.buildDir || '', pluginDst))
