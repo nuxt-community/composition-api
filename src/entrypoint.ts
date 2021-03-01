@@ -1,9 +1,13 @@
 import Vue from 'vue'
 import CompositionApi from '@vue/composition-api'
 
-if (!('__composition_api_installed__' in Vue)) {
-  Vue.use(CompositionApi)
+if (
+  process.env.NODE_ENV === 'development' &&
+  '__composition_api_installed__' in Vue
+) {
+  delete (Vue as any).__composition_api_installed__
 }
+Vue.use(CompositionApi)
 
 export { useAsync } from './async'
 export { defineComponent } from './component'
