@@ -17,6 +17,8 @@ export { useStatic } from './static'
 export * from './defineHelpers'
 export * from './wrappers'
 
+export const getCompositionApiKey = (key?: string) => key
+
 export type {
   App,
   ComponentInstance,
