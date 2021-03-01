@@ -10,6 +10,7 @@ export default defineSirocConfig({
         if (!config.plugins) return
         config.plugins.push(
           replace({
+            preventAssignment: true,
             values: {
               __NUXT_CAPI_VERSION__: readJSONSync(
                 resolve(__dirname, 'package.json')
