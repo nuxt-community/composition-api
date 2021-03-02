@@ -16,7 +16,7 @@ export function compositionApiPlugin() {
     transform(code: string, id: string) {
       code = code.replace(
         /@nuxtjs[\\/]composition-api/g,
-        '@nuxtjs/vite-composition-api'
+        '~@nuxtjs/composition-api/vite'
       )
       code = code.replace(
         /getCompositionApiKey\(\)/g,
