@@ -97,11 +97,17 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
     },
   })
 
+  const entryFile = resolve(this.options.buildDir || '', entryDst)
+
+  this.options.build.transpile = this.options.build.transpile || []
+  this.options.build.transpile.push(/@nuxtjs[\\/]composition-api/)
+  this.options.build.transpile.push(entryFile)
+
   // Fake alias to prevent shadowing actual node_module
   const aliases = ['@nuxtjs/composition-api', '@nuxtjs/vite-composition-api']
 
   for (const alias of aliases) {
-    this.options.alias[alias] = resolve(this.options.buildDir || '', entryDst)
+    this.options.alias[alias] = entryFile
   }
 
   this.nuxt.hook('vite:extend', (ctx: any) => {
@@ -120,9 +126,6 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
   } else {
     this.options.build.babel.plugins.push(join(__dirname, 'babel'))
   }
-
-  this.options.build.transpile = this.options.build.transpile || []
-  this.options.build.transpile.push(/@nuxtjs[\\/]composition-api/)
 
   const actualPresets = this.options.build.babel.presets
 
