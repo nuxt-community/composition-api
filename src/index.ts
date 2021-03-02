@@ -42,6 +42,11 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
   const { dst: pluginDst } = this.addTemplate({
     src: resolve(libRoot, 'templates', 'plugin.js'),
     fileName: join('composition-api', 'plugin.js'),
+  })
+
+  this.addPlugin({
+    src: resolve(libRoot, 'templates', 'polyfill.client.js'),
+    fileName: join('composition-api', 'polyfill.client.js'),
     options: {
       corejsPolyfill,
     },
