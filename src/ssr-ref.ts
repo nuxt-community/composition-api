@@ -108,7 +108,7 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
     observable: T
   ): T =>
     new Proxy(observable, {
-      get(target, prop: string | number) {
+      get(target, prop: string) {
         track()
         if (isProxyable(target[prop]))
           return getProxy(track, trigger, target[prop])
