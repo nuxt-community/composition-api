@@ -3,6 +3,7 @@ title: useRoute, useRouter
 description: 'Access this.$route and this.$router with the Nuxt Composition API.'
 category: Packages
 position: 12
+version: 0.201
 ---
 
 In Vue 3, `vue-router` exports composition functions for accessing the current route and router.

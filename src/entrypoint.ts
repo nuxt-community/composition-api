@@ -16,6 +16,7 @@ export * from './defineHelpers'
 export * from './wrappers'
 
 export type {
+  App,
   ComponentInstance,
   ComponentRenderProxy,
   ComputedRef,
@@ -46,6 +47,7 @@ export {
   computed,
   createApp,
   customRef,
+  defineAsyncComponent,
   del,
   getCurrentInstance,
   h,

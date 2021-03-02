@@ -1,37 +1,32 @@
 import { resolve, join } from 'upath'
 import { withTrailingSlash } from 'ufo'
+import { readdirSync, copyFileSync, existsSync, mkdirpSync } from 'fs-extra'
+
+import { name, version } from '../package.json'
 
 import type { Module, NuxtConfig } from '@nuxt/types'
 
-const foolWebpack = (id: string) => require(id)
-
-const loadUtils = () => {
-  try {
-    // Try to load nuxt edge utils first
-    return foolWebpack('@nuxt/utils-edge')
-  } catch {
-    // if it fails, fall back to normal nuxt utils
-    return foolWebpack('@nuxt/utils')
-  }
+function isFullStatic(options: NuxtConfig) {
+  return (
+    !options.dev &&
+    !options._legacyGenerate &&
+    options.target === 'static' &&
+    options.render?.ssr
+  )
 }
 
-const isUrl = function isUrl(url: string) {
+function isUrl(url: string) {
   return ['http', '//'].some(str => url.startsWith(str))
 }
 
 const compositionApiModule: Module<any> = function compositionApiModule() {
-  const utils = loadUtils()
-  const { readdirSync, copyFileSync, existsSync, mkdirpSync } = foolWebpack(
-    'fs-extra'
-  ) as typeof import('fs-extra')
-
   let corejsPolyfill = this.nuxt.options.build.corejs
     ? String(this.nuxt.options.build.corejs)
     : undefined
   try {
     if (!['2', '3'].includes(corejsPolyfill || '')) {
       // eslint-disable-next-line
-      const corejsPkg = require('core-js/package.json')
+      const corejsPkg = this.nuxt.resolver.requireModule('core-js/package.json')
       corejsPolyfill = corejsPkg.version.slice(0, 1)
     }
   } catch {
@@ -42,6 +37,11 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
   const { dst: pluginDst } = this.addTemplate({
     src: resolve(libRoot, 'templates', 'plugin.js'),
     fileName: join('composition-api', 'plugin.js'),
+  })
+
+  this.addPlugin({
+    src: resolve(libRoot, 'templates', 'polyfill.client.js'),
+    fileName: join('composition-api', 'polyfill.client.js'),
     options: {
       corejsPolyfill,
     },
@@ -87,8 +87,7 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
     src: resolve(libRoot, 'lib', 'entrypoint.es.js'),
     fileName: join('composition-api', 'index.js'),
     options: {
-      isFullStatic:
-        'isFullStatic' in utils && utils.isFullStatic(this.nuxt.options),
+      isFullStatic: isFullStatic(this.nuxt.options),
       staticPath: staticPath,
       publicPath: isUrl(publicPath) ? publicPath : routerBase,
       globalContext,
@@ -132,14 +131,10 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
     return [[defaultPreset, newOptions]]
   }
 
-  this.extendBuild(config => {
-    config.resolve = config.resolve || {}
-    config.resolve.alias = config.resolve.alias || {}
-    config.resolve.alias['@nuxtjs/composition-api'] = resolve(
-      this.options.buildDir || '',
-      entryDst
-    )
-  })
+  this.options.alias['@nuxtjs/composition-api'] = resolve(
+    this.options.buildDir || '',
+    entryDst
+  )
 
   this.options.plugins = this.options.plugins || []
   this.options.plugins.unshift(resolve(this.options.buildDir || '', pluginDst))
@@ -157,11 +152,12 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
   }
 }
 
-export default compositionApiModule
-
 // eslint-disable-next-line
 // @ts-ignore
-compositionApiModule.meta = require('../package.json')
+compositionApiModule.meta = {
+  name,
+  version,
+}
 
 const warnToAddModule = () => {
   console.error(
@@ -172,8 +168,8 @@ const warnToAddModule = () => {
   )
 }
 
-// eslint-disable-next-line
-Object.keys(require('./entrypoint')).forEach(helper => {
+const helperFunctions: string[] = JSON.parse(`__HELPER_FUNCTIONS__`)
+helperFunctions.forEach(helper => {
   // eslint-disable-next-line
   // @ts-ignore
   compositionApiModule[helper] = warnToAddModule
@@ -182,3 +178,5 @@ Object.keys(require('./entrypoint')).forEach(helper => {
 // eslint-disable-next-line
 // @ts-ignore
 compositionApiModule.defineNuxtConfig = (config: NuxtConfig) => config
+
+export default compositionApiModule

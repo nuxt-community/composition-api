@@ -25,7 +25,7 @@ export default function ssrRefPlugin({ loadOptions, getEnv, types: t }: Babel) {
     CallExpression(path) {
       if (!('name' in path.node.callee)) return
 
-      let method: crypto.HexBase64Latin1Encoding = 'base64'
+      let method: crypto.Encoding = 'base64'
 
       switch (path.node.callee.name) {
         case 'useStatic':

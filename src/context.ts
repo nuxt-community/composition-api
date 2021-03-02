@@ -19,7 +19,7 @@ export const withContext = (callback: ContextCallback) => {
   const vm = getCurrentInstance()
   if (!vm) throw new Error('This must be called within a setup function.')
 
-  callback(vm[globalNuxt].context)
+  callback((vm[globalNuxt] || vm.$options).context)
 }
 
 interface UseContextReturn

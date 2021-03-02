@@ -3,7 +3,7 @@ title: defineNuxt*
 description: 'You can get automatic type-hinting for Nuxt configuration, plugins, middleware, modules and serverMiddleware.'
 category: Typings
 position: 10
-version: 0.192
+version: 0.201
 ---
 
 There are some helpers to optimize developer experience when creating Nuxt plugins, middleware, server middleware and modules.
