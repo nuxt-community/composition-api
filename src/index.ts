@@ -1,8 +1,15 @@
 import type { NuxtConfig } from '@nuxt/types'
 
+import { name, version } from '../package.json'
+
 import { compositionApiModule } from './module'
 
-export default compositionApiModule
+// eslint-disable-next-line
+// @ts-ignore
+compositionApiModule.meta = {
+  name,
+  version,
+}
 
 const warnToAddModule = () => {
   console.error(
@@ -13,8 +20,8 @@ const warnToAddModule = () => {
   )
 }
 
-// eslint-disable-next-line
-Object.keys(require('./entrypoint')).forEach(helper => {
+const helperFunctions: string[] = JSON.parse(`__HELPER_FUNCTIONS__`)
+helperFunctions.forEach(helper => {
   // eslint-disable-next-line
   // @ts-ignore
   compositionApiModule[helper] = warnToAddModule
@@ -23,3 +30,5 @@ Object.keys(require('./entrypoint')).forEach(helper => {
 // eslint-disable-next-line
 // @ts-ignore
 compositionApiModule.defineNuxtConfig = (config: NuxtConfig) => config
+
+export default compositionApiModule

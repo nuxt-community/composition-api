@@ -2,27 +2,24 @@ import { resolve, join } from 'upath'
 import { withTrailingSlash } from 'ufo'
 import { readdirSync, copyFileSync, existsSync, mkdirpSync } from 'fs-extra'
 
-import type { Module } from '@nuxt/types'
+import type { Module, NuxtConfig } from '@nuxt/types'
 
 import { compositionApiPlugin } from './vite'
 
-async function loadUtils() {
-  // Try to load nuxt edge utils first
-  const utils = ['@nuxt/utils-edge', '@nuxt/utils']
-  for (const util of utils) {
-    try {
-      return await import(util)
-    } catch {}
-  }
+function isFullStatic(options: NuxtConfig) {
+  return (
+    !options.dev &&
+    !options._legacyGenerate &&
+    options.target === 'static' &&
+    options.render?.ssr
+  )
 }
 
 function isUrl(url: string) {
   return ['http', '//'].some(str => url.startsWith(str))
 }
 
-export const compositionApiModule: Module<any> = async function compositionApiModule() {
-  const utils = await loadUtils()
-
+export const compositionApiModule: Module<any> = function compositionApiModule() {
   let corejsPolyfill = this.nuxt.options.build.corejs
     ? String(this.nuxt.options.build.corejs)
     : undefined
@@ -90,8 +87,7 @@ export const compositionApiModule: Module<any> = async function compositionApiMo
     src: resolve(libRoot, 'lib', 'entrypoint.es.js'),
     fileName: join('composition-api', 'index.js'),
     options: {
-      isFullStatic:
-        'isFullStatic' in utils && utils.isFullStatic(this.nuxt.options),
+      isFullStatic: isFullStatic(this.nuxt.options),
       staticPath: staticPath,
       publicPath: isUrl(publicPath) ? publicPath : routerBase,
       globalContext,
@@ -161,11 +157,4 @@ export const compositionApiModule: Module<any> = async function compositionApiMo
       'useMeta is not supported in onGlobalSetup as @nuxtjs/pwa detected.\nSee https://github.com/nuxt-community/composition-api/issues/307'
     )
   }
-}
-
-// eslint-disable-next-line
-// @ts-ignore
-compositionApiModule.meta = {
-  name: '@nuxtjs/composition-api',
-  version: '__NUXT_CAPI_VERSION__',
 }

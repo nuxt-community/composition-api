@@ -1,7 +1,10 @@
 import { defineSirocConfig } from 'siroc'
 import replace from '@rollup/plugin-replace'
-import { readJSONSync } from 'fs-extra'
 import { resolve } from 'upath'
+
+import jiti from 'jiti'
+
+const getFile = jiti()
 
 export default defineSirocConfig({
   hooks: {
@@ -12,9 +15,9 @@ export default defineSirocConfig({
           replace({
             preventAssignment: true,
             values: {
-              __NUXT_CAPI_VERSION__: readJSONSync(
-                resolve(__dirname, 'package.json')
-              ).version,
+              __HELPER_FUNCTIONS__: JSON.stringify(
+                Object.keys(getFile(resolve(__dirname, './src/entrypoint.ts')))
+              ),
             },
           })
         )
