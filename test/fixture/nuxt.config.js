@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-const { resolve } = require('path')
+const { resolve } = require('upath')
 
 const routes = ['/route/a', '/static/1', '/static/2', '/static/3']
 const interval = 3000
