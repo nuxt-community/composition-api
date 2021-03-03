@@ -1,3 +1,17 @@
+## [0.21.0](https://github.com/nuxt-community/composition-api/compare/0.20.2...0.21.0) (2021-03-03)
+
+
+### Features
+
+* upgrade @vue/composition-api to rc3 ([d4faf1d](https://github.com/nuxt-community/composition-api/commit/d4faf1defa5e9882676922dda4086f38a766b794))
+
+
+### Bug Fixes
+
+* build on Windows ([#377](https://github.com/nuxt-community/composition-api/issues/377)) ([f80ad03](https://github.com/nuxt-community/composition-api/commit/f80ad0308918662d52de559cdae660565c056683))
+* use `upath` in more places for better windows support ([#388](https://github.com/nuxt-community/composition-api/issues/388)) ([fcd61db](https://github.com/nuxt-community/composition-api/commit/fcd61dbc00b658a7fd90a37be64fd155a9621941))
+* use es module import as much as possible ([f7269b5](https://github.com/nuxt-community/composition-api/commit/f7269b55f47ccf34dcff83e1d57d99a6822ec9c3)), closes [#334](https://github.com/nuxt-community/composition-api/issues/334)
+
 ### [0.20.2](https://github.com/nuxt-community/composition-api/compare/0.20.1...0.20.2) (2021-02-18)
 
 

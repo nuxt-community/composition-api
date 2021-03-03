@@ -1,6 +1,6 @@
 {
   "name": "@nuxtjs/composition-api",
-  "version": "0.20.2",
+  "version": "0.21.0",
   "description": "Composition API hooks for Nuxt",
   "keywords": [
     "vue",
@@ -39,8 +39,8 @@
   ],
   "scripts": {
     "build": "yarn clean && yarn compile",
-    "clean": "rm -rf lib/*",
-    "clean:fixture": "rm -rf dist/ test/fixture/.nuxt",
+    "clean": "rimraf lib/*",
+    "clean:fixture": "rimraf dist/ test/fixture/.nuxt",
     "compile": "siroc build",
     "fixture": "cross-env CMD=dev yarn nuxt-run",
     "fixture:generate": "yarn fixture:generate:export && yarn http-server -s -p 5000 dist",
@@ -65,7 +65,7 @@
     "watch": "yarn compile -w"
   },
   "dependencies": {
-    "@vue/composition-api": "1.0.0-rc.2",
+    "@vue/composition-api": "1.0.0-rc.3",
     "defu": "^3.2.2",
     "ufo": "^0.6.7",
     "upath": "^2.0.1"
@@ -98,6 +98,7 @@
     "nuxt": "^2.15.2",
     "prettier": "^2.2.1",
     "release-it": "14.4.1",
+    "rimraf": "^3.0.2",
     "siroc": "0.7.0",
     "start-server-and-test": "^1.12.0",
     "testcafe": "1.11.0",
@@ -121,6 +122,6 @@
     }
   },
   "volta": {
-    "node": "12.20.2"
+    "node": "12.21.0"
   }
 }

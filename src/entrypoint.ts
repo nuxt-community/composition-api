@@ -21,7 +21,9 @@ export type {
   App,
   ComponentInstance,
   ComponentRenderProxy,
+  ComputedGetter,
   ComputedRef,
+  ComputedSetter,
   Data,
   DeepReadonly,
   ExtractDefaultPropTypes,
@@ -34,6 +36,7 @@ export type {
   SetupContext,
   SetupFunction,
   ShallowUnwrapRef,
+  ToRefs,
   UnwrapRef,
   VueWatcher,
   WatchCallback,
@@ -42,12 +45,14 @@ export type {
   WatchOptionsBase,
   WatchSource,
   WatchStopHandle,
+  WritableComputedOptions,
   WritableComputedRef,
 } from '@vue/composition-api'
 
 export {
   computed,
   createApp,
+  createRef,
   customRef,
   defineAsyncComponent,
   del,
