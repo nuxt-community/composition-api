@@ -67,6 +67,8 @@
   "dependencies": {
     "@vue/composition-api": "1.0.0-rc.3",
     "defu": "^3.2.2",
+    "estree-walker": "^2.0.1",
+    "magic-string": "^0.25.7",
     "ufo": "^0.6.7",
     "upath": "^2.0.1"
   },
@@ -122,6 +124,6 @@
     }
   },
   "volta": {
-    "node": "12.21.0"
+    "node": "14.16.0"
   }
 }

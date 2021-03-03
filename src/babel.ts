@@ -42,10 +42,6 @@ export default function ssrRefPlugin({ loadOptions, getEnv, types: t }: Babel) {
           if (path.node.arguments.length > 1) return
           break
 
-        case 'getCompositionApiKey':
-          if (path.node.arguments.length > 0) return
-          break
-
         default:
           return
       }
