@@ -11,7 +11,7 @@ function createKey(
 
 export function compositionApiPlugin() {
   return {
-    name: 'composition-api',
+    name: 'nuxt:composition-api',
     enforce: 'pre',
     transform(code: string, id: string) {
       code = code.replace(
