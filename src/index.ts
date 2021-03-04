@@ -108,7 +108,10 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
   }
 
   this.options.build.transpile = this.options.build.transpile || []
-  this.options.build.transpile.push(/@nuxtjs[\\/]composition-api/)
+  this.options.build.transpile.push(
+    /@nuxtjs[\\/]composition-api/,
+    /@vue[\\/]composition-api/
+  )
 
   const actualPresets = this.options.build.babel.presets
 
