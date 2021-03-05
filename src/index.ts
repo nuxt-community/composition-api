@@ -2,9 +2,11 @@ import { resolve, join } from 'upath'
 import { withTrailingSlash } from 'ufo'
 import { readdirSync, copyFileSync, existsSync, mkdirpSync } from 'fs-extra'
 
+import type { Module, NuxtConfig } from '@nuxt/types'
+
 import { name, version } from '../package.json'
 
-import type { Module, NuxtConfig } from '@nuxt/types'
+import { compositionApiPlugin } from './vite'
 
 function isFullStatic(options: NuxtConfig) {
   return (
@@ -95,6 +97,24 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
     },
   })
 
+  const entryFile = resolve(this.options.buildDir || '', entryDst)
+
+  this.options.build.transpile = this.options.build.transpile || []
+  this.options.build.transpile.push('@nuxtjs/composition-api')
+
+  if (!this.nuxt.options.dev) {
+    this.options.build.transpile.push('@vue/composition-api')
+  }
+
+  // Fake alias to prevent shadowing actual node_module
+  this.options.alias['@nuxtjs/composition-api'] = entryFile
+
+  this.nuxt.hook('vite:extend', (ctx: any) => {
+    ctx.config.plugins.push(compositionApiPlugin())
+    ctx.config.optimizeDeps.exclude.push('@vue/composition-api')
+    ctx.config.resolve.alias['~nuxtjs-composition-api'] = entryFile
+  })
+
   this.options.build = this.options.build || {}
   this.options.build.babel = this.options.build.babel || {}
 
@@ -105,13 +125,6 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
     )
   } else {
     this.options.build.babel.plugins.push(join(__dirname, 'babel'))
-  }
-
-  this.options.build.transpile = this.options.build.transpile || []
-  this.options.build.transpile.push(/@nuxtjs[\\/]composition-api/)
-
-  if (!this.nuxt.options.dev) {
-    this.options.build.transpile.push(/@vue[\\/]composition-api/)
   }
 
   const actualPresets = this.options.build.babel.presets
@@ -134,11 +147,6 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
 
     return [[defaultPreset, newOptions]]
   }
-
-  this.options.alias['@nuxtjs/composition-api'] = resolve(
-    this.options.buildDir || '',
-    entryDst
-  )
 
   this.options.plugins = this.options.plugins || []
   this.options.plugins.unshift(resolve(this.options.buildDir || '', pluginDst))
