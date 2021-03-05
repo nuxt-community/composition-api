@@ -2,19 +2,19 @@
   "builds": [
     {
       "src": "docs/package.json",
-      "use": "@now/static-build"
+      "use": "@vercel/static-build"
     },
     {
       "src": "test/fixture/api/posts.js",
-      "use": "@now/node"
+      "use": "@vercel/node"
     },
     {
       "src": "package.json",
-      "use": "@now/static-build"
+      "use": "@vercel/static-build"
     },
     {
       "src": "example/package.json",
-      "use": "@now/static-build"
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
