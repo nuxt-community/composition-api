@@ -1,3 +1,15 @@
+## [0.22.0](https://github.com/nuxt-community/composition-api/compare/0.21.0...0.22.0) (2021-03-05)
+
+
+### Features
+
+* experimental vite support ([#387](https://github.com/nuxt-community/composition-api/issues/387)) ([e47805d](https://github.com/nuxt-community/composition-api/commit/e47805daab03543c81bf4f3efa72e6ef81dd799f))
+
+
+### Bug Fixes
+
+* transpile `@vue/composition-api` ([#391](https://github.com/nuxt-community/composition-api/issues/391)) ([7e6334f](https://github.com/nuxt-community/composition-api/commit/7e6334f2aad339fb74819681b72fa8783090fd22))
+
 ## [0.21.0](https://github.com/nuxt-community/composition-api/compare/0.20.2...0.21.0) (2021-03-03)
 
 
