@@ -100,18 +100,15 @@ const compositionApiModule: Module<any> = function compositionApiModule() {
   const entryFile = resolve(this.options.buildDir || '', entryDst)
 
   this.options.build.transpile = this.options.build.transpile || []
-  this.options.build.transpile.push(/@nuxtjs[\\/]composition-api/, entryFile)
+  this.options.build.transpile.push('@nuxtjs/composition-api')
 
   // Fake alias to prevent shadowing actual node_module
-  const aliases = ['@nuxtjs/composition-api', '~@nuxtjs/composition-api/vite']
-
-  for (const alias of aliases) {
-    this.options.alias[alias] = entryFile
-  }
+  this.options.alias['@nuxtjs/composition-api'] = entryFile
 
   this.nuxt.hook('vite:extend', (ctx: any) => {
     ctx.config.plugins.push(compositionApiPlugin())
     ctx.config.optimizeDeps.exclude.push('@vue/composition-api')
+    ctx.config.resolve.alias['~nuxtjs-composition-api'] = entryFile
   })
 
   this.options.build = this.options.build || {}
