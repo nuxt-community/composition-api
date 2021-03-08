@@ -2,5 +2,8 @@
   "title": "Nuxt Composition API",
   "url": "https://composition-api.nuxtjs.org",
   "twitter": "nuxt_js",
-  "repo": "nuxt-community/composition-api"
+  "github": {
+    "repo": "nuxt-community/composition-api",
+    "branch": "main",
+    "dir": "docs"
 }
