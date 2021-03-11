@@ -65,7 +65,7 @@
     "watch": "yarn compile -w"
   },
   "dependencies": {
-    "@vue/composition-api": "1.0.0-rc.3",
+    "@vue/composition-api": "1.0.0-rc.5",
     "defu": "^3.2.2",
     "estree-walker": "^2.0.2",
     "magic-string": "^0.25.7",
@@ -103,7 +103,7 @@
     "rimraf": "^3.0.2",
     "siroc": "0.8.0",
     "start-server-and-test": "^1.12.0",
-    "testcafe": "1.11.0",
+    "testcafe": "1.12.0",
     "tsd": "^0.14.0",
     "typescript": "4.2.3",
     "yorkie": "^2.0.0"
