@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import {
   isRef,
-  nextTick,
   onBeforeMount,
   onServerPrefetch,
   set,
