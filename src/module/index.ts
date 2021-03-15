@@ -32,9 +32,12 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   const publicPath = withTrailingSlash(nuxtOptions.build.publicPath)
 
   const entryFile = addResolvedTemplate.call(this, 'entrypoint', {
+    // useFetch
     isFullStatic: isFullStatic(nuxtOptions),
-    staticPath: staticPath,
+    // useStatic
+    staticPath,
     publicPath: isUrl(publicPath) ? publicPath : routerBase,
+    // Throughout
     globalContext,
     globalNuxt,
   })

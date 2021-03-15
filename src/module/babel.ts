@@ -1,5 +1,5 @@
-import { NuxtOptions } from '@nuxt/types'
-import { ModuleThis } from '@nuxt/types/config/module'
+import type { NuxtOptions } from '@nuxt/types'
+import type { ModuleThis } from '@nuxt/types/config/module'
 
 export function registerBabelPlugin(this: ModuleThis) {
   const nuxtOptions: NuxtOptions = this.nuxt.options
