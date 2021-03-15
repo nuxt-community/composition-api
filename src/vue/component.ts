@@ -1,6 +1,6 @@
 import { defineComponent as define } from '@vue/composition-api'
 
-import { getHeadOptions } from './meta'
+import { getHeadOptions } from '../composables/meta'
 
 /**
  * If you want to enable `useMeta`, make sure to include `head: {}` in your component definition.

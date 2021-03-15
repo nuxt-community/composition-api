@@ -27,6 +27,7 @@
       "require": "./lib/entrypoint.js",
       "import": "./lib/entrypoint.es.js"
     },
+    "./templates/*": "./lib/templates/*",
     "./": "./"
   },
   "main": "lib/index.js",
