@@ -52,7 +52,7 @@
     "lint:eslint": "eslint --fix",
     "lint:prettier": "prettier --write --loglevel warn",
     "now-build": "NOW_BUILD=true yarn fixture:generate:export",
-    "nuxt-run": "cross-env-shell \"yarn nuxt $CMD -c test/fixture/nuxt.config.js\"",
+    "nuxt-run": "cross-env-shell \"yarn nuxt $CMD -c test/fixture/nuxt.config.ts\"",
     "prepare": "yarn build",
     "prepublishOnly": "yarn lint && yarn test",
     "release": "release-it",

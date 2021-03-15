@@ -1,5 +1,5 @@
-// eslint-disable-next-line
-const { resolve } = require('upath')
+import { resolve } from 'upath'
+import type { NuxtConfig } from '@nuxt/types'
 
 const routes = ['/route/a', '/static/1', '/static/2', '/static/3']
 const interval = 3000
@@ -12,10 +12,7 @@ const isTesting = process.env.NODE_ENV !== 'development' && !isPublic
 
 const rootDir = resolve(__dirname, '../..')
 
-/**
- * @type {import('@nuxt/types').Configuration}
- */
-module.exports = {
+export default <NuxtConfig>{
   target: isGenerated ? 'static' : 'server',
   publicRuntimeConfig: {
     globalInject: 'injected',

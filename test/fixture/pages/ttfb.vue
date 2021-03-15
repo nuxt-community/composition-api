@@ -6,13 +6,9 @@
 import {
   defineComponent,
   ref,
-  computed,
   useFetch,
   onMounted,
 } from '@nuxtjs/composition-api'
-import ChildComp from '../components/comp.vue'
-
-import { fetcher } from '../utils'
 
 export default defineComponent({
   setup() {

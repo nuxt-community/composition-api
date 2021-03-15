@@ -27,11 +27,9 @@ import {
   defineComponent,
   onMounted,
   onServerPrefetch,
-  ref,
   shallowSsrRef,
   ssrRef,
   useAsync,
-  useFetch,
 } from '@nuxtjs/composition-api'
 
 import { fetcher } from '../utils'

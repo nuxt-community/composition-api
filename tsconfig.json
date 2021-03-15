@@ -7,13 +7,16 @@
     "lib": ["esnext", "dom"],
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "rootDir": "src",
+    "rootDir": ".",
     "resolveJsonModule": true,
     "outDir": "lib",
     "declaration": false,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@nuxtjs/composition-api": ["./src/entrypoint.ts"]
+    },
     "types": ["node", "@nuxt/types", "jest"]
   },
-  "exclude": ["node_modules", "lib", "test"]
+  "exclude": ["node_modules", "lib"]
 }

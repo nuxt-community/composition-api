@@ -21,7 +21,7 @@ export default defineComponent({
     return {
       routeExists: !!useRoute(),
       routerExists: !!useRouter(),
-      storeExists: !!useStore(''),
+      storeExists: !!useStore(),
     }
   },
 })

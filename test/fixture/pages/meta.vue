@@ -13,7 +13,6 @@ import {
   defineComponent,
   useMeta,
   ref,
-  computed,
   onMounted,
 } from '@nuxtjs/composition-api'
 
