@@ -12,7 +12,7 @@ import { getCurrentInstance } from '../utils'
 
 import { ensureReactive, useData } from './data'
 import { Nuxt, useNuxt } from './nuxt'
-import { isInitialLoad } from './compat'
+import { isInitialLoad, isSsrHydration } from './compat'
 
 export type AsyncDataFn<T> = (ctx?: Nuxt) => Promise<T>
 
@@ -78,8 +78,6 @@ export function useAsyncData(defaults?: AsyncDataOptions) {
         // TODO: handle error
         const result = await _handler
 
-        console.log('ran fetch', result)
-
         for (const _key in result) {
           set(datastore, _key, result[_key])
         }
@@ -95,7 +93,7 @@ export function useAsyncData(defaults?: AsyncDataOptions) {
 
     // Client side
     if (process.client) {
-      const isHydrating = isInitialLoad()
+      const isHydrating = isInitialLoad() || isSsrHydration(vm)
       // 1. Hydration (server: true): no fetch
       if (isHydrating && options.server) {
         pending.value = false
