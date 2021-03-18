@@ -1,13 +1,11 @@
 <template>
   <Suspense>
     <template #default="{ name, test }">
-      <div>
-        Some data:
-        <blockquote>
-          {{ name }}
-        </blockquote>
-        {{ test }}
-      </div>
+      Some data:
+      <blockquote>
+        {{ name }}
+      </blockquote>
+      {{ test }}
     </template>
     <template #fallback> Loading via async setup ... </template>
   </Suspense>
