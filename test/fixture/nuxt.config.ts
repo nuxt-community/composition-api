@@ -18,13 +18,12 @@ export default <NuxtConfig>{
     globalInject: 'injected',
   },
   rootDir,
-  buildDir: resolve(__dirname, '.nuxt'),
   srcDir: __dirname,
-  plugins: [resolve(__dirname, './plugins/global.js')],
+  plugins: ['~/plugins/global.js'],
   serverMiddleware: [
     {
       path: '/api/posts',
-      handler: './api/posts',
+      handler: '~/api/posts',
     },
   ],
   head: {
@@ -60,7 +59,7 @@ export default <NuxtConfig>{
   router: {
     base: isPublic ? '/fixture/' : undefined,
   },
-  watch: ['../../src/*.ts'],
+  watch: ['../../lib/**/*.js'],
   build: {
     publicPath: isPublic ? 'fixture' : undefined,
   },
