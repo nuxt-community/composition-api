@@ -1,3 +1,10 @@
+### [0.22.3](https://github.com/nuxt-community/composition-api/compare/0.22.2...0.22.3) (2021-03-20)
+
+
+### Bug Fixes
+
+* ensure that injected plugin is inserted first ([5cd13bc](https://github.com/nuxt-community/composition-api/commit/5cd13bc1813d7a8a67f41c7014a46cbbbbd2e3ff)), closes [#406](https://github.com/nuxt-community/composition-api/issues/406)
+
 ### [0.22.2](https://github.com/nuxt-community/composition-api/compare/0.22.1...0.22.2) (2021-03-20)
 
 ### [0.22.1](https://github.com/nuxt-community/composition-api/compare/0.22.0...0.22.1) (2021-03-11)
