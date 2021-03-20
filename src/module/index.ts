@@ -72,11 +72,12 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     corejsPolyfill: resolveCoreJsVersion.call(this),
   })
 
-  // Global plugin to allow running onGlobalSetup
+  // Plugin to allow running onGlobalSetup
+  const globalPlugin = addResolvedTemplate.call(this, 'templates/plugin.js')
 
-  nuxtOptions.plugins.unshift(
-    addResolvedTemplate.call(this, 'templates/plugin.js')
-  )
+  this.nuxt.hook('modules:done', () => {
+    nuxtOptions.plugins.unshift(globalPlugin)
+  })
 
   // TODO: remove
   // Allow setting head() within onGlobalSetup
