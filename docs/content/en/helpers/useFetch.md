@@ -39,6 +39,12 @@ export default defineComponent({
 
 </alert>
 
+<alert type="warning">
+
+`useFetch` should be used with `ref`s and not `ssrRef`s because state serialization and hydration is already covered by `useFetch`. Else, the state would be sent from server to client "twice", via the `ssrRef` and via `useFetch`
+
+</alert>
+
 <alert type="info">
 
 `$fetch` and `$fetchState` will already be defined on the instance - so no need to return `fetch` or `fetchState` from setup.
