@@ -1,3 +1,10 @@
+### [0.22.4](https://github.com/nuxt-community/composition-api/compare/0.22.3...0.22.4) (2021-03-23)
+
+
+### Bug Fixes
+
+* prevent resolution errors on old node versions ([df3e2fd](https://github.com/nuxt-community/composition-api/commit/df3e2fd78996fe5608668dacf30de5901ea59c72))
+
 ### [0.22.3](https://github.com/nuxt-community/composition-api/compare/0.22.2...0.22.3) (2021-03-20)
 
 
