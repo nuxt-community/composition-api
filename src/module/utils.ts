@@ -15,6 +15,18 @@ export function isUrl(url: string) {
   return ['http', '//'].some(str => url.startsWith(str))
 }
 
+export function resolveRelativePath(id: string) {
+  let src
+
+  try {
+    src = require.resolve(`@nuxtjs/composition-api/${id}`)
+  } catch {
+    src = require.resolve(join(__dirname, `./${id}`))
+  }
+
+  return src
+}
+
 export function addResolvedTemplate(
   this: ModuleThis,
   template: string,
@@ -22,7 +34,7 @@ export function addResolvedTemplate(
 ) {
   const nuxtOptions: NuxtOptions = this.nuxt.options
 
-  const src = require.resolve(`@nuxtjs/composition-api/${template}`)
+  const src = resolveRelativePath(template)
   const { dst } = this.addTemplate({
     src,
     fileName: join('composition-api', basename(src)),
