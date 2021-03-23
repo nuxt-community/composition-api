@@ -75,7 +75,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.13.10",
-    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-env": "^7.13.12",
     "@babel/preset-typescript": "^7.13.0",
     "@nuxt/types": "^2.15.3",
     "@nuxtjs/module-test-utils": "^1.6.3",
@@ -83,8 +83,8 @@
     "@types/fs-extra": "^9.0.8",
     "@types/jest": "^26.0.21",
     "@types/normalize-path": "^3.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "@typescript-eslint/parser": "^4.18.0",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
     "babel-loader": "^8.2.2",
     "codecov": "^3.8.1",
     "core-js": "3.9.1",
@@ -104,7 +104,7 @@
     "rimraf": "^3.0.2",
     "siroc": "0.8.0",
     "start-server-and-test": "^1.12.1",
-    "testcafe": "1.12.0",
+    "testcafe": "1.13.0",
     "tsd": "^0.14.0",
     "typescript": "4.2.3",
     "yorkie": "^2.0.0"
