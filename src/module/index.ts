@@ -31,7 +31,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   const routerBase = withTrailingSlash(nuxtOptions.router.base)
   const publicPath = withTrailingSlash(nuxtOptions.build.publicPath)
 
-  const entryFile = addResolvedTemplate.call(this, 'entrypoint', {
+  const entryFile = addResolvedTemplate.call(this, 'lib/entrypoint.es', {
     // useFetch
     isFullStatic: isFullStatic(nuxtOptions),
     // useStatic
@@ -68,12 +68,12 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   // Add appropriate corejs polyfill for IE support
 
-  addResolvedTemplate.call(this, 'templates/polyfill.client.js', {
+  addResolvedTemplate.call(this, 'lib/templates/polyfill.client.js', {
     corejsPolyfill: resolveCoreJsVersion.call(this),
   })
 
   // Plugin to allow running onGlobalSetup
-  const globalPlugin = addResolvedTemplate.call(this, 'templates/plugin.js')
+  const globalPlugin = addResolvedTemplate.call(this, 'lib/templates/plugin.js')
 
   this.nuxt.hook('modules:done', () => {
     nuxtOptions.plugins.unshift(globalPlugin)
@@ -87,7 +87,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     !nuxtOptions.modules.includes('@nuxtjs/pwa')
   ) {
     nuxtOptions.plugins.push(
-      addResolvedTemplate.call(this, 'templates/meta.js')
+      addResolvedTemplate.call(this, 'lib/templates/meta.js')
     )
   } else if (nuxtOptions.dev) {
     console.warn(
@@ -108,10 +108,10 @@ compositionApiModule.meta = {
 
 const warnToAddModule = () => {
   console.error(
-    'You need to add `@nuxtjs/composition-api` to your buildModules in order to use it. See https://composition-api.nuxtjs.org/getting-started/setup.'
+    'You need to add `@nuxtjs/composition-api/module` to your buildModules in order to use it. See https://composition-api.nuxtjs.org/getting-started/setup.'
   )
   throw new Error(
-    'You need to add `@nuxtjs/composition-api` to your buildModules in order to use it. See https://composition-api.nuxtjs.org/getting-started/setup.'
+    'You need to add `@nuxtjs/composition-api/module` to your buildModules in order to use it. See https://composition-api.nuxtjs.org/getting-started/setup.'
   )
 }
 

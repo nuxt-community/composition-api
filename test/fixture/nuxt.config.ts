@@ -63,7 +63,11 @@ export default <NuxtConfig>{
   build: {
     publicPath: isPublic ? 'fixture' : undefined,
   },
-  buildModules: [process.env.NODE_ENV === 'test' ? require('../..') : rootDir],
+  buildModules: [
+    process.env.NODE_ENV === 'test'
+      ? require('../../module')
+      : resolve(rootDir, './module.js'),
+  ],
   pwa: {
     icon: false,
     manifest: false,
