@@ -21,7 +21,7 @@ export default defineComponent({
   setup() {
     const route = useRoute()
     const id = computed(() => route.value.params.id)
-  },
+  }
 })
 ```
 
@@ -38,6 +38,6 @@ export default defineComponent({
   setup() {
     const router = useRouter()
     router.push('/')
-  },
+  }
 })
 ```
