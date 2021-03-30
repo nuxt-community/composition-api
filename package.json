@@ -62,7 +62,7 @@
     "watch": "yarn compile -w"
   },
   "dependencies": {
-    "@vue/composition-api": "1.0.0-rc.5",
+    "@vue/composition-api": "1.0.0-rc.6",
     "defu": "^3.2.2",
     "estree-walker": "^2.0.2",
     "magic-string": "^0.25.7",
@@ -79,8 +79,8 @@
     "@types/fs-extra": "^9.0.9",
     "@types/jest": "^26.0.22",
     "@types/normalize-path": "^3.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.19.0",
-    "@typescript-eslint/parser": "^4.19.0",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
     "babel-loader": "^8.2.2",
     "codecov": "^3.8.1",
     "core-js": "3.9.1",
