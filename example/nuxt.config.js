@@ -16,7 +16,7 @@ export default {
       publicPath: 'example',
     },
   } : {}),
-  buildModules: ['@nuxtjs/composition-api'],
+  buildModules: ['@nuxtjs/composition-api/module'],
   generate: {
     interval: 2000,
     async routes() {
