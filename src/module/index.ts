@@ -45,7 +45,12 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   nuxtOptions.alias['@nuxtjs/composition-api'] = entryFile
 
-  // Register the Composition API before any other layouts
+  // Transpile the Nuxt Composition API to force alias resolution
+
+  nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
+  nuxtOptions.build.transpile.push('@nuxtjs/composition-api')
+
+  // Register the Vue Composition API before any other layouts
 
   this.addLayout(resolveRelativePath('./templates/layout'), '0')
 
