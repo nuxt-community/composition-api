@@ -59,7 +59,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   // Register the Vue Composition API before any other layouts
 
-  this.addLayout(resolveRelativePath('./templates/layout'), '0')
+  this.addLayout(resolveRelativePath('lib/templates/layout.js'), '0')
 
   // If we're using nuxt-vite, register vite plugin & inject configuration
 
