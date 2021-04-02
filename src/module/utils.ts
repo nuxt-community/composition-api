@@ -16,7 +16,15 @@ export function isUrl(url: string) {
 }
 
 export function resolveRelativePath(id: string) {
-  return require.resolve(`@nuxtjs/composition-api/${id}`)
+  let src
+
+  try {
+    src = require.resolve(`@nuxtjs/composition-api/${id}`)
+  } catch {
+    src = require.resolve(join(__dirname, `./${id}`))
+  }
+
+  return src
 }
 
 export function addResolvedTemplate(

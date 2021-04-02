@@ -18,20 +18,24 @@
     "url": "https://roe.dev"
   },
   "exports": {
-    "./babel": "./lib/babel.js",
-    "./entrypoint": "./lib/entrypoint.js",
-    "./module": "./lib/index.js",
-    "./lib/entrypoint.es": "./lib/entrypoint.es.js",
-    "./lib/templates/*": "./lib/templates/*",
-    "./package.json": "./package.json"
+    ".": "./lib/index.js",
+    "./babel": {
+      "require": "./lib/babel.js",
+      "import": "./lib/babel.es.js"
+    },
+    "./entrypoint": {
+      "require": "./lib/entrypoint.js",
+      "import": "./lib/entrypoint.es.js"
+    },
+    "./templates/*": "./lib/templates/*",
+    "./": "./"
   },
+  "main": "lib/index.js",
   "types": "lib/entrypoint.d.ts",
   "files": [
     "lib/**/*",
     "lib/index.d.ts",
-    "babel.js",
-    "entrypoint.js",
-    "module.js",
+    "templates",
     "!**/*.map"
   ],
   "scripts": {

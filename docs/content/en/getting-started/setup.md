@@ -31,7 +31,7 @@ version: 0.161
    ```js[nuxt.config.js]
    {
      buildModules: [
-       '@nuxtjs/composition-api/module'
+       '@nuxtjs/composition-api'
      ]
    }
    ```
@@ -65,6 +65,8 @@ If you need to use jest tests with this module installed, just add the following
 
 ```js{}[jest.config.js]
 moduleNameMapper: {
-  '@nuxtjs/composition-api': '@nuxtjs/composition-api/entrypoint',
+  '@nuxtjs/composition-api': '@nuxtjs/composition-api/lib/entrypoint.js',
+  // alternatively, depending on your node version
+  // '@nuxtjs/composition-api': '@nuxtjs/composition-api/entrypoint',
 },
 ```
