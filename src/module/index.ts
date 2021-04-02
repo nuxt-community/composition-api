@@ -16,6 +16,7 @@ import {
   isFullStatic,
   isUrl,
   resolveCoreJsVersion,
+  resolveRelativePath,
 } from './utils'
 import { compositionApiPlugin } from './vite'
 import { registerBabelPlugin } from './babel'
@@ -44,14 +45,9 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   nuxtOptions.alias['@nuxtjs/composition-api'] = entryFile
 
-  // Transpile Composition API for treeshaking (and de-duping)
+  // Register the Composition API before any other layouts
 
-  nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
-  nuxtOptions.build.transpile.push('@nuxtjs/composition-api')
-
-  if (!nuxtOptions.dev) {
-    nuxtOptions.build.transpile.push('@vue/composition-api')
-  }
+  this.addLayout(resolveRelativePath('./templates/layout'), '0')
 
   // If we're using nuxt-vite, register vite plugin & inject configuration
 
