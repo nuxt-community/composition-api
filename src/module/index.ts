@@ -65,7 +65,11 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   this.nuxt.hook('vite:extend', (ctx: any) => {
     ctx.config.plugins.push(compositionApiPlugin())
-    ctx.config.optimizeDeps.exclude.push('@vue/composition-api')
+    ctx.config.resolve.alias[
+      '@vue/composition-api'
+    ] = this.nuxt.resolver.resolveModule(
+      '@vue/composition-api/dist/vue-composition-api.esm.js'
+    )
     // Fake alias to prevent shadowing actual node_module
     ctx.config.resolve.alias['~nuxtjs-composition-api'] = entryFile
   })
