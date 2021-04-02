@@ -45,6 +45,12 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   nuxtOptions.alias['@nuxtjs/composition-api'] = entryFile
 
+  // Define @vue/composition-api resolution to prevent issues with registrations
+
+  nuxtOptions.alias['@vue/composition-api'] = this.nuxt.resolver.resolveModule(
+    '@vue/composition-api'
+  )
+
   // Transpile the Nuxt Composition API to force alias resolution
   // TODO: remove this when we stop shadowing module
 
