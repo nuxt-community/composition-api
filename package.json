@@ -18,18 +18,22 @@
     "url": "https://roe.dev"
   },
   "exports": {
-    "./dist/babel-plugin.js": "./dist/babel-plugin.js",
-    "./dist/module.js": "./dist/module.js",
+    "./": "./",
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
     "./dist/runtime/templates/*": "./dist/runtime/templates/*",
-    "./dist/index.mjs": "./dist/index.mjs",
-    "./dist/index.js": "./dist/index.js",
-    "./package.json": "./package.json"
+    "./dist/babel-plugin.js": "./dist/babel-plugin.js",
+    "./dist/module.js": "./dist/module.js"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "module.js"
   ],
   "scripts": {
     "build": "yarn clean && yarn compile",

@@ -43,9 +43,8 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   nuxtOptions.alias['~composition-api-globals'] = globalsFile
 
-  nuxtOptions.alias['@nuxtjs/composition-api'] = resolveRelativePath(
-    'runtime/composables'
-  )
+  nuxtOptions.alias['@nuxtjs/composition-api'] = resolveRelativePath('index')
+  console.log(nuxtOptions.alias['@nuxtjs/composition-api'])
 
   // Define @vue/composition-api resolution to prevent issues with registrations
 
