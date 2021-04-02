@@ -16,6 +16,7 @@ import {
   isFullStatic,
   isUrl,
   resolveCoreJsVersion,
+  resolveRelativePath,
 } from './utils'
 import { compositionApiPlugin } from './vite'
 import { registerBabelPlugin } from './babel'
@@ -44,20 +45,31 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   nuxtOptions.alias['@nuxtjs/composition-api'] = entryFile
 
-  // Transpile Composition API for treeshaking (and de-duping)
+  // Define @vue/composition-api resolution to prevent issues with registrations
+
+  nuxtOptions.alias['@vue/composition-api'] = this.nuxt.resolver.resolveModule(
+    '@vue/composition-api'
+  )
+
+  // Transpile the Nuxt Composition API to force alias resolution
+  // TODO: remove this when we stop shadowing module
 
   nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
   nuxtOptions.build.transpile.push('@nuxtjs/composition-api')
 
-  if (!nuxtOptions.dev) {
-    nuxtOptions.build.transpile.push('@vue/composition-api')
-  }
+  // Register the Vue Composition API before any other layouts
+
+  this.addLayout(resolveRelativePath('./templates/layout'), '0')
 
   // If we're using nuxt-vite, register vite plugin & inject configuration
 
   this.nuxt.hook('vite:extend', (ctx: any) => {
     ctx.config.plugins.push(compositionApiPlugin())
-    ctx.config.optimizeDeps.exclude.push('@vue/composition-api')
+    ctx.config.resolve.alias[
+      '@vue/composition-api'
+    ] = this.nuxt.resolver.resolveModule(
+      '@vue/composition-api/dist/vue-composition-api.esm.js'
+    )
     // Fake alias to prevent shadowing actual node_module
     ctx.config.resolve.alias['~nuxtjs-composition-api'] = entryFile
   })
