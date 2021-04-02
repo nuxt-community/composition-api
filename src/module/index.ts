@@ -46,6 +46,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   nuxtOptions.alias['@nuxtjs/composition-api'] = entryFile
 
   // Transpile the Nuxt Composition API to force alias resolution
+  // TODO: remove this when we stop shadowing module
 
   nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
   nuxtOptions.build.transpile.push('@nuxtjs/composition-api')
