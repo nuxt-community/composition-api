@@ -1,7 +1,7 @@
 import { expectType } from 'tsd'
 import { Context } from '@nuxt/types'
 
-import { withContext } from '../..'
+import { withContext } from 'src'
 
 // eslint-disable-next-line
 expectType<void>(withContext(() => {}))

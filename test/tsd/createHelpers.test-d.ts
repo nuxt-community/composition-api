@@ -3,7 +3,7 @@ import {
   defineNuxtMiddleware,
   defineNuxtModule,
   defineNuxtServerMiddleware,
-} from '../..'
+} from 'src/defineHelpers'
 import { expectType } from 'tsd'
 
 defineNuxtPlugin((context, inject) => {

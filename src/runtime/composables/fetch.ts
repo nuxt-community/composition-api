@@ -6,7 +6,11 @@ import {
   set,
 } from '@vue/composition-api'
 
-import { globalContext, globalNuxt, isFullStatic } from './globals'
+import {
+  globalContext,
+  globalNuxt,
+  isFullStatic,
+} from '~composition-api-globals'
 import type { NuxtApp } from '@nuxt/types/app'
 
 import { getCurrentInstance, ComponentInstance } from './utils'

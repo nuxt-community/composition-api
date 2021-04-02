@@ -1,5 +1,6 @@
 import { resolve } from 'upath'
 import type { NuxtConfig } from '@nuxt/types'
+import compositionAPIModule from '../../src/module'
 
 const routes = ['/route/a', '/static/1', '/static/2', '/static/3']
 const interval = 3000
@@ -59,14 +60,12 @@ export default <NuxtConfig>{
   router: {
     base: isPublic ? '/fixture/' : undefined,
   },
-  watch: ['../../lib/**/*.js'],
   build: {
     publicPath: isPublic ? 'fixture' : undefined,
   },
   buildModules: [
-    process.env.NODE_ENV === 'test'
-      ? require('../../module')
-      : resolve(rootDir, './module.js'),
+    '@nuxt/typescript-build',
+    compositionAPIModule as any
   ],
   pwa: {
     icon: false,

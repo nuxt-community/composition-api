@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import CompositionApi from '@vue/composition-api'
+const Vue = require('vue')
+const CompositionApi = require('@vue/composition-api')
 
 Vue.config.productionTip = false
 Vue.config.devtools = false

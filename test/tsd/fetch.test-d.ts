@@ -1,6 +1,6 @@
 import { expectType } from 'tsd'
 
-import { useFetch } from '../..'
+import { useFetch } from 'src'
 
 expectType<{
   fetch: () => void

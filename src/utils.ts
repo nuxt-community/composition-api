@@ -1,6 +1,6 @@
 import { NuxtConfig, NuxtOptions } from '@nuxt/types'
 import { ModuleThis } from '@nuxt/types/config/module'
-import { basename, join } from 'upath'
+import { basename, join, resolve } from 'upath'
 
 export function isFullStatic(options: NuxtConfig) {
   return (
@@ -15,8 +15,8 @@ export function isUrl(url: string) {
   return ['http', '//'].some(str => url.startsWith(str))
 }
 
-export function resolveRelativePath(id: string) {
-  return require.resolve(`@nuxtjs/composition-api/${id}`)
+export function resolveRelativePath(...path: string[]) {
+  return resolve(__dirname, ...path)
 }
 
 export function addResolvedTemplate(

@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+import plugin from '../../src/babel-plugin'
+
 const babel = require('@babel/core')
-const plugin = require('../../lib/babel')
-/* eslint-enable */
 
 const example = `
 const ref = ref(1)

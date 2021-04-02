@@ -1,6 +1,6 @@
 import { expectType } from 'tsd'
 
-import { useMeta, Ref } from '../..'
+import { useMeta, Ref } from 'src'
 
 expectType<Ref<string>>(useMeta({ title: 'provided' }).title)
 expectType<Ref<undefined | string | ((title: string) => string)>>(

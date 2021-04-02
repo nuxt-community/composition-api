@@ -1,9 +1,7 @@
 module.exports = {
-  verbose: true,
+  preset: 'ts-jest',
   testEnvironment: 'node',
-  coveragePathIgnorePatterns: ['test', '.babelrc.js'],
-  transform: {
-    '^.+\\.(js|ts)$': 'babel-jest',
-  },
+  collectCoverage: true,
+  verbose: true,
   setupFiles: ['<rootDir>/test/unit/setup'],
 }
