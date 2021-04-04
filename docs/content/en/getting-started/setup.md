@@ -31,7 +31,7 @@ version: 0.161
    ```js[nuxt.config.js]
    {
      buildModules: [
-       '@nuxtjs/composition-api/module'
+       '@nuxtjs/composition-api'
      ]
    }
    ```
