@@ -1,6 +1,6 @@
 import { expectType } from 'tsd'
 
-import { ssrRef, Ref, shallowSsrRef } from 'src'
+import { ssrRef, Ref, shallowSsrRef } from '../..'
 
 expectType<Ref<number>>(ssrRef(() => 42))
 expectType<Ref<string>>(ssrRef('thoughtless'))
