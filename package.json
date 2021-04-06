@@ -21,18 +21,18 @@
     "./": "./",
     "./package.json": "./package.json",
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js"
     },
-    "./dist/runtime/templates/*": "./dist/runtime/templates/*",
-    "./dist/babel-plugin.js": "./dist/babel-plugin.js",
-    "./dist/module.js": "./dist/module.js"
+    "./lib/runtime/templates/*": "./lib/runtime/templates/*",
+    "./lib/babel-plugin.js": "./lib/babel-plugin.js",
+    "./lib/module.js": "./lib/module.js"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./lib/index.js",
+  "module": "./lib/index.mjs",
+  "types": "./lib/index.d.ts",
   "files": [
-    "dist",
+    "lib",
     "module.js"
   ],
   "scripts": {
