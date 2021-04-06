@@ -65,6 +65,6 @@ If you need to use jest tests with this module installed, just add the following
 
 ```js{}[jest.config.js]
 moduleNameMapper: {
-  '@nuxtjs/composition-api': '@nuxtjs/composition-api/entrypoint',
+  '~composition-api-globals': '@nuxtjs/composition-api/lib/globals-mock',
 },
 ```

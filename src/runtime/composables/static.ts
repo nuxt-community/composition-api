@@ -4,9 +4,12 @@ import type { Ref } from '@vue/composition-api'
 import { joinURL } from 'ufo'
 
 import { ssrRef } from './ssr-ref'
-import { globalContext } from '~composition-api-globals'
+import {
+  globalContext,
+  staticPath,
+  publicPath as _publicPath,
+} from '~composition-api-globals'
 
-const staticPath = '<%= options.staticPath %>'
 const staticCache: Record<string, any> = {}
 
 function writeFile(key: string, value: string) {
@@ -81,8 +84,7 @@ export const useStatic = <T>(
 
   if (process.client) {
     const publicPath =
-      (window as any)[globalContext].$config?.app?.cdnURL ||
-      '<%= options.publicPath %>'
+      (window as any)[globalContext].$config?.app?.cdnURL || _publicPath
     const onFailure = () =>
       factory(param.value, key.value).then(r => {
         staticCache[key.value] = r

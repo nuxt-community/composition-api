@@ -18,15 +18,15 @@
     "url": "https://roe.dev"
   },
   "exports": {
-    "./": "./",
-    "./package.json": "./package.json",
     ".": {
       "import": "./lib/index.mjs",
       "require": "./lib/index.js"
     },
-    "./lib/runtime/templates/*": "./lib/runtime/templates/*",
-    "./lib/babel-plugin.js": "./lib/babel-plugin.js",
-    "./lib/module.js": "./lib/module.js"
+    "./package.json": "./package.json",
+    "./lib/babel-plugin": "./lib/babel-plugin.js",
+    "./lib/globals-mock": "./lib/globals-mock.js",
+    "./lib/module": "./lib/module.js",
+    "./lib/runtime/templates/*": "./lib/runtime/templates/*"
   },
   "main": "./lib/index.js",
   "module": "./lib/index.mjs",

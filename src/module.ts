@@ -1,50 +1,23 @@
-import { withTrailingSlash } from 'ufo'
-
 import type { Module, NuxtOptions } from '@nuxt/types'
 
 import { name, version } from '../package.json'
 
-import { prepareUseStatic } from './static'
+import { registerBabelPlugin } from './babel-register'
+import { addGlobalsFile } from './globals'
 import {
   addResolvedTemplate,
-  getNuxtGlobals,
-  isFullStatic,
-  isUrl,
   resolveCoreJsVersion,
   resolveRelativePath,
 } from './utils'
-import { registerBabelPlugin } from './babel-register'
 
 const compositionApiModule: Module<never> = function compositionApiModule() {
   const nuxtOptions: NuxtOptions = this.nuxt.options
 
   // Register entrypoint (where all user-facing content consumed within vite/webpack is located)
 
-  const { staticPath } = prepareUseStatic.call(this)
-  const { globalContext, globalNuxt } = getNuxtGlobals.call(this)
-
-  const routerBase = withTrailingSlash(nuxtOptions.router.base)
-  const publicPath = withTrailingSlash(nuxtOptions.build.publicPath)
-
-  const globalsFile = addResolvedTemplate.call(
-    this,
-    'runtime/templates/globals.js',
-    {
-      // useFetch
-      isFullStatic: isFullStatic(nuxtOptions),
-      // useStatic
-      staticPath,
-      publicPath: isUrl(publicPath) ? publicPath : routerBase,
-      // Throughout
-      globalContext,
-      globalNuxt,
-    }
-  )
-
-  nuxtOptions.alias['~composition-api-globals'] = globalsFile
+  addGlobalsFile.call(this)
 
   nuxtOptions.alias['@nuxtjs/composition-api'] = resolveRelativePath('index')
-  console.log(nuxtOptions.alias['@nuxtjs/composition-api'])
 
   // Define @vue/composition-api resolution to prevent issues with registrations
 
