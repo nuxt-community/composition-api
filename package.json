@@ -19,17 +19,17 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.es.js",
       "require": "./dist/index.js"
     },
+    "./module": "./dist/module.js",
     "./package.json": "./package.json",
     "./dist/babel-plugin": "./dist/babel-plugin.js",
     "./dist/globals-mock": "./dist/globals-mock.js",
-    "./dist/module": "./dist/module.js",
     "./dist/runtime/templates/*": "./dist/runtime/templates/*"
   },
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist",

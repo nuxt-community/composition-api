@@ -13,23 +13,15 @@ import {
 const compositionApiModule: Module<never> = function compositionApiModule() {
   const nuxtOptions: NuxtOptions = this.nuxt.options
 
-  // Register entrypoint (where all user-facing content consumed within vite/webpack is located)
+  // Register globals file where Nuxt config can be accessed from live library
 
   addGlobalsFile.call(this)
-
-  nuxtOptions.alias['@nuxtjs/composition-api'] = resolveRelativePath('index')
 
   // Define @vue/composition-api resolution to prevent issues with registrations
 
   nuxtOptions.alias['@vue/composition-api'] = this.nuxt.resolver.resolveModule(
     '@vue/composition-api'
   )
-
-  // Transpile the Nuxt Composition API to force alias resolution
-  // TODO: remove this when we stop shadowing module
-
-  nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
-  nuxtOptions.build.transpile.push('@nuxtjs/composition-api')
 
   // Register the Vue Composition API before any other layouts
 

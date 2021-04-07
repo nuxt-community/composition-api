@@ -1,4 +1,4 @@
-import { resolve } from 'upath'
+import { join, resolve } from 'upath'
 import type { NuxtConfig } from '@nuxt/types'
 import compositionAPIModule from '../../src/module'
 
@@ -11,6 +11,9 @@ const isTesting = process.env.NODE_ENV !== 'development'
 const rootDir = resolve(__dirname, '../..')
 
 export default <NuxtConfig>{
+  alias: {
+    '@nuxtjs/composition-api': join(rootDir, 'src'),
+  },
   target: isGenerated ? 'static' : 'server',
   publicRuntimeConfig: {
     globalInject: 'injected',
