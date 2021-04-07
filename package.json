@@ -19,29 +19,29 @@
   },
   "exports": {
     ".": {
-      "import": "./lib/index.mjs",
-      "require": "./lib/index.js"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     },
     "./package.json": "./package.json",
-    "./lib/babel-plugin": "./lib/babel-plugin.js",
-    "./lib/globals-mock": "./lib/globals-mock.js",
-    "./lib/module": "./lib/module.js",
-    "./lib/runtime/templates/*": "./lib/runtime/templates/*"
+    "./dist/babel-plugin": "./dist/babel-plugin.js",
+    "./dist/globals-mock": "./dist/globals-mock.js",
+    "./dist/module": "./dist/module.js",
+    "./dist/runtime/templates/*": "./dist/runtime/templates/*"
   },
-  "main": "./lib/index.js",
-  "module": "./lib/index.mjs",
-  "types": "./lib/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
-    "lib",
+    "dist",
     "module.js"
   ],
   "scripts": {
     "build": "yarn clean && yarn compile",
-    "clean": "rimraf lib/*",
-    "clean:fixture": "rimraf dist/ test/fixture/.nuxt",
+    "clean": "rimraf dist/*",
+    "clean:fixture": "rimraf test/fixture/dist/ test/fixture/.nuxt",
     "compile": "siroc build",
     "dev": "nuxt dev test/fixture",
-    "fixture:generate": "yarn fixture:generate:export && yarn http-server -s -p 5000 dist",
+    "fixture:generate": "yarn fixture:generate:export && yarn http-server -s -p 5000 test/fixture/dist",
     "fixture:generate:export": "yarn clean:fixture && cross-env GENERATE=true PORT=6000 CMD=generate yarn nuxt-run",
     "fixture:prod": "yarn clean:fixture && cross-env CMD=build yarn nuxt-run && cross-env CMD=start yarn nuxt-run",
     "lint": "run-s lint:all:*",
