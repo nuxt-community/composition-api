@@ -1,8 +1,6 @@
 import {
   defineNuxtPlugin,
   defineNuxtMiddleware,
-  defineNuxtModule,
-  defineNuxtServerMiddleware,
 } from '../../src/runtime/composables/defineHelpers'
 import { expectType } from 'tsd'
 
@@ -14,24 +12,8 @@ defineNuxtPlugin((context, inject) => {
   inject('hello', hello)
 })
 
-defineNuxtModule<{
-  option: string
-}>(function (options) {
-  // expectType<string>(this.options.rootDir)
-
-  this.addPlugin('filename')
-
-  expectType<string>(options.option)
-})
-
 defineNuxtMiddleware(({ store, redirect }) => {
   if (!store.state.authenticated) {
     return redirect('/login')
   }
-})
-
-defineNuxtServerMiddleware((req, res, next) => {
-  expectType<string | undefined>(req.url)
-
-  next()
 })
