@@ -23,6 +23,16 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     '@vue/composition-api/dist/vue-composition-api.esm.js'
   )
 
+  // Transpile runtime
+
+  nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
+  nuxtOptions.build.transpile.push(
+    '@vue/composition-api',
+    nuxtOptions.alias['@vue/composition-api'],
+    '@nuxtjs/composition-api',
+    __dirname
+  )
+
   // Register the Vue Composition API before any other layouts
 
   this.addLayout(resolveRelativePath('runtime/templates/layout.js'), '0')
