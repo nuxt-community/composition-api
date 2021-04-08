@@ -61,7 +61,7 @@ version: 0.161
 
 ## Testing with Jest
 
-If you need to use jest tests with this module installed, just add the following lines to your `jest.config.js`:
+If you need to use jest tests with this module installed (and you're not using `@nuxt/test-utils`), you may need to add the following lines to your `jest.config.js`:
 
 ```js{}[jest.config.js]
 moduleNameMapper: {
