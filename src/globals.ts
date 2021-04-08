@@ -1,4 +1,3 @@
-import devalue from '@nuxt/devalue'
 import type { ModuleThis } from '@nuxt/types/config/module'
 import { withTrailingSlash } from 'ufo'
 
@@ -31,7 +30,7 @@ export function addGlobalsFile(this: ModuleThis) {
   }
 
   const contents = Object.entries(globals)
-    .map(([key, value]) => `export const ${key} = ${devalue(value)}`)
+    .map(([key, value]) => `export const ${key} = ${JSON.stringify(value)}`)
     .join('\n')
 
   const globalsFile = addResolvedTemplate.call(this, 'globals.js', {
