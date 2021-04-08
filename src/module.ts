@@ -25,7 +25,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   // Define @vue/composition-api resolution to prevent using different versions of @vue/composition-api
 
   nuxtOptions.alias['@vue/composition-api'] = this.nuxt.resolver.resolveModule(
-    '@vue/composition-api'
+    '@vue/composition-api/dist/vue-composition-api.esm.js'
   )
 
   // Register the Vue Composition API before any other layouts
