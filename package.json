@@ -36,10 +36,8 @@
     "module.js"
   ],
   "scripts": {
-    "build": "yarn clean && yarn compile",
-    "clean": "rimraf dist/*",
+    "build": "siroc build",
     "clean:fixture": "rimraf test/fixture/dist/ test/fixture/.nuxt",
-    "compile": "siroc build",
     "dev": "nuxt dev test/fixture",
     "fixture:generate": "yarn fixture:generate:export && yarn http-server -s -p 5000 test/fixture/dist",
     "fixture:generate:export": "yarn clean:fixture && cross-env GENERATE=true PORT=6000 CMD=generate yarn nuxt-run",
@@ -60,7 +58,7 @@
     "test:e2e-ssr": "cross-env PORT=4000 start-server-and-test fixture:prod 4000 \"testcafe firefox:headless test/e2e\"",
     "test:types": "tsd",
     "test:unit": "jest",
-    "watch": "yarn compile -w"
+    "watch": "yarn build -w"
   },
   "dependencies": {
     "@vue/composition-api": "1.0.0-rc.6",
