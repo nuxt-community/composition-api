@@ -26,7 +26,7 @@ export function addResolvedTemplate(
 ) {
   const nuxtOptions: NuxtOptions = this.nuxt.options
 
-  const src = resolveRelativePath(template)
+  const src = resolveRelativePath(join('runtime/templates', template))
   const { dst } = this.addTemplate({
     src,
     fileName: join('composition-api', basename(src)),

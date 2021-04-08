@@ -45,15 +45,12 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   // Add appropriate corejs polyfill for IE support
 
-  addResolvedTemplate.call(this, 'runtime/templates/polyfill.client.js', {
+  addResolvedTemplate.call(this, 'polyfill.client.js', {
     corejsPolyfill: resolveCoreJsVersion.call(this),
   })
 
   // Plugin to allow running onGlobalSetup
-  const globalPlugin = addResolvedTemplate.call(
-    this,
-    'runtime/templates/plugin.js'
-  )
+  const globalPlugin = addResolvedTemplate.call(this, 'plugin.js')
 
   this.nuxt.hook('modules:done', () => {
     nuxtOptions.plugins.unshift(globalPlugin)
@@ -66,9 +63,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     !nuxtOptions.buildModules.includes('@nuxtjs/pwa') &&
     !nuxtOptions.modules.includes('@nuxtjs/pwa')
   ) {
-    nuxtOptions.plugins.push(
-      addResolvedTemplate.call(this, 'runtime/templates/meta.js')
-    )
+    nuxtOptions.plugins.push(addResolvedTemplate.call(this, 'meta.js'))
   } else if (nuxtOptions.dev) {
     console.warn(
       'useMeta is not supported in onGlobalSetup as @nuxtjs/pwa detected.\nSee https://github.com/nuxt-community/composition-api/issues/307'
