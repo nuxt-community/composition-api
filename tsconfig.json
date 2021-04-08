@@ -12,9 +12,9 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "~composition-api-globals": ["./src/globals-mock.ts"]
+      "~composition-api-globals": ["./src/globals-mock.ts"],
+      "@nuxtjs/composition-api": ["./src/index.ts"]
     },
     "types": ["node", "@nuxt/types", "jest"]
-  },
-  "include": ["src/**/*.ts"]
+  }
 }
