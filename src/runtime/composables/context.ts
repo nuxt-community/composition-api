@@ -26,7 +26,7 @@ interface UseContextReturn
   extends Omit<Context, 'route' | 'query' | 'from' | 'params'> {
   route: Ref<Route>
   query: Ref<Route['query']>
-  from: Ref<Route['redirectedFrom']>
+  from: Ref<Context['from']>
   params: Ref<Route['params']>
 }
 
@@ -61,7 +61,7 @@ export const useContext = (): UseContextReturn => {
     /**
      * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `from` from `useContext` but rather to use the `useRoute` helper function.
      */
-    from: computed(() => vm.$route.redirectedFrom),
+    from: computed(() => (vm[globalNuxt] || vm.$options).context.from),
     /**
      * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `params` from `useContext` but rather to use the `useRoute` helper function.
      */
