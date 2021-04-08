@@ -34,9 +34,13 @@ export function addGlobalsFile(this: ModuleThis) {
     .map(([key, value]) => `export const ${key} = ${devalue(value)}`)
     .join('\n')
 
-  const file = addResolvedTemplate.call(this, 'runtime/templates/globals.js', {
-    contents,
-  })
+  const globalsFile = addResolvedTemplate.call(
+    this,
+    'runtime/templates/globals.js',
+    {
+      contents,
+    }
+  )
 
-  nuxtOptions.alias['~composition-api-globals'] = file
+  nuxtOptions.alias['~composition-api-globals'] = globalsFile
 }
