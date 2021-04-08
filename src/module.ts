@@ -17,7 +17,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   addGlobalsFile.call(this)
 
-  // Define @vue/composition-api resolution to prevent issues with registrations
+  // Define @vue/composition-api resolution to prevent using different versions of @vue/composition-api
 
   nuxtOptions.alias['@vue/composition-api'] = this.nuxt.resolver.resolveModule(
     '@vue/composition-api'
