@@ -17,6 +17,11 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   addGlobalsFile.call(this)
 
+  // Force transpilation of this library (to enable resolution of globals file)
+
+  nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
+  nuxtOptions.build.transpile.push('@nuxtjs/composition-api')
+
   // Define @vue/composition-api resolution to prevent using different versions of @vue/composition-api
 
   nuxtOptions.alias['@vue/composition-api'] = this.nuxt.resolver.resolveModule(
