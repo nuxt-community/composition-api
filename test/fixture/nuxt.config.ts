@@ -12,6 +12,7 @@ const rootDir = resolve(__dirname, '../..')
 
 export default <NuxtConfig>{
   alias: {
+    '@nuxtjs/composition-api/dist/globals': join(rootDir, 'src/globals'),
     '@nuxtjs/composition-api': join(rootDir, 'src'),
   },
   target: isGenerated ? 'static' : 'server',

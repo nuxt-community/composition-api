@@ -1,41 +1,11 @@
-import type { ModuleThis } from '@nuxt/types/config/module'
-import { withTrailingSlash } from 'ufo'
+// This is a shim for runtime/templates/globals.js
 
-import { prepareUseStatic } from './static'
-import {
-  addResolvedTemplate,
-  getNuxtGlobals,
-  isFullStatic,
-  isUrl,
-} from './utils'
+export const globalNuxt = '$nuxt'
 
-export function addGlobalsFile(this: ModuleThis) {
-  const nuxtOptions = this.options
+export const globalContext = '__NUXT__'
 
-  const { staticPath } = prepareUseStatic.call(this)
-  const { globalContext, globalNuxt } = getNuxtGlobals.call(this)
+export const isFullStatic = false
 
-  const routerBase = withTrailingSlash(nuxtOptions.router.base)
-  const publicPath = withTrailingSlash(nuxtOptions.build.publicPath)
+export const staticPath = '/static-path'
 
-  const globals = {
-    // useFetch
-    isFullStatic: isFullStatic(nuxtOptions),
-    // useStatic
-    staticPath,
-    publicPath: isUrl(publicPath) ? publicPath : routerBase,
-    // Throughout
-    globalContext,
-    globalNuxt,
-  }
-
-  const contents = Object.entries(globals)
-    .map(([key, value]) => `export const ${key} = ${JSON.stringify(value)}`)
-    .join('\n')
-
-  const globalsFile = addResolvedTemplate.call(this, 'globals.js', {
-    contents,
-  })
-
-  nuxtOptions.alias['~composition-api-globals'] = globalsFile
-}
+export const publicPath = '/_nuxt/'

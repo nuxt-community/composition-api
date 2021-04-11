@@ -25,7 +25,7 @@
     "./module": "./dist/module.js",
     "./package.json": "./package.json",
     "./dist/babel-plugin": "./dist/babel-plugin.js",
-    "./dist/globals-mock": "./dist/globals-mock.js",
+    "./dist/globals": "./dist/globals.js",
     "./dist/runtime/templates/*": "./dist/runtime/templates/*"
   },
   "main": "./dist/index.js",

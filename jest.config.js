@@ -7,6 +7,6 @@ module.exports = {
   },
   setupFiles: ['<rootDir>/test/unit/setup'],
   moduleNameMapper: {
-    '~composition-api-globals': '<rootDir>/src/globals-mock',
+    '@nuxtjs/composition-api/dist/globals': '<rootDir>/src/globals',
   },
 }

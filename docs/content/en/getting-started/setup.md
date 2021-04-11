@@ -58,15 +58,3 @@ version: 0.161
 - For convenience, this package also exports the [`@vue/composition-api`](https://github.com/vuejs/composition-api) methods and hooks, so you can import directly from `@nuxtjs/composition-api`.
 
 </alert>
-
-## Testing with Jest
-
-If you need to use jest unit testing for components using Nuxt Composition API with this module installed, you may need to add the following lines to your `jest.config.js`:
-
-```js{}[jest.config.js]
-moduleNameMapper: {
-  '~composition-api-globals': '@nuxtjs/composition-api/dist/globals-mock',
-},
-```
-
-<alert>Note, this is not necessary if you are using `@nuxt/test-utils` or are doing end-to-end testing.</alert>

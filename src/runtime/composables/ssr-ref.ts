@@ -6,7 +6,7 @@ import {
 } from '@vue/composition-api'
 import type { Ref } from '@vue/composition-api'
 
-import { globalContext, globalNuxt } from '~composition-api-globals'
+import { globalContext, globalNuxt } from '@nuxtjs/composition-api/dist/globals'
 import { getCurrentInstance, validateKey } from './utils'
 
 function getValue<T>(value: T | (() => T)): T {

@@ -3,7 +3,7 @@ import type { Module, NuxtOptions } from '@nuxt/types'
 import { name, version } from '../package.json'
 
 import { registerBabelPlugin } from './babel-register'
-import { addGlobalsFile } from './globals'
+import { addGlobalsFile } from './globals-register'
 import {
   addResolvedTemplate,
   resolveCoreJsVersion,

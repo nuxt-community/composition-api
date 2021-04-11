@@ -10,7 +10,7 @@ import {
   globalContext,
   globalNuxt,
   isFullStatic,
-} from '~composition-api-globals'
+} from '@nuxtjs/composition-api/dist/globals'
 import type { NuxtApp } from '@nuxt/types/app'
 
 import { getCurrentInstance, ComponentInstance } from './utils'
