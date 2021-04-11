@@ -17,21 +17,28 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   addGlobalsFile.call(this)
 
+  // Force transpilation of this library (to enable resolution of globals file)
+
+  nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
+  nuxtOptions.build.transpile.push('@nuxtjs/composition-api', __dirname)
+
   // Define @vue/composition-api resolution to prevent using different versions of @vue/composition-api
 
   nuxtOptions.alias['@vue/composition-api'] = this.nuxt.resolver.resolveModule(
     '@vue/composition-api/dist/vue-composition-api.esm.js'
   )
 
-  // Transpile runtime
+  // Turn off webpack4 module context for .mjs files (as it appears to have some issues)
 
-  nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
-  nuxtOptions.build.transpile.push(
-    '@vue/composition-api',
-    nuxtOptions.alias['@vue/composition-api'],
-    '@nuxtjs/composition-api',
-    __dirname
-  )
+  this.extendBuild(config => {
+    if (!config.module) return
+
+    config.module.rules.unshift({
+      test: /\.mjs$/,
+      type: 'javascript/auto',
+      include: [/node_modules/],
+    })
+  })
 
   // Register the Vue Composition API before any other layouts
 
