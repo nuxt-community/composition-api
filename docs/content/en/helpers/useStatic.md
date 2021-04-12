@@ -39,11 +39,11 @@ If you are generating the whole app (or just prerendering some routes with `nuxt
 - On hard-reload of a generated page, the JSON will be inlined into the page and cached.
 - On client navigation to a generated page, this JSON will be fetched - and once fetched it will be cached for subsequent navigations. If for whatever reason this JSON doesn't exist, such as if the page _wasn't_ pre-generated, the original factory function will be run on client-side.
 
-<alert>
+<d-alert>
 
 If you are pregenerating some pages in your app note that you may need to increase `generate.interval`. (See [setup instructions](/getting-started/setup).)
 
-</alert>
+</d-alert>
 
 ## SSR
 

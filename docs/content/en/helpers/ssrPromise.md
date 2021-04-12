@@ -34,14 +34,14 @@ export default defineComponent({
 })
 ```
 
-<alert type="info">
+<d-alert type="info">
 
 Under the hood, `ssrPromise` requires a key to ensure that the ref values match between client and server. If you have added `@nuxtjs/composition-api/module` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `@nuxtjs/composition-api/dist/babel-plugin` to your Babel plugins.
 
-</alert>
+</d-alert>
 
-<alert>
+<d-alert>
 
 At the moment, an `ssrPromise` is only suitable for one-offs, unless you provide your own unique key. [More information](/getting-started/gotchas#keyed-functions).
 
-</alert>
+</d-alert>

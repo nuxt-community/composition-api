@@ -18,4 +18,4 @@ export default () => {
 }
 ```
 
-<alert>This should be called from within a plugin rather than in a component context.</alert>
+<d-alert>This should be called from within a plugin rather than in a component context.</d-alert>

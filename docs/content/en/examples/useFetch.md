@@ -6,4 +6,4 @@ fullscreen: True
 position: 50
 ---
 
-<code-sandbox :src="link"></code-sandbox>
+<d-code-sandbox :src="link"></d-code-sandbox>

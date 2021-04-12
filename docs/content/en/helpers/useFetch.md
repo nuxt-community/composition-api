@@ -33,26 +33,26 @@ export default defineComponent({
 })
 ```
 
-<alert>
+<d-alert>
 
 `useFetch` must be called synchronously within `setup()`. Any changes made to component data - that is, to properties _returned_ from `setup()` - will be sent to the client and directly loaded. Other side-effects of `useFetch` hook will not be persisted.
 
-</alert>
+</d-alert>
 
-<alert type="warning">
+<d-alert type="warning">
 
 `useFetch` should be used with `ref`s and not `ssrRef`s because state serialization and hydration is already covered by `useFetch`. Else, the state would be sent from server to client "twice", via the `ssrRef` and via `useFetch`
 
-</alert>
+</d-alert>
 
-<alert type="info">
+<d-alert type="info">
 
 `$fetch` and `$fetchState` will already be defined on the instance - so no need to return `fetch` or `fetchState` from setup.
 
-</alert>
+</d-alert>
 
-<alert type="info">
+<d-alert type="info">
 
 Note that `useFetch` doesn't support use within `onGlobalSetup`.
 
-</alert>
+</d-alert>

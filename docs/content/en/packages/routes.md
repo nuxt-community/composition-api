@@ -25,7 +25,7 @@ export default defineComponent({
 })
 ```
 
-<alert>When migrating to Nuxt 3 you will need to remove `.value` as the native equivalent returns a reactive object, not a computed object.</alert>
+<d-alert>When migrating to Nuxt 3 you will need to remove `.value` as the native equivalent returns a reactive object, not a computed object.</d-alert>
 
 ## useRouter
 

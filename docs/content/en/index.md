@@ -17,7 +17,7 @@ items:
 
 ## Key features
 
-<list :items="items"></list>
+<d-list :items="items"></d-list>
 
 ## API reference
 

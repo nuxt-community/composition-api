@@ -8,7 +8,7 @@ position: 34
 
 When creating composition utility functions, often there will be server-side state that needs to be conveyed to the client.
 
-<alert>If initialised within `setup()` or via `onGlobalSetup`, `ssrRef` data will exist _only_ within the request state. If initialised _outside_ a component there is the possibility that an `ssrRef` may share state across requests.</alert>
+<d-alert>If initialised within `setup()` or via `onGlobalSetup`, `ssrRef` data will exist _only_ within the request state. If initialised _outside_ a component there is the possibility that an `ssrRef` may share state across requests.</d-alert>
 
 ## ssrRef
 
@@ -28,17 +28,17 @@ if (process.server) val.value = 'server set'
 const val2 = ssrRef(myExpensiveSetterFunction)
 ```
 
-<alert type="info">
+<d-alert type="info">
 
 Under the hood, `ssrRef` requires a key to ensure that the ref values match between client and server. If you have added `@nuxtjs/composition-api/module` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `@nuxtjs/composition-api/dist/babel-plugin` to your Babel plugins.
 
-</alert>
+</d-alert>
 
-<alert>
+<d-alert>
 
 At the moment, an `ssrRef` is only suitable for one-offs, unless you provide your own unique key. [More information](/getting-started/gotchas#keyed-functions).
 
-</alert>
+</d-alert>
 
 ## shallowSsrRef
 
@@ -57,8 +57,8 @@ onMounted(() => {
 })
 ```
 
-<alert>
+<d-alert>
 
 At the moment, a `shallowSsrRef` is only suitable for one-offs, unless you provide your own unique key. [More information](/getting-started/gotchas#keyed-functions).
 
-</alert>
+</d-alert>

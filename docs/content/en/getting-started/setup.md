@@ -10,21 +10,21 @@ version: 0.225
 
 1. First, install `@nuxtjs/composition-api`:
 
-    <code-group>
-    <code-block label="Yarn" active>
+    <d-code-group>
+    <d-code-block label="Yarn" active>
 
    ```bash
    yarn add @nuxtjs/composition-api
    ```
 
-   </code-block><code-block label="NPM">
+   </d-code-block><d-code-block label="NPM">
 
    ```bash
    npm install @nuxtjs/composition-api --save
    ```
 
-   </code-block>
-   </code-group>
+   </d-code-block>
+   </d-code-group>
 
 2. Enable the module.
 
@@ -51,10 +51,10 @@ version: 0.225
 
 4. You're good to go!
 
-<alert type="info">
+<d-alert type="info">
 
 - The module automatically installs [`@vue/composition-api`](https://github.com/vuejs/composition-api) as a plugin, so you do not need to enable it separately.
 
 - For convenience, this package also exports the [`@vue/composition-api`](https://github.com/vuejs/composition-api) methods and hooks, so you can import directly from `@nuxtjs/composition-api`.
 
-</alert>
+</d-alert>

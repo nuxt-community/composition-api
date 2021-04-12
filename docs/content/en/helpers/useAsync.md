@@ -25,8 +25,8 @@ export default defineComponent({
 })
 ```
 
-<alert>
+<d-alert>
 
 At the moment, `useAsync` is only suitable for one-offs, unless you provide your own unique key. [More information](/getting-started/gotchas#keyed-functions).
 
-</alert>
+</d-alert>
