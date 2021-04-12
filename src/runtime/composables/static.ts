@@ -4,9 +4,12 @@ import type { Ref } from '@vue/composition-api'
 import { joinURL } from 'ufo'
 
 import { ssrRef } from './ssr-ref'
-import { globalContext } from './globals'
+import {
+  globalContext,
+  staticPath,
+  publicPath as _publicPath,
+} from '@nuxtjs/composition-api/dist/globals'
 
-const staticPath = '<%= options.staticPath %>'
 const staticCache: Record<string, any> = {}
 
 function writeFile(key: string, value: string) {
@@ -26,8 +29,8 @@ function writeFile(key: string, value: string) {
   }
 }
 /**
- * You can pre-run expensive functions using `useStatic`. 
- * 
+ * You can pre-run expensive functions using `useStatic`.
+ *
  * __SSG__
  * If you are generating the whole app (or just prerendering some routes with `nuxt build && nuxt generate --no-build`) the following behaviour will be unlocked:
 
@@ -37,7 +40,7 @@ function writeFile(key: string, value: string) {
 
   If you are pregenerating some pages in your app note that you may need to increase `generate.interval`. (See [setup instructions](https://composition-api.nuxtjs.org/setup.html).)
 
-  * 
+  *
   * __SSR__
   * If the route is not pre-generated (including in dev mode), then:
 
@@ -81,8 +84,7 @@ export const useStatic = <T>(
 
   if (process.client) {
     const publicPath =
-      (window as any)[globalContext].$config?.app?.cdnURL ||
-      '<%= options.publicPath %>'
+      (window as any)[globalContext].$config?.app?.cdnURL || _publicPath
     const onFailure = () =>
       factory(param.value, key.value).then(r => {
         staticCache[key.value] = r

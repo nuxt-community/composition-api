@@ -1,18 +1,20 @@
-import { resolve } from 'upath'
+import { join, resolve } from 'upath'
 import type { NuxtConfig } from '@nuxt/types'
+import compositionAPIModule from '../../src/module'
 
 const routes = ['/route/a', '/static/1', '/static/2', '/static/3']
 const interval = 3000
 
-const isGenerated = [process.env.GENERATE, process.env.NOW_BUILD].includes(
-  'true'
-)
-const isPublic = process.env.NOW_BUILD === 'true'
-const isTesting = process.env.NODE_ENV !== 'development' && !isPublic
+const isGenerated = process.env.GENERATE === 'true'
+const isTesting = process.env.NODE_ENV !== 'development'
 
 const rootDir = resolve(__dirname, '../..')
 
 export default <NuxtConfig>{
+  alias: {
+    '@nuxtjs/composition-api/dist/globals': join(rootDir, 'src/globals'),
+    '@nuxtjs/composition-api': join(rootDir, 'src'),
+  },
   target: isGenerated ? 'static' : 'server',
   publicRuntimeConfig: {
     globalInject: 'injected',
@@ -51,23 +53,12 @@ export default <NuxtConfig>{
       }
     : {}),
   generate: {
-    dir: isPublic ? 'dist/fixture' : undefined,
+    dir: 'test/fixture/dist',
     crawler: false,
     routes,
     interval,
   },
-  router: {
-    base: isPublic ? '/fixture/' : undefined,
-  },
-  watch: ['../../lib/**/*.js'],
-  build: {
-    publicPath: isPublic ? 'fixture' : undefined,
-  },
-  buildModules: [
-    process.env.NODE_ENV === 'test'
-      ? require('../../module')
-      : resolve(rootDir, './module.js'),
-  ],
+  buildModules: ['@nuxt/typescript-build', compositionAPIModule as any],
   pwa: {
     icon: false,
     manifest: false,

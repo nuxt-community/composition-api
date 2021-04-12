@@ -3,7 +3,7 @@ title: Quick start
 description: 'Getting started with the Nuxt Composition API.'
 category: Getting started
 position: 2
-version: 0.161
+version: 0.225
 ---
 
 ## Quick start
@@ -58,13 +58,3 @@ version: 0.161
 - For convenience, this package also exports the [`@vue/composition-api`](https://github.com/vuejs/composition-api) methods and hooks, so you can import directly from `@nuxtjs/composition-api`.
 
 </alert>
-
-## Testing with Jest
-
-If you need to use jest tests with this module installed, just add the following lines to your `jest.config.js`:
-
-```js{}[jest.config.js]
-moduleNameMapper: {
-  '@nuxtjs/composition-api': '@nuxtjs/composition-api/entrypoint',
-},
-```

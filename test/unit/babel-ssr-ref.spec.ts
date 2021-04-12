@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const babel = require('@babel/core')
-const plugin = require('../../lib/babel')
-/* eslint-enable */
+import { transform } from '@babel/core'
+
+import plugin from '../../src/babel-plugin'
 
 const example = `
 const ref = ref(1)
@@ -19,7 +18,7 @@ const stat3 = useStatic(() => 4)
 
 describe('ssrRef babel plugin', () => {
   it('works', () => {
-    const { code } = babel.transform(example, { plugins: [plugin] })!
+    const { code } = transform(example, { plugins: [plugin] })
     expect(code).toMatchSnapshot()
   })
 })

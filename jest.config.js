@@ -1,9 +1,12 @@
 module.exports = {
-  verbose: true,
   testEnvironment: 'node',
-  coveragePathIgnorePatterns: ['test', '.babelrc.js'],
+  collectCoverage: true,
+  verbose: true,
   transform: {
     '^.+\\.(js|ts)$': 'babel-jest',
   },
   setupFiles: ['<rootDir>/test/unit/setup'],
+  moduleNameMapper: {
+    '@nuxtjs/composition-api/dist/globals': '<rootDir>/src/globals',
+  },
 }

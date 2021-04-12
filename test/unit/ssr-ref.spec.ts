@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { ssrRef, globalPlugin } from '../../lib/entrypoint'
+import { ssrRef, globalPlugin } from '../../src/runtime/composables'
 import * as cAPI from '@vue/composition-api'
 
 describe('ssrRef reactivity', () => {

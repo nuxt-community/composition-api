@@ -1,22 +1,21 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
     "strict": true,
     "sourceMap": true,
-    "target": "es2018",
-    "module": "esnext",
-    "lib": ["esnext", "dom"],
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "lib": ["ESNext", "DOM"],
     "esModuleInterop": true,
-    "moduleResolution": "node",
-    "rootDir": ".",
     "resolveJsonModule": true,
-    "outDir": "lib",
-    "declaration": false,
-    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@nuxtjs/composition-api": ["./src/entrypoint.ts"]
+      "@nuxtjs/composition-api/dist/globals": ["./src/globals.ts"],
+      "@nuxtjs/composition-api": ["./src/index.ts"]
     },
     "types": ["node", "@nuxt/types", "jest"]
   },
-  "exclude": ["node_modules", "lib"]
+  "include": ["src/**/*.ts", "test/fixture/**/*.vue", "test/fixture/**/*.ts"]
 }

@@ -1,3 +1,1 @@
-import compositionApiModule from './module'
-
-export default compositionApiModule
+export * from './runtime/composables'

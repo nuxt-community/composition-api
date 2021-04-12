@@ -18,29 +18,28 @@
     "url": "https://roe.dev"
   },
   "exports": {
-    "./babel": "./lib/babel.js",
-    "./entrypoint": "./lib/entrypoint.js",
-    "./module": "./lib/index.js",
-    "./lib/entrypoint.es": "./lib/entrypoint.es.js",
-    "./lib/templates/*": "./lib/templates/*",
-    "./package.json": "./package.json"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./module": "./dist/module.js",
+    "./package.json": "./package.json",
+    "./dist/babel-plugin": "./dist/babel-plugin.js",
+    "./dist/globals": "./dist/globals.js",
+    "./dist/runtime/templates/*": "./dist/runtime/templates/*"
   },
-  "types": "lib/entrypoint.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
-    "lib/**/*",
-    "lib/index.d.ts",
-    "babel.js",
-    "entrypoint.js",
-    "module.js",
-    "!**/*.map"
+    "dist",
+    "module.js"
   ],
   "scripts": {
-    "build": "yarn clean && yarn compile",
-    "clean": "rimraf lib/*",
-    "clean:fixture": "rimraf dist/ test/fixture/.nuxt",
-    "compile": "siroc build",
+    "build": "siroc build",
+    "clean:fixture": "rimraf test/fixture/dist/ test/fixture/.nuxt",
     "dev": "nuxt dev test/fixture",
-    "fixture:generate": "yarn fixture:generate:export && yarn http-server -s -p 5000 dist",
+    "fixture:generate": "yarn fixture:generate:export && yarn http-server -s -p 5000 test/fixture/dist",
     "fixture:generate:export": "yarn clean:fixture && cross-env GENERATE=true PORT=6000 CMD=generate yarn nuxt-run",
     "fixture:prod": "yarn clean:fixture && cross-env CMD=build yarn nuxt-run && cross-env CMD=start yarn nuxt-run",
     "lint": "run-s lint:all:*",
@@ -59,7 +58,7 @@
     "test:e2e-ssr": "cross-env PORT=4000 start-server-and-test fixture:prod 4000 \"testcafe firefox:headless test/e2e\"",
     "test:types": "tsd",
     "test:unit": "jest",
-    "watch": "yarn compile -w"
+    "watch": "yarn build -w"
   },
   "dependencies": {
     "@vue/composition-api": "1.0.0-rc.6",
@@ -73,7 +72,9 @@
     "@babel/plugin-transform-runtime": "^7.13.15",
     "@babel/preset-env": "^7.13.15",
     "@babel/preset-typescript": "^7.13.0",
+    "@nuxt/test-utils": "^0.2.1",
     "@nuxt/types": "^2.15.4",
+    "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^2.0.1",
     "@types/fs-extra": "^9.0.10",

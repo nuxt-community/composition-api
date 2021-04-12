@@ -4,7 +4,7 @@ import type { Ref } from '@vue/composition-api'
 import type { Context } from '@nuxt/types'
 import type { Route } from 'vue-router'
 
-import { globalNuxt } from './globals'
+import { globalNuxt } from '@nuxtjs/composition-api/dist/globals'
 import { getCurrentInstance } from './utils'
 
 interface ContextCallback {
