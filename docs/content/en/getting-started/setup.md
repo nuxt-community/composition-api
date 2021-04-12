@@ -3,7 +3,7 @@ title: Quick start
 description: 'Getting started with the Nuxt Composition API.'
 category: Getting started
 position: 2
-version: 0.161
+version: 0.225
 ---
 
 ## Quick start
