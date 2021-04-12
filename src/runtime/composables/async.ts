@@ -13,7 +13,7 @@ import { validateKey } from './utils'
  *
  * **At the moment, `useAsync` is only suitable for one-offs, unless you provide your own unique key.**
  * @param cb The async function that will populate the ref this function returns.
- * @param key Under the hood, `useAsync` requires a key to ensure that the ref values match between client and server. If you have added `@nuxtjs/composition-api/module` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `@nuxtjs/composition-api/babel` to your Babel plugins.
+ * @param key Under the hood, `useAsync` requires a key to ensure that the ref values match between client and server. If you have added `@nuxtjs/composition-api/module` to your `buildModules`, this will be done automagically by an injected Babel plugin. If you need to do things differently, you can specify a key manually or add `@nuxtjs/composition-api/dist/babel-plugin` to your Babel plugins.
  *
  * @example
   ```ts
