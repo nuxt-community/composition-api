@@ -1,3 +1,41 @@
+## [0.23.0](https://github.com/nuxt-community/composition-api/compare/0.22.4...0.23.0) (2021-04-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* `@nuxtjs/composition-api/module` is now how the module should be imported in `nuxt.config`
+
+* There is no longer a need to amend `moduleNameMapper` in your jest.config - you should remove any entry for `@nuxtjs/composition-api` there. When used outside a Nuxt context, the module will 'auto-mock' and use https://github.com/nuxt-community/composition-api/blob/be94d4f4e1321565864dd3d3d5e850f7cabf6ca9/src/globals.ts instead of live Nuxt configuration.
+
+* `@nuxtjs/composition-api/babel` has been renamed to `@nuxtjs/composition-api/dist/babel-plugin`.
+
+* `@vue/composition-api` is no longer transpiled by default. You should consider adding it to `build.transpile`, but note that you may also need to add any other libraries that also use `@vue/composition-api`.
+
+* You should ensure you haven't named any layout '0' as this will conflict with how this package is registering the Vue Composition API.
+
+* `defineNuxtConfig`, `defineNuxtModule` and `defineNuxtServerMiddleware` have been removed. You can create your own helper with the following code:
+   ```ts
+   import { Module, ServerMiddleware, NuxtConfig } from '@nuxt/types'
+ 
+   export const defineNuxtModule = <T extends Record<string, unknown>>(module: Module<T>) => module
+   export const defineNuxtServerMiddleware = (serverMiddleware: ServerMiddleware) => serverMiddleware
+   export const defineNuxtConfig = (config: NuxtConfig) => config
+   ```
+
+### Bug Fixes
+
+* register the composition api in a template file ([#433](https://github.com/nuxt-community/composition-api/issues/433)) ([8cc21ce](https://github.com/nuxt-community/composition-api/commit/8cc21ce2de08fbb12d0561c9bbd5c76ecfa32e08)), closes [#415](https://github.com/nuxt-community/composition-api/issues/415) [#391](https://github.com/nuxt-community/composition-api/issues/391)
+* return `from` rather than `redirectedFrom` from `useContext` ([a159d87](https://github.com/nuxt-community/composition-api/commit/a159d8781a0eef9071af05bbf1092061b8b653e2)), closes [#444](https://github.com/nuxt-community/composition-api/issues/444)
+
+
+### Code Refactoring
+
+* change how library is imported ([#418](https://github.com/nuxt-community/composition-api/issues/418)) ([5bb1a72](https://github.com/nuxt-community/composition-api/commit/5bb1a72669f97ba964dd3968f76627472c502dca))
+  - fixed an issue with `nuxt-vite` compatbility
+* significant packaging changes ([#438](https://github.com/nuxt-community/composition-api/issues/438)) ([ddc9c0f](https://github.com/nuxt-community/composition-api/commit/ddc9c0f9ba8281931da817b3d106d0a45a2b4cf9))
+  - The ESM version of the library is now `.mjs` (but we polyfill support for this and other `.mjs` files in webpack 4).
+  - This library is now located within `node_modules` rather than being templated, with a limited template for the config.
+
 ### [0.22.4](https://github.com/nuxt-community/composition-api/compare/0.22.3...0.22.4) (2021-03-23)
 
 
