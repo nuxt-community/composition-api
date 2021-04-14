@@ -1,6 +1,5 @@
 import { join, resolve } from 'upath'
 import type { NuxtConfig } from '@nuxt/types'
-import compositionAPIModule from '../../src/module'
 
 const routes = ['/route/a', '/static/1', '/static/2', '/static/3']
 const interval = 3000
@@ -10,10 +9,21 @@ const isTesting = process.env.NODE_ENV !== 'development'
 
 const rootDir = resolve(__dirname, '../..')
 
+const inDevelopment = !process.env.TEST_BUILT_MODULE
+
+console.log('Testing', inDevelopment ? 'source' : 'built', 'module')
+
 export default <NuxtConfig>{
   alias: {
-    '@nuxtjs/composition-api/dist/globals': join(rootDir, 'src/globals'),
-    '@nuxtjs/composition-api': join(rootDir, 'src'),
+    '@nuxtjs/composition-api/dist/globals': join(
+      rootDir,
+      inDevelopment ? 'src' : 'dist',
+      'globals'
+    ),
+    '@nuxtjs/composition-api': join(
+      rootDir,
+      inDevelopment ? 'src/index.ts' : 'dist/index.js'
+    ),
   },
   target: isGenerated ? 'static' : 'server',
   publicRuntimeConfig: {
@@ -58,7 +68,10 @@ export default <NuxtConfig>{
     routes,
     interval,
   },
-  buildModules: ['@nuxt/typescript-build', compositionAPIModule as any],
+  buildModules: [
+    '@nuxt/typescript-build',
+    join(rootDir, inDevelopment ? 'src' : 'dist', 'module'),
+  ],
   pwa: {
     icon: false,
     manifest: false,

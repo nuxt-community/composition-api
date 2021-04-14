@@ -58,6 +58,8 @@ jobs:
 
       - name: Test project
         run: yarn test:${{ matrix.test }}
+        with:
+          TEST_BUILT_MODULE: true
 
   unit:
     strategy:
