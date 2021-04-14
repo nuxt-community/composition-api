@@ -1,3 +1,10 @@
+### [0.23.1](https://github.com/nuxt-community/composition-api/compare/0.23.0...0.23.1) (2021-04-14)
+
+
+### Bug Fixes
+
+* use reactive rather than `Vue.observable` in `useFetch` ([385bb73](https://github.com/nuxt-community/composition-api/commit/385bb73bab6cfbc06e4567fe3e314d1b6888f830)), closes [#455](https://github.com/nuxt-community/composition-api/issues/455)
+
 ## [0.23.0](https://github.com/nuxt-community/composition-api/compare/0.22.4...0.23.0) (2021-04-12)
 
 
