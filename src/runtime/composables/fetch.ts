@@ -1,8 +1,8 @@
-import Vue from 'vue'
 import {
   isRef,
   onBeforeMount,
   onServerPrefetch,
+  reactive,
   set,
 } from '@vue/composition-api'
 
@@ -122,7 +122,7 @@ async function callFetches(this: AugmentedComponentInstance) {
 const setFetchState = (vm: AugmentedComponentInstance) => {
   vm.$fetchState =
     vm.$fetchState ||
-    Vue.observable({
+    reactive({
       error: null,
       pending: false,
       timestamp: 0,
