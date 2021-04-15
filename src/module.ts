@@ -1,4 +1,5 @@
 import type { Module, NuxtOptions } from '@nuxt/types'
+import { relative, sep } from 'upath'
 
 import { name, version } from '../package.json'
 
@@ -40,9 +41,28 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     })
   })
 
-  // Register the Vue Composition API before any other layouts
+  // Register the Vue Composition API
 
-  this.addLayout(resolveRelativePath('runtime/templates/layout.js'), '0')
+  if (nuxtOptions.features.middleware) {
+    const middleware = addResolvedTemplate.call(this, 'register.js')
+    this.nuxt.hook(
+      'build:templates',
+      ({ templateVars }: { templateVars: Record<string, any> }) => {
+        templateVars.middleware.unshift({
+          src: middleware,
+          dst: '.' + sep + relative(nuxtOptions.buildDir, middleware),
+          name: 'compositionApiRegistration',
+        })
+      }
+    )
+  } else if (nuxtOptions.features.layouts) {
+    this.addLayout(resolveRelativePath('runtime/templates/layout.js'), '0')
+  } else {
+    const dst = addResolvedTemplate.call(this, 'register.js')
+    this.nuxt.hook('modules:done', () =>
+      this.nuxt.hook('build:before', () => nuxtOptions.plugins.unshift(dst))
+    )
+  }
 
   // If we're using nuxt-vite, register vite plugin & inject configuration
 
