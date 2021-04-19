@@ -1,3 +1,10 @@
+### [0.23.2](https://github.com/nuxt-community/composition-api/compare/0.23.1...0.23.2) (2021-04-19)
+
+
+### Bug Fixes
+
+* register composition api before middleware ([9d4165a](https://github.com/nuxt-community/composition-api/commit/9d4165a3511ffeb2cf1e0584a303565b41b0f968)), closes [#457](https://github.com/nuxt-community/composition-api/issues/457)
+
 ### [0.23.1](https://github.com/nuxt-community/composition-api/compare/0.23.0...0.23.1) (2021-04-14)
 
 
