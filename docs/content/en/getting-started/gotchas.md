@@ -1,13 +1,11 @@
 ---
 title: Gotchas
-description: 'There are a couple of key points to remember when using the composition API.'
+description: 'There are a couple of points that you should be aware of when using `@nuxtjs/composition-api`.'
 category: Getting started
 fullscreen: True
 position: 3
 version: 0.133
 ---
-
-There are a couple of points that you should be aware of when using `@nuxtjs/composition-api`.
 
 ## **'Keyed' functions**
 
