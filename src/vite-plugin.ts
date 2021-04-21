@@ -80,7 +80,7 @@ export function compositionApiPlugin(): Plugin & { enforce: 'pre' } {
 
         return {
           code: s.toString(),
-          map: s.generateMap().toString(),
+          map: s.generateMap({ source: filename }).toString(),
         }
       } catch {}
     },
