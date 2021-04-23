@@ -1,4 +1,4 @@
-import { defu } from './utils'
+import defu from 'defu'
 import {
   computed,
   reactive,
