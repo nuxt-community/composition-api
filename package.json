@@ -65,7 +65,7 @@
     "defu": "^4.0.1",
     "estree-walker": "^2.0.2",
     "magic-string": "^0.25.7",
-    "ufo": "^0.6.11",
+    "ufo": "^0.7.1",
     "upath": "^2.0.1"
   },
   "devDependencies": {
@@ -84,7 +84,7 @@
     "@typescript-eslint/parser": "^4.22.0",
     "babel-loader": "^8.2.2",
     "codecov": "^3.8.1",
-    "core-js": "3.10.2",
+    "core-js": "3.11.0",
     "cross-env": "^7.0.3",
     "eslint": "^7.24.0",
     "eslint-config-prettier": "^8.2.0",
