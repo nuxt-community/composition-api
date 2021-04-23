@@ -62,10 +62,10 @@
   },
   "dependencies": {
     "@vue/composition-api": "1.0.0-rc.7",
-    "defu": "^3.2.2",
+    "defu": "^4.0.1",
     "estree-walker": "^2.0.2",
     "magic-string": "^0.25.7",
-    "ufo": "^0.6.11",
+    "ufo": "^0.7.1",
     "upath": "^2.0.1"
   },
   "devDependencies": {
