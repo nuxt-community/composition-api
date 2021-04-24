@@ -17,6 +17,10 @@ export function compositionApiPlugin(): Plugin & { enforce: 'pre' } {
     name: 'nuxt:composition-api',
     enforce: 'pre',
     transform(code: string, filename: string) {
+      code = code.replace(
+        /@nuxtjs[\\/]composition-api(?![\\/])/g,
+        '~composition-api'
+      )
       const keyedFunctions = /(useStatic|shallowSsrRef|ssrPromise|ssrRef|reqSsrRef|useAsync)/
       if (!keyedFunctions.test(code)) {
         return {

@@ -1,5 +1,5 @@
 import type { Module, NuxtOptions } from '@nuxt/types'
-import { relative, sep } from 'upath'
+import { relative, resolve, sep } from 'upath'
 
 import { name, version } from '../package.json'
 
@@ -18,10 +18,18 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   addGlobalsFile.call(this)
 
+  // Add library alias for benefit of vite
+
+  nuxtOptions.alias['~composition-api'] = resolve(__dirname, 'index.mjs')
+
   // Force transpilation of this library (to enable resolution of globals file)
 
   nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
-  nuxtOptions.build.transpile.push('@nuxtjs/composition-api', __dirname)
+  nuxtOptions.build.transpile.push(
+    '@nuxtjs/composition-api',
+    '~composition-api',
+    __dirname
+  )
 
   // Define @vue/composition-api resolution to prevent using different versions of @vue/composition-api
 
