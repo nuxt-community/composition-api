@@ -1,3 +1,12 @@
+### [0.23.3](https://github.com/nuxt-community/composition-api/compare/0.23.2...0.23.3) (2021-04-24)
+
+
+### Bug Fixes
+
+* alias module so we can access `process.server` in vite node build ([#462](https://github.com/nuxt-community/composition-api/issues/462)) ([7c997c5](https://github.com/nuxt-community/composition-api/commit/7c997c5701e9d5b23af313de44df0d95655daa6a))
+* correctly generate vite sourcemap ([cf4f438](https://github.com/nuxt-community/composition-api/commit/cf4f4389b0955874cfe87360326c484b82abb50b))
+* export default from register entry ([#461](https://github.com/nuxt-community/composition-api/issues/461)) ([e491722](https://github.com/nuxt-community/composition-api/commit/e491722656a548ffe262aab49bd4471a5318a587))
+
 ### [0.23.2](https://github.com/nuxt-community/composition-api/compare/0.23.1...0.23.2) (2021-04-19)
 
 
