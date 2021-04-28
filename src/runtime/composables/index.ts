@@ -1,3 +1,5 @@
+import '@nuxtjs/composition-api/dist/runtime/register'
+
 export { useAsync } from './async'
 export { defineComponent } from './component'
 export { useContext, withContext } from './context'
