@@ -1,3 +1,5 @@
+### [0.23.4](https://github.com/nuxt-community/composition-api/compare/0.23.3...0.23.4) (2021-04-28)
+
 ### [0.23.3](https://github.com/nuxt-community/composition-api/compare/0.23.2...0.23.3) (2021-04-24)
 
 
