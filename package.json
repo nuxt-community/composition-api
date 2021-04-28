@@ -26,8 +26,8 @@
     "./package.json": "./package.json",
     "./dist/babel-plugin": "./dist/babel-plugin.js",
     "./dist/globals": "./dist/globals.js",
-    "./dist/runtime/templates/*": "./dist/runtime/templates/*",
-    "./dist/runtime/register": "./dist/runtime/register.js"
+    "./dist/register": "./dist/register.js",
+    "./dist/runtime/templates/*": "./dist/runtime/templates/*"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

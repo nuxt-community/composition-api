@@ -1,4 +1,4 @@
-import '@nuxtjs/composition-api/dist/runtime/register'
+import '@nuxtjs/composition-api/dist/register'
 
 export { useAsync } from './async'
 export { defineComponent } from './component'
