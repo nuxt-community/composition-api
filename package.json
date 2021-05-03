@@ -109,7 +109,7 @@
   },
   "peerDependencies": {
     "@nuxt/vue-app": "^2.15",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^10.0.0",
     "nuxt": "^2.15",
     "vue": "^2"
   },
