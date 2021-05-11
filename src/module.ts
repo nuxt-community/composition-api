@@ -1,15 +1,12 @@
 import type { Module, NuxtOptions } from '@nuxt/types'
+import { writeFile } from 'fs-extra'
 import { relative, resolve, sep } from 'upath'
 
 import { name, version } from '../package.json'
 
 import { registerBabelPlugin } from './babel-register'
 import { addGlobalsFile } from './globals-register'
-import {
-  addResolvedTemplate,
-  resolveCoreJsVersion,
-  resolveRelativePath,
-} from './utils'
+import { addResolvedTemplate, resolveCoreJsVersion } from './utils'
 
 const compositionApiModule: Module<never> = function compositionApiModule() {
   const nuxtOptions: NuxtOptions = this.nuxt.options
@@ -49,11 +46,36 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     })
   })
 
+  // Add dummy middleware file
+
+  const middleware = addResolvedTemplate.call(this, 'register.js')
+  this.nuxt.hook(
+    'build:templates',
+    ({ templateVars }: { templateVars: Record<string, any> }) => {
+      templateVars.middleware.unshift({
+        src: middleware,
+        dst: '.' + sep + relative(nuxtOptions.buildDir, middleware),
+        name: 'compositionApiRegistration',
+      })
+    }
+  )
+
   // If we're using nuxt-vite, register vite plugin & inject configuration
 
   this.nuxt.hook('vite:extend', async (ctx: any) => {
     const { compositionApiPlugin } = await import('./vite-plugin')
     ctx.config.plugins.push(compositionApiPlugin())
+    ctx.config.optimizeDeps.exclude.push('@nuxtjs/composition-api')
+
+    await writeFile(
+      middleware,
+      `
+        import Vue from 'vue';
+        import CompositionApi from '@vue/composition-api';
+        Vue.use(CompositionApi);
+        export default {};
+      `
+    )
   })
 
   // If we're using Babel, register Babel plugin for injecting keys

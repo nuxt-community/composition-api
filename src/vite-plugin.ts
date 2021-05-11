@@ -17,6 +17,12 @@ export function compositionApiPlugin(): Plugin & { enforce: 'pre' } {
     name: 'nuxt:composition-api',
     enforce: 'pre',
     transform(code: string, filename: string) {
+      // Remove auto-registration (we'll handle it within middleware)
+      code = code.replace(
+        /import .@nuxtjs\/composition-api\/dist\/register.;?/,
+        ''
+      )
+
       code = code.replace(
         /@nuxtjs[\\/]composition-api(?![\\/])/g,
         '~composition-api'
