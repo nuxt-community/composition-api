@@ -32,7 +32,7 @@ type MetaInfoMapper<T> = {
 
 export function createEmptyMeta(): MetaInfoMapper<Required<MetaInfo>> {
   return {
-    titleTemplate: (null as unknown) as undefined,
+    titleTemplate: null as unknown as undefined,
 
     __dangerouslyDisableSanitizers: [],
     __dangerouslyDisableSanitizersByTagID: {},
