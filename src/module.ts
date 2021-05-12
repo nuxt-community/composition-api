@@ -40,7 +40,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   // Add dummy middleware file
 
-  const middleware = addResolvedTemplate.call(this, 'register.js')
+  const middleware = addResolvedTemplate.call(this, 'register.mjs')
   this.nuxt.hook(
     'build:templates',
     ({ templateVars }: { templateVars: Record<string, any> }) => {
