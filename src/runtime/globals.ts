@@ -1,4 +1,4 @@
-// This is a shim for runtime/templates/globals.js
+// This is a shim for runtime/templates/globals.mjs
 
 export const globalNuxt = '$nuxt'
 

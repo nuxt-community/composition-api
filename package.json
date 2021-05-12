@@ -17,6 +17,7 @@
     "email": "daniel@roe.dev",
     "url": "https://roe.dev"
   },
+  "sideEffects": true,
   "exports": {
     ".": {
       "import": "./dist/runtime/index.mjs",
@@ -100,7 +101,7 @@
     "prettier": "^2.3.0",
     "release-it": "14.6.2",
     "rimraf": "^3.0.2",
-    "siroc": "0.9.2",
+    "siroc": "0.10.0",
     "start-server-and-test": "^1.12.1",
     "testcafe": "1.14.0",
     "tsd": "^0.15.1",

@@ -1,6 +1,6 @@
 import type { Module, NuxtOptions } from '@nuxt/types'
+import { resolve } from 'upath'
 
-import { resolve } from 'path'
 import { name, version } from '../package.json'
 
 import { registerBabelPlugin } from './babel-register'
@@ -31,10 +31,10 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   this.extendBuild(config => {
     if (!config.module) return
 
-    config.module.rules.unshift({
-      test: /\.mjs$/,
-      type: 'javascript/auto',
-      include: [/node_modules/],
+    config.module.rules.forEach(rule => {
+      if (rule.test instanceof RegExp && rule.test.test('index.mjs')) {
+        rule.type = 'javascript/auto'
+      }
     })
   })
 
@@ -51,12 +51,12 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   // Add appropriate corejs polyfill for IE support
 
-  addResolvedTemplate.call(this, 'polyfill.client.js', {
+  addResolvedTemplate.call(this, 'polyfill.client.mjs', {
     corejsPolyfill: resolveCoreJsVersion.call(this),
   })
 
   // Plugin to allow running onGlobalSetup
-  const globalPlugin = addResolvedTemplate.call(this, 'plugin.js')
+  const globalPlugin = addResolvedTemplate.call(this, 'plugin.mjs')
 
   this.nuxt.hook('modules:done', () => {
     nuxtOptions.plugins.unshift(globalPlugin)
@@ -69,7 +69,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     !nuxtOptions.buildModules.includes('@nuxtjs/pwa') &&
     !nuxtOptions.modules.includes('@nuxtjs/pwa')
   ) {
-    nuxtOptions.plugins.push(addResolvedTemplate.call(this, 'meta.js'))
+    nuxtOptions.plugins.push(addResolvedTemplate.call(this, 'meta.mjs'))
   } else if (nuxtOptions.dev) {
     console.warn(
       'useMeta is not supported in onGlobalSetup as @nuxtjs/pwa detected.\nSee https://github.com/nuxt-community/composition-api/issues/307'
