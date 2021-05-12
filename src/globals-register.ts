@@ -33,7 +33,7 @@ export function addGlobalsFile(this: ModuleThis) {
     .map(([key, value]) => `export const ${key} = ${JSON.stringify(value)}`)
     .join('\n')
 
-  const globalsFile = addResolvedTemplate.call(this, 'globals.js', {
+  const globalsFile = addResolvedTemplate.call(this, 'globals.mjs', {
     contents,
   })
 
