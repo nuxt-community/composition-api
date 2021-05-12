@@ -12,7 +12,12 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@nuxtjs/composition-api/dist/globals": ["./src/globals.ts"],
+      "@nuxtjs/composition-api/dist/runtime/globals": [
+        "./src/runtime/globals.ts"
+      ],
+      "@nuxtjs/composition-api/dist/runtime/register": [
+        "./src/runtime/register.ts"
+      ],
       "@nuxtjs/composition-api": ["./src/index.ts"]
     },
     "types": ["node", "@nuxt/types", "jest"]

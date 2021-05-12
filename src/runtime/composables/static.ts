@@ -8,7 +8,7 @@ import {
   globalContext,
   staticPath,
   publicPath as _publicPath,
-} from '@nuxtjs/composition-api/dist/globals'
+} from '@nuxtjs/composition-api/dist/runtime/globals'
 
 const staticCache: Record<string, any> = {}
 

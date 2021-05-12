@@ -15,15 +15,15 @@ console.log('Testing', inDevelopment ? 'source' : 'built', 'module')
 
 export default <NuxtConfig>{
   alias: {
-    '@nuxtjs/composition-api/dist/register': join(
+    '@nuxtjs/composition-api/dist/runtime/register': join(
       rootDir,
       inDevelopment ? 'src' : 'dist',
-      'register'
+      'runtime/register'
     ),
-    '@nuxtjs/composition-api/dist/globals': join(
+    '@nuxtjs/composition-api/dist/runtime/globals': join(
       rootDir,
       inDevelopment ? 'src' : 'dist',
-      'globals'
+      'runtime/globals'
     ),
     '@nuxtjs/composition-api': join(
       rootDir,
