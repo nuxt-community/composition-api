@@ -75,6 +75,7 @@ export default <NuxtConfig>{
   },
   buildModules: [
     '@nuxt/typescript-build',
+    '@nuxtjs/pwa',
     join(rootDir, inDevelopment ? 'src' : 'dist', 'module'),
   ],
   pwa: {
