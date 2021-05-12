@@ -7,7 +7,9 @@ module.exports = {
   },
   setupFiles: ['<rootDir>/test/unit/setup'],
   moduleNameMapper: {
-    '@nuxtjs/composition-api/dist/globals': '<rootDir>/src/globals',
-    '@nuxtjs/composition-api/dist/register': '<rootDir>/src/register',
+    '@nuxtjs/composition-api/dist/runtime/globals':
+      '<rootDir>/src/runtime/globals',
+    '@nuxtjs/composition-api/dist/runtime/register':
+      '<rootDir>/src/runtime/register',
   },
 }

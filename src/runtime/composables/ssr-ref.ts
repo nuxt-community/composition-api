@@ -6,7 +6,10 @@ import {
 } from '@vue/composition-api'
 import type { Ref } from '@vue/composition-api'
 
-import { globalContext, globalNuxt } from '@nuxtjs/composition-api/dist/globals'
+import {
+  globalContext,
+  globalNuxt,
+} from '@nuxtjs/composition-api/dist/runtime/globals'
 import { getCurrentInstance, validateKey } from './utils'
 
 function getValue<T>(value: T | (() => T)): T {
@@ -40,9 +43,8 @@ const useServerData = () => {
         globalRefs[key] = sanitise(val)
         break
       case 'ssrRefs':
-        ;(vm![globalNuxt].context.ssrContext as any).nuxt.ssrRefs[
-          key
-        ] = sanitise(val)
+        ;(vm![globalNuxt].context.ssrContext as any).nuxt.ssrRefs[key] =
+          sanitise(val)
     }
   }
 
