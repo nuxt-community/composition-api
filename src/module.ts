@@ -1,6 +1,6 @@
 import type { Module, NuxtOptions } from '@nuxt/types'
 import { writeFile } from 'fs-extra'
-import { relative, sep } from 'upath'
+import { relative, resolve, sep } from 'upath'
 
 import { name, version } from '../package.json'
 
@@ -17,8 +17,9 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   // Force transpilation of this library (to enable resolution of globals file)
 
+  const runtimeDir = resolve(__dirname, 'runtime')
   nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
-  nuxtOptions.build.transpile.push('@nuxtjs/composition-api', __dirname)
+  nuxtOptions.build.transpile.push('@nuxtjs/composition-api', runtimeDir)
 
   // Define @vue/composition-api resolution to prevent using different versions of @vue/composition-api
 
@@ -82,23 +83,13 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   // Plugin to allow running onGlobalSetup
   const globalPlugin = addResolvedTemplate.call(this, 'plugin.mjs')
 
+  // Allow setting head() within onGlobalSetup
+  const metaPlugin = addResolvedTemplate.call(this, 'meta.mjs')
+
   this.nuxt.hook('modules:done', () => {
+    nuxtOptions.plugins.push(metaPlugin)
     nuxtOptions.plugins.unshift(globalPlugin)
   })
-
-  // TODO: remove
-  // Allow setting head() within onGlobalSetup
-
-  if (
-    !nuxtOptions.buildModules.includes('@nuxtjs/pwa') &&
-    !nuxtOptions.modules.includes('@nuxtjs/pwa')
-  ) {
-    nuxtOptions.plugins.push(addResolvedTemplate.call(this, 'meta.mjs'))
-  } else if (nuxtOptions.dev) {
-    console.warn(
-      'useMeta is not supported in onGlobalSetup as @nuxtjs/pwa detected.\nSee https://github.com/nuxt-community/composition-api/issues/307'
-    )
-  }
 }
 
 // eslint-disable-next-line
