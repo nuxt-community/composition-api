@@ -20,18 +20,16 @@
   "sideEffects": true,
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": "./dist/runtime/index.mjs",
+      "require": "./dist/runtime/index.js"
     },
     "./module": "./dist/module.js",
     "./package.json": "./package.json",
     "./dist/babel-plugin": "./dist/babel-plugin.js",
-    "./dist/runtime/globals": "./dist/runtime/globals.js",
-    "./dist/runtime/register": "./dist/runtime/register.js",
-    "./dist/runtime/templates/*": "./dist/runtime/templates/*"
+    "./dist/runtime/*": "./dist/runtime/*"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "./dist/runtime/index.js",
+  "module": "./dist/runtime/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist",

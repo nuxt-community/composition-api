@@ -27,7 +27,7 @@ export default <NuxtConfig>{
     ),
     '@nuxtjs/composition-api': join(
       rootDir,
-      inDevelopment ? 'src/index.ts' : 'dist/index.js'
+      inDevelopment ? 'src/runtime/index.ts' : 'dist/runtime/index.js'
     ),
   },
   target: isGenerated ? 'static' : 'server',
