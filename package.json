@@ -26,7 +26,10 @@
     "./package.json": "./package.json",
     "./dist/babel-plugin": "./dist/babel-plugin.js",
     "./dist/globals": "./dist/globals.js",
-    "./dist/register": "./dist/register.js",
+    "./dist/register": {
+      "import": "./dist/register.mjs",
+      "require": "./dist/register.js"
+    },
     "./dist/runtime/templates/*": "./dist/runtime/templates/*"
   },
   "main": "./dist/index.js",

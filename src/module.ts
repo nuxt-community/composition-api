@@ -1,6 +1,6 @@
 import type { Module, NuxtOptions } from '@nuxt/types'
 import { writeFile } from 'fs-extra'
-import { relative, resolve, sep } from 'upath'
+import { relative, sep } from 'upath'
 
 import { name, version } from '../package.json'
 
@@ -15,18 +15,10 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   addGlobalsFile.call(this)
 
-  // Add library alias for benefit of vite
-
-  nuxtOptions.alias['~composition-api'] = resolve(__dirname, 'index.mjs')
-
   // Force transpilation of this library (to enable resolution of globals file)
 
   nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
-  nuxtOptions.build.transpile.push(
-    '@nuxtjs/composition-api',
-    '~composition-api',
-    __dirname
-  )
+  nuxtOptions.build.transpile.push('@nuxtjs/composition-api', __dirname)
 
   // Define @vue/composition-api resolution to prevent using different versions of @vue/composition-api
 
@@ -65,7 +57,6 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   this.nuxt.hook('vite:extend', async (ctx: any) => {
     const { compositionApiPlugin } = await import('./vite-plugin')
     ctx.config.plugins.push(compositionApiPlugin())
-    ctx.config.optimizeDeps.exclude.push('@nuxtjs/composition-api')
 
     await writeFile(
       middleware,

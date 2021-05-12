@@ -17,17 +17,8 @@ export function compositionApiPlugin(): Plugin & { enforce: 'pre' } {
     name: 'nuxt:composition-api',
     enforce: 'pre',
     transform(code: string, filename: string) {
-      // Remove auto-registration (we'll handle it within middleware)
-      code = code.replace(
-        /import .@nuxtjs\/composition-api\/dist\/register.;?/,
-        ''
-      )
-
-      code = code.replace(
-        /@nuxtjs[\\/]composition-api(?![\\/])/g,
-        '~composition-api'
-      )
-      const keyedFunctions = /(useStatic|shallowSsrRef|ssrPromise|ssrRef|reqSsrRef|useAsync)/
+      const keyedFunctions =
+        /(useStatic|shallowSsrRef|ssrPromise|ssrRef|reqSsrRef|useAsync)/
       if (!keyedFunctions.test(code)) {
         return {
           code,
@@ -43,7 +34,7 @@ export function compositionApiPlugin(): Plugin & { enforce: 'pre' } {
 
         walk(ast, {
           enter(node) {
-            const { end } = (node as unknown) as {
+            const { end } = node as unknown as {
               end: number
             }
             const { callee, arguments: args = [] } = node as {
