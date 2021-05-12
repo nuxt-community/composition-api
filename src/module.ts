@@ -77,7 +77,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     !nuxtOptions.modules.includes('@nuxtjs/pwa')
   ) {
     nuxtOptions.plugins.push(addResolvedTemplate.call(this, 'meta.mjs'))
-  } else if (nuxtOptions.dev) {
+  } else if (nuxtOptions.dev && !nuxtOptions?.pwa?.hideCompositionApiWarning) {
     console.warn(
       'useMeta is not supported in onGlobalSetup as @nuxtjs/pwa detected.\nSee https://github.com/nuxt-community/composition-api/issues/307'
     )
