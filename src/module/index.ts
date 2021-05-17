@@ -1,7 +1,7 @@
 import type { Module, NuxtOptions } from '@nuxt/types'
-import { resolve } from 'upath'
+import { relative, resolve, sep } from 'upath'
 
-import { name, version } from '../package.json'
+import { name, version } from '../../package.json'
 
 import { registerBabelPlugin } from './babel-register'
 import { addGlobalsFile } from './globals-register'
@@ -25,6 +25,32 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   nuxtOptions.alias['@vue/composition-api'] = this.nuxt.resolver.resolveModule(
     '@vue/composition-api/dist/vue-composition-api.esm.js'
   )
+
+  // Register the Vue Composition API
+
+  if (nuxtOptions.features.middleware) {
+    const middleware = addResolvedTemplate.call(this, 'register.mjs')
+    this.nuxt.hook(
+      'build:templates',
+      ({ templateVars }: { templateVars: Record<string, any> }) => {
+        templateVars.middleware.unshift({
+          src: middleware,
+          dst: '.' + sep + relative(nuxtOptions.buildDir, middleware),
+          name: 'compositionApiRegistration',
+        })
+      }
+    )
+  } else if (nuxtOptions.features.layouts) {
+    this.addLayout(
+      require.resolve('@nuxtjs/composition-api/dist/runtime/templates/layout'),
+      '0'
+    )
+  } else {
+    const dst = addResolvedTemplate.call(this, 'register.mjs')
+    this.nuxt.hook('modules:done', () =>
+      this.nuxt.hook('build:before', () => nuxtOptions.plugins.unshift(dst))
+    )
+  }
 
   // Turn off webpack4 module context for .mjs files (as it appears to have some issues)
 

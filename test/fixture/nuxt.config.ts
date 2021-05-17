@@ -10,25 +10,21 @@ const isTesting = process.env.NODE_ENV !== 'development'
 const rootDir = resolve(__dirname, '../..')
 
 const inDevelopment = !process.env.TEST_BUILT_MODULE
+const moduleSource = join(rootDir, inDevelopment ? 'src' : 'dist')
 
 console.log('Testing', inDevelopment ? 'source' : 'built', 'module')
 
 export default <NuxtConfig>{
   alias: {
-    '@nuxtjs/composition-api/dist/runtime/register': join(
-      rootDir,
-      inDevelopment ? 'src' : 'dist',
-      'runtime/register'
-    ),
     '@nuxtjs/composition-api/dist/runtime/globals': join(
-      rootDir,
-      inDevelopment ? 'src' : 'dist',
+      moduleSource,
       'runtime/globals'
     ),
-    '@nuxtjs/composition-api': join(
-      rootDir,
-      inDevelopment ? 'src/runtime/index.ts' : 'dist/runtime/index.js'
+    '@nuxtjs/composition-api/dist/babel-plugin': join(
+      moduleSource,
+      'babel-plugin'
     ),
+    '@nuxtjs/composition-api': join(moduleSource, 'runtime/composables'),
   },
   target: isGenerated ? 'static' : 'server',
   publicRuntimeConfig: {
@@ -76,7 +72,7 @@ export default <NuxtConfig>{
   buildModules: [
     '@nuxt/typescript-build',
     '@nuxtjs/pwa',
-    join(rootDir, inDevelopment ? 'src' : 'dist', 'module'),
+    join(moduleSource, 'module'),
   ],
   pwa: {
     icon: false,

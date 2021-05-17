@@ -1,6 +1,5 @@
 import type { NuxtOptions } from '@nuxt/types'
 import type { ModuleThis } from '@nuxt/types/config/module'
-import { resolveRelativePath } from './utils'
 
 export function registerBabelPlugin(this: ModuleThis) {
   const nuxtOptions: NuxtOptions = this.nuxt.options
@@ -17,7 +16,9 @@ export function registerBabelPlugin(this: ModuleThis) {
       'Unable to automatically add Babel plugin. Make sure your custom `build.babel.plugins` returns `@nuxtjs/composition-api/dist/babel-plugin`'
     )
   } else {
-    nuxtOptions.build.babel.plugins.push(resolveRelativePath('babel-plugin'))
+    nuxtOptions.build.babel.plugins.push(
+      require.resolve('@nuxtjs/composition-api/dist/babel-plugin')
+    )
   }
 
   /**

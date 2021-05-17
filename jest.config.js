@@ -9,7 +9,5 @@ module.exports = {
   moduleNameMapper: {
     '@nuxtjs/composition-api/dist/runtime/globals':
       '<rootDir>/src/runtime/globals',
-    '@nuxtjs/composition-api/dist/runtime/register':
-      '<rootDir>/src/runtime/register',
   },
 }

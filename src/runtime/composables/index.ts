@@ -1,5 +1,3 @@
-import '../register'
-
 export { useAsync } from './async'
 export { defineComponent } from './component'
 export { useContext, withContext } from './context'
