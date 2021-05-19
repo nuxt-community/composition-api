@@ -5,4 +5,4 @@ if (process.env.NODE_ENV === 'test') {
   Vue.use(CompositionApi)
 }
 
-export * from './runtime/composables'
+export * from './composables'
