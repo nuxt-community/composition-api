@@ -65,7 +65,7 @@
     "@vue/composition-api": "1.0.0-rc.9",
     "defu": "^5.0.0",
     "estree-walker": "^2.0.2",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^10.0.0",
     "magic-string": "^0.25.7",
     "ufo": "^0.7.5",
     "upath": "^2.0.1"
