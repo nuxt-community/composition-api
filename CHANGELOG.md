@@ -1,3 +1,24 @@
+## [0.24.0](https://github.com/nuxt-community/composition-api/compare/0.23.4...0.24.0) (2021-05-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* package exports have been moved
+
+* see https://github.com/nuxt-community/composition-api/pull/480 for context and further changes to come
+* output `.mjs` files for runtime templates
+* (outside of Nuxt) only auto-registers plugin if NODE_ENV == 'test'
+
+### Bug Fixes
+
+* add meta plugin after other modules ([#481](https://github.com/nuxt-community/composition-api/issues/481)) ([86ed34e](https://github.com/nuxt-community/composition-api/commit/86ed34ee95640fc9c1039f5ec70c60d7797275fa))
+* rework composition API registration ([#484](https://github.com/nuxt-community/composition-api/issues/484)) ([1e423c3](https://github.com/nuxt-community/composition-api/commit/1e423c3783ba2aa70b38a536366623cf8b181515)), closes [#476](https://github.com/nuxt-community/composition-api/issues/476) [#479](https://github.com/nuxt-community/composition-api/issues/479)
+
+### Build System
+
+* move `globals` and `register` to runtime directory ([842a724](https://github.com/nuxt-community/composition-api/commit/842a724ccaa26e6e7812f6d6ac7cce4ef49de506))
+* output `.mjs` files for runtime templates ([23afd5a](https://github.com/nuxt-community/composition-api/commit/23afd5acb00326753da23dea3583bc08fb086e29))
+
 ### [0.23.4](https://github.com/nuxt-community/composition-api/compare/0.23.3...0.23.4) (2021-04-28)
 
 ### [0.23.3](https://github.com/nuxt-community/composition-api/compare/0.23.2...0.23.3) (2021-04-24)
