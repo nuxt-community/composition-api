@@ -24,7 +24,7 @@ export default <NuxtConfig>{
       moduleSource,
       'babel-plugin'
     ),
-    '@nuxtjs/composition-api': join(moduleSource, 'runtime/composables'),
+    '@nuxtjs/composition-api': join(moduleSource, 'runtime'),
   },
   target: isGenerated ? 'static' : 'server',
   publicRuntimeConfig: {
