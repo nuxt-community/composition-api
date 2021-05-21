@@ -1,6 +1,6 @@
 import { NuxtConfig, NuxtOptions } from '@nuxt/types'
 import { ModuleThis } from '@nuxt/types/config/module'
-import { basename, join, resolve } from 'upath'
+import { join, resolve } from 'upath'
 
 export function isFullStatic(options: NuxtConfig) {
   return (
@@ -26,10 +26,11 @@ export function addResolvedTemplate(
 ) {
   const nuxtOptions: NuxtOptions = this.nuxt.options
 
-  const src = resolveRelativePath(join('runtime/templates', template))
+  const src = resolveRelativePath(`../runtime/templates/${template}`)
+  const filename = template.replace('register.mjs', 'register.js')
   const { dst } = this.addTemplate({
     src,
-    fileName: join('composition-api', basename(src)),
+    fileName: join('composition-api', filename),
     options,
   })
 

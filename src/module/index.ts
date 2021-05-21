@@ -1,7 +1,8 @@
 import type { Module, NuxtOptions } from '@nuxt/types'
 import { resolve } from 'upath'
+import type { Compiler } from 'webpack'
 
-import { name, version } from '../package.json'
+import { name, version } from '../../package.json'
 
 import { registerBabelPlugin } from './babel-register'
 import { addGlobalsFile } from './globals-register'
@@ -26,6 +27,14 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     '@vue/composition-api/dist/vue-composition-api.esm.js'
   )
 
+  // Register the Vue Composition API for webpack
+
+  const registration = addResolvedTemplate.call(this, 'register.mjs')
+  this.nuxt.hook('build:compile', ({ compiler }: { compiler: Compiler }) => {
+    const entry = compiler.options.entry as Record<string, string[]>
+    entry.app.unshift(registration)
+  })
+
   // Turn off webpack4 module context for .mjs files (as it appears to have some issues)
 
   this.extendBuild(config => {
@@ -40,9 +49,11 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   // If we're using nuxt-vite, register vite plugin & inject configuration
 
+  const viteMiddleware = addResolvedTemplate.call(this, 'middleware.mjs')
   this.nuxt.hook('vite:extend', async (ctx: any) => {
     const { compositionApiPlugin } = await import('./vite-plugin')
     ctx.config.plugins.push(compositionApiPlugin())
+    ctx.config.resolve.alias['./middleware.js'] = viteMiddleware
   })
 
   // If we're using Babel, register Babel plugin for injecting keys

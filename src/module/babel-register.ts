@@ -17,7 +17,7 @@ export function registerBabelPlugin(this: ModuleThis) {
       'Unable to automatically add Babel plugin. Make sure your custom `build.babel.plugins` returns `@nuxtjs/composition-api/dist/babel-plugin`'
     )
   } else {
-    nuxtOptions.build.babel.plugins.push(resolveRelativePath('babel-plugin'))
+    nuxtOptions.build.babel.plugins.push(resolveRelativePath('../babel-plugin'))
   }
 
   /**

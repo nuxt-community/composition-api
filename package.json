@@ -23,14 +23,15 @@
       "import": "./dist/runtime/index.mjs",
       "require": "./dist/runtime/index.js"
     },
-    "./module": "./dist/module.js",
+    "./module": "./dist/module/index.js",
     "./package.json": "./package.json",
-    "./dist/babel-plugin": "./dist/babel-plugin.js",
-    "./dist/runtime/*": "./dist/runtime/*"
+    "./dist/babel-plugin": "./dist/babel-plugin/index.js",
+    "./dist/runtime/globals": "./dist/runtime/globals.js",
+    "./dist/runtime/templates/*": "./dist/runtime/templates/*"
   },
   "main": "./dist/runtime/index.js",
   "module": "./dist/runtime/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/runtime/index.d.ts",
   "files": [
     "dist",
     "module.js"
