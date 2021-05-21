@@ -1,5 +1,6 @@
 import type { Module, NuxtOptions } from '@nuxt/types'
-import { relative, resolve, sep } from 'upath'
+import { resolve } from 'upath'
+import type { Compiler } from 'webpack'
 
 import { name, version } from '../../package.json'
 
@@ -26,31 +27,13 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     '@vue/composition-api/dist/vue-composition-api.esm.js'
   )
 
-  // Register the Vue Composition API
+  // Register the Vue Composition API for webpack
 
-  if (nuxtOptions.features.middleware) {
-    const middleware = addResolvedTemplate.call(this, 'register.mjs')
-    this.nuxt.hook(
-      'build:templates',
-      ({ templateVars }: { templateVars: Record<string, any> }) => {
-        templateVars.middleware.unshift({
-          src: middleware,
-          dst: '.' + sep + relative(nuxtOptions.buildDir, middleware),
-          name: 'compositionApiRegistration',
-        })
-      }
-    )
-  } else if (nuxtOptions.features.layouts) {
-    this.addLayout(
-      require.resolve('@nuxtjs/composition-api/dist/runtime/templates/layout'),
-      '0'
-    )
-  } else {
-    const dst = addResolvedTemplate.call(this, 'register.mjs')
-    this.nuxt.hook('modules:done', () =>
-      this.nuxt.hook('build:before', () => nuxtOptions.plugins.unshift(dst))
-    )
-  }
+  const registration = addResolvedTemplate.call(this, 'register.mjs')
+  this.nuxt.hook('build:compile', ({ compiler }: { compiler: Compiler }) => {
+    const entry = compiler.options.entry as Record<string, string[]>
+    entry.app.unshift(registration)
+  })
 
   // Turn off webpack4 module context for .mjs files (as it appears to have some issues)
 
@@ -66,9 +49,11 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   // If we're using nuxt-vite, register vite plugin & inject configuration
 
+  const viteMiddleware = addResolvedTemplate.call(this, 'middleware.mjs')
   this.nuxt.hook('vite:extend', async (ctx: any) => {
     const { compositionApiPlugin } = await import('./vite-plugin')
     ctx.config.plugins.push(compositionApiPlugin())
+    ctx.config.resolve.alias['./middleware.js'] = viteMiddleware
   })
 
   // If we're using Babel, register Babel plugin for injecting keys
