@@ -6,7 +6,6 @@
     "now-build": "yarn generate"
   },
   "devDependencies": {
-    "docus": "^0.1.5",
-    "nuxt": "^2.15.4"
+    "docus": "^0.5.6"
   }
 }
