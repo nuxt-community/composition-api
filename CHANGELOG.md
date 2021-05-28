@@ -1,3 +1,10 @@
+### [0.24.1](https://github.com/nuxt-community/composition-api/compare/0.24.0...0.24.1) (2021-05-28)
+
+
+### Bug Fixes
+
+* alias `@nuxtjs/composition-api` to esm library ([5d30325](https://github.com/nuxt-community/composition-api/commit/5d303252fc45da6add8827d745e0ca69d3c8f8c5)), closes [#488](https://github.com/nuxt-community/composition-api/issues/488)
+
 ## [0.24.0](https://github.com/nuxt-community/composition-api/compare/0.23.4...0.24.0) (2021-05-21)
 
 
