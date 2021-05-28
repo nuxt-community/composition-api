@@ -23,9 +23,19 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   // Define @vue/composition-api resolution to prevent using different versions of @vue/composition-api
 
-  nuxtOptions.alias['@vue/composition-api'] = this.nuxt.resolver.resolveModule(
-    '@vue/composition-api/dist/vue-composition-api.esm.js'
-  )
+  nuxtOptions.alias['@vue/composition-api'] =
+    nuxtOptions.alias['@vue/composition-api'] ||
+    this.nuxt.resolver.resolveModule(
+      '@vue/composition-api/dist/vue-composition-api.esm.js'
+    )
+
+  // Define @nuxtjs/composition-api resolution to ensure plugins register global context successfully
+
+  nuxtOptions.alias['@nuxtjs/composition-api'] =
+    nuxtOptions.alias['@nuxtjs/composition-api'] ||
+    this.nuxt.resolver
+      .resolveModule('@nuxtjs/composition-api')
+      .replace('.js', '.mjs')
 
   // Register the Vue Composition API for webpack
 
