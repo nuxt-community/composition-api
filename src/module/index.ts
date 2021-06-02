@@ -1,6 +1,6 @@
 import type { Module, NuxtOptions } from '@nuxt/types'
 import { resolve } from 'upath'
-import type { Compiler } from 'webpack'
+import type { Configuration } from 'webpack'
 
 import { name, version } from '../../package.json'
 
@@ -40,9 +40,11 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   // Register the Vue Composition API for webpack
 
   const registration = addResolvedTemplate.call(this, 'register.mjs')
-  this.nuxt.hook('build:compile', ({ compiler }: { compiler: Compiler }) => {
-    const entry = compiler.options.entry as Record<string, string[]>
-    entry.app.unshift(registration)
+  this.nuxt.hook('webpack:config', (config: Configuration[]) => {
+    config.forEach(config => {
+      const entry = config.entry as Record<string, string[]>
+      entry.app.unshift(registration)
+    })
   })
 
   // Turn off webpack4 module context for .mjs files (as it appears to have some issues)
