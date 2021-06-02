@@ -1,3 +1,10 @@
+### [0.24.3](https://github.com/nuxt-community/composition-api/compare/0.24.2...0.24.3) (2021-06-02)
+
+
+### Bug Fixes
+
+* use `webpack:config` to add entry for better nuxt/storybook compatibility ([#495](https://github.com/nuxt-community/composition-api/issues/495)) ([1b07abe](https://github.com/nuxt-community/composition-api/commit/1b07abeada072da79c1f0105d73389b799f4f8e1)), closes [#494](https://github.com/nuxt-community/composition-api/issues/494)
+
 ### [0.24.2](https://github.com/nuxt-community/composition-api/compare/list...0.24.2) (2021-05-28)
 
 ### [0.24.1](https://github.com/nuxt-community/composition-api/compare/0.24.0...0.24.1) (2021-05-28)
