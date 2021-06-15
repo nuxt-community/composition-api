@@ -1,4 +1,4 @@
-import type { ModuleThis } from '@nuxt/types/config/module'
+import { useNuxt } from '@nuxt/kit'
 import { withTrailingSlash } from 'ufo'
 
 import { prepareUseStatic } from './static'
@@ -9,18 +9,18 @@ import {
   isUrl,
 } from './utils'
 
-export function addGlobalsFile(this: ModuleThis) {
-  const nuxtOptions = this.options
+export function addGlobalsFile() {
+  const nuxt = useNuxt()
 
-  const { staticPath } = prepareUseStatic.call(this)
-  const { globalContext, globalNuxt } = getNuxtGlobals.call(this)
+  const { staticPath } = prepareUseStatic()
+  const { globalContext, globalNuxt } = getNuxtGlobals()
 
-  const routerBase = withTrailingSlash(nuxtOptions.router.base)
-  const publicPath = withTrailingSlash(nuxtOptions.build.publicPath)
+  const routerBase = withTrailingSlash(nuxt.options.router.base)
+  const publicPath = withTrailingSlash(nuxt.options.build.publicPath)
 
   const globals = {
     // useFetch
-    isFullStatic: isFullStatic(nuxtOptions),
+    isFullStatic: isFullStatic(nuxt.options),
     // useStatic
     staticPath,
     publicPath: isUrl(publicPath) ? publicPath : routerBase,
@@ -33,10 +33,10 @@ export function addGlobalsFile(this: ModuleThis) {
     .map(([key, value]) => `export const ${key} = ${JSON.stringify(value)}`)
     .join('\n')
 
-  const globalsFile = addResolvedTemplate.call(this, 'globals.mjs', {
+  const globalsFile = addResolvedTemplate('globals.mjs', {
     contents,
   })
 
-  nuxtOptions.alias['@nuxtjs/composition-api/dist/runtime/globals'] =
+  nuxt.options.alias['@nuxtjs/composition-api/dist/runtime/globals'] =
     globalsFile
 }

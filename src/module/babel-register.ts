@@ -1,32 +1,31 @@
-import type { NuxtOptions } from '@nuxt/types'
-import type { ModuleThis } from '@nuxt/types/config/module'
+import { useNuxt } from '@nuxt/kit'
 import { resolveRelativePath } from './utils'
 
-export function registerBabelPlugin(this: ModuleThis) {
-  const nuxtOptions: NuxtOptions = this.nuxt.options
+export function registerBabelPlugin() {
+  const nuxt = useNuxt()
 
   /**
    * Add Composition API plugin to inject key automatically
    */
 
-  nuxtOptions.build.babel = nuxtOptions.build.babel || {}
-  nuxtOptions.build.babel.plugins = nuxtOptions.build.babel.plugins || []
+  const babelOptions = nuxt.options.build.babel as any
+  babelOptions.plugins = babelOptions.plugins || []
 
-  if (nuxtOptions.build.babel.plugins instanceof Function) {
+  if (babelOptions.plugins instanceof Function) {
     console.warn(
       'Unable to automatically add Babel plugin. Make sure your custom `build.babel.plugins` returns `@nuxtjs/composition-api/dist/babel-plugin`'
     )
   } else {
-    nuxtOptions.build.babel.plugins.push(resolveRelativePath('../babel-plugin'))
+    babelOptions.plugins.push(resolveRelativePath('../babel-plugin'))
   }
 
   /**
    * Opt in to Composition API support in Babel preset
    */
 
-  const actualPresets = nuxtOptions.build.babel.presets
-  nuxtOptions.build.babel.presets = (
-    env,
+  const actualPresets = nuxt.options.build.babel.presets
+  nuxt.options.build.babel.presets = (
+    env: any,
     [defaultPreset, defaultOptions]: [string, Record<string, any>]
   ) => {
     const newOptions = {

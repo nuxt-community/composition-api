@@ -1,5 +1,4 @@
-import { NuxtConfig, NuxtOptions } from '@nuxt/types'
-import { ModuleThis } from '@nuxt/types/config/module'
+import { useNuxt, addTemplate, NuxtConfig, requireModule } from '@nuxt/kit'
 import { join, resolve } from 'upath'
 
 export function isFullStatic(options: NuxtConfig) {
@@ -20,33 +19,32 @@ export function resolveRelativePath(...path: string[]) {
 }
 
 export function addResolvedTemplate(
-  this: ModuleThis,
   template: string,
   options: Record<string, any> = {}
 ) {
-  const nuxtOptions: NuxtOptions = this.nuxt.options
-
+  const nuxt = useNuxt()
   const src = resolveRelativePath(`../runtime/templates/${template}`)
   const filename = template.replace('register.mjs', 'register.js')
-  const { dst } = this.addTemplate({
+  const { dst } = addTemplate({
     src,
     fileName: join('composition-api', filename),
     options,
   })
 
-  const templatePath = join(nuxtOptions.buildDir, dst)
+  const templatePath = join(nuxt.options.buildDir, dst)
 
   return templatePath
 }
 
-export function resolveCoreJsVersion(this: ModuleThis) {
-  let corejsPolyfill = this.nuxt.options.build.corejs
-    ? String(this.nuxt.options.build.corejs)
+export function resolveCoreJsVersion() {
+  const nuxt = useNuxt()
+  let corejsPolyfill = nuxt.options.build.corejs
+    ? String(nuxt.options.build.corejs)
     : undefined
   try {
     if (!['2', '3'].includes(corejsPolyfill || '')) {
       // eslint-disable-next-line
-      const corejsPkg = this.nuxt.resolver.requireModule('core-js/package.json')
+      const corejsPkg = requireModule('core-js/package.json')
       corejsPolyfill = corejsPkg.version.slice(0, 1)
     }
   } catch {
@@ -55,15 +53,16 @@ export function resolveCoreJsVersion(this: ModuleThis) {
   return corejsPolyfill
 }
 
-export function getNuxtGlobals(this: ModuleThis) {
-  const nuxtOptions: NuxtOptions = this.nuxt.options
+export function getNuxtGlobals() {
+  const nuxt = useNuxt()
 
-  const globalName = nuxtOptions.globalName
+  const globalName = nuxt.options.globalName
   const globalContextFactory =
-    nuxtOptions.globals.context ||
+    (nuxt.options.globals.context as (name: string) => string) ||
     ((globalName: string) => `__${globalName.toUpperCase()}__`)
   const globalNuxtFactory =
-    nuxtOptions.globals.nuxt || ((globalName: string) => `$${globalName}`)
+    (nuxt.options.globals.nuxt as (name: string) => string) ||
+    ((globalName: string) => `$${globalName}`)
   const globalContext = globalContextFactory(globalName)
   const globalNuxt = globalNuxtFactory(globalName)
 

@@ -1,23 +1,22 @@
 import { copyFileSync, existsSync, mkdirpSync, readdirSync } from 'fs-extra'
 import { join } from 'upath'
 
-import type { NuxtOptions } from '@nuxt/types'
-import type { ModuleThis } from '@nuxt/types/config/module'
+import { useNuxt } from '@nuxt/kit'
 
-export function prepareUseStatic(this: ModuleThis) {
-  const nuxtOptions: NuxtOptions = this.nuxt.options
+export function prepareUseStatic() {
+  const nuxt = useNuxt()
 
-  const staticPath = join(nuxtOptions.buildDir, 'static-json')
+  const staticPath = join(nuxt.options.buildDir, 'static-json')
 
-  this.nuxt.hook('builder:prepared', () => {
+  nuxt.hook('builder:prepared', () => {
     mkdirpSync(staticPath)
   })
 
-  this.nuxt.hook('generate:route', () => {
+  nuxt.hook('generate:route', () => {
     mkdirpSync(staticPath)
   })
 
-  this.nuxt.hook('generate:done', async (generator: any) => {
+  nuxt.hook('generate:done', async generator => {
     if (!existsSync(staticPath)) return
 
     const { distPath } = generator
