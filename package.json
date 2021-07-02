@@ -62,12 +62,12 @@
     "watch": "yarn build -w"
   },
   "dependencies": {
-    "@vue/composition-api": "1.0.0-rc.12",
+    "@vue/composition-api": "1.0.0-rc.13",
     "defu": "^5.0.0",
     "estree-walker": "^2.0.2",
     "fs-extra": "^9.1.0",
     "magic-string": "^0.25.7",
-    "ufo": "^0.7.5",
+    "ufo": "^0.7.7",
     "upath": "^2.0.1"
   },
   "devDependencies": {
@@ -83,11 +83,11 @@
     "@types/fs-extra": "^9.0.11",
     "@types/jest": "^26.0.23",
     "@types/normalize-path": "^3.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.28.0",
-    "@typescript-eslint/parser": "^4.28.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
     "babel-loader": "^8.2.2",
     "codecov": "^3.8.2",
-    "core-js": "3.15.1",
+    "core-js": "3.15.2",
     "cross-env": "^7.0.3",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
@@ -95,11 +95,11 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^5.1.0",
     "http-server": "^0.12.3",
-    "jest": "^27.0.5",
+    "jest": "^27.0.6",
     "lint-staged": "^11.0.0",
     "npm-run-all": "^4.1.5",
     "nuxt": "^2.15.7",
-    "prettier": "^2.3.1",
+    "prettier": "^2.3.2",
     "release-it": "14.10.0",
     "rimraf": "^3.0.2",
     "siroc": "0.11.1",
@@ -107,7 +107,7 @@
     "testcafe": "1.14.2",
     "ts-loader": "^8.3.0",
     "tsd": "^0.17.0",
-    "typescript": "4.3.4",
+    "typescript": "4.3.5",
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
