@@ -16,7 +16,7 @@ cta:
   secondary:
 - Open on GitHub
 - https://github.com/nuxt-community/composition-api
-  snippet: yarn add --dev @nuxtjs/composition-api
+  snippet: yarn add @nuxtjs/composition-api
   :::
 
 ::::card-grid{title="What's included?"}
