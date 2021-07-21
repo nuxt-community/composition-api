@@ -1,3 +1,10 @@
+## [0.25.0](https://github.com/nuxt-community/composition-api/compare/0.24.7...0.25.0) (2021-07-21)
+
+
+### Bug Fixes
+
+* `@vue/composition-api` submodule resolution ([#517](https://github.com/nuxt-community/composition-api/issues/517)) ([bb76b53](https://github.com/nuxt-community/composition-api/commit/bb76b5379a1362e8fcb90ea40340f8aeef3c057a))
+
 ### [0.24.7](https://github.com/nuxt-community/composition-api/compare/0.24.6...0.24.7) (2021-07-12)
 
 ### [0.24.6](https://github.com/nuxt-community/composition-api/compare/0.24.5...0.24.6) (2021-07-02)
