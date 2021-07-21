@@ -23,16 +23,13 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   // Define @vue/composition-api resolution to prevent using different versions of @vue/composition-api
 
-  nuxtOptions.alias['@vue/composition-api/dist/vue-composition-api.esm.js'] =
+  const capiEntrypoint = '@vue/composition-api/dist/vue-composition-api.esm.js'
+  const capiResolution =
     nuxtOptions.alias['@vue/composition-api'] ||
-    this.nuxt.resolver.resolveModule(
-      '@vue/composition-api/dist/vue-composition-api.esm.js'
-    )
-  nuxtOptions.alias['@vue/composition-api'] =
-    nuxtOptions.alias['@vue/composition-api'] ||
-    this.nuxt.resolver.resolveModule(
-      '@vue/composition-api/dist/vue-composition-api.esm.js'
-    )
+    this.nuxt.resolver.resolveModule(capiEntrypoint)
+
+  nuxtOptions.alias[capiEntrypoint] = capiResolution
+  nuxtOptions.alias['@vue/composition-api'] = capiResolution
 
   // Define @nuxtjs/composition-api resolution to ensure plugins register global context successfully
 
