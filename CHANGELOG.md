@@ -1,3 +1,10 @@
+### [0.25.2](https://github.com/nuxt-community/composition-api/compare/0.25.1...0.25.2) (2021-07-27)
+
+
+### Bug Fixes
+
+* allow setting ssrRef within `onGlobalSetup` ([#523](https://github.com/nuxt-community/composition-api/issues/523)) ([320c409](https://github.com/nuxt-community/composition-api/commit/320c4098a5e0b071ed464b65aed1851e763755f7))
+
 ### [0.25.1](https://github.com/nuxt-community/composition-api/compare/0.25.0...0.25.1) (2021-07-22)
 
 ## [0.25.0](https://github.com/nuxt-community/composition-api/compare/0.24.7...0.25.0) (2021-07-21)
