@@ -21,6 +21,14 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
   nuxtOptions.build.transpile.push('@nuxtjs/composition-api', runtimeDir)
 
+  // Define vue resolution to prevent VCA being registered to the wrong Vue instance
+
+  nuxtOptions.alias.vue =
+    nuxtOptions.alias.vue ||
+    (nuxtOptions.dev
+      ? this.nuxt.resolver.resolveModule('vue/dist/vue.common.dev.js')
+      : this.nuxt.resolver.resolveModule('vue/dist/vue.runtime.esm.js'))
+
   // Define @vue/composition-api resolution to prevent using different versions of @vue/composition-api
 
   const capiEntrypoint = '@vue/composition-api/dist/vue-composition-api.esm.js'
