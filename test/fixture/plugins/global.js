@@ -16,7 +16,8 @@ export default () => {
 
   onGlobalSetup(() => {
     const { $config } = useContext()
-    ssrRef('test')
+    const a = ssrRef('test')
+    a.value = 'another'
 
     const { title } = useMeta()
     title.value = 'My fixture'

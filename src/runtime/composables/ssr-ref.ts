@@ -25,27 +25,20 @@ export function setSSRContext(app: any) {
 }
 
 const useServerData = () => {
-  let type: 'globalRefs' | 'ssrRefs' = 'globalRefs'
-
   const vm = getCurrentInstance()
+  const type: 'globalRefs' | 'ssrRefs' = vm ? 'ssrRefs' : 'globalRefs'
 
-  if (vm) {
-    type = 'ssrRefs'
-    if (process.server) {
-      const { ssrContext } = (vm[globalNuxt] || vm.$options).context
-      ;(ssrContext as any).nuxt.ssrRefs = (ssrContext as any).nuxt.ssrRefs || {}
-    }
+  let ssrRefs: Record<string, any>
+
+  if (vm && process.server) {
+    const ssrContext = (vm![globalNuxt] || vm!.$options).context.ssrContext!
+    ssrRefs = (ssrContext.nuxt as any).ssrRefs =
+      (ssrContext.nuxt as any).ssrRefs || {}
   }
 
   const setData = (key: string, val: any) => {
-    switch (type) {
-      case 'globalRefs':
-        globalRefs[key] = sanitise(val)
-        break
-      case 'ssrRefs':
-        ;(vm![globalNuxt].context.ssrContext as any).nuxt.ssrRefs[key] =
-          sanitise(val)
-    }
+    const refs = ssrRefs || globalRefs
+    refs[key] = sanitise(val)
   }
 
   return { type, setData }
