@@ -28,12 +28,14 @@ const useServerData = () => {
   let type: 'globalRefs' | 'ssrRefs' = 'globalRefs'
 
   const vm = getCurrentInstance()
+  let ssrRefs: Record<string, any>
 
   if (vm) {
     type = 'ssrRefs'
     if (process.server) {
-      const { ssrContext } = (vm[globalNuxt] || vm.$options).context
-      ;(ssrContext as any).nuxt.ssrRefs = (ssrContext as any).nuxt.ssrRefs || {}
+      const ssrContext = (vm![globalNuxt] || vm!.$options).context.ssrContext!
+      ssrRefs = (ssrContext.nuxt as any).ssrRefs =
+        (ssrContext.nuxt as any).ssrRefs || {}
     }
   }
 
@@ -43,8 +45,7 @@ const useServerData = () => {
         globalRefs[key] = sanitise(val)
         break
       case 'ssrRefs':
-        ;(vm![globalNuxt].context.ssrContext as any).nuxt.ssrRefs[key] =
-          sanitise(val)
+        ssrRefs[key] = sanitise(val)
     }
   }
 
