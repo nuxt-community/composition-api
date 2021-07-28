@@ -1,3 +1,10 @@
+## [0.26.0](https://github.com/nuxt-community/composition-api/compare/0.25.2...0.26.0) (2021-07-28)
+
+
+### Bug Fixes
+
+* resolve to single vue instance ([#525](https://github.com/nuxt-community/composition-api/issues/525)) ([33171bf](https://github.com/nuxt-community/composition-api/commit/33171bfd4966ad18532c4e343571f567b9f1d31b))
+
 ### [0.25.2](https://github.com/nuxt-community/composition-api/compare/0.25.1...0.25.2) (2021-07-27)
 
 
