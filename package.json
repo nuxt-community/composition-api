@@ -81,7 +81,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@release-it/conventional-changelog": "^3.0.1",
     "@types/fs-extra": "^9.0.12",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.0",
     "@types/normalize-path": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
