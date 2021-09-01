@@ -1,5 +1,6 @@
 import {
   isRef,
+  isReactive,
   onBeforeMount,
   onServerPrefetch,
   reactive,
@@ -129,6 +130,41 @@ const setFetchState = (vm: AugmentedComponentInstance) => {
     })
 }
 
+const mergeDataOnMount = (data: Record<string, any>) => {
+  const vm = getCurrentInstance() as AugmentedComponentInstance | undefined
+  if (!vm) throw new Error('This must be called within a setup function.')
+
+  onBeforeMount(() => {
+    // Merge data
+    for (const key in data) {
+      try {
+        // Assign missing properties
+        if (key in vm) {
+          const _key = key as keyof typeof vm
+          // Skip functions (not stringifiable)
+          if (typeof vm[_key] === 'function') continue
+          // Preserve reactive objects
+          if (isReactive(vm[_key])) {
+            // Unset keys that do not exist in incoming data
+            for (const k in vm[_key]) {
+              if (!(k in data[key])) {
+                delete vm[_key][k]
+              }
+            }
+            Object.assign(vm[_key], data[key])
+            continue
+          }
+        }
+        set(vm, key, data[key])
+      } catch (e) {
+        if (process.env.NODE_ENV === 'development')
+          // eslint-disable-next-line
+          console.warn(`Could not hydrate ${key}.`)
+      }
+    }
+  })
+}
+
 const loadFullStatic = (vm: AugmentedComponentInstance) => {
   vm._fetchKey = getKey(vm)
   // Check if component has been fetched on server
@@ -151,12 +187,7 @@ const loadFullStatic = (vm: AugmentedComponentInstance) => {
     return
   }
 
-  onBeforeMount(() => {
-    // Merge data
-    for (const key in data) {
-      set(vm, key, data[key])
-    }
-  })
+  mergeDataOnMount(data)
 }
 
 async function serverPrefetch(vm: AugmentedComponentInstance) {
@@ -319,21 +350,7 @@ export const useFetch = (callback: Fetch) => {
     return result()
   }
 
-  onBeforeMount(() => {
-    // Merge data
-    for (const key in data) {
-      try {
-        if (key in vm && typeof vm[key as keyof typeof vm] === 'function') {
-          continue
-        }
-        set(vm, key, data[key])
-      } catch (e) {
-        if (process.env.NODE_ENV === 'development')
-          // eslint-disable-next-line
-          console.warn(`Could not hydrate ${key}.`)
-      }
-    }
-  })
+  mergeDataOnMount(data)
 
   return result()
 }
