@@ -98,6 +98,9 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     nuxtOptions.plugins.push(metaPlugin)
     nuxtOptions.plugins.unshift(globalPlugin)
   })
+
+  // Enable using `script setup`
+  this.addModule('unplugin-vue2-script-setup/nuxt')
 }
 
 // eslint-disable-next-line
