@@ -68,6 +68,7 @@
     "fs-extra": "^9.1.0",
     "magic-string": "^0.25.7",
     "ufo": "^0.7.9",
+    "unplugin-vue2-script-setup": "^0.5.5",
     "upath": "^2.0.1"
   },
   "devDependencies": {

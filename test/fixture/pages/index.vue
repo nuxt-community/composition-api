@@ -46,9 +46,8 @@
   </main>
 </template>
 
-<script>
+<script setup>
 import {
-  defineComponent,
   ref,
   computed,
   useFetch,
@@ -58,37 +57,22 @@ import ChildComp from '../components/comp.vue'
 
 import { fetcher } from '../utils'
 
-export default defineComponent({
-  components: {
-    ChildComp,
-  },
-  setup() {
-    const name = ref('')
-    const email = ref('')
-    const computedProp = computed(() => 'computed')
+const name = ref('')
+const email = ref('')
+const computedProp = computed(() => 'computed')
 
-    function myFunction() {
-      return 'function result'
-    }
+function myFunction() {
+  return 'function result'
+}
 
-    useFetch(async () => {
-      name.value = await fetcher('Full Name')
-      if (process.client) email.value = await fetcher('long@load.com', 2000)
-    })
+useFetch(async () => {
+  name.value = await fetcher('Full Name')
+  if (process.client) email.value = await fetcher('long@load.com', 2000)
+})
 
-    const ttfb = ref(-1)
-    onMounted(() => {
-      ttfb.value =
-        globalThis.performance.getEntriesByType('navigation')[0].responseStart
-    })
-
-    return {
-      name,
-      email,
-      computedProp,
-      myFunction,
-      ttfb,
-    }
-  },
+const ttfb = ref(-1)
+onMounted(() => {
+  ttfb.value =
+    globalThis.performance.getEntriesByType('navigation')[0].responseStart
 })
 </script>
