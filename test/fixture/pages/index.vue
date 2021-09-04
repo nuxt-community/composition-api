@@ -47,12 +47,7 @@
 </template>
 
 <script setup>
-import {
-  ref,
-  computed,
-  useFetch,
-  onMounted,
-} from '@nuxtjs/composition-api'
+import { ref, computed, useFetch, onMounted } from '@nuxtjs/composition-api'
 import ChildComp from '../components/comp.vue'
 
 import { fetcher } from '../utils'

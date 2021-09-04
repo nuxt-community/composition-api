@@ -13,7 +13,7 @@ import {
 export default defineComponent({
   setup() {
     const dataset = reactive({
-      ttfb: -1
+      ttfb: -1,
     })
     useFetch(() => {})
 
