@@ -1,3 +1,15 @@
+## [0.28.0](https://github.com/nuxt-community/composition-api/compare/0.27.0...0.28.0) (2021-09-04)
+
+
+### Features
+
+* enable `script setup` syntax ([#542](https://github.com/nuxt-community/composition-api/issues/542)) ([8bfadeb](https://github.com/nuxt-community/composition-api/commit/8bfadeb9c7355e7fa8d4ac0892f3259570a380b4))
+
+
+### Bug Fixes
+
+* preserve reactive objects on `useFetch` hydration ([#541](https://github.com/nuxt-community/composition-api/issues/541)) ([4c3e734](https://github.com/nuxt-community/composition-api/commit/4c3e73426c4bc78127bca5393b05be4fec65f369))
+
 ## [0.27.0](https://github.com/nuxt-community/composition-api/compare/0.26.0...0.27.0) (2021-08-20)
 
 ## [0.26.0](https://github.com/nuxt-community/composition-api/compare/0.25.2...0.26.0) (2021-07-28)
