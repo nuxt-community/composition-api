@@ -116,6 +116,9 @@
     "nuxt": "^2.15",
     "vue": "^2"
   },
+  "engines": {
+    "node": "^12.17.0 || ^13.7 || >=14"
+  },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
