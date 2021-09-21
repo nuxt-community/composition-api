@@ -1,3 +1,10 @@
+### [0.29.2](https://github.com/nuxt-community/composition-api/compare/0.29.1...0.29.2) (2021-09-21)
+
+
+### Features
+
+* add new exports from `@vue/composition-api` ([6d0ebd0](https://github.com/nuxt-community/composition-api/commit/6d0ebd09af7dbf12a4a8cf87d7aedd5cdfcdedb9))
+
 ### [0.29.1](https://github.com/nuxt-community/composition-api/compare/0.29.0...0.29.1) (2021-09-21)
 
 ## [0.29.0](https://github.com/nuxt-community/composition-api/compare/0.28.0...0.29.0) (2021-09-08)
