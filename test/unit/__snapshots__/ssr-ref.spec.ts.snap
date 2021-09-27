@@ -11,6 +11,16 @@ Object {
 }
 `;
 
+exports[`ssrRef reactivity ssrRefs react to constructors 1`] = `
+RefImpl {
+  "value": bound Object {
+    "testMap": Map {
+      "john" => "doe",
+    },
+  },
+}
+`;
+
 exports[`ssrRef reactivity ssrRefs react to deep change in array state 1`] = `
 Object {
   "nuxt": Object {
