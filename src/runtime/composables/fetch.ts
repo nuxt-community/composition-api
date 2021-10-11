@@ -141,7 +141,7 @@ const mergeDataOnMount = (data: Record<string, any>) => {
         // Assign missing properties
         if (key in vm) {
           const _key = key as keyof typeof vm
-          // Skip value equal to incomming data
+          // Skip value equal to incoming data
           if (vm[_key] === data[key]) continue
           // Skip functions (not stringifiable)
           if (typeof vm[_key] === 'function') continue
