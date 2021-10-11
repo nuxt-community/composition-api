@@ -107,7 +107,10 @@ export const ssrRef = <T>(value: T | (() => T), key?: string): Ref<T> => {
         track()
         if (isProxyable(target[prop]))
           return getProxy(track, trigger, target[prop])
-        return Reflect.get(target, prop)
+
+        const value = Reflect.get(target, prop)
+
+        return typeof value === 'function' ? value.bind(target) : value
       },
       set(obj, prop, newVal) {
         const result = Reflect.set(obj, prop, newVal)

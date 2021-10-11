@@ -52,4 +52,13 @@ describe('ssrRef reactivity', () => {
 
     expect(ssrContext).toMatchSnapshot()
   })
+
+  test('ssrRefs react to constructors', async () => {
+    const testMap = new Map()
+    testMap.set('john', 'doe')
+
+    const obj = ssrRef({ testMap }, 'obj')
+
+    expect(obj).toMatchSnapshot()
+  })
 })
