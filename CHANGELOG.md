@@ -1,3 +1,11 @@
+### [0.29.3](https://github.com/nuxt-community/composition-api/compare/0.29.2...0.29.3) (2021-10-11)
+
+
+### Bug Fixes
+
+* correctly proxify functions within ssrRef ([#561](https://github.com/nuxt-community/composition-api/issues/561)) ([016ff0a](https://github.com/nuxt-community/composition-api/commit/016ff0aaf115af9208969a4d12becfbdde307204))
+* skip setting values that are unchanged in useFetch ([#552](https://github.com/nuxt-community/composition-api/issues/552)) ([484b061](https://github.com/nuxt-community/composition-api/commit/484b061162549a75da37a7ffe833affb03e285c3))
+
 ### [0.29.2](https://github.com/nuxt-community/composition-api/compare/0.29.1...0.29.2) (2021-09-21)
 
 
