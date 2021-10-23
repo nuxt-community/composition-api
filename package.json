@@ -90,7 +90,7 @@
     "codecov": "^3.8.3",
     "core-js": "3.18.2",
     "cross-env": "^7.0.3",
-    "eslint": "^7.0.0",
+    "eslint": "^8.1.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^25.0.1",
     "eslint-plugin-prettier": "^4.0.0",
