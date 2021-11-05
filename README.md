@@ -24,7 +24,11 @@
 
 > `@nuxtjs/composition-api` provides a way to use the Vue 3 Composition API in with Nuxt-specific features.
 
-**Note**: the main aim is to allow experimentation and feedback before the final release of Nuxt 3. The API of Nuxt-specific methods will likely change before Nuxt 3 is released.
+---
+
+**Nuxt Bridge has now been released in beta.** It's strongly recommended to migrate to Nuxt Bridge by following the steps in [the Bridge migration guide](https://v3.nuxtjs.org/getting-started/bridge/). Make sure to read the [specific migration guide](https://v3.nuxtjs.org/getting-started/bridge-composition-api) on how to replace composables from `@nuxtjs/composition-api` with the new Nuxt 3-compatible composables provided by Bridge.
+
+---
 
 ## Features
 
