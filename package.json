@@ -21,15 +21,15 @@
   "exports": {
     ".": {
       "import": "./dist/runtime/index.mjs",
-      "require": "./dist/runtime/index.js"
+      "require": "./dist/runtime/index.cjs"
     },
-    "./module": "./dist/module/index.js",
+    "./module": "./dist/module/index.cjs",
     "./package.json": "./package.json",
-    "./dist/babel-plugin": "./dist/babel-plugin/index.js",
-    "./dist/runtime/globals": "./dist/runtime/globals.js",
+    "./dist/babel-plugin": "./dist/babel-plugin/index.cjs",
+    "./dist/runtime/globals": "./dist/runtime/globals.cjs",
     "./dist/runtime/templates/*": "./dist/runtime/templates/*"
   },
-  "main": "./dist/runtime/index.js",
+  "main": "./dist/runtime/index.cjs",
   "module": "./dist/runtime/index.mjs",
   "types": "./dist/runtime/index.d.ts",
   "files": [
