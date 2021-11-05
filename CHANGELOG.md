@@ -1,3 +1,11 @@
+## [0.30.0](https://github.com/nuxt-community/composition-api/compare/0.29.3...0.30.0) (2021-11-05)
+
+
+### Bug Fixes
+
+* resolve all aliases ([#578](https://github.com/nuxt-community/composition-api/issues/578)) ([d2c7516](https://github.com/nuxt-community/composition-api/commit/d2c7516ebb6478d0628e85c6f2201f86cd7b1abf))
+* use `.mjs` version of `@vue/compoisition-api` ([#577](https://github.com/nuxt-community/composition-api/issues/577)) ([f49884b](https://github.com/nuxt-community/composition-api/commit/f49884b6dbe34869de88b56c2c6ef01d609d8556))
+
 ### [0.29.3](https://github.com/nuxt-community/composition-api/compare/0.29.2...0.29.3) (2021-10-11)
 
 
