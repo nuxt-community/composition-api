@@ -31,7 +31,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   // Define @vue/composition-api resolution to prevent using different versions of @vue/composition-api
 
-  const capiEntrypoint = '@vue/composition-api/dist/vue-composition-api.esm.js'
+  const capiEntrypoint = '@vue/composition-api/dist/vue-composition-api.mjs'
   const capiResolution =
     nuxtOptions.alias['@vue/composition-api'] ||
     this.nuxt.resolver.resolveModule(capiEntrypoint)
