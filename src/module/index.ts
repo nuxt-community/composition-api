@@ -9,7 +9,7 @@ import { addGlobalsFile } from './globals-register'
 import { addResolvedTemplate, resolveCoreJsVersion } from './utils'
 
 const compositionApiModule: Module<never> = function compositionApiModule() {
-  const nuxtOptions: NuxtOptions = this.nuxt.options
+  const nuxt = this.nuxt as { options: NuxtOptions }
 
   // Register globals file where Nuxt config can be accessed from live library
 
@@ -18,31 +18,71 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   // Force transpilation of this library (to enable resolution of globals file)
 
   const runtimeDir = resolve(__dirname, 'runtime')
-  nuxtOptions.build.transpile = nuxtOptions.build.transpile || []
-  nuxtOptions.build.transpile.push('@nuxtjs/composition-api', runtimeDir)
+  nuxt.options.build.transpile = nuxt.options.build.transpile || []
+  nuxt.options.build.transpile.push('@nuxtjs/composition-api', runtimeDir)
 
   // Define vue resolution to prevent VCA being registered to the wrong Vue instance
 
-  nuxtOptions.alias.vue =
-    nuxtOptions.alias.vue ||
-    (nuxtOptions.dev
+  const vueEntry =
+    nuxt.options.alias.vue ||
+    (nuxt.options.dev
       ? this.nuxt.resolver.resolveModule('vue/dist/vue.common.dev.js')
       : this.nuxt.resolver.resolveModule('vue/dist/vue.runtime.esm.js'))
+
+  const vueAliases = Object.fromEntries(
+    [
+      // vue 2 dist files
+      '.common.dev',
+      '.common',
+      '.common.prod',
+      '.esm.browser',
+      '.esm.browser.min',
+      '.esm',
+      '',
+      '.min',
+      '.runtime.common.dev',
+      '.runtime.common',
+      '.runtime.common.prod',
+      '.runtime.esm',
+      '.runtime',
+      '.runtime.min',
+    ]
+      .flatMap(m => [`vue/dist/vue${m}`, `vue/dist/vue${m}.js`])
+      .map(m => [m, vueEntry])
+  )
+
+  nuxt.options.alias = {
+    ...vueAliases,
+    ...nuxt.options.alias,
+    vue: vueEntry,
+  }
 
   // Define @vue/composition-api resolution to prevent using different versions of @vue/composition-api
 
   const capiEntrypoint = '@vue/composition-api/dist/vue-composition-api.mjs'
   const capiResolution =
-    nuxtOptions.alias['@vue/composition-api'] ||
+    nuxt.options.alias['@vue/composition-api'] ||
     this.nuxt.resolver.resolveModule(capiEntrypoint)
 
-  nuxtOptions.alias[capiEntrypoint] = capiResolution
-  nuxtOptions.alias['@vue/composition-api'] = capiResolution
+  const capiAliases = Object.fromEntries(
+    ['.common', '', '.prod', '.common.prod', '.esm', '.mjs']
+      .flatMap(m => [
+        `@vue/composition-api/dist/vue-composition-api${m}`,
+        `@vue/composition-api/dist/vue-composition-api${m}.js`,
+      ])
+      .map(m => [m, capiResolution])
+  )
+
+  nuxt.options.alias = {
+    ...capiAliases,
+    ...nuxt.options.alias,
+    '@vue/composition-api': capiResolution,
+  }
 
   // Define @nuxtjs/composition-api resolution to ensure plugins register global context successfully
 
-  nuxtOptions.alias['@nuxtjs/composition-api'] =
-    nuxtOptions.alias['@nuxtjs/composition-api'] ||
+  nuxt.options.alias['@nuxtjs/composition-api'] =
+    nuxt.options.alias['@nuxtjs/composition-api'] ||
     this.nuxt.resolver
       .resolveModule('@nuxtjs/composition-api')
       .replace('.js', '.mjs')
@@ -66,6 +106,12 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
       if (rule.test instanceof RegExp && rule.test.test('index.mjs')) {
         rule.type = 'javascript/auto'
       }
+    })
+
+    config.module.rules.unshift({
+      test: /\.mjs$/,
+      type: 'javascript/auto',
+      include: [/node_modules/],
     })
   })
 
@@ -95,8 +141,8 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   const metaPlugin = addResolvedTemplate.call(this, 'meta.mjs')
 
   this.nuxt.hook('modules:done', () => {
-    nuxtOptions.plugins.push(metaPlugin)
-    nuxtOptions.plugins.unshift(globalPlugin)
+    nuxt.options.plugins.push(metaPlugin)
+    nuxt.options.plugins.unshift(globalPlugin)
   })
 
   // Enable using `script setup`
