@@ -13,11 +13,11 @@ cta:
 
 - Get started
 - /getting-started/introduction
-  secondary:
+secondary:
 - Open on GitHub
 - https://github.com/nuxt-community/composition-api
-  snippet: yarn add @nuxtjs/composition-api
-  :::
+snippet: yarn add @nuxtjs/composition-api
+:::
 
 ::::card-grid{title="What's included?"}
 :::card{icon="IconVue" title="Vue 3 Composition API"}
