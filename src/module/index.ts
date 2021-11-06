@@ -19,7 +19,20 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   const runtimeDir = resolve(__dirname, 'runtime')
   nuxt.options.build.transpile = nuxt.options.build.transpile || []
-  nuxt.options.build.transpile.push('@nuxtjs/composition-api', runtimeDir)
+  nuxt.options.build.transpile.push(
+    '@nuxtjs/composition-api',
+    runtimeDir,
+    'vue'
+  )
+
+  // Prevent multiple VCA installations onto the same external vue instance
+
+  this.extendBuild((config, { isServer, isDev }) => {
+    if (!isServer) return
+    const vueEntry = `vue/dist/vue.runtime.common.${isDev ? 'dev' : 'prod'}.js`
+    // eslint-disable-next-line
+    config.resolve!.alias!.vue = vueEntry
+  })
 
   // Define vue resolution to prevent VCA being registered to the wrong Vue instance
 
@@ -48,7 +61,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
       '.runtime.min',
     ]
       .flatMap(m => [`vue/dist/vue${m}`, `vue/dist/vue${m}.js`])
-      .map(m => [m, vueEntry])
+      .map(m => [m, 'vue'])
   )
 
   nuxt.options.alias = {
@@ -70,7 +83,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
         `@vue/composition-api/dist/vue-composition-api${m}`,
         `@vue/composition-api/dist/vue-composition-api${m}.js`,
       ])
-      .map(m => [m, capiResolution])
+      .map(m => [m, '@vue/composition-api'])
   )
 
   nuxt.options.alias = {
