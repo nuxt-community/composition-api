@@ -26,7 +26,7 @@
 
 ---
 
-**Nuxt Bridge has now been released in beta.** It's strongly recommended to migrate to Nuxt Bridge by following the steps in [the Bridge migration guide](https://v3.nuxtjs.org/getting-started/bridge/). Make sure to read the [specific migration guide](https://v3.nuxtjs.org/getting-started/bridge-composition-api) on how to replace composables from `@nuxtjs/composition-api` with the new Nuxt 3-compatible composables provided by Bridge.
+**Nuxt Bridge has now been released in beta.** It has full composition API support and it's strongly recommended to migrate from `@nuxtjs/composition-api`, if possible, by following the steps in [the Bridge migration guide](https://v3.nuxtjs.org/getting-started/bridge/). Feedback welcome at `https://github.com/nuxt-community/composition-api/discussions/585`.
 
 ---
 
