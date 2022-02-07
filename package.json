@@ -114,7 +114,7 @@
   "peerDependencies": {
     "@nuxt/vue-app": "^2.15",
     "nuxt": "^2.15",
-    "vue": "^2"
+    "vue": "^3"
   },
   "engines": {
     "node": "^12.20.0 || >=14.13.0"
