@@ -51,7 +51,7 @@ test('TTFB is lower than 100ms', async t => {
   const text = await selector.innerText
   const [, msString] = /TTFB: (\d+)ms/.exec(text)!
   const ms = Number(msString)
-  await t.expect(ms).lte(100)
+  await t.expect(ms).lte(120)
 })
 
 test("Doesn't overwrite methods and getters", async () => {
