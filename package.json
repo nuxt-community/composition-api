@@ -62,13 +62,13 @@
     "watch": "yarn build -w"
   },
   "dependencies": {
-    "@vue/composition-api": "^1.4.6",
+    "@vue/composition-api": "^1.4.7",
     "defu": "^5.0.1",
     "estree-walker": "^2.0.2",
     "fs-extra": "^9.1.0",
     "magic-string": "^0.25.7",
-    "ufo": "^0.7.9",
-    "unplugin-vue2-script-setup": "^0.9.3",
+    "ufo": "^0.7.11",
+    "unplugin-vue2-script-setup": "^0.10.0",
     "upath": "^2.0.1"
   },
   "devDependencies": {
@@ -80,9 +80,9 @@
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@nuxtjs/pwa": "^3.3.5",
-    "@release-it/conventional-changelog": "^4.1.0",
+    "@release-it/conventional-changelog": "^4.2.0",
     "@types/fs-extra": "^9.0.13",
-    "@types/jest": "^27.4.0",
+    "@types/jest": "^27.4.1",
     "@types/normalize-path": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
@@ -90,7 +90,7 @@
     "codecov": "^3.8.3",
     "core-js": "3.21.1",
     "cross-env": "^7.0.3",
-    "eslint": "^8.9.0",
+    "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-jest": "^26.1.1",
     "eslint-plugin-prettier": "^4.0.0",
