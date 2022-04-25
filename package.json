@@ -62,7 +62,7 @@
     "watch": "yarn build -w"
   },
   "dependencies": {
-    "@vue/composition-api": "^1.4.9",
+    "@vue/composition-api": "^1.5.0",
     "defu": "^5.0.1",
     "estree-walker": "^2.0.2",
     "fs-extra": "^9.1.0",
@@ -90,9 +90,9 @@
     "codecov": "^3.8.3",
     "core-js": "3.22.2",
     "cross-env": "^7.0.3",
-    "eslint": "^8.13.0",
+    "eslint": "^8.14.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-jest": "^26.1.4",
+    "eslint-plugin-jest": "^26.1.5",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "http-server": "^14.1.0",
