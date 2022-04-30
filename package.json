@@ -80,7 +80,7 @@
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@nuxtjs/pwa": "^3.3.5",
-    "@release-it/conventional-changelog": "^4.3.0",
+    "@release-it/conventional-changelog": "^5.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^27.4.1",
     "@types/normalize-path": "^3.0.0",
