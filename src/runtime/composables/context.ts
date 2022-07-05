@@ -1,6 +1,6 @@
-import { computed } from '@vue/composition-api'
+import { computed } from 'vue'
 
-import type { Ref } from '@vue/composition-api'
+import type { Ref } from 'vue'
 import type { Context } from '@nuxt/types'
 import type { Route } from 'vue-router'
 

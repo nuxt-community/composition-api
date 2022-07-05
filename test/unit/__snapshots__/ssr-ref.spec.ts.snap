@@ -1,18 +1,18 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`ssrRef reactivity ssrRefs react to change in state 1`] = `
-Object {
-  "nuxt": Object {
-    "globalRefs": Object {},
-    "ssrRefs": Object {
+exports[`ssrRef reactivity > ssrRefs react to change in state 1`] = `
+{
+  "nuxt": {
+    "globalRefs": {},
+    "ssrRefs": {
       "name": "full name",
     },
   },
 }
 `;
 
-exports[`ssrRef reactivity ssrRefs react to constructors 1`] = `
-RefImpl {
+exports[`ssrRef reactivity > ssrRefs react to constructors 1`] = `
+{
   "value": bound Object {
     "testMap": Map {
       "john" => "doe",
@@ -21,15 +21,15 @@ RefImpl {
 }
 `;
 
-exports[`ssrRef reactivity ssrRefs react to deep change in array state 1`] = `
-Object {
-  "nuxt": Object {
-    "globalRefs": Object {},
-    "ssrRefs": Object {
-      "obj": Object {
-        "deep": Object {
-          "object": Array [
-            Object {
+exports[`ssrRef reactivity > ssrRefs react to deep change in array state 1`] = `
+{
+  "nuxt": {
+    "globalRefs": {},
+    "ssrRefs": {
+      "obj": {
+        "deep": {
+          "object": [
+            {
               "name": "full name",
             },
           ],
@@ -40,14 +40,14 @@ Object {
 }
 `;
 
-exports[`ssrRef reactivity ssrRefs react to deep change in object state 1`] = `
-Object {
-  "nuxt": Object {
-    "globalRefs": Object {},
-    "ssrRefs": Object {
-      "obj": Object {
-        "deep": Object {
-          "object": Object {
+exports[`ssrRef reactivity > ssrRefs react to deep change in object state 1`] = `
+{
+  "nuxt": {
+    "globalRefs": {},
+    "ssrRefs": {
+      "obj": {
+        "deep": {
+          "object": {
             "name": "full name",
           },
         },
@@ -57,11 +57,11 @@ Object {
 }
 `;
 
-exports[`ssrRef reactivity ssrRefs within multiple requests 1`] = `
-Object {
-  "nuxt": Object {
-    "globalRefs": Object {},
-    "ssrRefs": Object {
+exports[`ssrRef reactivity > ssrRefs within multiple requests 1`] = `
+{
+  "nuxt": {
+    "globalRefs": {},
+    "ssrRefs": {
       "concurrentRef": 2,
     },
   },

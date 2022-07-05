@@ -1,5 +1,4 @@
-import { VueConstructor } from 'vue'
-import { getCurrentInstance as getVM } from '@vue/composition-api'
+import { getCurrentInstance as getVM } from 'vue'
 
 export function validateKey<T>(key?: T): asserts key is T {
   if (!key) {
@@ -9,12 +8,10 @@ export function validateKey<T>(key?: T): asserts key is T {
   }
 }
 
-export type ComponentInstance = InstanceType<VueConstructor>
-
 export function getCurrentInstance() {
   const vm = getVM()
 
   if (!vm) return
 
-  return vm.proxy as InstanceType<VueConstructor>
+  return vm.proxy
 }

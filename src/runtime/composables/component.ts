@@ -1,4 +1,4 @@
-import { defineComponent as define } from '@vue/composition-api'
+import { defineComponent as define } from 'vue'
 
 import { getHeadOptions } from './meta'
 

@@ -10,7 +10,7 @@ import {
   isRef,
   toRaw,
   UnwrapRef,
-} from '@vue/composition-api'
+} from 'vue'
 
 import type { MetaInfo } from 'vue-meta'
 
@@ -120,7 +120,13 @@ export const useMeta = <
   if (!vm._computedHead) {
     const metaRefs = reactive(createEmptyMeta())
     vm._computedHead = [metaRefs]
-    vm._metaRefs = toRefs(metaRefs) as MetaRefs
+    vm._metaRefs = (
+      process.server
+        ? Object.fromEntries(
+            Object.entries(metaRefs).map(([key, value]) => [key, { value }])
+          )
+        : toRefs(metaRefs)
+    ) as MetaRefs
 
     if (process.client) {
       watch(Object.values(vm._metaRefs), refreshMeta, { immediate: true })

@@ -1,5 +1,5 @@
 import type { Plugin } from '@nuxt/types'
-import type { SetupContext } from '@vue/composition-api'
+import type { SetupContext } from 'vue'
 import { getHeadOptions } from './meta'
 
 import { reqRefs } from './req-ref'

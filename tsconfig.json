@@ -17,7 +17,7 @@
       ],
       "@nuxtjs/composition-api": ["./src/index.ts"]
     },
-    "types": ["node", "@nuxt/types", "jest"]
+    "types": ["node", "@nuxt/types"]
   },
   "include": ["src/**/*.ts", "test/fixture/**/*.vue", "test/fixture/**/*.ts"]
 }

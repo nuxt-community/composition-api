@@ -1,7 +1,7 @@
 <template>
   <blockquote>
     <p>
-      <code>static value: {{ post }}</code>
+      <code>static value: {{ JSON.stringify(post) }}</code>
     </p>
     <nuxt-link :to="`/static/${Number($route.params.id || 0) + 1}`">
       Next post
@@ -9,7 +9,7 @@
   </blockquote>
 </template>
 
-<script>
+<script setup>
 import {
   defineComponent,
   computed,
@@ -21,25 +21,19 @@ import { fetcher } from '../../utils'
 
 const port = process.env.PORT || 3000
 
-export default defineComponent({
-  setup() {
-    const route = useRoute()
-    const id = computed(() => route.value.params.id)
-    const post = useStatic(
-      id =>
-        process.server && process.static
-          ? fetcher({ id })
-          : fetch(
-              (process.server ? `http://localhost:${port}` : '') +
-                `/api/posts/${id}`
-            )
-              .then(m => m.json())
-              .catch(e => console.log(e)),
-      id,
-      'posts'
-    )
-
-    return { post }
-  },
-})
+const route = useRoute()
+const id = computed(() => route.value.params.id)
+const post = useStatic(
+  id =>
+    process.server && process.static
+      ? fetcher({ id })
+      : fetch(
+          (process.server ? `http://localhost:${port}` : '') +
+            `/api/posts/${id}`
+        )
+          .then(m => m.json())
+          .catch(e => console.log(e)),
+  id,
+  'posts'
+)
 </script>

@@ -58,23 +58,20 @@
     "test:e2e-globals": "cross-env GLOBALS=true PORT=3000 start-server-and-test fixture:prod 3000 \"testcafe firefox:headless test/e2e\"",
     "test:e2e-ssr": "cross-env PORT=4000 start-server-and-test fixture:prod 4000 \"testcafe firefox:headless test/e2e\"",
     "test:types": "tsd",
-    "test:unit": "jest",
+    "test:unit": "vitest run",
     "watch": "yarn build -w"
   },
   "dependencies": {
-    "@vue/composition-api": "^1.6.0",
     "defu": "^5.0.1",
     "estree-walker": "^2.0.2",
     "fs-extra": "^9.1.0",
     "magic-string": "^0.26.1",
     "ufo": "^0.8.3",
-    "unplugin-vue2-script-setup": "^0.10.2",
     "upath": "^2.0.1"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.17.0",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-typescript": "^7.16.7",
+    "@babel/traverse": "^7.18.6",
+    "@babel/types": "^7.18.6",
     "@nuxt/test-utils": "^0.2.2",
     "@nuxt/types": "^2.15.8",
     "@nuxt/typescript-build": "^2.1.0",
@@ -82,21 +79,19 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@release-it/conventional-changelog": "^4.3.0",
     "@types/fs-extra": "^9.0.13",
-    "@types/jest": "^27.4.1",
     "@types/normalize-path": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
     "@typescript-eslint/parser": "^5.21.0",
-    "babel-loader": "^8.2.5",
+    "c8": "^7.11.3",
     "codecov": "^3.8.3",
     "core-js": "3.22.2",
     "cross-env": "^7.0.3",
     "eslint": "^8.14.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-jest": "^26.1.5",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^6.0.0",
+    "happy-dom": "^6.0.2",
     "http-server": "^14.1.0",
-    "jest": "^27.5.1",
     "lint-staged": "^12.4.1",
     "npm-run-all": "^4.1.5",
     "nuxt": "^2.15.8",
@@ -109,15 +104,19 @@
     "ts-loader": "^8.4.0",
     "tsd": "^0.20.0",
     "typescript": "4.6.3",
+    "vitest": "^0.17.0",
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
     "@nuxt/vue-app": "^2.15",
     "nuxt": "^2.15",
-    "vue": "^2"
+    "vue": "^2.7.0"
   },
   "engines": {
-    "node": "^12.20.0 || >=14.13.0"
+    "node": ">=14.13.0"
+  },
+  "volta": {
+    "node": "16.16.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -127,8 +126,5 @@
     "compilerOptions": {
       "rootDir": "."
     }
-  },
-  "volta": {
-    "node": "16.16.0"
   }
 }
