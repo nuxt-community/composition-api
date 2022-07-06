@@ -1,6 +1,5 @@
 import type { Module, NuxtOptions } from '@nuxt/types'
 import { resolve } from 'upath'
-import type { Configuration } from 'webpack'
 
 import { name, version } from '../../package.json'
 
@@ -17,7 +16,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   // Force transpilation of this library (to enable resolution of globals file)
 
-  const runtimeDir = resolve(__dirname, 'runtime')
+  const runtimeDir = resolve(__dirname, '../runtime')
   nuxt.options.build.transpile = nuxt.options.build.transpile || []
   nuxt.options.build.transpile.push('@nuxtjs/composition-api', runtimeDir)
 
