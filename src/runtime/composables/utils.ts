@@ -8,7 +8,7 @@ export function validateKey<T>(key?: T): asserts key is T {
   }
 }
 
-export function getCurrentInstance() {
+export const getCurrentInstance = () => {
   const vm = getVM()
 
   if (!vm) return
