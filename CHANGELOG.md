@@ -1,3 +1,24 @@
+
+
+## [0.33.0](https://github.com/nuxt-community/composition-api/compare/0.32.0...0.33.0) (2022-07-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade `defu` and other dev-dependencies
+* Some of the API and behaviour differ between Vue 2.7 and `@vue/composition-api`. In addition, there are some composition utilites that are no longer exported from `@nuxtjs/composition-api`, such as `defineAsyncComponent`, `warn`, etc.
+
+Please read https://blog.vuejs.org/posts/vue-2-7-naruto.html for the announcement and more information.
+
+### Features
+
+* use vue 2.7 composition api ([#645](https://github.com/nuxt-community/composition-api/issues/645)) ([ae9307a](https://github.com/nuxt-community/composition-api/commit/ae9307aec6b8f0b5c333f39238ea7339aa8fa411)), closes [#644](https://github.com/nuxt-community/composition-api/issues/644) [#643](https://github.com/nuxt-community/composition-api/issues/643) [#593](https://github.com/nuxt-community/composition-api/issues/593)
+
+
+### Miscellaneous Chores
+
+* upgrade `defu` and other dev-dependencies ([1cbce73](https://github.com/nuxt-community/composition-api/commit/1cbce731e807fe6331f6c0f701206806f7ccac7d))
+
 ## [0.32.0](https://github.com/nuxt-community/composition-api/compare/0.31.0...0.32.0) (2022-02-22)
 
 ## [0.31.0](https://github.com/nuxt-community/composition-api/compare/0.30.0...0.31.0) (2021-11-30)
@@ -800,4 +821,3 @@ _Note_: Work has already begun on composable hooks for `vue-meta` that will mean
 ### Features
 
 * add withContext hook ([179f0e1](https://github.com/danielroe/nuxt-composition-api/commit/179f0e1ab7b0d67499c1814c0101fd7037b66490))
-
