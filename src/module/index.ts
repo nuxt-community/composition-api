@@ -60,7 +60,9 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   nuxt.options.alias['@nuxtjs/composition-api'] =
     nuxt.options.alias['@nuxtjs/composition-api'] ||
-    this.nuxt.resolver.resolveModule('@nuxtjs/composition-api')
+    this.nuxt.resolver
+      .resolveModule('@nuxtjs/composition-api')
+      .replace('.js', '.mjs')
 
   // Turn off webpack4 module context for .mjs files (as it appears to have some issues)
 
