@@ -112,6 +112,9 @@
   "engines": {
     "node": ">=14.13.0"
   },
+  "volta": {
+    "node": "16.16.0"
+  },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
@@ -120,8 +123,5 @@
     "compilerOptions": {
       "rootDir": "."
     }
-  },
-  "volta": {
-    "node": "16.16.0"
   }
 }

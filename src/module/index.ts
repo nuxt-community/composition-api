@@ -20,6 +20,48 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   nuxt.options.build.transpile = nuxt.options.build.transpile || []
   nuxt.options.build.transpile.push('@nuxtjs/composition-api', runtimeDir)
 
+  // Define vue resolution to prevent VCA being registered to the wrong Vue instance
+
+  const vueEntry =
+    nuxt.options.alias.vue ||
+    (nuxt.options.dev
+      ? this.nuxt.resolver.resolveModule('vue/dist/vue.common.dev.js')
+      : this.nuxt.resolver.resolveModule('vue/dist/vue.runtime.esm.js'))
+
+  const vueAliases = Object.fromEntries(
+    [
+      // vue 2 dist files
+      '.common.dev',
+      '.common',
+      '.common.prod',
+      '.esm.browser',
+      '.esm.browser.min',
+      '.esm',
+      '',
+      '.min',
+      '.runtime.common.dev',
+      '.runtime.common',
+      '.runtime.common.prod',
+      '.runtime.esm',
+      '.runtime',
+      '.runtime.min',
+    ]
+      .flatMap(m => [`vue/dist/vue${m}`, `vue/dist/vue${m}.js`])
+      .map(m => [m, vueEntry])
+  )
+
+  nuxt.options.alias = {
+    ...vueAliases,
+    ...nuxt.options.alias,
+    vue: vueEntry,
+  }
+
+  // Define @nuxtjs/composition-api resolution to ensure plugins register global context successfully
+
+  nuxt.options.alias['@nuxtjs/composition-api'] =
+    nuxt.options.alias['@nuxtjs/composition-api'] ||
+    this.nuxt.resolver.resolveModule('@nuxtjs/composition-api')
+
   // Turn off webpack4 module context for .mjs files (as it appears to have some issues)
 
   this.extendBuild(config => {
