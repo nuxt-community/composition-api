@@ -59,7 +59,7 @@
     "watch": "yarn build -w"
   },
   "dependencies": {
-    "defu": "^5.0.1",
+    "defu": "^6.0.0",
     "estree-walker": "^2.0.2",
     "fs-extra": "^9.1.0",
     "magic-string": "^0.26.1",
