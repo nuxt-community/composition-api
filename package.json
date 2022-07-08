@@ -26,7 +26,7 @@
     "./dist/runtime/globals": "./dist/runtime/globals.js",
     "./dist/runtime/templates/*": "./dist/runtime/templates/*"
   },
-  "main": "./dist/runtime/index.js",
+  "main": "./dist/runtime/index.mjs",
   "module": "./dist/runtime/index.mjs",
   "types": "./dist/runtime/index.d.ts",
   "files": [
@@ -107,7 +107,7 @@
   "peerDependencies": {
     "@nuxt/vue-app": "^2.15",
     "nuxt": "^2.15",
-    "vue": "^2.7.3"
+    "vue": "^2.7.4"
   },
   "engines": {
     "node": ">=14.13.0"

@@ -20,14 +20,6 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   nuxt.options.build.transpile = nuxt.options.build.transpile || []
   nuxt.options.build.transpile.push('@nuxtjs/composition-api', runtimeDir)
 
-  // Define @nuxtjs/composition-api resolution to ensure plugins register global context successfully
-
-  nuxt.options.alias['@nuxtjs/composition-api'] =
-    nuxt.options.alias['@nuxtjs/composition-api'] ||
-    this.nuxt.resolver
-      .resolveModule('@nuxtjs/composition-api')
-      .replace('.js', '.mjs')
-
   // Turn off webpack4 module context for .mjs files (as it appears to have some issues)
 
   this.extendBuild(config => {
