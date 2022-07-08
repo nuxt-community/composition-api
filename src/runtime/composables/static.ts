@@ -1,5 +1,5 @@
-import { onServerPrefetch, watch, computed, ref } from '@vue/composition-api'
-import type { Ref } from '@vue/composition-api'
+import { onServerPrefetch, watch, computed, ref } from 'vue'
+import type { Ref } from 'vue'
 
 import { joinURL } from 'ufo'
 
@@ -115,6 +115,7 @@ export const useStatic = <T>(
       },
       {
         immediate: true,
+        flush: 'post',
       }
     )
   } else {

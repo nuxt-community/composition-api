@@ -27,10 +27,9 @@ export function addResolvedTemplate(
   const nuxtOptions: NuxtOptions = this.nuxt.options
 
   const src = resolveRelativePath(`../runtime/templates/${template}`)
-  const filename = template.replace('register.mjs', 'register.js')
   const { dst } = this.addTemplate({
     src,
-    fileName: join('composition-api', filename),
+    fileName: join('composition-api', template),
     options,
   })
 

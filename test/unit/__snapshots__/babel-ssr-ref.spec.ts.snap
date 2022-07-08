@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`ssrRef babel plugin works 1`] = `
+exports[`ssrRef babel plugin > works 1`] = `
 "const ref = ref(1);
 const ref2 = ssrRef(2, \\"ref2-BAW7YFDj4E+Qxr+ujqEADg==\\");
 const ref3 = ssrRef(3, 'custom-key');

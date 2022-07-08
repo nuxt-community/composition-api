@@ -1,22 +1,27 @@
 /**
- * @jest-environment jsdom
+ * @jest-environment happy-dom
  */
+import { describe, beforeEach, test, expect, vi } from 'vitest'
 import { ssrRef, globalPlugin } from '../../src/runtime/composables'
-import * as cAPI from '@vue/composition-api'
+
+let ssrContext: Record<string, any>
+
+vi.mock('../../src/runtime/composables/utils', async () => {
+  const utils = await vi.importActual('../../src/runtime/composables/utils')
+  return {
+    ...utils,
+    getCurrentInstance: vi.fn().mockImplementation(() => ({
+      $nuxt: {
+        context: { ssrContext },
+      },
+    })),
+  }
+})
 
 describe('ssrRef reactivity', () => {
-  let ssrContext: Record<string, any>
-
   beforeEach(async () => {
     process.server = true
     ssrContext = Object.assign({}, { nuxt: {} })
-    ;(cAPI as any).getCurrentInstance = () => ({
-      proxy: {
-        $nuxt: {
-          context: { ssrContext },
-        },
-      },
-    })
     globalPlugin({ app: { context: { ssrContext } } } as any, null)
   })
   test('ssrRefs react to change in state', async () => {

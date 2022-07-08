@@ -1,5 +1,5 @@
-import { isRef, onServerPrefetch } from '@vue/composition-api'
-import type { Ref } from '@vue/composition-api'
+import { isRef, onServerPrefetch } from 'vue'
+import type { Ref } from 'vue'
 
 import { globalNuxt } from '@nuxtjs/composition-api/dist/runtime/globals'
 import { ssrRef } from './ssr-ref'

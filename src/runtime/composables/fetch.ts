@@ -4,8 +4,9 @@ import {
   onBeforeMount,
   onServerPrefetch,
   reactive,
+  ComponentInstance,
   set,
-} from '@vue/composition-api'
+} from 'vue'
 
 import {
   globalContext,
@@ -14,7 +15,7 @@ import {
 } from '@nuxtjs/composition-api/dist/runtime/globals'
 import type { NuxtApp } from '@nuxt/types/app'
 
-import { getCurrentInstance, ComponentInstance } from './utils'
+import { getCurrentInstance } from './utils'
 
 const nuxtState = process.client && (window as any)[globalContext]
 
@@ -135,29 +136,30 @@ const mergeDataOnMount = (data: Record<string, any>) => {
   if (!vm) throw new Error('This must be called within a setup function.')
 
   onBeforeMount(() => {
+    const vmData = (vm as any)._setupProxy || vm
     // Merge data
     for (const key in data) {
       try {
         // Assign missing properties
-        if (key in vm) {
-          const _key = key as keyof typeof vm
+        if (key in vmData) {
+          const _key = key as keyof typeof vmData
           // Skip value equal to incoming data
-          if (vm[_key] === data[key]) continue
+          if (vmData[_key] === data[key]) continue
           // Skip functions (not stringifiable)
-          if (typeof vm[_key] === 'function') continue
+          if (typeof vmData[_key] === 'function') continue
           // Preserve reactive objects
-          if (isReactive(vm[_key])) {
+          if (isReactive(vmData[_key])) {
             // Unset keys that do not exist in incoming data
-            for (const k in vm[_key]) {
+            for (const k in vmData[_key]) {
               if (!(k in data[key])) {
-                delete vm[_key][k]
+                delete vmData[_key][k]
               }
             }
-            Object.assign(vm[_key], data[key])
+            Object.assign(vmData[_key], data[key])
             continue
           }
         }
-        set(vm, key, data[key])
+        set(vmData, key, data[key])
       } catch (e) {
         if (process.env.NODE_ENV === 'development')
           // eslint-disable-next-line
@@ -219,14 +221,17 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
   if (!vm.$vnode.data) vm.$vnode.data = {}
   const attrs = (vm.$vnode.data.attrs = vm.$vnode.data.attrs || {})
   attrs['data-fetch-key'] = vm._fetchKey
-
-  const data = { ...vm._data }
-  Object.entries((vm as any).__composition_api_state__.rawBindings).forEach(
-    ([key, val]) => {
-      if (val instanceof Function || val instanceof Promise) return
-
-      data[key] = isRef(val) ? val.value : val
-    }
+  const data = Object.fromEntries(
+    Object.entries((vm as any)?._setupProxy || (vm as any)?._setupState)
+      .filter(
+        ([_key, val]) =>
+          !(
+            (val && typeof val === 'object' && '_compiled' in val) ||
+            val instanceof Function ||
+            val instanceof Promise
+          )
+      )
+      .map(([key, val]) => [key, isRef(val) ? val.value : val])
   )
 
   // Add to ssrContext for window.__NUXT__.fetch

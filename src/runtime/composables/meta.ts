@@ -10,7 +10,7 @@ import {
   isRef,
   toRaw,
   UnwrapRef,
-} from '@vue/composition-api'
+} from 'vue'
 
 import type { MetaInfo } from 'vue-meta'
 

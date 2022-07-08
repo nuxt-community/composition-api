@@ -1,4 +1,5 @@
 import { transform } from '@babel/core'
+import { describe, it, expect } from 'vitest'
 
 import plugin from '../../src/babel-plugin'
 

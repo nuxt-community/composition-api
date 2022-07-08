@@ -1,10 +1,5 @@
-import {
-  customRef,
-  onServerPrefetch,
-  ref,
-  shallowRef,
-} from '@vue/composition-api'
-import type { Ref } from '@vue/composition-api'
+import { customRef, onServerPrefetch, ref, shallowRef } from 'vue'
+import type { Ref } from 'vue'
 
 import {
   globalContext,

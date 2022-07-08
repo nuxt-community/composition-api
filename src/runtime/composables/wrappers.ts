@@ -1,4 +1,4 @@
-import { computed, ComputedRef, InjectionKey } from '@vue/composition-api'
+import { computed, ComputedRef, InjectionKey } from 'vue'
 import type { Store } from 'vuex'
 
 import { getCurrentInstance } from './utils'

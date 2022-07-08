@@ -1,6 +1,5 @@
 import type { Module, NuxtOptions } from '@nuxt/types'
 import { resolve } from 'upath'
-import type { Configuration } from 'webpack'
 
 import { name, version } from '../../package.json'
 
@@ -17,7 +16,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   // Force transpilation of this library (to enable resolution of globals file)
 
-  const runtimeDir = resolve(__dirname, 'runtime')
+  const runtimeDir = resolve(__dirname, '../runtime')
   nuxt.options.build.transpile = nuxt.options.build.transpile || []
   nuxt.options.build.transpile.push('@nuxtjs/composition-api', runtimeDir)
 
@@ -57,28 +56,6 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     vue: vueEntry,
   }
 
-  // Define @vue/composition-api resolution to prevent using different versions of @vue/composition-api
-
-  const capiEntrypoint = '@vue/composition-api/dist/vue-composition-api.mjs'
-  const capiResolution =
-    nuxt.options.alias['@vue/composition-api'] ||
-    this.nuxt.resolver.resolveModule(capiEntrypoint)
-
-  const capiAliases = Object.fromEntries(
-    ['.common', '', '.prod', '.common.prod', '.esm', '.mjs']
-      .flatMap(m => [
-        `@vue/composition-api/dist/vue-composition-api${m}`,
-        `@vue/composition-api/dist/vue-composition-api${m}.js`,
-      ])
-      .map(m => [m, capiResolution])
-  )
-
-  nuxt.options.alias = {
-    ...capiAliases,
-    ...nuxt.options.alias,
-    '@vue/composition-api': capiResolution,
-  }
-
   // Define @nuxtjs/composition-api resolution to ensure plugins register global context successfully
 
   nuxt.options.alias['@nuxtjs/composition-api'] =
@@ -86,16 +63,6 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     this.nuxt.resolver
       .resolveModule('@nuxtjs/composition-api')
       .replace('.js', '.mjs')
-
-  // Register the Vue Composition API for webpack
-
-  const registration = addResolvedTemplate.call(this, 'register.mjs')
-  this.nuxt.hook('webpack:config', (config: Configuration[]) => {
-    config.forEach(config => {
-      const entry = config.entry as Record<string, string[]>
-      entry.app.unshift(registration)
-    })
-  })
 
   // Turn off webpack4 module context for .mjs files (as it appears to have some issues)
 
@@ -115,13 +82,11 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     })
   })
 
-  // If we're using nuxt-vite, register vite plugin & inject configuration
+  // If we're using nuxt-vite, register vite plugin for injecting keys
 
-  const viteMiddleware = addResolvedTemplate.call(this, 'middleware.mjs')
   this.nuxt.hook('vite:extend', async (ctx: any) => {
     const { compositionApiPlugin } = await import('./vite-plugin')
     ctx.config.plugins.push(compositionApiPlugin())
-    ctx.config.resolve.alias['./middleware.js'] = viteMiddleware
   })
 
   // If we're using Babel, register Babel plugin for injecting keys
@@ -144,9 +109,6 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     nuxt.options.plugins.push(metaPlugin)
     nuxt.options.plugins.unshift(globalPlugin)
   })
-
-  // Enable using `script setup`
-  this.addModule('unplugin-vue2-script-setup/nuxt')
 
   if (!this.nuxt.options.capi?.disableMigrationWarning) {
     this.nuxt.hook('build:done', () => {
