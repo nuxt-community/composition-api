@@ -1,6 +1,6 @@
 import { NuxtConfig, NuxtOptions } from '@nuxt/types'
 import { ModuleThis } from '@nuxt/types/config/module'
-import { join, resolve } from 'upath'
+import { join, resolve } from 'pathe'
 
 export function isFullStatic(options: NuxtConfig) {
   return (

@@ -1,4 +1,4 @@
-import { join, resolve } from 'upath'
+import { join, resolve } from 'pathe'
 import type { NuxtConfig } from '@nuxt/types'
 
 const routes = ['/route/a', '/static/1', '/static/2', '/static/3']

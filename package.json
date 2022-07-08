@@ -63,8 +63,8 @@
     "estree-walker": "^2.0.2",
     "fs-extra": "^9.1.0",
     "magic-string": "^0.26.1",
-    "ufo": "^0.8.3",
-    "upath": "^2.0.1"
+    "pathe": "^0.3.2",
+    "ufo": "^0.8.3"
   },
   "devDependencies": {
     "@babel/traverse": "^7.18.6",

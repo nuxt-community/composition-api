@@ -1,5 +1,5 @@
 import { copyFileSync, existsSync, mkdirpSync, readdirSync } from 'fs-extra'
-import { join } from 'upath'
+import { join } from 'pathe'
 
 import type { NuxtOptions } from '@nuxt/types'
 import type { ModuleThis } from '@nuxt/types/config/module'

@@ -18,9 +18,9 @@ function writeFile(key: string, value: string) {
   const { writeFileSync }: typeof import('fs') = process.client
     ? ''
     : require('fs')
-  const { join }: typeof import('upath') = process.client
+  const { join }: typeof import('pathe') = process.client
     ? ''
-    : require('upath')
+    : require('pathe')
 
   try {
     writeFileSync(join(staticPath, `${key}.json`), value)

@@ -1,5 +1,5 @@
 import type { Module, NuxtOptions } from '@nuxt/types'
-import { resolve } from 'upath'
+import { resolve } from 'pathe'
 
 import { name, version } from '../../package.json'
 
