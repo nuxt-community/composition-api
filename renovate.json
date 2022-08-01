@@ -1,4 +1,10 @@
 {
   "extends": ["@nuxtjs"],
-  "ignoreDeps": ["testcafe", "docus"]
+  "ignoreDeps": ["testcafe", "docus"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["node"],
+      "enabled": false
+    }
+  ]
 }
