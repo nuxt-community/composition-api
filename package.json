@@ -1,6 +1,6 @@
 {
   "name": "@nuxtjs/composition-api",
-  "version": "0.33.0",
+  "version": "0.33.1",
   "description": "Composition API hooks for Nuxt",
   "keywords": [
     "vue",

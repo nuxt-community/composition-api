@@ -1,5 +1,12 @@
 
 
+### [0.33.1](https://github.com/nuxt-community/composition-api/compare/0.33.0...0.33.1) (2022-08-01)
+
+
+### Bug Fixes
+
+* lower node engine requirement ([3b91919](https://github.com/nuxt-community/composition-api/commit/3b919195f89b0a591d6c6ac5698c1b397fbde697)), closes [#662](https://github.com/nuxt-community/composition-api/issues/662)
+
 ## [0.33.0](https://github.com/nuxt-community/composition-api/compare/0.32.0...0.33.0) (2022-07-08)
 
 
