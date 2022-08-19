@@ -38,7 +38,7 @@ export const useAsync = <T>(
   const _ref = isRef(key) ? key : ssrRef<T | null>(null, key)
 
   if (
-    !_ref.value ||
+    _ref.value === null ||
     (process.env.NODE_ENV === 'development' &&
       process.client &&
       window[globalNuxt]?.context.isHMR)
