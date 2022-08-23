@@ -67,8 +67,8 @@
     "ufo": "^0.8.5"
   },
   "devDependencies": {
-    "@babel/traverse": "^7.18.11",
-    "@babel/types": "^7.18.10",
+    "@babel/traverse": "^7.18.13",
+    "@babel/types": "^7.18.13",
     "@nuxt/test-utils": "^0.2.2",
     "@nuxt/types": "^2.15.8",
     "@nuxt/typescript-build": "^2.1.0",
@@ -77,8 +77,8 @@
     "@release-it/conventional-changelog": "^5.1.0",
     "@types/fs-extra": "^9.0.13",
     "@types/normalize-path": "^3.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.33.1",
-    "@typescript-eslint/parser": "^5.33.1",
+    "@typescript-eslint/eslint-plugin": "^5.34.0",
+    "@typescript-eslint/parser": "^5.34.0",
     "c8": "^7.12.0",
     "codecov": "^3.8.3",
     "core-js": "3.24.1",
@@ -107,7 +107,7 @@
   "peerDependencies": {
     "@nuxt/vue-app": "^2.15",
     "nuxt": "^2.15",
-    "vue": "^2.7.8"
+    "vue": "^2.7.10"
   },
   "engines": {
     "node": ">=v14.13.0"
