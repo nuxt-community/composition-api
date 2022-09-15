@@ -13174,10 +13174,10 @@ ts-pnp@^1.1.6:
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.2.0.tgz#a500ad084b0798f1c3071af391e65912c86bca92"
   integrity sha512-csd+vJOb/gkzvcCHgTGSChYpy5f1/XKNsmvBGO4JXS+z1v2HobugDz4s1IeFXM3wZB44uczs+eazB5Q/ccdhQw==
 
-tsd@^0.24.0:
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/tsd/-/tsd-0.24.0.tgz#c8ff7072d22075cf133fda3711ab131ad17b4512"
-  integrity sha512-ae0qE9E0qGTjYP1fGz4TMWKlqK+bpw/MHqPZFAdsrCOmS1er1jDWsBgiKzOF7MqE4I601Gp2c9aKBoYPrM5Uxw==
+tsd@^0.24.1:
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/tsd/-/tsd-0.24.1.tgz#10c596acf7278182d3ca142b902ca9a62b1f13ef"
+  integrity sha512-sD+s81/2aM4RRhimCDttd4xpBNbUFWnoMSHk/o8kC8Ek23jljeRNWjsxFJmOmYLuLTN9swRt1b6iXfUXTcTiIA==
   dependencies:
     "@tsd/typescript" "~4.8.3"
     eslint-formatter-pretty "^4.1.0"
