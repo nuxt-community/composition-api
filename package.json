@@ -98,7 +98,7 @@
     "siroc": "0.16.0",
     "start-server-and-test": "^1.14.0",
     "testcafe": "1.19.0",
-    "ts-loader": "^8.4.0",
+    "ts-loader": "^9.4.1",
     "tsd": "^0.24.1",
     "typescript": "4.8.3",
     "vitest": "^0.23.4",
