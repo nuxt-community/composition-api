@@ -62,7 +62,7 @@
     "defu": "^6.1.0",
     "estree-walker": "^2.0.2",
     "fs-extra": "^9.1.0",
-    "magic-string": "^0.26.5",
+    "magic-string": "^0.26.6",
     "pathe": "^0.3.8",
     "ufo": "^0.8.5"
   },
