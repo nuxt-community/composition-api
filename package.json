@@ -64,7 +64,7 @@
     "fs-extra": "^9.1.0",
     "magic-string": "^0.27.0",
     "pathe": "^1.0.0",
-    "ufo": "^0.8.6"
+    "ufo": "^1.0.1"
   },
   "devDependencies": {
     "@babel/traverse": "^7.20.5",
