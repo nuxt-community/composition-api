@@ -8,6 +8,13 @@ export { useMeta } from './meta'
 export { reqRef, reqSsrRef } from './req-ref'
 export { ssrRef, shallowSsrRef, setSSRContext, ssrPromise } from './ssr-ref'
 export { useStatic } from './static'
-export { useRoute, useRouter, useStore, wrapProperty } from './wrappers'
+export {
+  useRoute,
+  useRouter,
+  useStore,
+  wrapProperty,
+  wrapContextProperty,
+  useRedirect,
+} from './wrappers'
 
 export * from './vue'
