@@ -1,6 +1,6 @@
 export { useAsync } from './async'
 export { defineComponent } from './component'
-export { useContext, withContext } from './context'
+export { callWithContext, useContext, withContext } from './context'
 export * from './defineHelpers'
 export { useFetch } from './fetch'
 export { globalPlugin, onGlobalSetup, setMetaPlugin } from './hooks'
