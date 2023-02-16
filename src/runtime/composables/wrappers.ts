@@ -1,4 +1,4 @@
-import { computed, ComputedRef, InjectionKey } from 'vue'
+import { computed, ComputedRef, InjectionKey, isRef } from 'vue'
 import type { Store } from 'vuex'
 import type { VueRouter } from 'vue-router/types/router'
 import { useContext } from './context'
@@ -45,7 +45,7 @@ export const wrapContextProperty = <
   return (): T extends true ? ComputedRef<Context[K]> : Context[K] => {
     const context = useContext()
 
-    return makeComputed !== false
+    return makeComputed !== false && !isRef(context[property])
       ? (computed(() => context[property]) as any)
       : context[property]
   }
