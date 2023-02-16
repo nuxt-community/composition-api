@@ -72,6 +72,7 @@ export function callWithContext<T extends (...args: any[]) => any>(
  */
 export const useContext = (): UseContextReturn => {
   const nuxtAppInstance = nuxtAppCtx.tryUse()
+
   if (!nuxtAppInstance) {
     const vm = getCurrentInstance()
     if (!vm) {
@@ -98,7 +99,6 @@ export const useContext = (): UseContextReturn => {
       params: computed(() => vm.$route.params),
     }
 
-    nuxtAppCtx.set(context)
     return context
   }
 
