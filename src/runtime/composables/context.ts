@@ -31,7 +31,7 @@ interface UseContextReturn
   params: Ref<Route['params']>
 }
 
-const nuxtAppCtx = getContext<UseContextReturn>('nuxt-app')
+const nuxtCtx = getContext<UseContextReturn>('nuxt-context')
 
 /**
  * Ensures that the setup function passed in has access to the Nuxt instance via `useContext`.
@@ -48,10 +48,10 @@ export function callWithContext<T extends (...args: any[]) => any>(
   const fn: () => ReturnType<T> = () =>
     args ? setup(...(args as Parameters<T>)) : setup()
   if (process.server) {
-    return nuxtAppCtx.callAsync(context, fn)
+    return nuxtCtx.callAsync(context, fn)
   } else {
     // In client side we could assume nuxt app is singleton
-    nuxtAppCtx.set(context)
+    nuxtCtx.set(context)
     return fn()
   }
 }
@@ -71,9 +71,9 @@ export function callWithContext<T extends (...args: any[]) => any>(
   ```
  */
 export const useContext = (): UseContextReturn => {
-  const nuxtAppInstance = nuxtAppCtx.tryUse()
+  const nuxtContext = nuxtCtx.tryUse()
 
-  if (!nuxtAppInstance) {
+  if (!nuxtContext) {
     const vm = getCurrentInstance()
     if (!vm) {
       throw new Error('This must be called within a setup function.')
@@ -99,8 +99,9 @@ export const useContext = (): UseContextReturn => {
       params: computed(() => vm.$route.params),
     }
 
+    if (process.client) nuxtCtx.set(context)
     return context
   }
 
-  return nuxtAppInstance
+  return nuxtContext
 }
