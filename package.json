@@ -96,7 +96,7 @@
     "release-it": "15.5.1",
     "rimraf": "^3.0.2",
     "siroc": "0.16.0",
-    "start-server-and-test": "^1.15.2",
+    "start-server-and-test": "^2.0.0",
     "testcafe": "1.19.0",
     "ts-loader": "^8.4.0",
     "tsd": "^0.25.0",
