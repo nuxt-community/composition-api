@@ -51,7 +51,7 @@ export function callWithContext<T extends (...args: any[]) => any>(
     return nuxtCtx.callAsync(context, fn)
   } else {
     // In client side we could assume nuxt app is singleton
-    nuxtCtx.set(context)
+    if (!nuxtCtx.tryUse()) nuxtCtx.set(context)
     return fn()
   }
 }
