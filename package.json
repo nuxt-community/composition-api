@@ -71,7 +71,7 @@
     "@babel/types": "^7.20.5",
     "@nuxt/test-utils": "^0.2.2",
     "@nuxt/types": "^2.15.8",
-    "@nuxt/typescript-build": "^2.1.0",
+    "@nuxt/typescript-build": "^3.0.1",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@nuxtjs/pwa": "^3.3.5",
     "@release-it/conventional-changelog": "^5.1.1",
