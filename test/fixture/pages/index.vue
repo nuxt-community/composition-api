@@ -67,7 +67,9 @@ useFetch(async () => {
 
 const ttfb = ref(-1)
 onMounted(() => {
-  ttfb.value =
-    globalThis.performance.getEntriesByType('navigation')[0].responseStart
+  const entry = globalThis.performance.getEntriesByType('navigation')[0]
+  if (entry instanceof PerformanceNavigationTiming) {
+    ttfb.value = entry.responseStart
+  }
 })
 </script>
