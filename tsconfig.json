@@ -25,6 +25,8 @@
     "src/**/*.ts",
     "test/fixture/**/*.vue",
     "test/fixture/**/*.js",
-    "test/fixture/**/*.ts"
+    "test/fixture/**/*.ts",
+    "tsd/**/*.ts",
+    "unit/**/*.ts"
   ]
 }
