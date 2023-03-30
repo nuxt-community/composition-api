@@ -15,6 +15,7 @@ const moduleSource = join(rootDir, inDevelopment ? 'src' : 'dist')
 console.log('Testing', inDevelopment ? 'source' : 'built', 'module')
 
 export default <NuxtConfig>{
+  telemetry: false,
   alias: {
     '@nuxtjs/composition-api/dist/runtime/globals': join(
       moduleSource,
