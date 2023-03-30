@@ -53,7 +53,7 @@ export default defineComponent({
       post.value = await $http.$get(
         `https://jsonplaceholder.typicode.com/posts/${params.value.id}`
       )
-    })    
+    })
 
     return { post }
   },

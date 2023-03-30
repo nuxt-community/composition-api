@@ -34,16 +34,18 @@ import {
   ref,
 } from '@nuxtjs/composition-api'
 
+/** @typedef {{ userId: number, id: number, title: string, body: string }} Post */
+
 export default defineComponent({
   setup() {
-    const posts = ref(null)
+    const posts = ref(/** @type {Post[]} */([]))
 
     const { $http } = useContext()
-    
+
     useFetch(async () => {
-      posts.value = await $http
-        .$get('https://jsonplaceholder.typicode.com/posts')
-        .then(posts => posts.slice(0, 20))
+      /** @type {Post[]} */
+      const data = await $http.$get('https://jsonplaceholder.typicode.com/posts')
+      posts.value = data.slice(0, 20)
     })
 
     return { posts }

@@ -1,6 +1,7 @@
-const fetch = require('node-fetch')
+import fetch from 'node-fetch'
 const serverlessEnvironment = !!process.env.NOW_BUILD
 
+/** @type {import('@nuxt/types').NuxtConfig} */
 export default {
   server: {
     port: process.env.PORT || 8000,
@@ -20,6 +21,7 @@ export default {
   generate: {
     interval: 2000,
     async routes() {
+      /** @type {{ userId: number, id: number, title: string, body: string }[]} */
       const posts = await fetch('https://jsonplaceholder.typicode.com/posts')
         .then(res => res.json())
         .then(d => d.slice(0, 20))
@@ -27,6 +29,6 @@ export default {
 
       return ['/'].concat(routes)
     },
-    exclude: ['/posts/23']
+    exclude: [RegExp('/posts/23')]
   },
 }
