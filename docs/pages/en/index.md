@@ -2,7 +2,7 @@
 template: landing
 title: Nuxt Composition API
 description: >-
-  Vue 3 Composition API in Nuxt
+  Vue Composition API in Nuxt 2
 navigation: false
 ---
 
@@ -20,7 +20,7 @@ snippet: yarn add @nuxtjs/composition-api
 :::
 
 ::::card-grid{title="What's included?"}
-:::card{icon="IconVue" title="Vue 3 Composition API"}
+:::card{icon="IconVue" title="Vue Composition API"}
 Get all the Composition API features in Nuxt 2.
 :::
 
