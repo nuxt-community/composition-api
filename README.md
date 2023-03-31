@@ -22,7 +22,7 @@
 </a>
 </p>
 
-> `@nuxtjs/composition-api` provides a way to use the Vue 3 Composition API in with Nuxt-specific features.
+> `@nuxtjs/composition-api` provides a way to use the Vue Composition API in with Nuxt-specific features.
 
 ---
 
