@@ -18,16 +18,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: "pnpm"
-
-      - uses: actions/cache@v3
-        id: cache
-        with:
-          path: "node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          cache: "yarn"
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
 
       - name: Lint project
@@ -51,16 +44,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: "pnpm"
-
-      - uses: actions/cache@v3
-        id: cache
-        with:
-          path: "node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          cache: "yarn"
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
 
       - name: Build project
@@ -85,16 +71,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: "pnpm"
-
-      - uses: actions/cache@v3
-        id: cache
-        with:
-          path: "node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          cache: "yarn"
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
 
       - name: Build project
