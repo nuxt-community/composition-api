@@ -30,7 +30,7 @@ import { ran, ranSsr } from '../plugins/global'
 export default defineComponent({
   setup() {
     const globalInject = inject('globalKey', false)
-    const globalConfig = inject('globalContext', {})
+    const globalConfig = inject('globalContext', /** @type {import('@nuxt/types').Context['$config']} */({}))
 
     return { globalInject, ran, ranSsr, globalConfig }
   },

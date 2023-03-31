@@ -6,8 +6,13 @@ import { ssrRef, globalPlugin } from '../../src/runtime/composables'
 
 let ssrContext: Record<string, any>
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+function dummyInject() {}
+
 vi.mock('../../src/runtime/composables/utils', async () => {
-  const utils = await vi.importActual('../../src/runtime/composables/utils')
+  const utils = await vi.importActual<
+    typeof import('../../src/runtime/composables/utils')
+  >('../../src/runtime/composables/utils')
   return {
     ...utils,
     getCurrentInstance: vi.fn().mockImplementation(() => ({
@@ -22,7 +27,7 @@ describe('ssrRef reactivity', () => {
   beforeEach(async () => {
     process.server = true
     ssrContext = Object.assign({}, { nuxt: {} })
-    globalPlugin({ app: { context: { ssrContext } } } as any, null)
+    globalPlugin({ app: { context: { ssrContext } } } as any, dummyInject)
   })
   test('ssrRefs react to change in state', async () => {
     process.client = false
@@ -50,7 +55,7 @@ describe('ssrRef reactivity', () => {
     // simulate the new request comes in
     globalPlugin(
       { app: { context: { ssrContext: { nuxt: {} } } } } as any,
-      null
+      dummyInject
     )
 
     concurrentRef.value = 2

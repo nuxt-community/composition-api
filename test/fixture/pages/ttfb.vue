@@ -18,8 +18,10 @@ export default defineComponent({
     useFetch(() => {})
 
     onMounted(() => {
-      dataset.ttfb =
-        globalThis.performance.getEntriesByType('navigation')[0].responseStart
+      const entry = globalThis.performance.getEntriesByType('navigation')[0]
+      if (entry instanceof PerformanceNavigationTiming) {
+        dataset.ttfb = entry.responseStart
+      }
     })
 
     return {

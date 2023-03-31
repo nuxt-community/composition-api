@@ -19,7 +19,9 @@ const stat3 = useStatic(() => 4)
 
 describe('ssrRef babel plugin', () => {
   it('works', () => {
-    const { code } = transform(example, { plugins: [plugin] })
+    const transformed = transform(example, { plugins: [plugin] })
+    expect(transformed).toBeTruthy()
+    const { code } = transformed!
     expect(code).toMatchSnapshot()
   })
 })

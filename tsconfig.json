@@ -4,6 +4,8 @@
     "rootDir": ".",
     "strict": true,
     "sourceMap": true,
+    "allowJs": true,
+    "checkJs": true,
     "target": "ESNext",
     "module": "CommonJS",
     "moduleResolution": "Node",
@@ -15,9 +17,16 @@
       "@nuxtjs/composition-api/dist/runtime/globals": [
         "./src/runtime/globals.ts"
       ],
-      "@nuxtjs/composition-api": ["./src/index.ts"]
+      "@nuxtjs/composition-api": ["./src/runtime/index.ts"]
     },
     "types": ["node", "@nuxt/types"]
   },
-  "include": ["src/**/*.ts", "test/fixture/**/*.vue", "test/fixture/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "test/fixture/**/*.vue",
+    "test/fixture/**/*.js",
+    "test/fixture/**/*.ts",
+    "tsd/**/*.ts",
+    "unit/**/*.ts"
+  ]
 }

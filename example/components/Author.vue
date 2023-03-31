@@ -18,6 +18,8 @@ import {
   ref,
 } from '@nuxtjs/composition-api'
 
+/** @typedef {{ name: number }} User */
+
 export default defineComponent({
   props: {
     userId: {
@@ -26,10 +28,10 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const user = ref({})
+    const user = ref(/** @type {User} */({}))
 
     const { $http } = useContext()
-    
+
     useFetch(async () => {
       user.value = await $http.$get(
         `https://jsonplaceholder.typicode.com/users/${props.userId}`
