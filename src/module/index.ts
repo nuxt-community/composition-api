@@ -113,7 +113,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
   if (!this.nuxt.options.capi?.disableMigrationWarning) {
     this.nuxt.hook('build:done', () => {
       console.info(
-        "`Nuxt Bridge has now been released in beta.` It has full composition API support and it's strongly recommended to migrate from `@nuxtjs/composition-api`, if possible, by following the steps at `https://v3.nuxtjs.org/getting-started/bridge`. Feedback welcome at `https://github.com/nuxt-community/composition-api/discussions/585`.\n"
+        "`Nuxt Bridge has now been released in beta.` It has full composition API support and it's strongly recommended to migrate from `@nuxtjs/composition-api`, if possible, by following the steps at `https://nuxt.com/docs/bridge/overview`. Feedback welcome at `https://github.com/nuxt-community/composition-api/discussions/585`.\n"
       )
     })
   }
