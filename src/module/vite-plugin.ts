@@ -28,7 +28,7 @@ export function compositionApiPlugin(): Plugin & { enforce: 'pre' } {
 
       try {
         const { 0: script = code, index: codeIndex = 0 } =
-          code.match(/(?<=<script[^>]*>)[\S\s.]*?(?=<\/script>)/) || []
+          code.match(/(?<=<script[^>]*>)[\S\s.]*?(?=<\/script>)/) || {}
         const ast = this.parse(script)
         const s = new MagicString(code)
 
