@@ -14,15 +14,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - uses: actions/cache@v3
-        id: cache
+      - run: corepack enable
+      - uses: actions/setup-node@v3
         with:
-          path: "node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          node-version: 16
+          cache: "yarn"
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
 
       - name: Lint project
@@ -42,15 +40,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - uses: actions/cache@v3
-        id: cache
+      - run: corepack enable
+      - uses: actions/setup-node@v3
         with:
-          path: "node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          node-version: 16
+          cache: "yarn"
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
 
       - name: Build project
@@ -71,15 +67,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - uses: actions/cache@v3
-        id: cache
+      - run: corepack enable
+      - uses: actions/setup-node@v3
         with:
-          path: "node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          node-version: 16
+          cache: "yarn"
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
 
       - name: Build project
