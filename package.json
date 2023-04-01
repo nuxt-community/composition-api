@@ -64,7 +64,7 @@
     "fs-extra": "^9.1.0",
     "magic-string": "^0.30.0",
     "pathe": "^1.1.0",
-    "ufo": "^1.0.1"
+    "ufo": "^1.1.1"
   },
   "devDependencies": {
     "@babel/traverse": "^7.21.4",
@@ -94,7 +94,7 @@
     "npm-run-all": "^4.1.5",
     "nuxt": "^2.16.3",
     "prettier": "^2.8.7",
-    "release-it": "15.9.3",
+    "release-it": "15.10.0",
     "rimraf": "^4.4.1",
     "siroc": "0.16.0",
     "start-server-and-test": "^2.0.0",
@@ -107,7 +107,7 @@
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
-    "nuxt": "^2.15",
+    "nuxt": "^2.16.3",
     "vue": "^2.7.14"
   },
   "engines": {
