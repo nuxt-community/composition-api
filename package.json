@@ -95,7 +95,7 @@
     "nuxt": "^2.16.3",
     "prettier": "^2.8.7",
     "release-it": "15.10.0",
-    "rimraf": "^4.4.1",
+    "rimraf": "^5.0.0",
     "siroc": "0.16.0",
     "start-server-and-test": "^2.0.0",
     "testcafe": "2.4.0",
