@@ -4,7 +4,6 @@ import { useContext } from './context'
 
 import { getCurrentInstance } from './utils'
 import { Context } from '@nuxt/types'
-import type { VueRouter } from 'vue-router/types/router'
 import { useRouter as useVueRouter } from 'vue-router/composables'
 
 /**
