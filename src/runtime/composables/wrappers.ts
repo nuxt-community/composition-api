@@ -4,6 +4,8 @@ import { useContext } from './context'
 
 import { getCurrentInstance } from './utils'
 import { Context } from '@nuxt/types'
+import type { VueRouter } from 'vue-router/types/router'
+import { useRouter as useVueRouter } from 'vue-router/composables'
 
 /**
  * You might want to create a custom helper to 'convert' a non-Composition API property to a Composition-ready one. `wrapProperty` enables you to do that easily, returning either a computed or a bare property as required.
@@ -66,8 +68,7 @@ export const wrapContextProperty = <
  */
 export const useRouter = (): VueRouter => {
   const vm = getCurrentInstance()
-
-  if (vm) return useRouter()
+  if (vm) return useVueRouter()
 
   const contextRouter = useContext().app.router
   if (contextRouter) return contextRouter
