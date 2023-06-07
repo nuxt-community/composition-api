@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import type { Ref } from 'vue'
 import type { Context } from '@nuxt/types'
 import type { Route } from 'vue-router'
+import { useRoute } from 'vue-router/composables'
 
 import { getContext } from 'unctx'
 import { globalNuxt } from '@nuxtjs/composition-api/dist/runtime/globals'
@@ -84,11 +85,11 @@ export const useContext = (): UseContextReturn => {
       /**
        * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `route` from `useContext` but rather to use the `useRoute` helper function.
        */
-      route: computed(() => vm.$route),
+      route: computed(() => useRoute()),
       /**
        * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `query` from `useContext` but rather to use the `useRoute` helper function.
        */
-      query: computed(() => vm.$route.query),
+      query: computed(() => useRoute().query),
       /**
        * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `from` from `useContext` but rather to use the `useRoute` helper function.
        */
@@ -96,7 +97,7 @@ export const useContext = (): UseContextReturn => {
       /**
        * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `params` from `useContext` but rather to use the `useRoute` helper function.
        */
-      params: computed(() => vm.$route.params),
+      params: computed(() => useRoute().params),
     }
 
     if (process.client) nuxtCtx.set(context)
