@@ -1,7 +1,6 @@
 import { computed, ComputedRef, InjectionKey, isRef } from 'vue'
 import type { Store } from 'vuex'
 import { useContext } from './context'
-import * as VueRouterComposables from 'vue-router/composables'
 
 import { getCurrentInstance } from './utils'
 import { Context } from '@nuxt/types'
@@ -65,7 +64,16 @@ export const wrapContextProperty = <
   })
   ```
  */
-export const useRouter = VueRouterComposables.useRouter
+export const useRouter = (): VueRouter => {
+  const vm = getCurrentInstance()
+
+  if (vm) return useRouter()
+
+  const contextRouter = useContext().app.router
+  if (contextRouter) return contextRouter
+
+  throw new Error('This must be called within a setup function.')
+}
 
 /**
  * Gain safe access to the redirect method from Context

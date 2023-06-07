@@ -8,6 +8,7 @@ import { useRoute } from 'vue-router/composables'
 import { getContext } from 'unctx'
 import { globalNuxt } from '@nuxtjs/composition-api/dist/runtime/globals'
 import { getCurrentInstance } from './utils'
+import { Vue } from 'vue/types/vue'
 
 interface ContextCallback {
   (context: Context): void
@@ -48,13 +49,7 @@ export function callWithContext<T extends (...args: any[]) => any>(
 ) {
   const fn: () => ReturnType<T> = () =>
     args ? setup(...(args as Parameters<T>)) : setup()
-  if (process.server) {
-    return nuxtCtx.callAsync(context, fn)
-  } else {
-    // In client side we could assume nuxt app is singleton
-    if (!nuxtCtx.tryUse()) nuxtCtx.set(context)
-    return fn()
-  }
+  return nuxtCtx.callAsync(context, fn)
 }
 
 /**
@@ -80,16 +75,21 @@ export const useContext = (): UseContextReturn => {
       throw new Error('This must be called within a setup function.')
     }
 
+    const root = vm.$root as unknown as { _$route: typeof vm.$root['$route'] }
+
+    // Call of vue-router initialization of _$route
+    if (!root._$route) useRoute()
+
     const context = {
       ...(vm[globalNuxt] || vm.$options).context,
       /**
        * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `route` from `useContext` but rather to use the `useRoute` helper function.
        */
-      route: computed(() => useRoute()),
+      route: computed(() => root._$route),
       /**
        * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `query` from `useContext` but rather to use the `useRoute` helper function.
        */
-      query: computed(() => useRoute().query),
+      query: computed(() => root._$route.query),
       /**
        * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `from` from `useContext` but rather to use the `useRoute` helper function.
        */
@@ -97,7 +97,7 @@ export const useContext = (): UseContextReturn => {
       /**
        * @deprecated To smooth your upgrade to Nuxt 3, it is recommended not to access `params` from `useContext` but rather to use the `useRoute` helper function.
        */
-      params: computed(() => useRoute().params),
+      params: computed(() => root._$route.params),
     }
 
     if (process.client) nuxtCtx.set(context)
