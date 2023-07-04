@@ -74,7 +74,7 @@
     "@nuxt/typescript-build": "^3.0.1",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@nuxtjs/pwa": "^3.3.5",
-    "@release-it/conventional-changelog": "^5.1.1",
+    "@release-it/conventional-changelog": "^6.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^16.18.23",
     "@types/normalize-path": "^3.0.0",
