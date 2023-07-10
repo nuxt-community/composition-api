@@ -5575,6 +5575,11 @@ entities@^4.2.0:
   resolved "https://registry.yarnpkg.com/entities/-/entities-4.4.0.tgz#97bdaba170339446495e653cfd2db78962900174"
   integrity sha512-oYp7156SP8LkeGD0GF85ad1X9Ai79WtRsZ2gxJqtBuzH+98YUV6jkHEKlZkMbcrjJjIVJNIDP/3WL9wQkoPbWA==
 
+entities@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/entities/-/entities-4.5.0.tgz#5d268ea5e7113ec74c4d033b79ea5a35a488fb48"
+  integrity sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==
+
 errno@^0.1.3, errno@~0.1.7:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/errno/-/errno-0.1.8.tgz#8bb3e9c7d463be4976ff888f76b4809ebc2e811f"
@@ -7091,13 +7096,13 @@ handlebars@^4.7.7:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-happy-dom@^9.10.9:
-  version "9.10.9"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-9.10.9.tgz#3a9360e18a8036014203b65e8426392dc762d171"
-  integrity sha512-3RnOyu6buPMpDAyOpp8yfR5Xi/k2p5MhrDwlG/dgpVHkptFN5IqubdbGOQU5luB7ANh6a08GOuiB+Bo9JCzCBw==
+happy-dom@^10.0.6:
+  version "10.0.6"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-10.0.6.tgz#b5d2249fa7d323058018606f7ac8a2ee3802677c"
+  integrity sha512-7D/i4tyKQcSpFo0yV2qK3rMchWbYQQbh4+j+Ujqb545ZWFpb6mnttirf+LGG5OdrkQTcEryMlqBzdNFsB1ah6Q==
   dependencies:
     css.escape "^1.5.1"
-    he "^1.2.0"
+    entities "^4.5.0"
     iconv-lite "^0.6.3"
     webidl-conversions "^7.0.0"
     whatwg-encoding "^2.0.0"
