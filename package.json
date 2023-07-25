@@ -80,7 +80,7 @@
     "@types/normalize-path": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
-    "c8": "^7.14.0",
+    "c8": "^8.0.1",
     "codecov": "^3.8.3",
     "core-js": "3.31.1",
     "cross-env": "^7.0.3",
