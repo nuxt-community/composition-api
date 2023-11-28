@@ -61,7 +61,7 @@
   "dependencies": {
     "defu": "^6.1.2",
     "estree-walker": "^2.0.2",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^11.2.0",
     "magic-string": "^0.30.1",
     "pathe": "^1.1.1",
     "ufo": "^1.1.2"
@@ -75,7 +75,7 @@
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@nuxtjs/pwa": "^3.3.5",
     "@release-it/conventional-changelog": "^5.1.1",
-    "@types/fs-extra": "^9.0.13",
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^16.18.38",
     "@types/normalize-path": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
