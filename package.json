@@ -19,7 +19,16 @@
   },
   "sideEffects": true,
   "exports": {
-    ".": "./dist/runtime/index.mjs",
+    ".": {
+      "import": {
+        "types": "./dist/runtime/index.d.ts",
+        "default": "./dist/runtime/index.mjs"
+      },
+      "require": {
+        "types": "./dist/runtime/index.d.ts",
+        "default": "./dist/runtime/index.js"
+      }
+    },
     "./module": "./dist/module/index.mjs",
     "./package.json": "./package.json",
     "./dist/babel-plugin": "./dist/babel-plugin/index.js",
