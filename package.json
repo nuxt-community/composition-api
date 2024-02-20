@@ -85,7 +85,7 @@
     "core-js": "3.31.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.45.0",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
     "happy-dom": "^10.3.2",
