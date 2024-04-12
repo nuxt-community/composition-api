@@ -1,5 +1,15 @@
 
 
+## [0.34.0](https://github.com/nuxt-community/composition-api/compare/0.33.1...0.34.0) (2024-04-12)
+
+
+### Bug Fixes
+
+* allow returning of falsy values from useAsync ([#670](https://github.com/nuxt-community/composition-api/issues/670)) ([f8d9128](https://github.com/nuxt-community/composition-api/commit/f8d9128bbced69de3821e7ddc74add4e29962b68))
+* include `.d.mts` file for bundler compatibility ([#786](https://github.com/nuxt-community/composition-api/issues/786)) ([fe769c7](https://github.com/nuxt-community/composition-api/commit/fe769c707496b2f07125cc4a532278df4c277e39))
+* remove `@nuxt/vue-app` peer dependency ([#753](https://github.com/nuxt-community/composition-api/issues/753)) ([f3b8fbf](https://github.com/nuxt-community/composition-api/commit/f3b8fbf40f507e3728b775f05e0ea3cef5f542ad))
+* update link to Bridge documentation ([1571863](https://github.com/nuxt-community/composition-api/commit/1571863e766ab283f9e5c582accc5acc274c0c52))
+
 ### [0.33.1](https://github.com/nuxt-community/composition-api/compare/0.33.0...0.33.1) (2022-08-01)
 
 

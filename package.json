@@ -1,6 +1,6 @@
 {
   "name": "@nuxtjs/composition-api",
-  "version": "0.33.1",
+  "version": "0.34.0",
   "description": "Composition API hooks for Nuxt",
   "keywords": [
     "vue",
@@ -46,7 +46,7 @@
     "now-build": "NOW_BUILD=true yarn fixture:generate:export",
     "nuxt-run": "cross-env-shell \"yarn nuxt $CMD test/fixture\"",
     "prepare": "yarn build",
-    "prepublishOnly": "yarn lint && yarn test",
+    "_prepublishOnly": "yarn lint && yarn test",
     "release": "release-it",
     "test": "run-s test:*",
     "test:e2e-generated": "cross-env GENERATE=true PORT=8000 start-server-and-test fixture:generate http://localhost:8000 \"testcafe -q firefox:headless test/e2e\"",
