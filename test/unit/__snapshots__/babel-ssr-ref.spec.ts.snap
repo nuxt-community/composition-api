@@ -1,13 +1,13 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`ssrRef babel plugin > works 1`] = `
 "const ref = ref(1);
-const ref2 = ssrRef(2, \\"ref2-BAW7YFDj4E+Qxr+ujqEADg==\\");
+const ref2 = ssrRef(2, "ref2-BAW7YFDj4E+Qxr+ujqEADg==");
 const ref3 = ssrRef(3, 'custom-key');
-const ref4 = ssrRef(() => 4, \\"ref4-h6IKM1doqCRBR49lWv2V/g==\\");
-const async1 = useAsync(() => null, \\"async1-nk1uJ/q39HMoKEMFH33Ryg==\\");
+const ref4 = ssrRef(() => 4, "ref4-h6IKM1doqCRBR49lWv2V/g==");
+const async1 = useAsync(() => null, "async1-nk1uJ/q39HMoKEMFH33Ryg==");
 const async2 = useAsync(() => null, 'key');
 const stat = useStatic(() => 4, '2', 'post');
-const stat2 = useStatic(() => 4, '2', \\"stat2-55c3e298c9cd3d8ea2665241b6061629\\");
-const stat3 = useStatic(() => 4, \\"stat3-dc9ff012f4c054c3f893c0ea8f3cddc5\\");"
+const stat2 = useStatic(() => 4, '2', "stat2-55c3e298c9cd3d8ea2665241b6061629");
+const stat3 = useStatic(() => 4, "stat3-dc9ff012f4c054c3f893c0ea8f3cddc5");"
 `;
