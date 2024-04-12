@@ -34,7 +34,7 @@
     "module.js"
   ],
   "scripts": {
-    "build": "siroc build",
+    "build": "siroc build && cp dist/runtime/index.d.ts dist/runtime/index.d.mts",
     "clean:fixture": "rimraf test/fixture/dist/ test/fixture/.nuxt",
     "dev": "nuxt dev test/fixture",
     "fixture:generate": "yarn fixture:generate:export && yarn http-server -s -p 5000 test/fixture/dist",
