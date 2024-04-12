@@ -87,7 +87,7 @@
     "http-server": "^14.1.1",
     "lint-staged": "^15.2.2",
     "npm-run-all2": "^5.0.2",
-    "nuxt": "^2.17.3",
+    "nuxt": "^3.11.2",
     "release-it": "17.2.0",
     "rimraf": "^5.0.5",
     "siroc": "0.16.0",
@@ -101,7 +101,7 @@
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
-    "nuxt": "^2.17.3",
+    "nuxt": "^3.11.2",
     "vue": "^2.7.16"
   },
   "engines": {
