@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: ${{ github.event_name != 'push' }}
+
 jobs:
   lint:
     runs-on: ubuntu-latest
