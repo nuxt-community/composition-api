@@ -19,11 +19,7 @@
   },
   "sideEffects": true,
   "exports": {
-    ".": {
-      "types": "./dist/runtime/index.d.ts",
-      "import": "./dist/runtime/index.mjs",
-      "require": "./dist/runtime/index.js"
-    },
+    ".": "./dist/runtime/index.mjs",
     "./module": "./dist/module/index.mjs",
     "./package.json": "./package.json",
     "./dist/babel-plugin": "./dist/babel-plugin/index.js",
@@ -38,7 +34,7 @@
     "module.js"
   ],
   "scripts": {
-    "build": "siroc build",
+    "build": "siroc build && cp dist/runtime/index.d.ts dist/runtime/index.d.mts",
     "clean:fixture": "rimraf test/fixture/dist/ test/fixture/.nuxt",
     "dev": "nuxt dev test/fixture",
     "fixture:generate": "yarn fixture:generate:export && yarn http-server -s -p 5000 test/fixture/dist",
