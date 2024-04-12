@@ -81,6 +81,7 @@ export const useRoute = wrapProperty('$route')
   })
   ```
  */
+// eslint-disable-next-line
 export const useStore = <S>(key?: InjectionKey<S>): Store<S> => {
   const vm = getCurrentInstance()
   if (!vm) throw new Error('This must be called within a setup function.')

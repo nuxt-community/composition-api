@@ -224,6 +224,7 @@ async function serverPrefetch(vm: AugmentedComponentInstance) {
   const data = Object.fromEntries(
     Object.entries((vm as any)?._setupProxy || (vm as any)?._setupState)
       .filter(
+        // eslint-disable-next-line
         ([_key, val]) =>
           !(
             (val && typeof val === 'object' && '_compiled' in val) ||
