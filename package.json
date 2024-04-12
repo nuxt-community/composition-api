@@ -86,7 +86,7 @@
     "happy-dom": "^14.7.1",
     "http-server": "^14.1.1",
     "lint-staged": "^15.2.2",
-    "npm-run-all2": "^5.0.0",
+    "npm-run-all2": "^5.0.2",
     "nuxt": "^2.17.3",
     "release-it": "17.2.0",
     "rimraf": "^5.0.5",
@@ -101,8 +101,8 @@
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
-    "nuxt": "^2.17.1",
-    "vue": "^2.7.14"
+    "nuxt": "^2.17.3",
+    "vue": "^2.7.16"
   },
   "engines": {
     "node": ">=v14.13.0"

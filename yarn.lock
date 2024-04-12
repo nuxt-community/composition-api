@@ -9912,7 +9912,7 @@ normalize-url@^8.0.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-8.0.0.tgz#593dbd284f743e8dcf6a5ddf8fadff149c82701a"
   integrity sha512-uVFpKhj5MheNBJRTiMZ9pE/7hD1QTeEvugSJW/OmLzAp78PB5O6adfMNTvmfKhXBkvCzC+rqifWcVYpGFwTjnw==
 
-npm-run-all2@^5.0.0:
+npm-run-all2@^5.0.2:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/npm-run-all2/-/npm-run-all2-5.0.2.tgz#7dae8e11ba90be9edd05379414a01407416b336c"
   integrity sha512-S2G6FWZ3pNWAAKm2PFSOtEAG/N+XO/kz3+9l6V91IY+Y3XFSt7Lp7DV92KCgEboEW0hRTu0vFaMe4zXDZYaOyA==
