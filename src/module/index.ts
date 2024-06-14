@@ -18,7 +18,11 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
 
   const runtimeDir = resolve(__dirname, '../runtime')
   nuxt.options.build.transpile = nuxt.options.build.transpile || []
-  nuxt.options.build.transpile.push('@nuxtjs/composition-api', runtimeDir)
+  nuxt.options.build.transpile.push(
+    '@nuxtjs/composition-api',
+    runtimeDir,
+    'defu'
+  )
 
   // Define vue resolution to prevent VCA being registered to the wrong Vue instance
 
@@ -54,6 +58,7 @@ const compositionApiModule: Module<never> = function compositionApiModule() {
     ...vueAliases,
     ...nuxt.options.alias,
     vue: vueEntry,
+    defu: 'defu/dist/defu.mjs',
   }
 
   // Define @nuxtjs/composition-api resolution to ensure plugins register global context successfully
