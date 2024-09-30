@@ -89,7 +89,7 @@
     "npm-run-all2": "^6.2.3",
     "nuxt": "^2.18.1",
     "release-it": "17.6.0",
-    "rimraf": "^5.0.10",
+    "rimraf": "^6.0.1",
     "siroc": "0.16.0",
     "start-server-and-test": "^2.0.8",
     "testcafe": "3.5.0",
