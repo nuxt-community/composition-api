@@ -65,8 +65,8 @@
     "ufo": "^1.5.4"
   },
   "devDependencies": {
-    "@babel/traverse": "^7.25.6",
-    "@babel/types": "^7.25.6",
+    "@babel/traverse": "^7.25.7",
+    "@babel/types": "^7.25.7",
     "@nuxt/test-utils": "^0.2.2",
     "@nuxt/types": "^2.18.1",
     "@nuxt/typescript-build": "^3.0.2",
@@ -88,7 +88,7 @@
     "lint-staged": "^15.2.10",
     "npm-run-all2": "^6.2.3",
     "nuxt": "^2.18.1",
-    "release-it": "17.6.0",
+    "release-it": "17.7.0",
     "rimraf": "^6.0.1",
     "siroc": "0.16.0",
     "start-server-and-test": "^2.0.8",
@@ -97,7 +97,7 @@
     "tsd": "^0.31.2",
     "typescript": "5.6.2",
     "vite": "^5.4.8",
-    "vitest": "^2.1.1",
+    "vitest": "^2.1.2",
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
