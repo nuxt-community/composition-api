@@ -86,7 +86,7 @@
     "happy-dom": "^15.7.4",
     "http-server": "^14.1.1",
     "lint-staged": "^15.2.10",
-    "npm-run-all2": "^6.2.5",
+    "npm-run-all2": "^7.0.0",
     "nuxt": "^2.18.1",
     "release-it": "17.10.0",
     "rimraf": "^6.0.1",
