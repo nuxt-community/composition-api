@@ -83,7 +83,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.57.1",
     "eslint-plugin-promise": "^7.1.0",
-    "happy-dom": "^15.9.0",
+    "happy-dom": "^15.10.1",
     "http-server": "^14.1.1",
     "lint-staged": "^15.2.10",
     "npm-run-all2": "^7.0.1",
