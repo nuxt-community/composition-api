@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "@nuxt/types": "^2.18.1",
-    "@types/node-fetch": "^2.6.11",
+    "@types/node-fetch": "^2.6.12",
     "nuxt": "^2.18.1"
   },
   "scripts": {
