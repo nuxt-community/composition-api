@@ -60,7 +60,7 @@
     "defu": "^6.1.4",
     "estree-walker": "^2.0.2",
     "fs-extra": "^11.2.0",
-    "magic-string": "^0.30.13",
+    "magic-string": "^0.30.14",
     "pathe": "^1.1.2",
     "ufo": "^1.5.4"
   },
@@ -74,7 +74,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@release-it/conventional-changelog": "^9.0.3",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.9.4",
+    "@types/node": "^22.10.0",
     "@types/normalize-path": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
