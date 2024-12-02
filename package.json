@@ -97,7 +97,7 @@
     "tsd": "^0.31.2",
     "typescript": "5.7.2",
     "vite": "^5.4.11",
-    "vitest": "^2.1.6",
+    "vitest": "^2.1.7",
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
