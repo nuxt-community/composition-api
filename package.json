@@ -65,7 +65,7 @@
     "ufo": "^1.5.4"
   },
   "devDependencies": {
-    "@babel/traverse": "^7.26.3",
+    "@babel/traverse": "^7.26.4",
     "@babel/types": "^7.26.3",
     "@nuxt/test-utils": "^0.2.2",
     "@nuxt/types": "^2.18.1",
