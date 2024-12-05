@@ -81,7 +81,7 @@
     "codecov": "^3.8.3",
     "core-js": "3.39.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.57.1",
+    "eslint": "^9.16.0",
     "eslint-plugin-promise": "^7.2.1",
     "happy-dom": "^15.11.7",
     "http-server": "^14.1.1",
